@@ -6,12 +6,10 @@ jobs:
     steps:
       - name: Set up
         uses: actions/checkout@v3
-      - name: Compile CV
+      - name: Compile Document
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
-          compiler: pdflatex
-          args: -interaction=nonstopmode -shell-escape
       - name: upload
         uses: actions/upload-artifact@v3
         with:
