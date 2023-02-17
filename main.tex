@@ -35,6 +35,7 @@
 \usepackage{trsym}
 %\usepackage{showkeys}
 \usepackage{bytefield}
+\usepackage{svg}
 
 %%
 %% Pfad zu den Bildern
@@ -66,8 +67,7 @@
 \thesistyp{Masterarbeit} 
 \autor{Denis Renning}
 \edvnr{123 456}
-\titel{Entwurf und Implementierung einer DSP-Basierten Ansteuerung für Brushless
-  DC-Motoren} 
+\titel{Web Application Firewalls und Machine Learning} 
 \untertitel{Ein Testsystem für die Lehre}
 \betreuerFeld{
   \begin{tabular}{lr}
@@ -87,8 +87,49 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Die Kapitel der Arbeitw
 
+%Einfuehrung (insgesamt ca. 5 Seiten)
+%  Das grosse Problem
+%  Ziel der Arbeit (oder das kleine machbare Problem)
+%  Methodik (1 Seite)
+%  Gliederung und Aufbau (0,5 Seiten)
 \input{kapitel1/ch1.tex}
+
+%Grundlagen und verwandte Arbeiten (Bitte nicht mehr als 8 Seiten)
+%  Grundbegriffe
+%  Thema 1
+%  Thema 2 (optional)
+%  Thema 3 (optional)
+%  Zusammenfassung (ca. 0,5 Seiten)
 \input{kapitel2/ch2.tex}
+
+%Kern der Arbeit (ca. 15 - 20 Seiten)
+%  Probleme und die Lösungsansätze
+%  Methodik/Vorgehen (diesmal ausfuehrlich)
+%  Uebersicht bzw. Architektur
+%  Oder aber: Der xxx Algorithmus
+%  Optional: Der yyyy Algorithmus
+%  Zusammenfassung (ca. 0,5 Seiten)
+\input{03_Kern/kern.tex}
+
+%Implementierung (max. 5 Seiten)
+%  Highlight 1 der Implementierung
+%  Highlight 2 der Implementierung
+%  Highlight des Deployments beim Kunden
+%  Zusammenfassung (ca. 0,5 Seiten)
+\input{04_Implementierung/implementierung.tex}
+
+%Evaluierung (wenn Sie ein System bauen, ca. 10 Seiten)
+%  Aufbau der Messumgebung (1-2 Seiten)
+%  Ergebnisse und Beobachtungen (3-4 Seiten)
+%  Diskussion und Bewertung (3-4 Seiten)
+%  Zusammenfassung (ca. 0,5 Seiten)
+\input{05_Evaluierung/evaluierung.tex}
+
+%Zusammenfassung und Ausblick (5 Seiten)
+%  Zusammenfassung
+%  Ausblick
+\input{06_Zusammenfassung/zusammenfassung.tex}
+
 
 \begin{appendix}
   \input{anhang.tex}
