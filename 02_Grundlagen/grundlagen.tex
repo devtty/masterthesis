@@ -5,12 +5,18 @@
 % Grundbegriffe 2 Seiten
 \section{Grundbegriffe}
 \subsection{WAF allgemein}
+m die Sicherheit einer Anwendung zu gew ̈ahrleisten sind viele verschiedene Schrit-te  notwendig,  so  sollten  nat ̈urlich  bereits  in  der  Anwendung  selbst  Ein-  und  Ausga-bem ̈oglichkeiten, z.B. durch Validierung, Encoding, usw. ̈uberpr ̈uft und gegebenenfallseingeschr ̈ankt werden. Dabei l ̈asst sich nicht jeder m ̈ogliche Angriffsfall vorhersehen odereine eigene Implementierung ist zu aufwendig und teuer, weil h ̈aufig nicht ausreichendpersonelle Ressourcen  oder  Bugdet vorhanden  sind um eine  Web  Applikation auf  allem ̈oglichen  Sicherheitsl ̈ucken  zu  pr ̈ufen.  Im  Laufe  des  Betriebes  einer  Web  Anwendun-gen k ̈onnen zudem neue Angriffsvarianten entstehen und zus ̈atzlich ist gerade bei WebApplikationen der Zeitdruck zur Ver ̈offentlichung einer solchen h ̈aufig sehr hoch.An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Ge-gensatz  zu  regul ̈aren  Firewalls  haben  Web  Application  Firewalls  direkten  Zugriff  aufdie  HTTP-Anfragen  (requests)  und  Antworten  (responses)  und  k ̈onnen  diese  entspre-chend  bewerten  und  gegenbenenfalls  blockieren  oder  gef ̈ahrdende  Inhalte  filtern  oderumschreiben.Grunds ̈atzlich lassen sich solche Systeme nach ihrer Position in der Netzwerk- und Ser-vertopologie  unterscheiden.  Es  existieren  einerseits  Systeme  die  vor  eine  Anwendunggeschaltet werden und Systeme die direkt in die Anwendung integriert werden. Die ersteGruppe l ̈asst noch eine Verzweigung in weitere Unterarten, wieReverse Proxy,Applian-ce,Pluginsf ̈ur WebServer oderPassive Devices(IDS), zu.
+
 \subsubsection{Anwendungsfälle}
 %% Anwendungsfaelle WAF (gut beschrieben bei WAFEC2)
 %% irgendwie Uebergang zu ML und WAF mit ML schaffen
 %% Sammlung; payload,fuzzer,fingerprinting, bypassing
 
 \subsection{Arten}
+
+\subsubsection{Unterscheidung nach Position}
+
+\subsubsection{Unterscheidung nach Abwehrmaßnahmen}
 
 \subsection{Grundbegriffe allgemein}
 \textbf{Bypassing:}
@@ -25,6 +31,7 @@
 
 % Thema 1
 \subsection{Evolution der Firewalls}
+
 
 \subsubsection{Strikt nach Regeln}
 
