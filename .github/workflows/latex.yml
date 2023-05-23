@@ -10,7 +10,6 @@ jobs:
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
-          args: -interaction=nonstopmode -shell-escape
       - name: upload
         uses: actions/upload-artifact@v3
         with:
