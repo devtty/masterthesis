@@ -25,9 +25,10 @@ Grundsätzlich lassen sich solche Systeme nach ihrer Position in der Netzwerk- u
 \subsubsection{Unterscheidung nach Abwehrmaßnahmen}
 
 \paragraph{Regelbasierte Systeme}
-
+Der Großteil bekannter WebApplicationFirewalls arbeitet jedoch \emph{regelbasiert}. In diesem Fall werden ein- und ausgehende Datenströme (Requests/Responses) unabhängig voneinander (zustandslos) betrachtet und einer Mustererkennung unterworfen. Häufig sind die Regeln anhand sogenannter \emph{Regular Expressions} definiert.
 
 \paragraph{Logische Systeme}
+Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufgrund von bekannten (logischen) Rückschlüssen eingeleitet werden. Einfachstes Beispiel wäre das temporäre Sperren der Loginseite bei dreimalig falschem Login. Bei Nutzung einer WAF die keine logikbasierten Auswertungen ermöglicht, müssten entsprechende Anwendungsfälle in der Anwendung selbst implementiert werden. (Oder im Fall der gerade beschriebenen Authentifizierungproblematik in einen externen Dienst ausgelagert werden.)
 
 \subsection{Grundbegriffe allgemein}
 
