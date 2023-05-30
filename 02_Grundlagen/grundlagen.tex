@@ -57,7 +57,7 @@ Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufg
 
 \subsubsection{Strikt nach Regeln}
 
-Die praktisch einfachste Web Application Firewall wäre -beispielsweise- eine einfache Regel innerhalb der Webserver-Konfiguration, die anhand eines bestimmten Merkmals den Datenverkehr entweder korrekt beantwortet oder \glqq\emph{abwehrt}\grqq. Wenn nicht explizit entnommen findet sich der folgende Eintrag in jeder Konfiguration des \emph{Apache httpd}-Servers und sorgt dafür dass der Zugriff auf jede Datei deren Dateiname mit \texttt{.ht} beginnt unterbunden wird.
+Die praktisch einfachste Web Application Firewall wäre \emph{-beispielsweise-} eine einfache Regel innerhalb der Webserver-Konfiguration, die anhand eines bestimmten Merkmals den Datenverkehr entweder korrekt beantwortet oder \glqq\emph{abwehrt}\grqq. Wenn nicht explizit entnommen findet sich der folgende Eintrag in jeder Konfiguration des \emph{Apache httpd}-Servers und sorgt dafür dass der Zugriff auf jede Datei deren Dateiname mit \texttt{.ht} beginnt unterbunden wird:
 
 \lstset{language=XML,
  	basicstyle=\ttfamily\color{black}\small,
@@ -68,14 +68,18 @@ Die praktisch einfachste Web Application Firewall wäre -beispielsweise- eine ei
 %      \begin{figure}
 %        \caption{Beispiel für einfache Regel}
 %        \label{fig:httprule}
-        \begin{lstlisting}
-          <Files ".ht*">
-            Require all denied
-          </Files>
-        \end{lstlisting}
+\begin{lstlisting}
+  <Files ".ht*">
+    Require all denied
+  </Files>
+\end{lstlisting}
 %      \end{figure}
 
+Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Bedarf an Regeln. Zu berücksichtigende Auswahlkriterien beschränken sich dann auch nicht nur auf den \glqq\emph{Dateinamen}\grqq. Attribute wie der Aufrufzeitpunkt, der Inhalt des Aufrufs, die Identität des Aufrufenden und viele andere Kriterien können zu entscheidenden Faktoren werden. Im Sinne der Entkopplung wurde diese Filterlogik häufig in entsprechende Module oder Plugins ausgelagert. Bekanntester Vertreter ist das \emph{modSecurity}-Modul für den Apache httpd-Server.
 
+\begin{lstlisting}
+  SecRule REQUEST_URI ".ht*" "deny"
+\end{lstlisting}
 
 % einfache regel => firewall
 % Systeme zum verwalten der Regeln
