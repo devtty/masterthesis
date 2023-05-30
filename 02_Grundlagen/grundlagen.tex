@@ -57,7 +57,7 @@ Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufg
 
 \subsubsection{Strikt nach Regeln}
 
-Die praktisch einfachste Web Application Firewall wäre -beispielsweise- eine einfache Regel innerhalb der Webserver-Konfiguration, die anhand eines bestimmten Merkmals den Datenverkehr entweder korrekt beantwortet oder \glqq\emph{abwehrt}\grqq. Der unter \ref{fig:httprule} sichtbare Eintrag findet sich in 
+Die praktisch einfachste Web Application Firewall wäre -beispielsweise- eine einfache Regel innerhalb der Webserver-Konfiguration, die anhand eines bestimmten Merkmals den Datenverkehr entweder korrekt beantwortet oder \glqq\emph{abwehrt}\grqq. Wenn nicht explizit entnommen findet sich der folgende Eintrag in jeder Konfiguration des \emph{Apache httpd}-Servers und sorgt dafür dass der Zugriff auf jede Datei deren Dateiname mit \texttt{.ht} beginnt unterbunden wird.
 
 \lstset{language=XML,
  	basicstyle=\ttfamily\color{black}\small,
@@ -65,15 +65,15 @@ Die praktisch einfachste Web Application Firewall wäre -beispielsweise- eine ei
  	identifierstyle=\color{black}, 
  	commentstyle=\color{gray}\textsl
       }
-      \begin{figure}
-        \caption{Beispiel für einfache Regel}
-        \label{fig:httprule}
+%      \begin{figure}
+%        \caption{Beispiel für einfache Regel}
+%        \label{fig:httprule}
         \begin{lstlisting}
           <Files ".ht*">
             Require all denied
           </Files>
         \end{lstlisting}
-      \end{figure}
+%      \end{figure}
 
 
 
