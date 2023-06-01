@@ -75,7 +75,7 @@ Die praktisch einfachste Web Application Firewall wäre \emph{-beispielsweise-} 
 \end{lstlisting}
 %      \end{figure}
 
-Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Bedarf an Regeln. Zu berücksichtigende Auswahlkriterien beschränken sich dann auch nicht nur auf den \glqq\emph{Dateinamen}\grqq. Attribute wie der Aufrufzeitpunkt, der Inhalt des Aufrufs, die Identität des Aufrufenden und viele andere Kriterien können zu entscheidenden Faktoren werden. Im Sinne der Entkopplung wurde diese Filterlogik häufig in entsprechende Module oder Plugins ausgelagert. Bekanntester Vertreter ist das \emph{modSecurity}-Modul für den Apache httpd-Server.
+Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Bedarf an Regeln. Zu berücksichtigende Auswahlkriterien beschränken sich dann auch nicht nur auf den \glqq\emph{Dateinamen}\grqq. Attribute wie der Aufrufzeitpunkt, der Inhalt des Aufrufs, die Identität des Aufrufenden und viele andere Kriterien können zu entscheidenden Faktoren werden. Im Sinne der Entkopplung wurde diese Filterlogik häufig in entsprechende Module oder Plugins ausgelagert. Aufgrund des hohen Verbreitungsgrades des \emph{Apache httpd}-Servers wurde dessen \emph{modSecurity}-Modul zu einem der bekanntesten Vertreter einer Web Application Firewall. 
 
 \begin{lstlisting}
   SecRule REQUEST_URI ".ht*" "deny"
@@ -108,3 +108,6 @@ Collaborative Detection \cite{karakannas2014}
 \section{Zusammenfassung}
 
 % ggf. ditaa tabelle ueber den Zeitverlauf der verschiedenen Arbeiten nach Attack-Defend-Muster
+\begin{chronology}[5]{2005}{2025}{3ex}[\textwidth]
+  \event{2008}{modSecurity}
+\end{chronology}
