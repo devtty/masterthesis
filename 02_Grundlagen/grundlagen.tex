@@ -48,7 +48,7 @@ Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufg
 
 \textbf{Payload:}
 
-\textbf{Regulärer Ausdruck:}
+\textbf{Regulärer Ausdruck:} Eine Zeichenkette zur Beschreibung einer Menge von Zeichenketten mit Hilfe einer vordefinierten Syntax. Ein regulärer Ausdruck kann bespielsweise genutzt werden um bestimmte Muster in einem Text zu erkennen oder einen Text mit einem Muster zu vergleichen.
 
 \textbf{Request:} 
 
@@ -98,7 +98,8 @@ Bei dieser Sicherheitsregel \verb=SecRule= wird die aufgerufene Adresse \verb=VA
 \subsubsection{Allgemeine Regeln}
 Mit der Zeit entwickelten sich immer mehr und immer komplexere Regeln. Regeln wurden auf spezielle Anwendungen, Anwendungsfälle oder Angriffsszenarien zugeschnitten und gesammelt. Es entstanden Sammlungen die unter Administratoren, Entwicklern und anderen IT-Spezialisten ausgetauscht wurden.
 Im Oktober 2006 veröffentlichte das \emph{Open Web Application Security Project} erstmals eine allgemein verfügbare Sammlung von generischen Regeln für das modSecurity-Modul mit dem Ziel ein Art Grundschutz zur Absicherung von Webanwendungen anzubieten. Die als \emph{OWASP Core Rule Set} bekannte Sammlung wird seitdem stetig erweitert und weiter entwickelt. Wirft man heute einen Blick in die verfügbaren Regeldateien des Projekts \footnote{\url{https://github.com/coreruleset/coreruleset/tree/v4.0/dev/rules} abgerufen am 01.06.2023} findet man sowohl allgemeine Regeln mit Bezug auf die Angriffsmuster aus den OWASP Top10 \cite{owasp10}, als auch Regeln die sehr speziell auf bestimmte Anwendungen oder Sicherheitsvorfälle ausgelegt sind.
- Obwohl die bereitgestellten Regeln des Core Rule Sets eine gewisse Basissicherheit bieten können, sind diese nur als Ausgangsbasis zur (produktiven) Absicherung von Anwendungen zu sehen. Erstens wird nicht jeder Fall berücksichtigt und zweitens erzeugen die Regeln unter Umständen auch Fehlmeldungen (Falsch-Positive). 
+
+Obwohl die bereitgestellten Regeln des Core Rule Sets eine gewisse Basissicherheit bieten können, sind diese nur als Ausgangsbasis zur (produktiven) Absicherung von Anwendungen zu sehen. Erstens wird nicht jeder Fall berücksichtigt und zweitens erzeugen die Regeln unter Umständen auch Fehlmeldungen (Falsch-Positive). 
 
 % einfache regel => firewall
 % Systeme zum verwalten der Regeln
