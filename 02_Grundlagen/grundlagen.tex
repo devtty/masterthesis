@@ -89,8 +89,10 @@ Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Beda
   #SYNTAX: SecRule VARIABLES OPERATOR [ACTIONS]        
   SecRule REQUEST_URI ".ht*" "deny"
 \end{lstlisting}
+% end figure
 
 Bei dieser \emph{Sicherheitsregel} wird die \emph{aufgerufene Adresse} (\texttt{REQUEST_URI VARIABLE}) auf \emph{Übereinstimmung mit einem regulären Ausdruck} (\texttt{.ht} \texttt{OPERATOR}) geprüft und bei Übereinstimmung die Ausführung \emph{verweigert} (\texttt{deny} \texttt{ACTIONS}).
+
 
 \subsubsection{Allgemeine Regeln}
 
