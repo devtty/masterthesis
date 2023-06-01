@@ -46,6 +46,8 @@ Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufg
 
 \textbf{Payload:}
 
+\textbf{Regulärer Ausdruck:}
+
 \textbf{Request:} 
 
 \textbf{Response:}
@@ -75,7 +77,7 @@ Die praktisch einfachste Web Application Firewall wäre \emph{-beispielsweise-} 
 \end{lstlisting}
 %      \end{figure}
 
-Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Bedarf an Regeln. Zu berücksichtigende Auswahlkriterien beschränken sich dann auch nicht nur auf den \glqq\emph{Dateinamen}\grqq. Attribute wie der Aufrufzeitpunkt, der Inhalt des Aufrufs, die Identität des Aufrufenden und viele andere Kriterien können zu entscheidenden Faktoren werden. Im Sinne der Entkopplung wurde diese Filterlogik häufig in entsprechende Module oder Plugins ausgelagert. Aufgrund des hohen Verbreitungsgrades des \emph{Apache httpd}-Servers wurde dessen \emph{modSecurity}-Modul zu einem der bekanntesten Vertreter einer Web Application Firewall. Dabei handelt es sich um eine frei verfügbare und als \empf{Open Source} entwickelte Softwarelösung, die eine eigene Sprache zum Erstellen der WAF-Regeln mit sich bringt. Der obige Aufruf zum Verhindern des Zugriffs auf die \texttt{.ht*}-Dateien für das Modul lautet:
+Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Bedarf an Regeln. Zu berücksichtigende Auswahlkriterien beschränken sich dann auch nicht nur auf den \glqq\emph{Dateinamen}\grqq. Attribute wie der Aufrufzeitpunkt, der Inhalt des Aufrufs, die Identität des Aufrufenden und viele andere Kriterien können zu entscheidenden Faktoren werden. Im Sinne der Entkopplung wurde diese Filterlogik häufig in entsprechende Module oder Plugins ausgelagert. Aufgrund des hohen Verbreitungsgrades des \emph{Apache httpd}-Servers wurde dessen \emph{modSecurity}-Modul zu einem der bekanntesten Vertreter einer Web Application Firewall. Dabei handelt es sich um eine frei verfügbare und als \emph{Open Source} entwickelte Softwarelösung, die eine eigene Sprache zum Erstellen der WAF-Regeln mit sich bringt. Der obige Aufruf zum Verhindern des Zugriffs auf die \texttt{.ht*}-Dateien für das Modul lautet:
 
 \lstset{language=bash,
  	basicstyle=\ttfamily\color{black}\small,
