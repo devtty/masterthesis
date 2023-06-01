@@ -91,12 +91,10 @@ Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Beda
 \end{lstlisting}
 % end figure
 
-%%Bei dieser \emph{Sicherheitsregel} wird die \emph{aufgerufene Adresse} (\texttt{REQUEST_URI VARIABLE}) auf \emph{Übereinstimmung mit einem regulären Ausdruck} (\texttt{.ht} \texttt{OPERATOR}) geprüft und bei Übereinstimmung die Ausführung \emph{verweigert} (\texttt{deny} \texttt{ACTIONS}).
-
+Bei dieser \emph{Sicherheitsregel} wird die \emph{aufgerufene Adresse} (REQUEST_URI VARIABLE) auf \emph{Übereinstimmung mit einem regulären Ausdruck} (.ht OPERATOR) geprüft und bei Übereinstimmung die Ausführung \emph{verweigert} (deny ACTIONS).
 
 \subsubsection{Allgemeine Regeln}
-
-Mit der Zeit entwickelten sich immer mehr und immer komplexere Regeln. Regeln wurden auf spezielle Anwendungen, Anwendungsfälle oder Angriffsszenarien zugeschnitten und gesammelt. Es entstanden Sammlungen die unter Administratoren, Entwicklern und anderen IT-Spezialisten ausgetauscht wurden. Im Oktober 2006 veröffentlichte das \emph{Open Web Application Security Project} (OWASP) erstmals eine allgemein verfügbare Sammlung von generischen Regeln für das modSecurity-Modul mit dem Ziel ein Art Grundschutz zur Absicherung von Webanwendungen anzubieten.
+Mit der Zeit entwickelten sich immer mehr und immer komplexere Regeln. Regeln wurden auf spezielle Anwendungen, Anwendungsfälle oder Angriffsszenarien zugeschnitten und gesammelt. Es entstanden Sammlungen die unter Administratoren, Entwicklern und anderen IT-Spezialisten ausgetauscht wurden. \\Im Oktober 2006 veröffentlichte das \emph{Open Web Application Security Project} erstmals eine allgemein verfügbare Sammlung von generischen Regeln für das modSecurity-Modul mit dem Ziel ein Art Grundschutz zur Absicherung von Webanwendungen anzubieten. Die als \emph{OWASP Core Rule Set} bekannte Sammlung wird seitdem stetig erweitert und weiter entwickelt. Wirft man heute einen Blick in die verfügbaren Regeldateien des Projekts \footnote{\url{https://github.com/coreruleset/coreruleset/tree/v4.0/dev/rules} abgerufen am 01.06.2023}} findet man sowohl allgemeine Regeln mit Bezug auf die Angriffsmuster aus den OWASP Top10 \cite{owasp10}, als auch Regeln die sehr speziell auf bestimmte Anwendungen oder Sicherheitsvorfälle ausgelegt sind. \ref{saprule}
 
 
 
@@ -133,4 +131,5 @@ Collaborative Detection \cite{karakannas2014}
 November 2002 modSecurity 1st release
 Oktober 2006 OWASP CRS
 August 2009 CRS 2
+2014 Collaborative Detection
 2016 CRS3.0.0 CRS Sampling Mode

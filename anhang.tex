@@ -65,6 +65,47 @@
 \label{tab:my_label}
 \end{table}
 
+\subsection*{Beispiele}
+
+\lstset{language=bash,
+ 	basicstyle=\ttfamily\color{black}\small,
+ 	keywordstyle=\bfseries\color{bhtBlue},
+ 	identifierstyle=\color{black}, 
+ 	commentstyle=\color{gray}\textsl
+      }
+      \begin{figure}
+        \caption{Auszug aus REQUEST-942-APPLICATION-ATTACK-SQLI.conf}
+        \label{fig:saprule}
+\begin{lstlisting}
+# This is a stricter sibling of rule 942430.
+#
+# This rule is also triggered by the following exploit(s):
+# [ SAP CRM Java vulnerability CVE-2018-2380 - Exploit tested: https://www.exploit-db.com/exploits/44292 ]
+#
+
+SecRule ARGS_NAMES|ARGS|XML:/* "@rx ((?:[~!@#\$%\^&\*\(\)\-\+=\{\}\[\]\|:;\"'´’‘`<>][^~!@#\$%\^&\*\(\)\-\+=\{\}\[\]\|:;\"'´’‘`<>]*?){2})" \
+    "id:942432,\
+    phase:2,\
+    block,\
+    capture,\
+    t:none,t:urlDecodeUni,\
+    msg:'Restricted SQL Character Anomaly Detection (args): # of special characters exceeded (2)',\
+    logdata:'Matched Data: %{TX.1} found within %{MATCHED_VAR_NAME}: %{MATCHED_VAR}',\
+    tag:'application-multi',\
+    tag:'language-multi',\
+    tag:'platform-multi',\
+    tag:'attack-sqli',\
+    tag:'OWASP_CRS',\
+    tag:'capec/1000/152/248/66',\
+    tag:'PCI/6.5.2',\
+    tag:'paranoia-level/4',\
+    ver:'OWASP_CRS/4.0.0-rc1',\
+    severity:'WARNING',\
+    setvar:'tx.inbound_anomaly_score_pl4=+%{tx.warning_anomaly_score}',\
+    setvar:'tx.sql_injection_score=+%{tx.warning_anomaly_score}'"
+\end{lstlisting}
+      \end{figure}
+
 
 \subsection*{Stylefile}
 Die  Styledatei für diese  Abschlussarbeit ist  \texttt{bhtThesis.sty}, die  in der
