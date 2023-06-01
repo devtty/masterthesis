@@ -90,7 +90,12 @@ Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Beda
   SecRule REQUEST_URI ".ht*" "deny"
 \end{lstlisting}
 
-Bie dieser \emph{Sicherheitsregel} wird die \emph{aufgerufene Adresse} \texttt{REQUEST_URI/VARIABLE} auf \emph{Übereinstimmung mit einem regulären Ausdruck} \texttt{``.ht*''/OPERATOR} geprüft und bei Übereinstimmung die Ausführung \emph{verweigert}  \texttt{``deny''/ACTIONS}.
+Bie dieser \emph{Sicherheitsregel} wird die \emph{aufgerufene Adresse} \texttt{REQUEST_URI/VARIABLE} auf \emph{Übereinstimmung mit einem regulären Ausdruck} \texttt{``.ht*''/OPERATOR} geprüft und bei Übereinstimmung die Ausführung \emph{verweigert}  \texttt{``deny''/ACTIONS}.\\
+
+\subsubsection{Regeln für Alle}
+
+Mit der Zeit entwickelten sich immer mehr und immer komplexere Regeln. Regeln wurden auf spezielle Anwendungen, Anwendungsfälle oder Angriffsszenarien zugeschnitten und gesammelt. Es entstanden Sammlungen die unter Administratoren, Entwicklern und anderen IT-Spezialisten ausgetauscht wurden. Das bereits 2001 gegründete \emph{Open Web Application Security Project} (OWASP) 
+
 
 
 % einfache regel => firewall
@@ -120,3 +125,7 @@ Collaborative Detection \cite{karakannas2014}
 \section{Zusammenfassung}
 
 % ggf. ditaa tabelle ueber den Zeitverlauf der verschiedenen Arbeiten nach Attack-Defend-Muster
+
+
+November 2002 modSecurity 1st release
+2016 CRS Sampling Mode
