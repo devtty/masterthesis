@@ -112,7 +112,7 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Eine Anfrage auf eine bestimmte Ressource bzw. URI soll abgelehnt werden wenn der Nutzer nicht eingeloggt ist. Dieser Fall wäre könnte mit drei einfachen Regeln abgebildet werden. Es wird für den Fall \emph{nicht eingeloggt} ein Punkt vergeben und für den Fall \emph{Aufruf der Ressource} ein Punkt vergeben. Die dritte Regel besagt dass alle Aufrufe deren Summe mehr als zwei Punkte in Summe überschreiten, abgelehnt werden.
 
-\textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb{HTTP200 - OK}. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
+\textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200 - OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
 \begin{align}
   P = \frac{a}{v}
 \end{align}
