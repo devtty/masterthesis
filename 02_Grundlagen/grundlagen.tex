@@ -48,6 +48,8 @@ Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufg
 
 \textbf{Payload:}
 
+\textbf{Reverse Proxy:}
+
 \textbf{Regulärer Ausdruck:} Eine Zeichenkette zur Beschreibung einer Menge von Zeichenketten mit Hilfe einer vordefinierten Syntax. Ein regulärer Ausdruck kann bespielsweise genutzt werden um bestimmte Muster in einem Text zu erkennen oder einen Text mit einem Muster zu vergleichen.
 
 \textbf{Request:} 
@@ -115,7 +117,7 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200 - OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
 \begin{align}
-  P = \frac{Anzahl_a}{v}
+  P = \frac{Scoring-Wert}{Anzahl_Anfragen gesamt}
 \end{align}
 
 
@@ -124,7 +126,7 @@ In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv um
 \begin{figure}[ht]
   %% \begin{center}
   \centering
-  \includesvg[width=0.7\textwidth]{pl_onion_no_fonts}
+  \includesvg[width=0.5\textwidth]{pl_onion_no_fonts}
   \caption{Übersicht Paranoia Level \cite{owaspcrs}}
   \label{fig.paranoia}
 %%  \end{center}
@@ -133,7 +135,8 @@ In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv um
 
 % Logik mit Zugriff auf die Anwendung -> WebCastellum?
 
-\subsubsection{Hybride Ansätze}
+\subsubsection{Hybride Ansätze} %Nicht immer schwarz oder weiss
+Ein Ergebnis muß aber nicht immer schwarz oder weiß sein \cite{Krueger2010}
 
 % Krueger Manaseer etc.
 
@@ -161,5 +164,6 @@ Collaborative Detection \cite{karakannas2014}
 November 2002 modSecurity 1st release
 Oktober 2006 OWASP CRS
 August 2009 CRS 2
+2010 TokDoc
 2014 Collaborative Detection
 2016 CRS3.0.0 CRS Sampling Mode
