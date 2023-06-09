@@ -119,7 +119,7 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 \begin{align}
   P = \frac{Scoring-Wert}{Anzahl_Anfragen gesamt}
 \end{align}
-
+\anno{Formel überprüfen?Weitermachen!}
 
 In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall mußte in jedem Fall für die jeweilige Anwendung angepaßt werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepaßt. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert und deren Ausführung kann in Abhängigkeit vom konfigurierten Wert gesteuert werden.
 
@@ -136,9 +136,10 @@ In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv um
 % Logik mit Zugriff auf die Anwendung -> WebCastellum?
 
 \subsubsection{Hybride Ansätze} %Nicht immer schwarz oder weiss
-Ein Ergebnis muß aber nicht immer schwarz oder weiß sein \cite{Krueger2010}
+Ein Ergebnis muß aber nicht immer schwarz oder weiß sein \cite{Krueger2010}.  Grundsätzlich besteht für Web Application Firewalls die Möglichkeit HTTP-Anfragen zu manipulieren bevor diese die eigentliche Anwendung erreichen. Gleiches gilt für die Antworten der Anwendung bevor diese an den Client ausgeliefert werden. Für den Apache httpd-Server existiert mit dem \emph{modRewrite}-Modul sogar eine Komponente einzig und allein für diesen Zweck. 
 
-% Krueger Manaseer etc.
+% Krueger -> fehlerhafte Request werden automatisch korregiert und weiter geleitet
+% Manaseer etc.
 
 \subsubsection{Fortschritte in Richtung Intelligenz}
 
@@ -167,3 +168,4 @@ August 2009 CRS 2
 2010 TokDoc
 2014 Collaborative Detection
 2016 CRS3.0.0 CRS Sampling Mode
+2018 Centralized Manaseer
