@@ -121,7 +121,7 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 \end{align}
 \anno{Formel überprüfen?Weitermachen!}
 
-In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall mußte in jedem Fall für die jeweilige Anwendung angepaßt werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepaßt. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert und deren Ausführung kann in Abhängigkeit vom konfigurierten Wert gesteuert werden.
+In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall mußte in jedem Fall für die jeweilige Anwendung angepaßt werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepaßt. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert und deren Ausführung in Abhängigkeit von vorkonfigurierten Werten gesteuert werden. Der Nutzer bekam die Möglichkeit eine sofort (bzw. mit sehr wenig Aufwand) einsetzbare Lösung zur erhalten, mit der seine Anwendung Schritt für Schritt sicherer werden konnte.
 
 \begin{figure}[ht]
   %% \begin{center}
@@ -136,7 +136,16 @@ In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv um
 % Logik mit Zugriff auf die Anwendung -> WebCastellum?
 
 \subsubsection{Hybride Ansätze} %Nicht immer schwarz oder weiss
-Ein Ergebnis muß aber nicht immer schwarz oder weiß sein \cite{Krueger2010}.  Grundsätzlich besteht für Web Application Firewalls die Möglichkeit HTTP-Anfragen zu manipulieren bevor diese die eigentliche Anwendung erreichen. Gleiches gilt für die Antworten der Anwendung bevor diese an den Client ausgeliefert werden. Für den Apache httpd-Server existiert mit dem \emph{modRewrite}-Modul sogar eine Komponente einzig und allein für diesen Zweck. 
+Ein Ergebnis muß aber nicht immer schwarz oder weiß sein.  Grundsätzlich besteht für Web Application Firewalls die Möglichkeit HTTP-Anfragen zu manipulieren bevor diese die eigentliche Anwendung erreichen. Gleiches gilt für die Antworten der Anwendung bevor diese an den Client ausgeliefert werden. Für den Apache httpd-Server existiert mit dem \emph{modRewrite}-Modul sogar eine Komponente einzig und allein für diesen Zweck. Ende 2010 erschien mit \glqq\emph{TokDoc: A Self-Healing Web Application Firewall}\grqq \cite{Krueger2010} ein Konferenzpaper mit dem Vorschlag, eingehende Anfragen in einzelne Bestandteile zu zerlegen, die einzelnen Bestandteile zu untersuchen und ggf. durch \emph{korrigierte} Äquivalente auszutauschen bevor diese an die zu schützende Anwendung weitergeleitet werden. Zusätzlich haben sie die Bestandteile nach ihrem Ursprung in vier Kategorien eingeteilt:
+
+\begin{itemize}
+\item \verb=Konstanten= 
+\item \verb=Aufzählungen=
+\item \verb=Maschinelle Eingaben=
+\item \verb=Menschliche Eingaben=
+\end{itemize}
+
+Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen Abgleich mit Regeln bzw. regulären Ausdrücken sondern mittels sogenannten \emph{Anomalie-Detektoren}. 
 
 % Krueger -> fehlerhafte Request werden automatisch korregiert und weiter geleitet
 % Manaseer etc.
