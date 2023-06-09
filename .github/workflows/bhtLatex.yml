@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Set up
         uses: actions/checkout@v3
-      - name: Compile Document
+      - name: Compile Document 1
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
@@ -18,13 +18,18 @@ jobs:
           root_file: main.aux
           compiler: bibtex
           args: 
-      - name: Compile Document
+      - name: Compile Document 2
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
-
+      - name: Compile Document 3
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
       - name: upload
         uses: actions/upload-artifact@v3
         with:
