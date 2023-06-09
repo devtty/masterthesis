@@ -106,7 +106,8 @@ Die Einträge in der Serverkonfiguration und die ersten Regeln im modSecurity-Mo
 
 \textcolor{bhtGray}{\ding{110} Anmerkung} Natürlich erlauben \emph{Reguläre Ausdrücke} ebenfalls eine gewisse Logik und somit auch die darauf basierenden Regeln.
 
-Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist.
+Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist. Das Scoring erlaubt es verschiedene Ergebnisse miteinander zu kombinieren und in Abhängigkeit voneinander auszuwerten. Technisch gesehen ist das HTTP-Protokoll zustandslos und bei einfachen Konfigurationen der WAF  wird jede einzelne Anfrage unabhängig von anderen Anfragen betrachtet. Der Scoring-Mechanismus erlaubt es in gewissem Maße auch zustandsbezogen zu agieren. \anno{Zu undeutlich? Blöd ausgedrückt?}
+
 % weiter erklären!
 % Idee: Ablaufdiagramme für Version 1(direkte Antwort) und 2 Scoring Mechanismus
 
@@ -114,8 +115,19 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200 - OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
 \begin{align}
-  P = \frac{a}{v}
+  P = \frac{Anzahl_a}{v}
 \end{align}
+
+
+In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall mußte in jedem Fall für die jeweilige Anwendung angepaßt werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepaßt. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert   einige der vord
+
+\begin{figure}[bht]
+  \begin{center}
+    \includesvg[width=15cm]{pl_onion_no_fonts}
+    \caption{Paranoia Levels \cite{owaspcrs}}
+    \label{fig.paranoia}
+  \end{center}
+\end{figure}
 
 
 % Logik mit Zugriff auf die Anwendung -> WebCastellum?
