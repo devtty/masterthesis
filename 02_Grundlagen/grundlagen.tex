@@ -119,14 +119,15 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 \end{align}
 
 
-In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall mußte in jedem Fall für die jeweilige Anwendung angepaßt werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepaßt. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert   einige der vord
+In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall mußte in jedem Fall für die jeweilige Anwendung angepaßt werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepaßt. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert und deren Ausführung kann in Abhängigkeit vom konfigurierten Wert gesteuert werden.
 
-\begin{figure}[bht]
-  \begin{center}
-    \includesvg[width=15cm]{pl_onion_no_fonts}
-    \caption{Paranoia Levels \cite{owaspcrs}}
-    \label{fig.paranoia}
-  \end{center}
+\begin{figure}[ht]
+  %% \begin{center}
+  \centering
+  \includesvg[width=0.7\textwidth]{pl_onion_no_fonts}
+  \caption{Übersicht Paranoia Level \cite{owaspcrs}}
+  \label{fig.paranoia}
+%%  \end{center}
 \end{figure}
 
 
