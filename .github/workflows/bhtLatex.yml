@@ -10,19 +10,19 @@ jobs:
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
-	  compiler: pdflatex
-	  args: -interaction=nonstopmode -shell-escape
+	        compiler: pdflatex
+	        args: -interaction=nonstopmode -shell-escape
       - name: BibTex
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.aux
-	  compiler: bibtex
+          compiler: bibtex
       - name: Compile Document
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
-	  compiler: pdflatex
-	  args: -interaction=nonstopmode -shell-escape
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
 
       - name: upload
         uses: actions/upload-artifact@v3
