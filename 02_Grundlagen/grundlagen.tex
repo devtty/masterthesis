@@ -165,11 +165,11 @@ Ein Ergebnis muß aber nicht immer schwarz oder weiß sein.  Grundsätzlich best
   }^\text{GET-Request}
 \end{align}
 
-Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen Abgleich mit Regeln bzw. regulären Ausdrücken sondern mittels sogenannten \emph{Anomalie-Detektoren}, die verschiedene Ausprägungen annehmen können. Beispielsweise lassen sich Bestandteile wie \emph{Konstanten} und \emph{Aufzählungen} effektiv mit Hilfe von einfachen Liste abgleichen. Die Anomalie beginnt wenn der entsprechende nicht in der Liste vorhanden ist.
+Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen Abgleich mit Regeln bzw. regulären Ausdrücken sondern mittels sogenannten \emph{Anomalie-Detektoren}, die verschiedene Ausprägungen annehmen können. Beispielsweise lassen sich Bestandteile wie \emph{Konstanten} und \emph{Aufzählungen} effektiv mit Hilfe von einfachen Listen abgleichen. Die Anomalie beginnt wenn der entsprechende nicht in der Liste vorhanden ist.
 
-\textcolor{bhtGray}{\ding{110} Beispiel} Der Protokoll-Bereich einer URL kann nur die Werte \verb=http=, \verb=https=, \verb=webdav= und ein paar weitere Werte\footnote{in Bezug auf Web-Server} annehmen, eine umfangreiche Analyse ist hier nicht notwendig.
+\textcolor{bhtGray}{\ding{110} Beispiel} Der Protokoll-Bereich einer URL kann nur die Werte \verb=http=, \verb=https=, \verb=webdav= und ein paar weitere Werte\footnote{in Bezug auf Web-Server} annehmen, eine umfangreiche Analyse ist hier nicht notwendig. 
 
-Bei \emph{maschinellen} und \emph{menschlichen Eingaben} kommen erlaubt  \anno{und weiter?}
+Bei \emph{maschinellen} und \emph{menschlichen Eingaben} nutzen die Anomaliedetektoren nun auch Methoden aus dem Bereich der Stochastik und der Computerlinguistik. In ihrer Firewall wurden für diesen Zweck drei Anomaliedetektoren implementiert die die Anfragen an den Server und deren Inhalte überprüfen. Passen einzelne Bestandteile sprachlich nicht zueinander (\emph{N-gram Centroid Anomaly Detector}), entsprechen diese nicht der üblichen Form (\emph{Markov Chain Anomaly Detector}) oder der üblichen Länge (\emph{Length Anomaly Detector}) versucht das System von \cite{Krueger2010} diese Bestandteile zu \glqq\emph{reparieren}\grqq bevor sie an die Anwendung weitergeleitet werden.         \anno{und weiter?}
 
 % Krueger -> fehlerhafte Request werden automatisch korregiert und weiter geleitet
 % Manaseer etc.
