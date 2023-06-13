@@ -192,8 +192,7 @@ Tiefere Einblicke in die Anwendung stochastischer Methoden bei der Erkennung von
 
 \textcolor{bhtGray}{\ding{110} Beschreibung des Datensatzes (Auszug aus \cite{csic2010})} The HTTP dataset CSIC 2010 contains the generated traffic targeted to an e- Commerce web application developed at our department. (...) The dataset is generated automatically and contains 36,000 normal requests and more than 25,000 anomalous requests. The HTTP requests are labeled as normal or anomalous and the dataset includes attacks such as SQL injection, buffer overflow, information gathering, files disclosure, CRLF injection, XSS, server side include, parameter tampering and so on.\\
 
-Die Firewall \emph{erlernte} das als normal bzw. üblich geltende Verhalten und eine Konfiguration\footnote{z.B. über fest definierte Regeln} war (beschränkt auf die verwendete Anwendung) nicht mehr notwendig. 
-
+Die Firewall \emph{erlernte} das als normal bzw. üblich geltende Verhalten und eine Konfiguration\footnote{z.B. über fest definierte Regeln} war (beschränkt auf die verwendete Anwendung) nicht mehr notwendig. Dabei wurden die notwendigen Daten für den Datensatz mit Hilfe von \emph{Dictionaries} für eine interne Anwendung generiert. 
 
 % kruegel gimenez appelt kozik testen mit ML Ansätzen
 
@@ -211,7 +210,7 @@ Die Firewall \emph{erlernte} das als normal bzw. üblich geltende Verhalten und 
 
 % ggf. ditaa tabelle ueber den Zeitverlauf der verschiedenen Arbeiten nach Attack-Defend-Muster
 
-\begin{tabular}
+\begin{tabular}{ll}
   November 2002 & modSecurity 1st release \\
   Oktober 2006 & OWASP Core Rule Set \\
   August 2009 & Core Rule Set V2 \\
