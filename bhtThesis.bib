@@ -56,6 +56,54 @@ note={{\newline\texttt{http://www.ctan.org/tex-archive/info/symbols/comprehensiv
    year = 2016
 }
 
+@inproceedings{Appelt2017,
+   abstract = {Testing and fixing Web Application Firewalls (WAFs) are two relevant and complementary challenges for security analysts. Automated testing helps to cost-effectively detect vulnerabilities in a WAF by generating effective test cases, i.e., attacks. Once vulnerabilities have been identified, the WAF needs to be fixed by augmenting its rule set to filter attacks without blocking legitimate requests. However, existing research suggests that rule sets are very difficult to understand and too complex to be manually fixed. In this paper, we formalise the problem of fixing vulnerable WAFs as a combinatorial optimisation problem. To solve it, we propose an automated approach that combines machine learning with multi-objective genetic algorithms. Given a set of legitimate requests and bypassing SQL injection attacks, our approach automatically infers regular expressions that, when added to the WAF2019;s rule set, prevent many attacks while letting legitimate requests go through. Our empirical evaluation based on both open-source and proprietary WAFs shows that the generated filter rules are effective at blocking previously identified and successful SQL injection attacks (recall between 54.6% and 98.3%), while triggering in most cases no or few false positives (false positive rate between 0% and 2%).},
+   author = {Dennis Appelt and Annibale Panichella and Lionel Briand},
+   doi = {10.1109/ISSRE.2017.28},
+   isbn = {9781538609415},
+   issn = {10719458},
+   journal = {Proceedings - International Symposium on Software Reliability Engineering, ISSRE},
+   keywords = {Regular Expression Inference,Web Application Firewalls,Web Security},
+   month = {11},
+   pages = {339-350},
+   publisher = {IEEE Computer Society},
+   title = {Automatically Repairing Web Application Firewalls Based on Successful SQL Injection Attacks},
+   volume = {2017-October},
+   year = {2017},
+}
+
+@inproceedings{Appelt2014,
+   abstract = {This paper examines the effects and potential benefits of utilising Web Application Firewalls (WAFs) and database proxies in SQL injection testing of web applications and services. We propose testing the WAF itself to refine and evaluate its security rules and prioritise fixing vulnerabilities that are not protected by the WAF. We also propose using database proxies as oracles for black-box security testing instead of relying only on the output of the application under test. The paper also presents a case study of our proposed approaches on two sets of web services. The results indicate that testing through WAFs can be used to prioritise vulnerabilities and that an oracle that uses a database proxy finds more vulnerabilities with fewer tries than an oracle that relies only on the output of the application. © Springer International Publishing Switzerland 2014.},
+   author = {Dennis Appelt and Nadia Alshahwan and Lionel Briand},
+   doi = {10.1007/978-3-319-07785-7_2},
+   isbn = {9783319077840},
+   issn = {16113349},
+   journal = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+   keywords = {Blackbox testing,SQL injections,Web services},
+   pages = {32-47},
+   publisher = {Springer Verlag},
+   title = {Assessing the impact of firewalls and database proxies on SQL injection testing},
+   volume = {8432 LNCS},
+   year = {2014},
+}
+
+@article{Appelt2018,
+   abstract = {Web application firewalls (WAFs) are an essential protection mechanism for online software systems. Because of the relentless flow of new kinds of attacks as well as their increased sophistication, WAFs have to be updated and tested regularly to prevent attackers from easily circumventing them. In this paper, we focus on testing WAFs for SQL injection attacks, but the general principles and strategy we propose can be adapted to other contexts. We present ML-Driven, an approach based on machine learning and an evolutionary algorithm to automatically detect holes in WAFs that let SQL injection attacks bypass them. Initially, ML-Driven automatically generates a diverse set of attacks and submits them to the system being protected by the target WAF. Then, ML-Driven selects attacks that exhibit patterns (substrings) associated with bypassing the WAF and evolves them to generate new successful bypassing attacks. Machine learning is used to incrementally learn attack patterns from previously generated attacks according to their testing results, i.e., if they are blocked or bypass the WAF. We implemented ML-Driven in a tool and evaluated it on ModSecurity, a widely used open-source WAF, and a proprietary WAF protecting a financial institution. Our empirical results indicate that ML-Driven is effective and efficient at generating SQL injection attacks bypassing WAFs and identifying attack patterns.},
+   author = {Dennis Appelt and Cu D. Nguyen and Annibale Panichella and Lionel C. Briand},
+   doi = {10.1109/TR.2018.2805763},
+   issn = {00189529},
+   issue = {3},
+   journal = {IEEE Transactions on Reliability},
+   keywords = {SQL injection (SQLi),Software security testing,web application firewall (WAF)},
+   month = {9},
+   pages = {733-757},
+   publisher = {Institute of Electrical and Electronics Engineers Inc.},
+   title = {A Machine-Learning-Driven Evolutionary Approach for Testing Web Application Firewalls},
+   volume = {67},
+   year = {2018},
+}
+
+
 
 @article{Manaseer2018,
    abstract = {In this paper we propose a centralized web firewall system for web application security which will provide a new type of synchronized system, which has the ability to&nbsp; detect&nbsp; and prevent a variety of web application attacks for a wide range of hosts at the same time , using an centralized command and control system, the attacked client then sends the information to a centralized command and control server which will distribute the attack information to all of the integrated clients connected to it. The distributed information contains all of the attack information including the type of attack, the IP address of the attacker, and the time of attack. The process of receiving the attacker&#39;s information and distributing it through the centralized web firewall is done automatically and immediately at the time of the attack. And all of the receiving clients will take actions against the threat depending on the distributed information such as banning the IP address of the attacker. The main process aims to protect multiple clients from any possible attack from the same attacker or the same type of attack. The system has been implemented to protect a real web application. Experiments showed that the attacks has been successfully prevented on multiple hosts at the time.  This paper came to provide a centralized web firewall system that connect different web firewalls in order to detect and prevent different types of web attacks and work as a fully integrated system with the different clients.},
