@@ -37,25 +37,31 @@ Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufg
 
 \textbf{Bypassing:}
 
-\textbf{Entscheidungsbaum:}
+\textbf{Dictionary:} ein Wörterbuch, in der IT-Sicherheit eine Sammlung von Zeichenketten, z.B. eine Liste der meistverwendeten Passworte
+
+\textbf{Entscheidungsbaum:} überwachter Lernalgorithmus für Klassifizierungsaufgaben; anhand eines Entscheidungsbaumes könnte Datenverkehr beispielsweise in erwünscht oder nicht erwünscht eingeteilt werden
 
 \textbf{Filter:}
 
 \textbf{Fingerprinting:} Ähnlich der Abnahme und Identifizierung von Personen mit Hilfe eines individuellen Fingerabdrucks können auch Produkte wie Software anhand spezifischer Merkmale identifiziert werden. Beim \emph{Fingerprinting}
 
-\textbf{Fuzzer:}
+\textbf{Fuzzer:} Generator für Zufallsdaten
+
+\textbf{Klassifizierung:} Einteilung in Gruppen durch Abgrenzung anhand von Kriterien
 
 \textbf{Maschinelles Lernen:} Unterschieden zwischen 
 
-\textbf{Payload:}
+\textbf{Payload:} Allgemein steht der Begriff für Nutzdaten im Datenverkehr; IT-sicherheitstechnisch bedeutsam da Sicherheitslücken häufig Fehler in der Überprüfung der Nutzdaten ausnutzen, daher zum Teil auch Synonym für Angriffsursache
 
-\textbf{Reverse Proxy:}
+\textbf{Reverse Proxy:} Server zwischen Client und dem eigentlichen Server/Servern 
 
 \textbf{Regulärer Ausdruck:} Eine Zeichenkette zur Beschreibung einer Menge von Zeichenketten mit Hilfe einer vordefinierten Syntax. Ein regulärer Ausdruck kann bespielsweise genutzt werden um bestimmte Muster in einem Text zu erkennen oder einen Text mit einem Muster zu vergleichen.
 
 \textbf{Request:} 
 
 \textbf{Response:}
+
+\textbf{Überwachtes Lernen:} 
 
 \section{Related Work} %umbenennen ca. 6
 
@@ -116,7 +122,7 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Eine Anfrage auf eine bestimmte Ressource bzw. URI soll abgelehnt werden wenn der Nutzer nicht eingeloggt ist. Dieser Fall wäre könnte mit drei einfachen Regeln abgebildet werden. Es wird für den Fall \emph{nicht eingeloggt} ein Punkt vergeben und für den Fall \emph{Aufruf der Ressource} ein Punkt vergeben. Die dritte Regel besagt dass alle Aufrufe deren Summe mehr als zwei Punkte in Summe überschreiten, abgelehnt werden.\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200 - OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
+\textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200-OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
 \begin{align}
   P = \frac{Scoring-Wert}{Anzahl_Anfragen gesamt}
 \end{align}
@@ -186,6 +192,7 @@ Tiefere Einblicke in die Anwendung stochastischer Methoden bei der Erkennung von
 
 \textcolor{bhtGray}{\ding{110} Beschreibung des Datensatzes (Auszug aus \cite{csic2010})} The HTTP dataset CSIC 2010 contains the generated traffic targeted to an e- Commerce web application developed at our department. (...) The dataset is generated automatically and contains 36,000 normal requests and more than 25,000 anomalous requests. The HTTP requests are labeled as normal or anomalous and the dataset includes attacks such as SQL injection, buffer overflow, information gathering, files disclosure, CRLF injection, XSS, server side include, parameter tampering and so on.\\
 
+Die Firewall \emph{erlernte} das als normal bzw. üblich geltende Verhalten und eine Konfiguration\footnote{z.B. über fest definierte Regeln} war (beschränkt auf die verwendete Anwendung) nicht mehr notwendig. 
 
 
 % kruegel gimenez appelt kozik testen mit ML Ansätzen
@@ -204,15 +211,15 @@ Tiefere Einblicke in die Anwendung stochastischer Methoden bei der Erkennung von
 
 % ggf. ditaa tabelle ueber den Zeitverlauf der verschiedenen Arbeiten nach Attack-Defend-Muster
 
-
-November 2002 modSecurity 1st release
-Oktober 2006 OWASP CRS
-August 2009 CRS 2
-2010 TokDoc
-2014 Collaborative Detection
-2015 Gimenez Dataset
-2016 CRS3.0.0 CRS Sampling Mode
-2018 Centralized Manaseer
+\begin{tabular}
+  November 2002 & modSecurity 1st release \\
+  Oktober 2006 & OWASP Core Rule Set \\
+  August 2009 & Core Rule Set V2 \\
+  2010 & TokDoc \\
+  2015 & Gimemez Dataset \\
+  2016 & CRS 3.0 CRS Sampling Mode \\
+  2018 & Centralized Manaseer\\
+\end{tabular}
 
 Dataset
 
