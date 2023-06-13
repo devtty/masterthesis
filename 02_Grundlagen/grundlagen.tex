@@ -5,17 +5,14 @@
 % Grundbegriffe 2 Seiten
 \section{Grundbegriffe}
 \subsection{WAF allgemein}
-Um die Sicherheit einer Anwendung zu gewährleisten sind viele verschiedene Schritte notwendig, so sollten natürlich bereits in der Anwendung selbst Ein- und Ausgabemöglichkeiten, z.B. durch Validierung, Encoding, usw. überprüft und gegebenenfalls eingeschränkt werden. Dabei lässt sich nicht jeder mögliche Angriffsfall vorhersehen oder eine eigene Implementierung ist zu aufwendig und teuer, weil häufig nicht ausreichend personelle Ressourcen oder Bugdet vorhanden sind um eine Web Applikation auf alle möglichen Sicherheitslücken zu prüfen. Im Laufe des Betriebes einer Web Anwendungen können zudem neue Angriffsvarianten entstehen und zusätzlich ist gerade bei Web Applikationen der Zeitdruck zur Veröffentlichung einer solchen häufig sehr hoch.
+Um die Sicherheit einer Anwendung zu gewährleisten sind viele verschiedene Schritte notwendig, so sollten natürlich bereits in der Anwendung selbst Ein- und Ausgabemöglichkeiten, z.B. durch Validierung, Encoding, usw. überprüft und gegebenenfalls eingeschränkt werden. Dabei lässt sich nicht jeder mögliche Angriffsfall vorhersehen oder eine eigene Implementierung ist zu aufwendig und teuer, weil häufig nicht ausreichend personelle Ressourcen oder Bugdet vorhanden sind um eine Web Applikation auf alle möglichen Sicherheitslücken zu prüfen. Im Laufe des Betriebes einer Web Anwendungen können zudem neue Angriffsvarianten entstehen und zusätzlich ist gerade bei Web Applikationen der Zeitdruck zur Veröffentlichung einer solchen häufig sehr hoch.\\
 
-An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegensatz zu regulären Firewalls haben Web Application Firewalls direkten Zugriff auf die HTTP-Anfragen (requests) und Antworten (responses) und können diese entsprechend bewerten und gegenbenenfalls blockieren oder gefährdende Inhalte filtern oder umschreiben.
+An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegensatz zu regulären Firewalls haben Web Application Firewalls direkten Zugriff auf die HTTP-Anfragen (requests) und Antworten (responses) und können diese entsprechend bewerten und gegenbenenfalls blockieren oder gefährdende Inhalte filtern oder umschreiben.\\
 
 %% 
 \textcolor{bhtGray}{\ding{110} Definition\footnote{\url{https://owasp.org/www-community/Web_Application_Firewall} abgerufen am 30.05.2023}} A web application firewall is an application firewall for HTTP applications. It applies a set of rules to an HTTP conversation. Generally, these rules cover common attacks such as Cross-site Scripting (XSS) and SQL Injection. While proxies protect generally protect clients, WAFs protect servers. A WAF is deployed to protect a specific web application or set of web applications. A WAF can be considered a reverse proxy. WAFs may come in the form of an appliance, server plugin, or filter, and may be customized to an application to an application. The effort to perorm this customization can be significant and needs to be maintained as the application is modified.
 
 %%
-asd
-
-
 
 \subsubsection{Anwendungsfälle}
 %% Anwendungsfaelle WAF (gut beschrieben bei WAFEC2)
@@ -108,16 +105,16 @@ Im Oktober 2006 veröffentlichte das \emph{Open Web Application Security Project
 Obwohl die bereitgestellten Regeln des Core Rule Sets eine gewisse Basissicherheit bieten können, sind diese nur als Ausgangsbasis zur (produktiven) Absicherung von Anwendungen zu sehen. Erstens wird nicht jeder Fall berücksichtigt und zweitens erzeugen die Regeln unter Umständen auch Fehlmeldungen (Falsch-Positive).
 
 \subsubsection{Von Regeln zur Logik}
-Die Einträge in der Serverkonfiguration und die ersten Regeln im modSecurity-Modul erlaubten es die Anfragen an den Server entweder positiv oder negativ zu beantworten. Im Grunde könnte man die Funktionsweise zum damaligen Zeitpunkt mit einer \emph{Blacklist} bzw. \emph{Whitelist} für HTTP-Anfragen vergleichen. Einzelne Regeln entschieden über die Beantwortung einer Anfrage im positiven oder negativem Sinn. Mit der Weiterentwicklung des Moduls und der zweiten Version des Core Rule Sets wurden mit dem \emph{Scoring} und dem \emph{Paranoia-Level} zwei neue Funktionalitäten umgesetzt, die die Konfiguration für den Endanwender wesentlich vereinfachen sollten und auch einfache logische Entscheidungen ermöglichen sollten.
+Die Einträge in der Serverkonfiguration und die ersten Regeln im modSecurity-Modul erlaubten es die Anfragen an den Server entweder positiv oder negativ zu beantworten. Im Grunde könnte man die Funktionsweise zum damaligen Zeitpunkt mit einer \emph{Blacklist} bzw. \emph{Whitelist} für HTTP-Anfragen vergleichen. Einzelne Regeln entschieden über die Beantwortung einer Anfrage im positiven oder negativem Sinn. Mit der Weiterentwicklung des Moduls und der zweiten Version des Core Rule Sets wurden mit dem \emph{Scoring} und dem \emph{Paranoia-Level} zwei neue Funktionalitäten umgesetzt, die die Konfiguration für den Endanwender wesentlich vereinfachen sollten und auch einfache logische Entscheidungen ermöglichen sollten.\\
 
-\textcolor{bhtGray}{\ding{110} Anmerkung} Natürlich erlauben \emph{Reguläre Ausdrücke} ebenfalls eine gewisse Logik und somit auch die darauf basierenden Regeln.
+\textcolor{bhtGray}{\ding{110} Anmerkung} Natürlich erlauben \emph{Reguläre Ausdrücke} ebenfalls eine gewisse Logik und somit auch die darauf basierenden Regeln.\\
 
-Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist. Das Scoring erlaubt es verschiedene Ergebnisse miteinander zu kombinieren und in Abhängigkeit voneinander auszuwerten. Technisch gesehen ist das HTTP-Protokoll zustandslos und bei einfachen Konfigurationen der WAF  wird jede einzelne Anfrage unabhängig von anderen Anfragen betrachtet. Der Scoring-Mechanismus erlaubt es in gewissem Maße auch zustandsbezogen zu agieren. \anno{Zu undeutlich? Blöd ausgedrückt?}
+Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist. Das Scoring erlaubt es verschiedene Ergebnisse miteinander zu kombinieren und in Abhängigkeit voneinander auszuwerten. Technisch gesehen ist das HTTP-Protokoll zustandslos und bei einfachen Konfigurationen der WAF  wird jede einzelne Anfrage unabhängig von anderen Anfragen betrachtet. Der Scoring-Mechanismus erlaubt es in gewissem Maße auch zustandsbezogen zu agieren. \anno{Zu undeutlich? Blöd ausgedrückt?}\\
 
 % weiter erklären!
 % Idee: Ablaufdiagramme für Version 1(direkte Antwort) und 2 Scoring Mechanismus
 
-\textcolor{bhtGray}{\ding{110} Beispiel} Eine Anfrage auf eine bestimmte Ressource bzw. URI soll abgelehnt werden wenn der Nutzer nicht eingeloggt ist. Dieser Fall wäre könnte mit drei einfachen Regeln abgebildet werden. Es wird für den Fall \emph{nicht eingeloggt} ein Punkt vergeben und für den Fall \emph{Aufruf der Ressource} ein Punkt vergeben. Die dritte Regel besagt dass alle Aufrufe deren Summe mehr als zwei Punkte in Summe überschreiten, abgelehnt werden.
+\textcolor{bhtGray}{\ding{110} Beispiel} Eine Anfrage auf eine bestimmte Ressource bzw. URI soll abgelehnt werden wenn der Nutzer nicht eingeloggt ist. Dieser Fall wäre könnte mit drei einfachen Regeln abgebildet werden. Es wird für den Fall \emph{nicht eingeloggt} ein Punkt vergeben und für den Fall \emph{Aufruf der Ressource} ein Punkt vergeben. Die dritte Regel besagt dass alle Aufrufe deren Summe mehr als zwei Punkte in Summe überschreiten, abgelehnt werden.\\
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200 - OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
 \begin{align}
@@ -169,9 +166,9 @@ Ein Ergebnis muß aber nicht immer schwarz oder weiß sein.  Grundsätzlich best
   }^\text{GET-Request}
 \end{align}
 
-Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen Abgleich mit Regeln bzw. regulären Ausdrücken sondern mittels sogenannten \emph{Anomalie-Detektoren}, die verschiedene Ausprägungen annehmen können. Beispielsweise lassen sich Bestandteile wie \emph{Konstanten} und \emph{Aufzählungen} effektiv mit Hilfe von einfachen Listen abgleichen. Die Anomalie beginnt wenn der entsprechende nicht in der Liste vorhanden ist.
+Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen Abgleich mit Regeln bzw. regulären Ausdrücken sondern mittels sogenannten \emph{Anomalie-Detektoren}, die verschiedene Ausprägungen annehmen können. Beispielsweise lassen sich Bestandteile wie \emph{Konstanten} und \emph{Aufzählungen} effektiv mit Hilfe von einfachen Listen abgleichen. Die Anomalie beginnt wenn der entsprechende nicht in der Liste vorhanden ist.\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel} Der Protokoll-Bereich einer URL kann nur die Werte \verb=http=, \verb=https=, \verb=webdav= und ein paar weitere Werte\footnote{in Bezug auf Web-Server} annehmen, eine umfangreiche Analyse ist hier nicht notwendig. 
+\textcolor{bhtGray}{\ding{110} Beispiel} Der Protokoll-Bereich einer URL kann nur die Werte \verb=http=, \verb=https=, \verb=webdav= und ein paar weitere Werte\footnote{in Bezug auf Web-Server} annehmen, eine umfangreiche Analyse ist hier nicht notwendig. \\
 
 Bei \emph{maschinellen} und \emph{menschlichen Eingaben} nutzen die Anomaliedetektoren nun auch Methoden aus dem Bereich der Stochastik und der Computerlinguistik. In ihrer Firewall wurden für diesen Zweck drei Anomaliedetektoren implementiert die die Anfragen an den Server und deren Inhalte überprüfen. Passen einzelne Bestandteile sprachlich nicht zueinander (\emph{N-gram Centroid Anomaly Detector}), entsprechen diese nicht der üblichen Form (\emph{Markov Chain Anomaly Detector}) oder der üblichen Länge (\emph{Length Anomaly Detector}) versucht das System von \cite{Krueger2010} diese Bestandteile zu \glqq\emph{reparieren}\grqq bevor sie an die Anwendung weitergeleitet werden. Je nach Konfiguration bedeutet die Reparatur eines Bestandteils dass dieser \emph{verworfen}, \emph{verändert} oder \emph{ausgetauscht} wird. \anno{verwerfen und austauschen erklären?}
 
@@ -185,9 +182,11 @@ Bei \emph{maschinellen} und \emph{menschlichen Eingaben} nutzen die Anomaliedete
 
 \subsubsection{Fortschritte in Richtung Intelligenz}
 
-Tiefere Einblicke in die Anwendung stochastischer Methoden bei der Erkennung von Angriffen auf Webanwendungen finden sich auch in \cite{Giménez2015}. Die Doktorarbeit \glqq\emph{Study of Stochastic and Machine Learning Techniques for Anomaly-based Web Attack Detection}\grqq von Carmen Torrano Giménez stellt zwei stochastische Techniken und eine - auf maschinellem Lernen basierende - Technik gegenüber um deren Leistungsfähigkeit am praktischen Beispiel zu vergleichen. Dazu entwickelte sie einen eigenen Datensatz\cite{csic2010} und nutzte diesen zum Training eines Algorithmus aus dem Bereich des überwachten Lernens.
+Tiefere Einblicke in die Anwendung stochastischer Methoden bei der Erkennung von Angriffen auf Webanwendungen finden sich auch in \cite{Giménez2015}. Die Doktorarbeit \glqq\emph{Study of Stochastic and Machine Learning Techniques for Anomaly-based Web Attack Detection}\grqq von Carmen Torrano Giménez stellt zwei stochastische Techniken und eine - auf maschinellem Lernen basierende - Technik gegenüber um deren Leistungsfähigkeit am praktischen Beispiel zu vergleichen. Dazu entwickelte sie einen eigenen Datensatz\cite{csic2010} und nutzte diesen zum Training eines Algorithmus aus dem Bereich des überwachten Lernens.\\
 
-\textcolor{bhtGray}{\ding{110} Beschreibung des Datensatzes (Auszug aus \cite{csic2010}} The HTTP dataset CSIC 2010 contains the generated traffic targeted to an e- Commerce web application developed at our department. (...) The dataset is generated automatically and contains 36,000 normal requests and more than 25,000 anomalous requests. The HTTP requests are labeled as normal or anomalous and the dataset includes attacks such as SQL injection, buffer overflow, information gathering, files disclosure, CRLF injection, XSS, server side include, parameter tampering and so on.
+\textcolor{bhtGray}{\ding{110} Beschreibung des Datensatzes (Auszug aus \cite{csic2010})} The HTTP dataset CSIC 2010 contains the generated traffic targeted to an e- Commerce web application developed at our department. (...) The dataset is generated automatically and contains 36,000 normal requests and more than 25,000 anomalous requests. The HTTP requests are labeled as normal or anomalous and the dataset includes attacks such as SQL injection, buffer overflow, information gathering, files disclosure, CRLF injection, XSS, server side include, parameter tampering and so on.\\
+
+
 
 % kruegel gimenez appelt kozik testen mit ML Ansätzen
 
