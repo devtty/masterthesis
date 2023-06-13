@@ -169,7 +169,12 @@ Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Der Protokoll-Bereich einer URL kann nur die Werte \verb=http=, \verb=https=, \verb=webdav= und ein paar weitere Werte\footnote{in Bezug auf Web-Server} annehmen, eine umfangreiche Analyse ist hier nicht notwendig. 
 
-Bei \emph{maschinellen} und \emph{menschlichen Eingaben} nutzen die Anomaliedetektoren nun auch Methoden aus dem Bereich der Stochastik und der Computerlinguistik. In ihrer Firewall wurden für diesen Zweck drei Anomaliedetektoren implementiert die die Anfragen an den Server und deren Inhalte überprüfen. Passen einzelne Bestandteile sprachlich nicht zueinander (\emph{N-gram Centroid Anomaly Detector}), entsprechen diese nicht der üblichen Form (\emph{Markov Chain Anomaly Detector}) oder der üblichen Länge (\emph{Length Anomaly Detector}) versucht das System von \cite{Krueger2010} diese Bestandteile zu \glqq\emph{reparieren}\grqq bevor sie an die Anwendung weitergeleitet werden.         \anno{und weiter?}
+Bei \emph{maschinellen} und \emph{menschlichen Eingaben} nutzen die Anomaliedetektoren nun auch Methoden aus dem Bereich der Stochastik und der Computerlinguistik. In ihrer Firewall wurden für diesen Zweck drei Anomaliedetektoren implementiert die die Anfragen an den Server und deren Inhalte überprüfen. Passen einzelne Bestandteile sprachlich nicht zueinander (\emph{N-gram Centroid Anomaly Detector}), entsprechen diese nicht der üblichen Form (\emph{Markov Chain Anomaly Detector}) oder der üblichen Länge (\emph{Length Anomaly Detector}) versucht das System von \cite{Krueger2010} diese Bestandteile zu \glqq\emph{reparieren}\grqq bevor sie an die Anwendung weitergeleitet werden. Je nach Konfiguration bedeutet die Reparatur eines Bestandteils dass dieser \emph{verworfen}, \emph{verändert} oder \emph{ausgetauscht} wird. \anno{verwerfen und austauschen erklären?}
+
+
+\anno{und weiter?}
+
+
 
 % Krueger -> fehlerhafte Request werden automatisch korregiert und weiter geleitet
 % Manaseer etc.
