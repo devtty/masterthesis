@@ -54,6 +54,33 @@ Der Datensatz besteht aus drei Teildatensätzen. Der erste Teildatensatz ist dab
 Erhöhung der allgemeinen Gültigkeit (Diskrepanz mit spezieller Zuschneidung auf Anwendung)
 Erhöhung der Genauigkeit
 
+% SChönes Beispiel für Fortschritt, produktiven Einsatz und zeitliche Veränderung und wo Gimenez nicht funktioniert-- > PUT als anomalie in CSIC2010 definiert aber in REST durchaus üblich
+% rest beispiel mit PUT
+
+%\lstset{language=XML,
+% 	basicstyle=\ttfamily\color{black}\small,
+% 	keywordstyle=\bfseries\color{bhtBlue},
+% 	identifierstyle=\color{black}, 
+% 	commentstyle=\color{gray}\textsl
+%      }
+      \begin{figure}
+        \caption{Beispiel für einfachen REST-Request}
+        \label{fig:restputexample}
+      \begin{lstlisting}
+PUT /user/devtty HTTP/1.1
+Host: petstore.devtty.de
+Content-Type: application/json
+
+{
+  "id": 2334,
+  "username": devtty,
+  "firstName": "Denis",
+  "lastName": "Renning"
+}
+\end{lstlisting}
+\end{figure}
+
+
 
 % Methodik und Vorgehen
 \section{Methodik}
