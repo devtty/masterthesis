@@ -71,19 +71,22 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 \begin{table}[h]
   \centering
 %  \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l | l |}
-      \textbf{Name} & \textbf{Beschreibung} \\
-      \hline
-      gotestwaf & \\
-      lightbulb-framework & \\
-      OWASP ZAP & \\
-      sqlmap & \\
-      w3af & \\
-      waf-brain & \\
-      WAFNinja &  \\
-      wafw00f & \\
-%    \end{tabular}}    
-    \end{tabular}
+  \begin{tabular}{|l | l |}
+    \hline
+    \textbf{Name} & \textbf{Beschreibung} \\
+    \hline
+    gotestwaf & \\
+    lightbulb-framework & \\
+    OWASP ZAP & \\
+    sqlmap & \\
+    w3af & \\
+    weka & \\
+    waf-brain & \\
+    WAFNinja &  \\
+    wafw00f & \\
+    \hline
+    % \end{tabular}}    
+  \end{tabular}
   
   \caption{Übersicht Werzeuge}
   \label{tab:my_tools}
@@ -92,24 +95,26 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 \begin{table}[h]
   \centering
 %  \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l | l |}
-      \textbf{Name} & \textbf{Beschreibung} \\
-      \hline
-      HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT= \\
-      URL & \\
-      Protocol & \\
-      User-Agent & \\
-      Pragma & \\
-      Cache-control & \\
-      Accept &  \\
-      Accept-Encoding & \\
-      Accept-Charset & \\
-      Accept-Language & \\
-      Host & \\
-      Cookie & \\
-      Content-Type & \\
-      Conntection & \\
-      Content-Length & \\
+  \begin{tabular}{|l | l | l |}
+    \hline
+    \textbf{Name} & \textbf{Wert} & \textbf{Anmerkungen} \\
+    \hline
+    HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT= & \\
+    URL & & \\
+    Protocol & \verb=HTTP/1.1= & HTTP/2 \\
+    User-Agent & \verb=Mozilla/5.0 (compatible;Konqueror/3.5...= \\
+    Pragma & \verb=no-cache=\\
+    Cache-control & \verb=no-cache= \\
+    Accept & \verb=text/xml,application/xml,...= \\
+    Accept-Encoding \verb=x-gzip,x-deflate,gzip,deflate=& \\
+    Accept-Charset & \verb!utf-8,utf-8;q=0.5,*;q=0.5!\\
+    Accept-Language & \verb=en=\\
+    Host & \verb=localhost:8080=\\
+    Cookie & \verb=JSESSIONID= verschiedene Werte\\
+    Content-Type & \verb=null= oder \verb=application/x-www-from-urlencoded=\\
+    Connection & \verb=close=\\
+    Content-Length & \\
+    \hline
       % \end{tabular}}
     \end{tabular}
   \caption{Felder des CSIC2010 Datensatzes}
