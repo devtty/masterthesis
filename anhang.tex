@@ -71,24 +71,28 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 \begin{table}[h]
   \centering
 %  \resizebox{\textwidth}{!}{
-  \begin{tabular}{|l | l |}
+  \begin{tabular}{|l | p |}
     \hline
     \textbf{Name} & \textbf{Beschreibung} \\
     \hline
-    gotestwaf & \\
-    lightbulb-framework & \\
-    OWASP ZAP & \\
-    sqlmap & \\
-    w3af & \\
-    weka & \\
-    waf-brain & \\
-    WAFNinja &  \\
-    wafw00f & \\
+    gotestwaf & tool for API and OWASP attack simulation \\
+    BurpSuite & vulnerability scanning, penetration testing, and web app security platform\\
+    lightbulb-framework & framework for auditing web application firewalls \\
+    OWASP Zed Attack Proxy & the world's most widely used web app scanner \\
+    sqlmap & testing tool that automates SQL injection\\
+    w3af & Web Application Attack and Audit Framework\\
+    weka & Waikato Environment for Knowledge Analysis - collection of ML algorithms for data mining tasks\\
+    waf-brain & WAF - the Machine-Learning-Deep-Learning-Way\\
+    WAFNinja &  WAFNinja is a tool which contains two functions to attack Web Application Firewalls. \\
+    wafw00f & allows one to identify and fingerprint Web Application Firewall products\\
     \hline
     % \end{tabular}}    
   \end{tabular}
   
-  \caption{Übersicht Werzeuge}
+  \caption{Übersicht Werkzeuge}
+  \medskip
+  \small
+  (Die Beschreibung der Werkzeuge wurde den jeweiligen Internetpräsenzen entnommen)
   \label{tab:my_tools}
 \end{table}
 
@@ -102,21 +106,37 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
     HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT= & \\
     URL & & \\
     Protocol & \verb=HTTP/1.1= & HTTP/2 \\
-    User-Agent & \verb=Mozilla/5.0 (compatible;Konqueror/3.5...= \\
-    Pragma & \verb=no-cache=\\
-    Cache-control & \verb=no-cache= \\
-    Accept & \verb=text/xml,application/xml,...= \\
+    User-Agent & \verb=Mozilla/5.0 (compatible;Konqueror/3.5...= & \\
+    Pragma & \verb=no-cache= & \\
+    Cache-control & \verb=no-cache= & \\
+    Accept & \verb=text/xml,application/xml,...= &\\
     Accept-Encoding & \verb=x-gzip,x-deflate,gzip,deflate= & \\
-    Accept-Charset & \verb!utf-8,utf-8;q=0.5,*;q=0.5!\\
-    Accept-Language & \verb=en=\\
-    Host & \verb=localhost:8080=\\
-    Cookie & \verb=JSESSIONID= verschiedene Werte\\
-    Content-Type & \verb=null= oder \verb=application/x-www-from-urlencoded=\\
-    Connection & \verb=close=\\
-    Content-Length & \\
+    Accept-Charset & \verb!utf-8,utf-8;q=0.5,*;q=0.5! & \\
+    Accept-Language & \verb=en= & \\
+    Host & \verb=localhost:8080= & \\
+    Cookie & \verb=JSESSIONID= verschiedene Werte & \\
+    Content-Type & \verb=null= oder \verb=application/x-www-from-urlencoded= & \\
+    Connection & \verb=close= & \\
+    Content-Length & & \\
+    Payload & & \\
     \hline
       % \end{tabular}}
     \end{tabular}
   \caption{Felder des CSIC2010 Datensatzes}
   \label{tab:csicfields}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|}
+    \hline
+    JavaVulnerableLab \\
+    Marathon\\
+    VulnarableSpring \\
+    OWASP Mutillidae II \\
+    OWASP WebGoat \\
+    \hline
+  \end{tabular}
+  \caption{Übersicht Absichtlich angreifbare Anwendungen}
+  \label{tab:vulnapp}
 \end{table}
