@@ -49,8 +49,7 @@ Connection: close
 \end{lstlisting}
 \end{figure}
 
-Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \verb=PUT= noch eine weitere HTTP-Methode angewandt. Giménez \cite{csic2010}
-
+Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \verb=PUT= noch eine weitere HTTP-Methode angewandt~\cite{csic2010}. \anno{Überleitung}
 
 \subsection{Alter des Datensatzes}
 
@@ -62,6 +61,10 @@ Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \v
 
 Gwt Verweis\cite{kozik2019}
 
+\subsubsection{Neue Werkzeuge}
+
+Grundsätzlich sollte auch bedacht werden dass, seit der Erstellung des Datensatzes von Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023}} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023}} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. 
+  
 \subsection{Ziel des Datensatzes}
 
 Erhöhung der allgemeinen Gültigkeit (Diskrepanz mit spezieller Zuschneidung auf Anwendung)
@@ -123,6 +126,11 @@ Content-Type: application/json
 
 % Zusammenfassung: ca. 0,5 Seiten
 \section{Zusammenfassung}
+
+Alter
+Ziel
+
+Das nächste Kapitel betrachtet die praktische Umsetzung der angedachten Ziele. Es soll dargestellt werden, wie ein neuer Datensatz generiert und angewandt wird. 
 
 \begin{neu}
   Anfang mit Aufnahme des Altenbestands, hinzufügen Entwicklungsumgebung, Test, etc
