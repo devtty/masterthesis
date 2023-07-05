@@ -8,19 +8,12 @@
 % Welche Implmentierungsentscheidungen? Welche Alternativen? Vor- und Nachteile des eigenen Ansatzes?
 
 % Highlight 1 der Implementierung
-Wie bereits in \ref{sec:Probleme} angemerkt sind offene Implementationen von Web Application Firewalls eher die Ausnahme und selbst Umsetzungen der in \ref{sec:relatedwork} erwähnten Produkte sind praktisch nicht auffindbar. In diesem Kapitel gibt es einen kurzen Überblick wie die Vorschläge aus dem vorhergehenden Kapitel dennoch praktisch umgesetzt werden können.
+Wie bereits in Abschnitt \ref{sec:Probleme} angemerkt sind offene Implementationen von Web Application Firewalls eher die Ausnahme und selbst Umsetzungen der in Abschnitt \ref{sec:relatedwork} erwähnten Produkte sind praktisch nicht auffindbar. In diesem Kapitel gibt es einen kurzen Überblick wie die Vorschläge aus dem vorhergehenden Kapitel dennoch praktisch umgesetzt werden können.
 
-Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelnen Person) nicht umsetzbar gewesen, daher sollte ein vorhandenes Open Source Produkt entsprechend erweitert werden. Diogo Sampaio und Jorge Bernardino verglichen 2017 verfügbare WAFs die als Erweiterungskandidaten in Frage kamen (siehe \ref{tab:my_vergos}). Auf der Suche nach möglichen Kandidaten  wurden dabei folgende Produkte betrachtet:
+Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelnen Person) nicht umsetzbar gewesen, daher sollte ein vorhandenes Open Source Produkt entsprechend erweitert werden. Bei der Auswahl wurden zuerst die zwei (leichtgewichtigen) Lösungen \emph{OWASP ESAPIFilter}\footnote{\url{https://owasp.org/www-project-enterprise-security-api/} abgerufen am 05.07.2023} und {SpringSecurity HttpFirewall}\footnote{\url{https://docs.spring.io/spring-security/reference/servlet/exploits/firewall.html} abgerufen am 05.07.2023} betrachtet. Beide Produkte verstehen sich als Ausgangsbasis für die Entwicklung sicherheitsrelevanter HTTP-(Servlet)-Filter auf Anwendungsebene, sämtliche Funktionalität muß jedoch vom Nutzer erst implementiert werden. Bei der Nutzung wäre ein erhöhter Arbeitsaufwand absehbar. Diogo Sampaio und Jorge Bernardino verglichen 2017 verfügbare WAFs die ebenfalls als Erweiterungskandidaten in Frage kamen (siehe Tabelle \ref{tab:my_vergos}).
 
-\begin{description}
-\item [SpringSecurity HttpFirewall]
-\item [OWASP ESAPI]
-\item [WebCastellum]
-\item [IronBee]
-\item [modSecurity]
-\end{description}
+% Tabelle ggf. in Anhang verschieben
 
-%Tabelle ggf. in Anhang verschieben
 \begin{table}[h]
   \centering
   \begin{tabular}{|c | c | c | c |} 
@@ -44,13 +37,9 @@ Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelne
   \label{tab:my_vergos}
 \end{table}
 
-\ref{sec:Probleme}
+\emph{ModSecurity} und \emph{IronBee} Stärken liegen in der regelbasierten Auswertung (\emph{regular expression based filtering}). Beide werden als Reverse-Proxy vor der eigentlichen Anwendung eingesetzt und sind keine HTTP-Servlet-Filter. Dies hat den Nachteil das kein Zugriff auf die eigentlichen Anwendungsdaten besteht und nur anhand des HTTP-Datenverkehrs gefiltert werden kann. \emph{WebCastellum} scheint hier Gutes aus beiden Welten bereit zustellen, zum einen (als Servlet-Filter) direkten Zugriff auf die Anwendungsdaten, als auch regelbasiertes Filtern \emph{out-of-the-box}. \anno{Achtung! Sampaios Tabelle ist hier fehlerhaft! Übernehmen trotz Fehler?} 
 
 
-
-- modSecurity
-- SpringSecurity HttpFirewall
-- OWASP ESAPI - 
 
 
 
