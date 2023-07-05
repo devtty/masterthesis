@@ -37,15 +37,13 @@ Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelne
   \label{tab:my_vergos}
 \end{table}
 
-\emph{ModSecurity} und \emph{IronBee} Stärken liegen in der regelbasierten Auswertung (\emph{regular expression based filtering}). Beide werden als Reverse-Proxy vor der eigentlichen Anwendung eingesetzt und sind keine HTTP-Servlet-Filter. Dies hat den Nachteil das kein Zugriff auf die eigentlichen Anwendungsdaten besteht und nur anhand des HTTP-Datenverkehrs gefiltert werden kann. \emph{WebCastellum} scheint hier Gutes aus beiden Welten bereit zustellen, zum einen (als Servlet-Filter) direkten Zugriff auf die Anwendungsdaten, als auch regelbasiertes Filtern \emph{out-of-the-box}. \anno{Achtung! Sampaios Tabelle ist hier fehlerhaft! Übernehmen trotz Fehler?} 
-
-
-
-
-
-Als Grundlage für die Implementierung der Firewall-Funktionalität wurde mit der Software \emph{WebCastellum} eine etwas ältere Implementierung eines Servlet-Filters gewählt.
+\emph{ModSecurity} und \emph{IronBee}s Stärken liegen in der regelbasierten Auswertung (\emph{regular expression based filtering}). Beide werden als Reverse-Proxy vor der eigentlichen Anwendung eingesetzt und sind keine HTTP-Servlet-Filter. Dies hat den Nachteil das kein Zugriff auf die eigentlichen Anwendungsdaten besteht und nur anhand des HTTP-Datenverkehrs gefiltert werden kann. \emph{WebCastellum} scheint hier Gutes aus beiden Welten bereit zustellen, zum einen (als Servlet-Filter) direkten Zugriff auf die Anwendungsdaten anzubieten, als auch regelbasiertes Filtern \emph{out-of-the-box}. \anno{Achtung! Sampaios Tabelle ist hier fehlerhaft! Übernehmen trotz Fehler?}
+Mit Hinsicht auf einen späteren produktiven Einsatz wurde daher die Software \emph{WebCastellum} als Grundlage für die Implementierung der Firewall-Funktionalität gewählt.
 
 \section{Vorarbeiten}
+
+Leider haben WebCastellum und der CSIC2010 Datensatz eine Gemeinsamkeit - das Alter. Die derzeit aktuelle offizielle Version 1.8.3 von WebCastellum erschien im Jahr 2009 und eine Weiterentwicklung fand seit dem nicht statt. Dennoch befindet sich das Produkt weiter in Verwendung und wird wohl auch in neuen Anwendungen genutzt, dieses lassen zumindest die aktuellen Downloadstatistiken (siehe \ref{fig:downloadwc}) vermuten. Insgesamt wurde das Binärpaket von WebCastellum in der Version 1.8.3 seit 2009 mehr als 8500 mal heruntergeladen (Stand vom 05. Juli 2023) - nicht berücksichtigt sind alle Vorgängerversionen und die Downloads über Repositories, wie z.B. Maven Central, stattfanden.
+
 
 \begin{figure}[h]
   \centering
@@ -53,7 +51,7 @@ Als Grundlage für die Implementierung der Firewall-Funktionalität wurde mit de
     set datafile separator ','
     set xdata time
     set timefmt "%Y-%m"
-    set xrange ["2009-01":"2022-04"]
+    set xrange ["2009-01":"2023-09"]
     set format x "%b %y"
     set key autotitle columnhead
     plot '04_Implementierung/downloads.csv' using 1:2 with boxes fs solid 1.0 fc 'steelblue'
