@@ -17,7 +17,7 @@ Als Grundlage für die Implementierung der Firewall-Funktionalität wurde mit de
     set xrange ["2009-01":"2022-04"]
     set format x "%b %y"
     set key autotitle columnhead
-    plot '04_Implementierung/downloads.csv' using 1:2 with lines
+    plot '04_Implementierung/downloads.csv' using 1:2 with boxes fs solid rgbcolor "#006699"
   \end{gnuplot}
   \caption{Downloads Statistics WebCastellum 1.8.3 binary}
   \label{fig:downloadwc}
