@@ -2,7 +2,42 @@
 
 \anno{max. 5 Seiten} %Ref hat 12
 
+% Was lesen wir in diesem Kapitel?
+% Warum muss ich das als Gutachter lesen
+% Wie verknüpft sich der Inhalt mit dem vorhergehenden Kapitel?
+% Welche Implmentierungsentscheidungen? Welche Alternativen? Vor- und Nachteile des eigenen Ansatzes?
+
 % Highlight 1 der Implementierung
+Dieses Kapitel befasst sich mit der praktischen Umsetzung der Vorschläge aus dem vorhergehenden Kapitel. 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c | c | c | c |} 
+    \hline
+    & \textbf{ModSecurity} & \textbf{WebCastellum} & \textbf{IronBee} \\ [0.5ex] 
+    \hline
+    Simple filtering & Yes & Yes & Yes \\ 
+    \hline
+    Regular expression based filtering & Yes &  & Yes \\
+    \hline
+    Auditing & Yes &  & Yes \\
+    \hline
+    Null byte attack prevention & Yes & Yes &  \\
+    \hline
+    URL Encryption & Yes & Yes &  \\ [1ex] 
+    \hline
+    Stateful Attack Detection & & Yes & Yes \\
+    \hline
+  \end{tabular}
+  \caption{Vergleich Open Source Web Application Firewalls (aus \cite{Sampaio2017}) }
+  \label{tab:my_label}
+\end{table}
+
+- modSecurity
+- SpringSecurity HttpFirewall
+- OWASP ESAPI - 
+
+
 
 Als Grundlage für die Implementierung der Firewall-Funktionalität wurde mit der Software \emph{WebCastellum} eine etwas ältere Implementierung eines Servlet-Filters gewählt.
 
@@ -69,5 +104,6 @@ Als Grundlage für die Implementierung der Firewall-Funktionalität wurde mit de
 % Zusammenfassung: ca. 0,5 Seiten
 \section{Zusammenfassung}
 
-
-
+% Was haben wir in diesem Kapitel gelernt?
+% Wie passt das zur Zielstellung der Arbeit?
+% Wie passt das zum nächsten Kapitel?
