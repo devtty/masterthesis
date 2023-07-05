@@ -42,8 +42,7 @@ Mit Hinsicht auf einen späteren produktiven Einsatz wurde daher die Software \e
 
 \section{Vorarbeiten}
 
-Leider haben WebCastellum und der CSIC2010 Datensatz eine Gemeinsamkeit - das Alter. Die derzeit aktuelle offizielle Version 1.8.3 von WebCastellum erschien im Jahr 2009 und eine Weiterentwicklung fand seit dem nicht statt. Dennoch befindet sich das Produkt weiter in Verwendung und wird wohl auch in neuen Anwendungen genutzt, dieses lassen zumindest die aktuellen Downloadstatistiken (siehe \ref{fig:downloadwc}) vermuten. Insgesamt wurde das Binärpaket von WebCastellum in der Version 1.8.3 seit 2009 mehr als 8500 mal heruntergeladen (Stand vom 05. Juli 2023) - nicht berücksichtigt sind alle Vorgängerversionen und die Downloads über Repositories, wie z.B. Maven Central, stattfanden.
-
+Leider haben WebCastellum und der CSIC2010 Datensatz eine Gemeinsamkeit - das Alter. Die derzeit aktuelle offizielle Version 1.8.3 von WebCastellum erschien bereits im Jahr 2009 und eine Weiterentwicklung fand seit dem nicht statt. Dennoch befindet sich das Produkt weiter in Verwendung und wird wohl auch in neuen Anwendungen genutzt, lässt zumindest die aktuelle Downloadstatistik (siehe \ref{fig:downloadwc}) vermuten. Insgesamt wurde das Binärpaket von WebCastellum in der Version 1.8.3 seit 2009 mehr als 8500 mal heruntergeladen (Stand vom 05. Juli 2023) - nicht berücksichtigt sind alle Vorgängerversionen und die Downloads über Repository-Dienste, wie z.B. Maven Central, stattfanden.
 
 \begin{figure}[h]
   \centering
@@ -56,11 +55,43 @@ Leider haben WebCastellum und der CSIC2010 Datensatz eine Gemeinsamkeit - das Al
     set key autotitle columnhead
     plot '04_Implementierung/downloads.csv' using 1:2 with boxes fs solid 1.0 fc 'steelblue'
   \end{gnuplot}
-  \caption{Downloads Statistics WebCastellum 1.8.3 binary}
+  \caption{Download-Statistik SourceForge WebCastellum 1.8.3 binary}
   \label{fig:downloadwc}
 \end{figure}
-  
-\subsection{Review Quellcode und IT-Sicherheit}
+
+Vor den eigentlichen Arbeiten waren also noch ein paar kleinere Vorarbeiten notwendig. In einem ersten Schritt wurde der Quellcode aus dem SourceForge-Repository heruntergeladen und in ein eigenes git-Repository\footnote{\url{https://github.com/devtty/webcastellum/} abgerufen am 05.07.2023} übertragen. 
+
+\subsection{Version 1.8.4. - Review des Quellcode und IT-Sicherheit}
+Während die Binär-Distribution mit der Versionsnummer 1.8.3 verteilt wird, sind die Quellen bereits mit der nächsten Minor-Version versehen. Diese lassen sich auch fast problemlos kompilieren und zu einem verwendungsfähigen Paket zusammenbauen. Das Projekt hat nur sehr wenig Abhängigkeiten zu weiteren Bibliotheken und diese (laut durchgeführtem OWASP dependency-check) keine bekannten Schwachstellen. Etwas problematisch ist die Abhängigkeit zu älteren Bibliotheken (\emph{javax.jms} und \emph{javax.mail}), da diese nicht mehr (direkt) über den Standard-Build-Mechanismus verfügbar sind, sich aber über Umwege auftreiben lassen.
+
+Im weiteren Verlauf des Projektes wurden die Quellen noch einer Codeanalyse auf der Sonarcloud-Plattform \footnote{\footnote{\url{https://sonarcloud.io/project/overview?id=devtty_webcastellum} abgerufen am 05.07.2023}} unterzogen. Insgesamt fielen dabei im Quelltext sechs direkte Schwachstellen und 58 potentielle Schwachstellen (siehe \ref{fig:my_sonar1}) auf. Bei den direkten Schwachstellen handelt es sich um:
+
+\begin{itemize}
+    \item 3 x Verwendung schwacher Kryptographie (hier AES; Cryptographic Failures / Security Misconfiguration )
+    \item 2 x Ausgabe der Session-ID in Log-Dateien (Insecure Design/Broken Authentication)
+    \item 1 x XML External Entity Injection Attack (Security Misconfiguration / XML External Entities (XXE))
+\end{itemize}
+
+Wobei die XXE-Attacke von Sonar als Blocker eingestuft wird. Bei den 58 Security Hotspots handelt es sich meistens um direkte Ausgaben im Fehlerfall (\verb=printStackTrace()=) mit der Bitte zur Überprüfung das diese im Produktivbetrieb nicht ausgegeben werden. 
+
+Inklusive Code Smells bemängelt Sonar den Quellcode in insgesamt 2657 Fällen und berechnet die angehäuften technischen Schulden auf 52 Personen-Tage Nacharbeit. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pictures/first_sonar2.jpg}
+    \caption{SonarCloud erste Sichtung}
+    \label{fig:my_sonar1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pictures/first_sonar_sql.jpg}
+    \caption{SonarCloud SQL-Injection}
+    \label{fig:my_sonar2}
+\end{figure}
+
+
+
 \subsection{Unit-Tests etc.}
 \subsection{Fehlerbereinigung}
 
