@@ -8,20 +8,21 @@ Als Grundlage für die Implementierung der Firewall-Funktionalität wurde mit de
 
 \section{Vorarbeiten}
 
-%\begin{figure}[h]
-%    \centering
-%    \begin{gnuplot}[terminal=latex, scale=1.0]
-%    set datafile separator ','
-%	set xdata time
-%    set timefmt "%Y-%m"
-%    set xrange ["2009-01":"2022-04"]
-%    set format x "%b %y"
-%    set key autotitle columnhead
-%	plot 'downloads.csv' using 1:2 with lines
-%\end{gnuplot}
-%    \caption{Downloads Statistics WebCastellum 1.8.3 binary}
-%    \label{fig:my_label}
-%  \end{figure}
+\begin{figure}[h]
+    \centering
+    \begin{gnuplot}[terminal=latex, scale=1.0]
+    set datafile separator ','
+	set xdata time
+    set timefmt "%Y-%m"
+    set xrange ["2009-01":"2022-04"]
+    set format x "%b %y"
+    set key autotitle columnhead
+	plot 'downloads.csv' using 1:2 with lines
+\end{gnuplot}
+    \caption{Downloads Statistics WebCastellum 1.8.3 binary}
+    \label{fig:downloadwc}
+  \end{figure}
+  
 \subsection{Review Quellcode und IT-Sicherheit}
 \subsection{Unit-Tests etc.}
 \subsection{Fehlerbereinigung}
