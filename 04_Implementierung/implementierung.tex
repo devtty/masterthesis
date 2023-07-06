@@ -74,7 +74,7 @@ Im weiteren Verlauf des Projektes wurden die Quellen noch einer Codeanalyse auf 
 
 Wobei die XXE-Attacke von Sonar als Blocker eingestuft wird. Bei den 58 Security Hotspots handelt es sich meistens um direkte Ausgaben im Fehlerfall (\verb=printStackTrace()=) mit der Bitte zur Überprüfung das diese im Produktivbetrieb nicht ausgegeben werden. 
 
-Inklusive Code Smells bemängelt Sonar den Quellcode in insgesamt 2657 Fällen und berechnet die angehäuften technischen Schulden auf 52 Personen-Tage Nacharbeit. 
+Inklusive Code Smells bemängelte Sonar den Quellcode in insgesamt 2657 Fällen und berechnet die angehäuften technischen Schulden auf 52 Personen-Tage Nacharbeit. 
 
 \begin{figure}
     \centering
@@ -92,7 +92,27 @@ Inklusive Code Smells bemängelt Sonar den Quellcode in insgesamt 2657 Fällen u
 
 
 
-\subsection{Unit-Tests etc.}
+\subsection{ToDos, Unit-Tests,  etc.}
+
+Interessant war ebenfalls die Suche nach \verb=TODO=-Markierungen im Quelltext. Insgesamt 243 mal traten entsprechende Kommentare im Quelltext auf und markierten Stellen an denen die Entwickler Probleme und Verbesserungen vermuteten bzw. Aufgaben für die nächste Version notierten. Diese Notizen reichten von einfachen Aufgabenstellungen, wie \glqq\emph{add propert logging}\grqq, über Refactoring-Ideen bis hin zu Anmerkungen deren Umsetzung die Funktionsweise des Filters beeinflussen würden. \anno{Zitierung aus eigener unveröffentlichter notwendig?}
+
+Einige der Todo-Anmerkungen ließen auf eine geplante Überführung des Quellcodes von Java in der Version 1.4 auf Java 5 schließen. Häufig fanden sich auch auskommentierte dementsprechende Fragmente und, insbesondere bei der Verwendung listenähnlicher Objekte, fallen die in Java 5 eingeführten \textbf{Generics} auf.
+
+\begin{figure}[h]
+  \begin{small}
+    \begin{lstlisting}[language=java]
+      // TODO: in Utility-Klasse packen (ServerUtils)
+      private static void concatenateParameterMaps(
+      final Map/*<String,String[]>*/ parameters, 
+      final Map/*<String,String[]>*/ parameterMapToAdd) {
+    \end{lstlisting}
+  \end{small}
+  \caption{Auszug aus WebCastellumFilter als Beispiel für ToDos und auskommentierte Generics}
+  \label{fig:my_l2}
+\end{figure}
+  
+Dabei sollte berücksichtigt werden, dass diese Kommentare aus dem Jahr 2009 stammen und auch die Programmiersprache Java in den letzten Jahren deutliche Fortschritte gemacht hat. Die Sprache erlaubt mittlerweile auch Konstrukte wie Lambda-Expressions (Java 8) und Typinferenz (Java 10). Ein Refactoring des Quelltextes diesbezüglich wäre sicher lohnenswert.
+
 
 
 
