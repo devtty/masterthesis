@@ -94,9 +94,9 @@ Inklusive Code Smells bemängelte Sonar den Quellcode in insgesamt 2657 Fällen 
 
 \subsection{ToDos, Unit-Tests,  etc.}
 
-Interessant war ebenfalls die Suche nach \verb=TODO=-Markierungen im Quelltext. Insgesamt 243 mal traten entsprechende Kommentare im Quelltext auf und markierten Stellen an denen die Entwickler Probleme und Verbesserungen vermuteten bzw. Aufgaben für die nächste Version notierten. Diese Notizen reichten von einfachen Aufgabenstellungen, wie \glqq\emph{add propert logging}\grqq, über Refactoring-Ideen bis hin zu Anmerkungen deren Umsetzung die Funktionsweise des Filters beeinflussen würden. \anno{Zitierung aus eigener unveröffentlichter notwendig?}
+Interessant war ebenfalls die Suche nach \verb=TODO=-Markierungen im Quelltext. Insgesamt 243 mal traten entsprechende Kommentare im Quelltext auf und markierten Stellen an denen die Entwickler Probleme und Verbesserungen vermuteten bzw. Aufgaben für die nächste Version notierten. Diese Notizen reichten von einfachen Aufgabenstellungen, wie \glqq\emph{add proper logging}\grqq, über Refactoring-Ideen bis hin zu Anmerkungen deren Umsetzung die Funktionsweise des Filters beeinflussen würden. \anno{Zitierung aus eigener unveröffentlichter notwendig?}
 
-Einige der Todo-Anmerkungen ließen auf eine geplante Überführung des Quellcodes von Java in der Version 1.4 auf Java 5 schließen. Häufig fanden sich auch auskommentierte dementsprechende Fragmente und, insbesondere bei der Verwendung listenähnlicher Objekte, fallen die in Java 5 eingeführten \textbf{Generics} auf.
+Einige der Todo-Anmerkungen ließen auf eine geplante Überführung des Quellcodes von Java in der Version 1.4 auf Java 5 schließen. Häufig fanden sich auch auskommentierte dementsprechende Fragmente und, insbesondere bei der Verwendung listenähnlicher Objekte, fallen die in Java 5 eingeführten \emph{Generics} (s. Abbildung \ref{fig:my_l2} auf.
 
 \begin{figure}[h]
   \begin{small}
@@ -113,7 +113,7 @@ Einige der Todo-Anmerkungen ließen auf eine geplante Überführung des Quellcod
   
 Dabei sollte berücksichtigt werden, dass diese Kommentare aus dem Jahr 2009 stammen und auch die Programmiersprache Java in den letzten Jahren deutliche Fortschritte gemacht hat. Die Sprache erlaubt mittlerweile auch Konstrukte wie Lambda-Expressions (Java 8) und Typinferenz (Java 10). Ein Refactoring des Quelltextes diesbezüglich wäre sicher lohnenswert.
 
-
+Tests, im Sinne von Unit-Tests z.B. im Rahmen eines etablierten Testframeworks, lassen sich in den Quellen der Version 1.8.3 nicht finden. Für eine Software, die zur Sicherheit von Anwendungen beitragen sollte, eher ungewöhnlich. Stattdessen existieren in einigen Klassen \verb=main=-Methoden mit entsprechender Absicht. Die Klasse \verb=LargeFormPostRequestTester= dient beispielsweise ausschließlich Testzwecken. \verb=ResponseUtils= behinhaltet gleich fünf auskommentierte \verb=main=-Methoden zum Testen verschiedener Funktionalitäten inklusive der Anmerkung \emph{for local testing only}. 
 
 
 \subsection{Fehlerbereinigung}
