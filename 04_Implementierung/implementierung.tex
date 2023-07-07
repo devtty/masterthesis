@@ -64,7 +64,7 @@ Vor den eigentlichen Arbeiten waren also noch ein paar kleinere Vorarbeiten notw
 \subsection{Version 1.8.4. - Review des Quellcode und IT-Sicherheit}
 Während die Binär-Distribution mit der Versionsnummer 1.8.3 verteilt wird, sind die Quellen bereits mit der nächsten Minor-Version versehen. Diese lassen sich auch fast problemlos kompilieren und zu einem verwendungsfähigen Paket zusammenbauen. Das Projekt hat nur sehr wenig Abhängigkeiten zu weiteren Bibliotheken und diese (laut durchgeführtem OWASP dependency-check) keine bekannten Schwachstellen. Etwas problematisch ist die Abhängigkeit zu älteren Bibliotheken (\emph{javax.jms} und \emph{javax.mail}), da diese nicht mehr (direkt) über den Standard-Build-Mechanismus verfügbar sind, sich aber über Umwege auftreiben lassen.
 
-Im weiteren Verlauf des Projektes wurden die Quellen noch einer Codeanalyse auf der Sonarcloud-Plattform \footnote{\url{https://sonarcloud.io/project/overview?id=devtty_webcastellum} abgerufen am 05.07.2023} unterzogen. Insgesamt fielen dabei im Quelltext sechs direkte Schwachstellen und 58 potentielle Schwachstellen (siehe \ref{fig:my_sonar1}) auf. Bei den direkten Schwachstellen handelt es sich um:
+Im weiteren Verlauf wurden die Quellen noch an Githubs eigenes CI/CD-System angebunden und automatisiert einer Codeanalyse auf der Sonarcloud-Plattform \footnote{\url{https://sonarcloud.io/project/overview?id=devtty_webcastellum} abgerufen am 05.07.2023} unterzogen. Insgesamt fielen dabei im Quelltext sechs direkte Schwachstellen und 58 potentielle Schwachstellen (siehe \ref{fig:my_sonar1}) auf. Bei den direkten Schwachstellen handelt es sich um:
 
 \begin{itemize}
     \item 3 x Verwendung schwacher Kryptographie (hier AES; Cryptographic Failures / Security Misconfiguration )
@@ -118,19 +118,24 @@ Tests, im Sinne von Unit-Tests z.B. im Rahmen eines etablierten Testframeworks, 
 
 \subsection{Fehlerbereinigung}
 
-Die minimale (persönliche) Anforderung an das Ziel der Vorarbeiten war den seit 2009 nicht bearbeiteten Quelltext auf eine fehlerfreie Basis anzuheben, ein (kompilierbares) nutzbares Endprodukt zu erhalten und mindestens einen Anwendungsfall komplett durchtesten zu können. 
+Die minimale (persönliche) Anforderung an das Ziel der Vorarbeiten war den seit 2009 nicht bearbeiteten Quelltext auf eine fehlerfreie Basis anzuheben, ein (kompilierbares) nutzbares Endprodukt zu erhalten und mindestens einen Anwendungsfall komplett durchtesten zu können.
+
+Umgesetzt wurde dann ein leichtes Refactoring und die Erstellung von 222 Unit-Tests\footnote{\url{https://github.com/devtty/webcastellum/actions/runs/5441412243/jobs/9895332455#step:8:437} aufgerufen am 07.07.2023}. 
 
 \begin{itemize}
     \item 33 Bugs beseitigt
     \item 6 Sicherheitslücken beseitigt
     \item 54 Security-Hotspots überprüft
+    \item über 300 Code-Smells beseitigt
     \item und die Testabdeckung des Quelltextes von 0 auf 18,8 Prozent angehoben.
 \end{itemize}
+
+Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) mit insgesamt 14 Tests spielen dabei den Anwendungsfall eines Angriffs per SQL-Injection auf eine kleine Beispiel-Anwendung durch und überprüfen die Funktionalität des Filters. 
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{scfinalc.png}
-    \caption{Ergebnis des Bugfixings (Juni 2023)}
+    \caption{Ergebnis des Bugfixings (Juni 2023)(Vergleich s. \ref{fig:my_sonar1}}
     \label{fig:my_sonarf}
 \end{figure}
 
