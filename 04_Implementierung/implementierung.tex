@@ -120,7 +120,7 @@ Tests, im Sinne von Unit-Tests z.B. im Rahmen eines etablierten Testframeworks, 
 
 Die minimale (persönliche) Anforderung an das Ziel der Vorarbeiten war den seit 2009 nicht bearbeiteten Quelltext auf eine fehlerfreie Basis anzuheben, ein (kompilierbares) nutzbares Endprodukt zu erhalten und mindestens einen Anwendungsfall eines Angriffs komplett durchtesten zu können.
 
-Umgesetzt wurde dann ein leichtes Refactoring und die Erstellung von 222 Unit-Tests\footnote{\url{https://github.com/devtty/webcastellum/actions/runs/5441412243/jobs/9895332455\#step:8:437} aufgerufen am 07.07.2023}. 
+Umgesetzt wurde dann ein leichtes Refactoring und die Erstellung von 222 Unit-Tests\footnote{\url{https://github.com/devtty/webcastellum/actions/runs/5441412243/jobs/9895332455\#step:8:437} aufgerufen am 07.07.2023}. Dabei wurden:
 
 \begin{itemize}
     \item 33 Bugs beseitigt
@@ -130,9 +130,9 @@ Umgesetzt wurde dann ein leichtes Refactoring und die Erstellung von 222 Unit-Te
     \item und die Testabdeckung des Quelltextes von 0 auf 18,8 Prozent angehoben.
 \end{itemize}
 
-Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) mit insgesamt 14 Tests spielen dabei den Anwendungsfall eines Angriffs per SQL-Injection auf eine kleine Beispiel-Anwendung durch und überprüfen die Funktionalität des Filters. 
+Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) mit insgesamt 14 Tests spielen dabei den Anwendungsfall eines Angriffs per SQL-Injection auf eine kleine Beispiel-Anwendung durch und überprüfen die korrekte Funktionalität des Filters. 
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{scfinalc.png}
     \caption{Ergebnis des Bugfixings (Juni 2023)}
@@ -149,7 +149,7 @@ Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) 
     \label{fig:my_verbund}
 \end{figure}
 
-\begin{figure}[bht]
+\begin{figure}[h]
   \begin{center}
     \includegraphics[width=12cm]{classp}
     \caption{Implementierung Nachrichtenversand}
@@ -176,6 +176,7 @@ Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) 
     \label{fig:my_future}
 \end{figure}
 
+\section{Lernmodus}
 
 % Highlight des Deployments beim Kunden
 
