@@ -19,7 +19,7 @@ Mittlerweile sind bereits dreizehn Jahre seit dem Erscheinen des Datensatzes CSI
 % Aufbau /motivation von gimenez
 
 % Aufbau
-Der Datensatz besteht aus drei Teildatensätzen. Der erste Teildatensatz ist dabei für die Trainingsphase gedacht und enthält 36000 einzelne HTTP-Anfragen die den normalen bzw. erwünschten Datenverkehr abbilden. Die anderen beiden Teildatensätze sind für die Testphase gedacht, ein Teildatensatz mit normalem Datenverkehr und ein Teildatensatz mit \emph{bösartigen} Daten (siehe \cite{csic2010}).\\ Die einzelnen Dateneinträge der drei Teildatensätze sind jeweils gleich aufgebaut und beinhalten die in Tabelle~\ref{tab:csicfields}~(s.~Anhang) aufgeführten Felder. Das Feld \emph{Payload} ist im Datensatz nicht explizit benannt bzw. auf den ersten Blick nicht ersichtlich, da es je nach HTTP-Methode unterschiedlich abgebildet wird. Bei einem \verb=GET=-Request wird die Payload im Query der URL übertragen (siehe \cite{rfc2626} 3.2.2) und bei \verb=POST=-Requests im Request Body. Die Payload enthält im Wesentlichen die eigentlichen Daten und in den meisten Angriffsfällen genau die Anomalien die für einen Angriff verantwortlich sind. Zur Verdeutlichung zeigt Abbildung~\ref{fig:ccex} einen einzelnen Eintrag des Datensatzes \emph{CSIC2010}. Hier handelt es sich um einen \verb=GET=-Request mit den Parametern \emph{id},\emph{nombre}, \emph{precio}, \emph{cantidad} und \emph{B1}. Die einzelnen Dateneinträge des Datensatzes unterscheiden sich jedoch nicht in den übrigen Feldern, mit Ausnahme des \verb=Cookie=-Feldes, so dass zum damaligen Zeitpunkt nur die HTTP-Methode, die URL und die Payload für eine Klassifizierung ausschlaggebend sind.
+Der Datensatz besteht aus drei Teildatensätzen. Der erste Teildatensatz ist dabei für die Trainingsphase gedacht und enthält 36000 einzelne HTTP-Anfragen die den normalen bzw. erwünschten Datenverkehr abbilden. Die anderen beiden Teildatensätze sind für die Testphase gedacht, ein Teildatensatz mit normalem Datenverkehr und ein Teildatensatz mit \emph{bösartigen} Daten (siehe \cite{csic2010}).\\ Die einzelnen Dateneinträge der drei Teildatensätze sind jeweils gleich aufgebaut und beinhalten die in Tabelle~\ref{tab:csicfields} aufgeführten Felder. Das Feld \emph{Payload} ist im Datensatz nicht explizit benannt bzw. auf den ersten Blick nicht ersichtlich, da es je nach HTTP-Methode unterschiedlich abgebildet wird. Bei einem \verb=GET=-Request wird die Payload im Query der URL übertragen (siehe \cite{rfc2626} 3.2.2) und bei \verb=POST=-Requests im Request Body. Die Payload enthält im Wesentlichen die eigentlichen Daten und in den meisten Angriffsfällen genau die Anomalien die für einen Angriff verantwortlich sind. Zur Verdeutlichung zeigt Abbildung~\ref{fig:ccex} einen einzelnen Eintrag des Datensatzes \emph{CSIC2010}. Hier handelt es sich um einen \verb=GET=-Request mit den Parametern \emph{id},\emph{nombre}, \emph{precio}, \emph{cantidad} und \emph{B1}. Die einzelnen Dateneinträge des Datensatzes unterscheiden sich jedoch nicht in den übrigen Feldern, mit Ausnahme des \verb=Cookie=-Feldes, so dass zum damaligen Zeitpunkt nur die HTTP-Methode, die URL und die Payload für eine Klassifizierung ausschlaggebend sind.
 
 
 %\lstset{language=XML,
@@ -49,6 +49,36 @@ Cookie: JSESSIONID=54E25FF4B7F0E4E855B112F882E9EEa5
 Connection: close
 \end{lstlisting}
 \end{figure}
+
+\begin{sidewaystable}[h]
+  \centering
+%  \resizebox{\textwidth}{!}{ 
+  \begin{tabular}{|l | l | l |}
+    \hline
+    \textbf{Name} & \textbf{Wert} & \textbf{Anmerkungen} & DN \\
+    \hline
+    HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT= & & 2 \\
+    URL & & & 28\\
+    Protocol & \verb=HTTP/1.1= & HTTP/2 & 1 \\
+    User-Agent & \verb=Mozilla/5.0 (compatible;Konqueror/3.5...= & & 1\\
+    Pragma & \verb=no-cache= & & 1\\
+    Cache-control & \verb=no-cache= & & 1\\
+    Accept & \verb=text/xml,application/xml,...= & & 1\\
+    Accept-Encoding & \verb=x-gzip,x-deflate,gzip,deflate= & & 1\\
+    Accept-Charset & \verb!utf-8,utf-8;q=0.5,*;q=0.5! & & 1\\
+    Accept-Language & \verb=en= & & 1\\
+    Host & \verb=localhost:8080= & & 1\\
+    Cookie & \verb=JSESSIONID= verschiedene Werte & \\
+    Content-Type & \verb=null= oder \verb=application/x-www-from-urlencoded= & & 2\\
+    Connection & \verb=close= & & 1\\
+    Content-Length & & & 117\\
+    Payload & & \\
+    \hline
+      % \end{tabular}}
+    \end{tabular}
+  \caption{Felder des CSIC2010 Datensatzes}
+  \label{tab:csicfields}
+\end{sidewaystable}
 
 % Format des Datenssatzes Text -> CSV (Referenz zu Dr....) -> ARFF ?? ggf. mit Korrektur
 
