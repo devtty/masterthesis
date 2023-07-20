@@ -128,3 +128,45 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
   \caption{Übersicht Absichtlich angreifbare Anwendungen}
   \label{tab:vulnapp}
 \end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|}
+    \hline
+    \textbf{Feature Name} \\
+    \hline
+    Length of the request \\
+    Length of the path \\
+    Length of the arguments \\
+    Length of the header \glqq\emph{Accept}\grqq \\
+    Length of the header \glqq\emph{Accept-Encoding}\grqq \\
+    Length of the header \glqq\emph{Accept-Charset}\grqq \\
+    Length of the header \glqq\emph{Accept-Language}\grqq \\
+    Length of the header \glqq\emph{Cookie}\grqq \\
+    Length of the header \glqq\emph{Content-Length}\grqq \\
+    Length of the header \glqq\emph{Content-Type}\grqq \\
+    Length of the Host \\
+    Length of the header \glqq\emph{Referer}\grqq \\
+    Length of the header \glqq\emph{User-Agent}\grqq \\
+    Method identifier\\
+    Number of arguments\\
+    Number of letters in the arguments\\
+    Number of digits in the arguments\\
+    Number of special char in the arguments\\
+    Number of other char in the arguments\\
+    Number of letters in the path\\
+    Number of digits in the path\\
+    Number of special char in the path\\
+    Number of other char in the path\\
+    Number of cookies\\
+    Minimum byte value in the request\\
+    Maximum byte value in the request\\
+    Number of distinct bytes\\
+    Entropy\\
+    Number of keywords in the path\\
+    Number of keywords in the arguments\\
+    \hline
+  \end{tabular}
+  \caption{Names of 30 expert knowledge features that are considered relevant for the detection of web attacks for the CSIC dataset (s. Tabelle 5.2. in \cite{gimenez2015}}
+  \label{tab:tgfeatures}
+\end{table}
