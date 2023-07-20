@@ -93,12 +93,10 @@ Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \v
 
 Der wesentlichste Kritikpunkt ist das Alter des Datensatzes. Seit der Erstellung des Datensatzes hat sich in der Welt der Webanwendungen einiges geändert. Beispielsweise haben sich mobile Geräte wie das Handy oder Tablets vermehrt als Endgeräte durchgesetzt und Anwendungen nutzen nicht mehr nur simple (\emph{HTTP-})Anfragen und Antworten. Deutlich sichtbar wird dieses beispielsweise anhand des Features \glqq\emph{Method identifier}\grqq. CSIC2010 definiert hier nur die Methoden \verb=GET= und \verb=POST= als mögliche Werte für erwünschten Datenverkehr. Explizit erscheint die \verb=PUT=-Methode im anomalen Teil. Natürlich ist der Datensatz auf die von Torrano-Giménez genutzte Anwendung zugeschnitten und dürfte auch für die meisten damaligen Web-Anwendungen funktionieren. Nach Definition kann eine WebApplicationFirewall jedoch jeden Datenverkehr über das Hypertext Transfer Protokoll absichern und dazu gehören auch die anderen HTTP-Methoden. Durch das Weglassen der restlichen Methoden könnten bei der Absicherung vieler moderner Anwendungen oder Dienste Probleme auftreten. 
 
-\subsubsection{Neue Anwendungsarchitekturen und Frameworks}
+\subsubsection{Das HTTP-Protokoll, REST und WebDAV}
+Heute nutzten Endgeräte (wie das Mobiltelefon aber auch Server) zur Kommunikation untereinander vermehrt Dienste die ebenfalls auf dem Hypertext Transfer Protokoll basieren. Beispielsweise bieten \emph{Representational State Transfer}~(REST)-konforme Dienste einfache Möglichkeiten der Kommunikation zwischen mehreren (verteilten) Maschinen bzw. Anwendungen an. Auch solche Schnittstellen lassen sich mit Hilfe von WebApplicationFirewalls absichern.\\
 
-
-%% Änderungen Anwendungsarchitekturen
-
-%\lstset{language=XML,
+% \lstset{language=XML,
 % 	basicstyle=\ttfamily\color{black}\small,
 % 	keywordstyle=\bfseries\color{bhtBlue},
 % 	identifierstyle=\color{black}, 
@@ -109,7 +107,7 @@ Der wesentlichste Kritikpunkt ist das Alter des Datensatzes. Seit der Erstellung
   \label{fig:restputexample}
   \begin{lstlisting}
 PUT /user/devtty HTTP/1.1
-Host: petstore.devtty.de
+Host: localhost:8080
 Content-Type: application/json
 
 {
@@ -120,6 +118,23 @@ Content-Type: application/json
 }
 \end{lstlisting}
 \end{figure}
+
+Eine anomalie-basierende WAF die mit dem CSIC2010-Datensatz trainiert worden wäre, würde den in Abbildung \ref{fig:restputexample} dargestellten Request ablehnen, da das Feature \glqq\emph{Method identifier}\grqq die Methode \verb=PUT= nicht erlaubt. Für die Klassifizierung bei REST-konformen Endpunkten müssten noch weitere Methoden im Datensatz aufgenommen werden.
+
+Möglich wäre zum Beispiel auch die Absicherung eines WebDAV\footnote{Web-based Distributed Authoring and Versioning}-Endpunktes
+
+
+%% Erweiterung HTTP
+
+\anno{HTTP1.1 2 und 3...}
+
+\subsubsection{Neue Anwendungsarchitekturen und Frameworks}
+
+
+
+%% Änderungen Anwendungsarchitekturen
+
+
 
 
 
@@ -139,11 +154,6 @@ Gwt Verweis\cite{kozik2019}
 
 \anno{SVG Darstellung korrekt?}
 
-\subsubsection{Das HTTP-Protokoll}
-
-%% Erweiterung HTTP
-
-\anno{HTTP1.1 2 und 3...}
 
 \subsubsection{Neue Werkzeuge}
 
