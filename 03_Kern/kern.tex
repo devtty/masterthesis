@@ -23,7 +23,7 @@ Der Datensatz besteht aus drei Teildatensätzen. Der erste Teildatensatz ist dab
 
 Die einzelnen Dateneinträge der drei Teildatensätze sind jeweils gleich aufgebaut und beinhalten die in Tabelle~\ref{tab:csicfields} aufgeführten Felder. Das Feld \emph{Payload} ist im Datensatz nicht explizit benannt bzw. auf den ersten Blick nicht ersichtlich, da es je nach HTTP-Methode in den Rohdaten unterschiedlich abgebildet wird. Bei einem \verb=GET=-Request wird die Payload im Query der URL übertragen (siehe \cite{rfc2626} 3.2.2) und bei \verb=POST=-Requests im Request Body. Die Payload enthält im Wesentlichen die eigentlichen Daten und in den meisten Angriffsfällen genau die Anomalien die für einen Angriff verantwortlich sind. Zur Verdeutlichung zeigt Abbildung~\ref{fig:ccex} einen einzelnen Eintrag des Datensatzes \emph{CSIC2010} im Rohformat. Hier handelt es sich um einen \verb=GET=-Request mit den Parametern \emph{id},\emph{nombre}, \emph{precio}, \emph{cantidad} und \emph{B1}. Die einzelnen Dateneinträge des Datensatzes unterscheiden sich jedoch nicht in den übrigen Feldern.\\
 
-Für eine Klassifizierung können bzw. müssen aus den Daten der einzelnen Requests entsprechende Features (\emph{Merkmale~-~individuell messbar}) abgeleitet werden. \emph{Achtung}, Felder und Features sind nicht gleichzusetzen! Torrano-Giménez hat in ihrer Doktorarbeit sowohl Features von Experten benennen lassen \footnote{siehe Anhang Tabelle \ref{tab:tgfeatures}} als auch mittels statistischer Feature-Selection-Mechanismen \emph{extrahiert}. Bei den hier vorgeschlagenen Verbesserungen bzw. Änderungen wird sich nur auf die Datenfelder oder auf die benannten \emph{Experten-Features} bezogen.
+Für eine Klassifizierung können bzw. müssen aus den Daten der einzelnen Requests entsprechende Features (\emph{Merkmale~-~individuell messbar}) abgeleitet werden. \emph{Achtung}, Felder und Features sind nicht gleichzusetzen! Torrano-Giménez hat in ihrer Doktorarbeit sowohl Features von Experten benennen lassen \footnote{siehe Anhang Tabelle \ref{tab:tgfeatures}} als auch mittels statistischer Feature-Selection-Mechanismen \emph{extrahiert}. Bei den hier vorgeschlagenen Verbesserungen bzw. Änderungen wird sich nur auf die Datenfelder der Rohdaten oder auf die in \cite{Giménez2015} benannten \emph{Experten-Features} bezogen.
 
 
 %\lstset{language=XML,
@@ -86,32 +86,17 @@ Connection: close
 
 % Format des Datenssatzes Text -> CSV (Referenz zu Dr....) -> ARFF ?? ggf. mit Korrektur
 
+
 Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \verb=PUT= noch eine weitere HTTP-Methode angewandt~\cite{csic2010}. \anno{Überleitung}
 
 \subsection{Alter des Datensatzes}
 
-\subsubsection{Das HTTP-Protokoll}
+Der wesentlichste Kritikpunkt ist das Alter des Datensatzes. Seit der Erstellung des Datensatzes hat sich in der Welt der Webanwendungen einiges geändert. Beispielsweise haben sich mobile Geräte wie das Handy oder Tablets vermehrt als Endgeräte durchgesetzt und Anwendungen nutzen nicht mehr nur simple (\emph{HTTP-})Anfragen und Antworten. Deutlich sichtbar wird dieses beispielsweise anhand des Features \glqq\emph{Method identifier}\grqq. CSIC2010 definiert hier nur die Methoden \verb=GET= und \verb=POST= als mögliche Werte für erwünschten Datenverkehr. Explizit erscheint die \verb=PUT=-Methode im anomalen Teil. Natürlich ist der Datensatz auf die von Torrano-Giménez genutzte Anwendung zugeschnitten und dürfte auch für die meisten damaligen Web-Anwendungen funktionieren. Nach Definition kann eine WebApplicationFirewall jedoch jeden Datenverkehr über das Hypertext Transfer Protokoll absichern und dazu gehören auch die anderen HTTP-Methoden. Durch das Weglassen der restlichen Methoden könnten bei der Absicherung vieler moderner Anwendungen oder Dienste Probleme auftreten. 
 
-%% Erweiterung HTTP
-\subsubsection{Neue Anwendungsarchitekturen}
+\subsubsection{Neue Anwendungsarchitekturen und Frameworks}
+
+
 %% Änderungen Anwendungsarchitekturen
-
-
-Gwt Verweis\cite{kozik2019}
-% SChönes Beispiel für Fortschritt, produktiven Einsatz und zeitliche Veränderung und wo Gimenez nicht funktioniert-- > PUT als anomalie in CSIC2010 definiert aber in REST durchaus üblich
-% rest beispiel mit PUT
-
-\begin{figure}[h]
-  %% \begin{center}
-  \centering
-  \includesvg[inkscapelatex=false,width=0.7\textwidth]{Ajax-vergleich}
-  \caption{Das Modell einer traditionellen Web-Anwendung (links) im direkten Vergleich mit einer Ajax Web-Anwendung (rechts)~\url{https://commons.wikimedia.org/wiki/File:Ajax-vergleich.svg}}
-  \label{fig.ajax}
-%%  \end{center}
-\end{figure}
-
-\anno{SVG Darstellung korrekt?}
-
 
 %\lstset{language=XML,
 % 	basicstyle=\ttfamily\color{black}\small,
@@ -136,6 +121,29 @@ Content-Type: application/json
 \end{lstlisting}
 \end{figure}
 
+
+
+
+Gwt Verweis\cite{kozik2019}
+% SChönes Beispiel für Fortschritt, produktiven Einsatz und zeitliche Veränderung und wo Gimenez nicht funktioniert-- > PUT als anomalie in CSIC2010 definiert aber in REST durchaus üblich
+% rest beispiel mit PUT
+
+\begin{figure}[h]
+  %% \begin{center}
+  \centering
+  \includesvg[inkscapelatex=false,width=0.7\textwidth]{Ajax-vergleich}
+  \caption{Das Modell einer traditionellen Web-Anwendung (links) im direkten Vergleich mit einer Ajax Web-Anwendung (rechts)~\url{https://commons.wikimedia.org/wiki/File:Ajax-vergleich.svg}}
+  \label{fig.ajax}
+%%  \end{center}
+\end{figure}
+
+\anno{SVG Darstellung korrekt?}
+
+\subsubsection{Das HTTP-Protokoll}
+
+%% Erweiterung HTTP
+
+\anno{HTTP1.1 2 und 3...}
 
 \subsubsection{Neue Werkzeuge}
 
