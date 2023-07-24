@@ -186,6 +186,7 @@ Erhöhung der Genauigkeit
 
 
 \subsection{Unzureichende Kategorisierung im Datensatz}
+\label{sec:Kategorisierung}
 % Problem zu viele Falsch-Positive/Zuordnung:Framework/Status(Session) -> Anwendungsstatus (DeltaspikeClientId/SpringExecuteID)
 % möglichkeit anomalien nicht auf basis der Regeln sondern auf basis von abweichungen in der Anwendungsnutzung auszuwerten
 
@@ -194,11 +195,15 @@ Erhöhung der Genauigkeit
 
 
 \subsection{Zentralisierung}
+\label{sec:zentralisierungkern}
+
+Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem praktischen System wäre es jedoch von Vorteil wenn der Datensatz sich selbständig erweitert und gegebenfalls auch von anderen, ähnlichen Systemen \glqq\emph{lernen}\grqq könnte. In~\cite{Manaseer2018}~erfolgte bereits der Entwurf die Daten von erkannten Angriffen zentral, über ein sogenanntes \emph{Command and Control Center} zu sammeln. Carmen Torrano-Giménez nutzte jedoch zum Trainieren ihrer WAF ausschließlich Daten von erwünschten Requests. Im Gegensatz zu Manaseer wäre es durchaus hilfreich alle Requests an eine zentrale Komponente zu senden und mit Hilfe einer genaueren Kategorisierung\ref{sec:Kategorisierung} könnten diese Daten dann auch dementsprechend ausgewertet und gegebenfalls an die WAFs ähnlicher Anwendungen verteilt werden.
+
 
 \begin{figure}[ht]
   \begin{center}
     \includegraphics[width=15cm]{waf_mana}
-    \caption{Zentralisiert~\cite{Manaseer2018}}
+    \caption{Zentrale Übermittlung von Angriffsdaten nach~\cite{Manaseer2018}}
     \label{fig.topten}
   \end{center}
 \end{figure}
