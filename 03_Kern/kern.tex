@@ -1,6 +1,6 @@
 te\chapter{Kern der Arbeit}
 
-\anno{ca. 15-20 Seiten}
+\anno{ca. 15-20 Seiten (6-7)}
 
 % Probleme und die Loesungsansaetze
 \section{Probleme}
@@ -128,6 +128,18 @@ Möglich wäre zum Beispiel auch die Absicherung eines WebDAV\footnote{Web-based
 
 \anno{HTTP1.1 2 und 3...}
 
+
+\subsubsection{Neue Werkzeuge}
+
+Grundsätzlich sollte auch bedacht werden dass, seit der Erstellung des Datensatzes von Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. Höchstwahrscheinlich wäre der Umfang der Anomaliedaten wesentlich höher wenn der damalige Testaufbau (mit den aktuelleren Versionen der Software) wiederholt wird und der Generierungsprozess nochmals angestossen wird.
+  
+\subsection{Ziel des Datensatzes}
+
+Ein weiterer Kritikpunkt Applebaums am Datensatz CSIC2010, neben dem Alter, betrifft das zur Erstellung genutzte Ziel. Für CSIC2010 wurde nur eine einzelne Webanwendung genutzt, die intern vom CSIC2010-Team entwickelt wurde und rudimentäre Funktionen eines e-Commerce-Systems anbietet~\cite{csic2010}. Es existieren eine Nutzerregistrierung und diverse Funktionen aus dem Einkaufsbereich (z.B. Waren einem Einkaufskorb hinzufügen usw.). Applebaum merkt zusätzlich an dass es sich nicht um ein real verwendetes System handelt. Damit beschränken sich die erstellten Daten nur auf den engen Bereich dieser (einen) Webanwendung. 
+
+Erhöhung der allgemeinen Gültigkeit (Diskrepanz mit spezieller Zuschneidung auf Anwendung)~\ref{sec:Probleme}
+Erhöhung der Genauigkeit
+
 \subsubsection{Neue Anwendungsarchitekturen und Frameworks}
 %% Änderungen Anwendungsarchitekturen
 Eine wesentliche Änderung seit Erstellung des Datensatzes ist das Aufkommen moderner Anwendungen die durch Nutzung von Anfragen im Hintergrund wesentlich schneller auf Nutzereingaben reagieren. Gute Beispiele sind Eingabefelder mit automatischer Vervollständigung oder die Validierung der eingegebenen Werte während der Eingabe. Das explizite Auslösen einer Anfrage, z.B. über ein Formular, wurde in vielen Fällen vom Konzept der \emph{\textbf{A}synchronen Datenübertragung per \textbf{J}avascript \textbf{A}nd \textbf{X}ML} (AJAX) abgelöst. In gewisser Weise sendet nicht mehr der Endnutzer (als Person) die Anfragen an den Server sondern der Browser selbst zu vordefinierten Ereignissen. Bei den Anfragen handelt es sich immer noch um HTTP-Requests, jedoch ist deren Komplexität und Häufigkeit deutlich gestiegen (s.~\ref{fig:ajax}).
@@ -143,25 +155,14 @@ Eine wesentliche Änderung seit Erstellung des Datensatzes ist das Aufkommen mod
 
 \anno{SVG Darstellung korrekt?}
 
-Mit der vermehrten Nutzung des AJAX-Konzeptes entwickelten sich auch die zur Oberflächengestaltung genutzten Frameworks dementsprechend weiter und verbreiteten sich schnell. Ebenso wie \emph{Applebaum} kritisierten \cite{kozik2019}
+Mit der vermehrten Nutzung des AJAX-Konzeptes entwickelten sich auch die zur Oberflächengestaltung genutzten Frameworks dementsprechend weiter und verbreiteten sich schnell. Ebenso wie \emph{Applebaum} kritisierten \cite{kozik2019} den CSIC2010-Datensatz dementsprechend. Ihre Kritik galt insbesondere dem \glqq\emph{Content-Type}\grqq-Feld:\\
 
+\textcolor{bhtGray}{\ding{110} Kozik über den Datensatz CSIC2010~\cite{kozik2019}} For instance, the original data set currently contains mainly requests that are complied with \glq\verb=application/x-www-form-urlencoded=\grq encoding standard. On the other hand, the modern web applications are currently also using different types of request content, e.g. \glq\verb=application/json=\grq, \glq\verb=text/x-gwt-rpc=\grq or other proprietary types.\\
 
-Gwt Verweis\cite{kozik2019}
+In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basierte Anwendung und erweiterten für ihre Zwecke den CSIC2010-Datensatz um 1500 \emph{normale} Anfragen und 2000 Angriffe.
+
 % SChönes Beispiel für Fortschritt, produktiven Einsatz und zeitliche Veränderung und wo Gimenez nicht funktioniert-- > PUT als anomalie in CSIC2010 definiert aber in REST durchaus üblich
 % rest beispiel mit PUT
-
-
-\subsubsection{Neue Werkzeuge}
-
-Grundsätzlich sollte auch bedacht werden dass, seit der Erstellung des Datensatzes von Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. Höchstwahrscheinlich wäre der Umfang der Anomaliedaten wesentlich höher wenn der damalige Testaufbau (mit den aktuelleren Versionen der Software) wiederholt wird und der Generierungsprozess nochmals angestossen wird.
-  
-\subsection{Ziel des Datensatzes}
-
-Ein weiterer Kritikpunkt Applebaums am Datensatz CSIC2010, neben dem Alter, betrifft das zur Erstellung genutzte Ziel. Für CSIC2010 wurde nur eine einzelne Webanwendung genutzt, die intern vom CSIC2010-Team entwickelt wurde und rudimentäre Funktionen eines e-Commerce-Systems anbietet~\cite{csic2010}. Es existieren eine Nutzerregistrierung und diverse Funktionen aus dem Einkaufsbereich (z.B. Waren einem Einkaufskorb hinzufügen usw.). Applebaum merkt zusätzlich an dass es sich nicht um ein real verwendetes System handelt. Damit beschränken sich die erstellten Daten nur auf den engen Bereich dieser (einen) Webanwendung. 
-
-Erhöhung der allgemeinen Gültigkeit (Diskrepanz mit spezieller Zuschneidung auf Anwendung)~\ref{sec:Probleme}
-Erhöhung der Genauigkeit
-
 
 
 % Methodik und Vorgehen
