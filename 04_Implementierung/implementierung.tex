@@ -1,6 +1,6 @@
 \chapter{Implementierung}
 
-\anno{max. 5 Seiten} %Ref hat 12
+\anno{max. 5 Seiten (7)} %Ref hat 12
 
 % Was lesen wir in diesem Kapitel?
 % Warum muss ich das als Gutachter lesen
@@ -16,22 +16,17 @@ Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelne
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{|c | c | c | c |} 
-    \hline
+  \begin{tabular}{cccc} 
+    \toprule
     & \textbf{ModSecurity} & \textbf{WebCastellum} & \textbf{IronBee} \\ [0.5ex] 
-    \hline
+    \midrule
     Simple filtering & Yes & Yes & Yes \\ 
-    \hline
     Regular expression based filtering & Yes &  & Yes \\
-    \hline
     Auditing & Yes &  & Yes \\
-    \hline
     Null byte attack prevention & Yes & Yes &  \\
-    \hline
     URL Encryption & Yes & Yes &  \\ [1ex] 
-    \hline
     Stateful Attack Detection & & Yes & Yes \\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{Vergleich Open Source Web Application Firewalls (aus \cite{Sampaio2017}) }
   \label{tab:my_vergos}

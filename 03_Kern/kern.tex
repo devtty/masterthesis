@@ -57,10 +57,10 @@ Connection: close
 \begin{sidewaystable}[h]
   \centering
 %  \resizebox{\textwidth}{!}{ 
-  \begin{tabular}{|l | l | l | l | l | l |}
-    \hline
+  \begin{tabular}{llllll}
+    \toprule
     \textbf{Name} & \textbf{Wert} & \textbf{Anmerkungen} & \textbf{DN} & \textbf{DNT} & \textbf{DNA} \\
-    \hline
+    \midrule
     HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT= & & 2 (0\%) & 2 (0\%) & 3 (0\%)\\
     URL & & & 28 (0\%) & 28 (0\%) & 1623 (0\%)\\
     Protocol & \verb=HTTP/1.1= & HTTP/2 & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
@@ -77,7 +77,7 @@ Connection: close
     \emph{Connection} & \verb=close= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
     Content-Length & & & 117 (0\%) & 117 (0\%) & 382 (0\%)\\
     Payload & & & 19418 (0\%) & 20105 (19\%) & 14681 (5\%)\\
-    \hline
+    \bottomrule
       % \end{tabular}}
     \end{tabular}
   \caption{Felder des CSIC2010 Datensatzes}

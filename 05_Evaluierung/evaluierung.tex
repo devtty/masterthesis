@@ -1,6 +1,9 @@
 \chapter{Evaluierung}
 
-\anno{ca. 10 Seiten} %Ref. hat 5
+\anno{ca. 10 Seiten (4)} %Ref. hat 5
+
+Nachdem im letzten Kapitel hauptsächlich Aspekte der praktischen Umsetzung für das WAF-System erläutert wurden, widmet sich dieses Kapitel der Überprüfung der gemachten Annahmen aus der Zielbeschreibung der Arbeit. Insbesondere die Fraget nach möglichst aktuellen bzw. neuen Daten und der damit verbundenen Qualität soll damit beantwortet werden. Dazu werden zuerst die benutzten Werkzeuge und der Testaufbau beschrieben. 
+
 \section{Werkzeuge}
 Für den Testaufbau werden einige Grundkomponenten benötigt. 
 
@@ -82,10 +85,10 @@ Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hie
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ |c|c|c|c| } 
-      \hline
-    Testlauf & Angreifer & Verteidiger & Opfer \\ 
-     \hline
+    \begin{tabular}{cccc} 
+      \toprule
+    \textbf{Testlauf} & \textbf{Angreifer} & \textbf{Verteidiger} & \textbf{Opfer} \\ 
+     \midrule
      1 & manuell & - & PF showcase\\
      2 & manuell & WebCastellum & PF showcase \\
      3 & ZAP (passiv) & - & PF showcase\\
@@ -98,7 +101,7 @@ Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hie
     10 & ZAP (passiv) & WebCastellum & WebGoat \\
     11 & ZAP (aktiv) & - & WebGoat \\ 
     12 & ZAP (aktiv) & WebCastellum & WebGoat \\
-   \hline
+   \bottomrule
     \end{tabular}
     \caption{Testplan}
     \label{tab:testplan}
@@ -117,12 +120,12 @@ Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hie
 
 Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine eindeutige Verbesserung durch Nutzung der Web Application Firewall. 
 
-\begin{table}[bht]
+\begin{table}[h]
     \centering
-    \begin{tabular}{ |c|c|c|c|c|c| } 
-      \hline
-    Testlauf & Angreifer & Verteidiger & Opfer & Schwachstellen & Verbesserung(in \%) \\ 
-     \hline
+    \begin{tabular}{cccccc} 
+      \toprule
+    \textbf{Testlauf} & \textbf{Angreifer} & \textbf{Verteidiger} & \textbf{Opfer} & \textbf{Schwachstellen} & \textbf{Verbesserung(in \%)} \\ 
+     \midrule
      1 & manuell & - & PF showcase & 3 &\\
      2 & manuell & WebCastellum & PF showcase & 1 & 66\\
      3 & ZAP (passiv) & - & PF showcase & 16 &\\
@@ -135,7 +138,7 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
     10 & ZAP (passiv) & WebCastellum & WebGoat & 12 & 50\\
     11 & ZAP (aktiv) & - & WebGoat & 34 & \\ 
     12 & ZAP (aktiv) & WebCastellum & WebGoat & 14 & 59 \\
-   \hline
+   \bottomrule
     \end{tabular}
     \caption{Ergebnisse}
     \label{tab:tes1tergebnisse}
@@ -143,12 +146,12 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
 
   Tabelle \ref{tab:tes1tergebnisse} gibt einen Überblick über die allgemeine Frage ob Angriffe verhindert werden können. Grundsätzlich verbessert der Einsatz einer WAF die IT-Sicherheit signifikant. Die zweite Tabelle verdeutlicht die Ergebnisse nochmals anhand der einzelnen Kategorien.
 
-\begin{table}[ht]
+\begin{table}[h]
     \centering
-    \begin{tabular}{ |c|c|c|c|c|c| } 
-      \hline
-    Testlauf & SQLi & CSRF & XMLi & sonstige & gesamt \\ 
-     \hline
+    \begin{tabular}{cccccc} 
+      \toprule
+    \textbf{Testlauf} & \textbf{SQLi} & \textbf{CSRF} & \textbf{XMLi} & \textbf{sonstige} & \textbf{gesamt} \\ 
+     \midrule
      1 & 2 & 1 &  &  & 3\\
      2 &   & 1 &  &  & 1\\
      3 & 6 & 5 &  & 5 & 16\\
@@ -161,7 +164,7 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
     10 &   & 5 &  & 7  & 12 \\
     11 & 17 & 8 &  & 9 & 34  \\ 
     12 &  & 8 &  & 6 & 14 \\
-   \hline
+   \bottomrule
     \end{tabular}
     \caption{Ergebnisse}
     \label{tab:tes2tergebnisse}
