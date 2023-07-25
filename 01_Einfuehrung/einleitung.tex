@@ -8,11 +8,9 @@
 
 Jeder Betreiber von Anwendungen im Internet, vom kleinen Blog bis zur großen Geschäftsanwendung, ist auch dem Risiko ausgesetzt dass potentielle Angreifer versuchen werden den Betrieb zu stören oder zu manipulieren. Der Schutz von Anwendungen im Bereich IT-Sicherheit ist daher eine Notwendigkeit, gehört aber meistens nicht zum Kerngeschäft dieser Nutzer. Größtenteils wird sich dann darauf verlassen dass die betriebene Anwendung gegen alle möglichen Angriffsmöglichkeiten gewappnet ist. Bei der Anforderungsanalyse sehen die fachlichen Nutzern die Umsetzung ihrer Geschäftsprozesse im Vordergrund. In vielen Fällen wird peinlichst genau definiert wo ein Eingabefeld zu stehen hat oder in welcher Form und Farbe ein Bestätigungknopf darzustellen ist. Beim Thema Sicherheit heißt es jedoch häufig \glqq\emph{Die Anwendung muss sicher sein.}\grqq \\
 Letztendlich muss man das Rad auch nicht neu erfinden und auch die Hersteller von Software sind froh wenn für allgemeine Probleme einfache, wiederverwendbare Lösungen genutzt werden können. \\\\
-\anno{Ziel der Arbeit}
-Eine \emph{einfache}, \emph{wiederverwendbare} Lösung im Bereich der IT-Sicherheit von webbasierten Anwendungen sind sogenannte \emph{Web Application Firewalls} (WAF). Im einfachsten Fall sitzen diese Systeme zwischen Endanwendern und der zu schützenden Anwendung, belauschen den Datenverkehr und filtern jegliche schädliche Kommunikation. Je besser eine WAF die zu schützenden Anwendungen kennt desto einfacher fällt ihr die Unterscheidung zwischen \emph{schädlichem} und \emph{nicht-schädlichem} Datenverkehr. Häufig ist die Konfiguration jedoch sehr umfangreich und komplex. Ziel dieser Arbeit ist das Aufzeigen einer möglichen Vereinfachung der Konfiguration in der Praxis. Mehrere Systeme bzw. schützende Anwendungen werden durch einen zentralen Bestandteil miteinander verbunden und können so gegenseitig von einander lernen.\\\\
 
 \anno{Methodik 1 Seite }
-Jährlich erscheint mit den OWASP Top Ten~\cite{owasp10}  eine Liste der meist genutzten und bekannten Sicherheitsrisiken für Webanwendungen. In den meisten Fällen wird eine Anwendung sehr indiviuell gegen solche Risiken abgesichert und häufig wird dabei auch jedes einzelne Risiko separat adressiert. WebApplicationFirewalls (WAF) bieten einen relativ einfachen Weg einen Großteil der Risiken allgemein auszuschließen. Die Konfiguration einer WebApplicationFirewall muß jedoch auf die jeweilig zu schützende Anwendung angepasst werden. 
+Jährlich erscheint mit den OWASP Top Ten~\cite{owasp10}  eine Liste der meist genutzten und bekannten Sicherheitsrisiken für Webanwendungen. In den meisten Fällen wird eine Anwendung sehr indiviuell gegen solche Risiken abgesichert und häufig wird dabei auch jedes einzelne Risiko separat adressiert. \\
 
 
 \begin{figure}[bht]
@@ -22,6 +20,8 @@ Jährlich erscheint mit den OWASP Top Ten~\cite{owasp10}  eine Liste der meist g
     \label{fig.topten}
   \end{center}
 \end{figure}
+
+Eine \emph{einfache}, \emph{wiederverwendbare} Lösung im Bereich der IT-Sicherheit von webbasierten Anwendungen sind sogenannte \emph{Web Application Firewalls} (WAF). Im einfachsten Fall sitzen diese Systeme zwischen Endanwendern und der zu schützenden Anwendung, belauschen den Datenverkehr und filtern jegliche schädliche Kommunikation. Je besser eine WAF die zu schützenden Anwendungen kennt desto einfacher fällt ihr die Unterscheidung zwischen \emph{schädlichem} und \emph{nicht-schädlichem} Datenverkehr. Häufig ist die Konfiguration jedoch sehr umfangreich und komplex. Ziel dieser Arbeit ist das Aufzeigen einer möglichen Vereinfachung der Konfiguration in der Praxis. Mehrere Systeme bzw. schützende Anwendungen werden durch einen zentralen Bestandteil miteinander verbunden und können so gegenseitig von einander lernen. WebApplicationFirewalls (WAF) bieten einen relativ einfachen Weg einen Großteil der Risiken allgemein auszuschließen. Die Konfiguration einer WebApplicationFirewall sollte jedoch auf die jeweilig zu schützende Anwendung angepasst werden. \\\\
 
 % das grosse Problem
 %% Was ist der Markt

@@ -4,37 +4,12 @@
 %evt. kann hier aus den Technischen Grundlagen (Overleaf WP_Thesis) noch eingefuegt werden
 
 % Grundbegriffe 2 Seiten
+
+Die erste Hälfte des Kapitels beinhaltet einige Grundlagen und Erklärungen um genauer zu verstehen wie Angriffe auf eine Web Anwendung ablaufen und wie damit verbundene Sicherheitsrisiken präventiv entdeckt werden können. Die zweite Hälfte gibt einen Einblick zum Thema Softwaretests mit Bezug auf die für diese Arbeit notwendigen Abläufe und Werkzeuge. 
+
 \section{Grundbegriffe}
-\subsection{WAF allgemein}
-Um die Sicherheit einer Anwendung zu gewährleisten sind viele verschiedene Schritte notwendig, so sollten natürlich bereits in der Anwendung selbst Ein- und Ausgabemöglichkeiten, z.B. durch Validierung, Encoding, usw. überprüft und gegebenenfalls eingeschränkt werden. Dabei lässt sich nicht jeder mögliche Angriffsfall vorhersehen oder eine eigene Implementierung ist zu aufwendig und teuer, weil häufig nicht ausreichend personelle Ressourcen oder Bugdet vorhanden sind um eine Web Applikation auf alle möglichen Sicherheitslücken zu prüfen. Im Laufe des Betriebes einer Web Anwendungen können zudem neue Angriffsvarianten entstehen und zusätzlich ist gerade bei Web Applikationen der Zeitdruck zur Veröffentlichung einer solchen häufig sehr hoch.\\
 
-An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegensatz zu regulären Firewalls haben Web Application Firewalls direkten Zugriff auf die HTTP-Anfragen (requests) und Antworten (responses) und können diese entsprechend bewerten und gegenbenenfalls blockieren oder gefährdende Inhalte filtern oder umschreiben.\\
-
-%% 
-\textcolor{bhtGray}{\ding{110} Definition\footnote{\url{https://owasp.org/www-community/Web_Application_Firewall} abgerufen am 30.05.2023}} A web application firewall is an application firewall for HTTP applications. It applies a set of rules to an HTTP conversation. Generally, these rules cover common attacks such as Cross-site Scripting (XSS) and SQL Injection. While proxies protect generally protect clients, WAFs protect servers. A WAF is deployed to protect a specific web application or set of web applications. A WAF can be considered a reverse proxy. WAFs may come in the form of an appliance, server plugin, or filter, and may be customized to an application to an application. The effort to perorm this customization can be significant and needs to be maintained as the application is modified.
-
-%%
-
-\subsubsection{Anwendungsfälle}
-%% Anwendungsfaelle WAF (gut beschrieben bei WAFEC2)
-%% irgendwie Uebergang zu ML und WAF mit ML schaffen
-%% Sammlung; payload,fuzzer,fingerprinting, bypassing
-
-\subsection{Arten}
-
-\subsubsection{Unterscheidung nach Position}
-Grundsätzlich lassen sich solche Systeme nach ihrer Position in der Netzwerk- und Servertopologie unterscheiden. Es existieren einerseits Systeme die vor eine Anwendung geschaltet werden und Systeme die direkt in die Anwendung integriert werden. Die erste Gruppe lässt noch eine Verzweigung in weitere Unterarten, wie \emph{Reverse Proxy}, \emph{Appliance}, \emph{Plugins} für WebServer oder \emph{Passive Devices} (IDS), zu.
-
-
-\subsubsection{Unterscheidung nach Abwehrmaßnahmen}
-
-\paragraph{Regelbasierte Systeme}
-Der Großteil bekannter WebApplicationFirewalls arbeitet jedoch \emph{regelbasiert}. In diesem Fall werden ein- und ausgehende Datenströme (Requests/Responses) unabhängig voneinander (zustandslos) betrachtet und einer Mustererkennung unterworfen. Häufig sind die Regeln anhand sogenannter \emph{Regular Expressions} definiert.
-
-\paragraph{Logische Systeme}
-Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufgrund von bekannten (logischen) Rückschlüssen eingeleitet werden. Einfachstes Beispiel wäre das temporäre Sperren der Loginseite bei dreimalig falschem Login. Bei Nutzung einer WAF die keine logikbasierten Auswertungen ermöglicht, müssten entsprechende Anwendungsfälle in der Anwendung selbst implementiert werden. (Oder im Fall der gerade beschriebenen Authentifizierungproblematik in einen externen Dienst ausgelagert werden.)
-
-\subsection{Grundbegriffe allgemein}
+\subsection{Allgemein}
 
 \textbf{API:} \emph{Application Programming Interface} oder auch Anwendungsprogrammierschnittstelle, Komponente einer Software die die Anbindung weiterer externer Anwendungen ermöglicht
 
@@ -69,6 +44,79 @@ Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufg
 \textbf{Response:}
 
 \textbf{Überwachtes Lernen:} 
+
+\subsection{Arten von Angriffen}
+
+Die bekannteste Referenz für das Thema \glqq Web Anwendungen und IT-Sicherheit\grqq  ist sicherlich das \emph{Open Web Application Security Project\textsuperscript{\textregistered}}, eine Non-Profit-Organisation mit dem Ziel, die Sicherheit von Anwendungen und Diensten im World Wide Web zu verbessern\cite{wpowasp}. Die OWASP Foundation lädt regelmäßig zu Konferenzen ein und erstellt Leitfäden, Sicherheitsempfehlungen und Werkzeuge zum Thema Sicherheit im Web.\\
+Bekanntestes Produkt ist eine jährlich herausgegebene, kuratierte Liste der am häufigsten vorkommenden Arten von Angriffen auf Anwendungen im Netz, die sogenannten \emph{OWASP Top Ten}\cite{owasp10}
+
+\subsubsection{Kategorien von Angriffszielen}
+
+Die OWASP Top 10 sind im Umkreis von IT-Sicherheits-Experten, Softwarearchitekten und Entwicklern bekannt und geben einen guten Überblick über die häufigsten Angriffsmuster auf Webanwendungen. Web Application Firewalls können insbesondere bei der Vermeidung von Angriffen in den Kategorien \emph{Injection} und \emph{Server-Side Request Forgery} nützlich sein - je nach Konfiguration aber auch in den (meisten) anderen Kategorien.  
+
+Mit der vermehrten Nutzung webbasierter Schnittstellen, z.B. durch Microservice-Architekturen, Single Page Applications oder dem Internet-of-Things, sah sich die OWASP Foundation gezwungen für den Bereich API-Security eine eigene Top 10 Liste zu erstellen, die OWASP API Security Top 10\cite{owaspapi10}. Da \emph{Application Programming Interfaces} (API) in vielen Fällen auch für die allgemeine Nutzung im Internet freigegeben sind, sollte der Einsatz von WAFs zum Schutz dieser Fälle daher mit betrachtet werden. 
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|}
+    \hline
+         Broken Object Level Authorization   \\
+         Broken User Authentication  \\
+         Excessive Data Exposure  \\
+         Lack of Resources and Rate Limiting  \\
+         Broken Function Level Authorization  \\
+         Mass Assignment  \\
+         Security Misconfiguration  \\
+         Injection  \\
+         Improper Assets Management  \\
+         Insufficient Logging and Monitoring  \\
+         \hline
+    \end{tabular}
+    \caption{OWASP API Top 10}
+    \label{tab:owaspapitop10}
+\end{table}
+
+\textcolor{bhtGray}{\ding{110} Beispiel MyHundai Hack\footnote{https://threadreaderapp.com/thread/1597695281881296897.html}} Viele Fahrzeughersteller bieten mittlerweile Handy-Apps zum Abrufen von Informationen über Fahrzeuge und (teilweise) deren Steuerung an. Der Hersteller Hyundai lässt seine App dazu über den Endpunkt \texttt{api.telematics.hyundaiusa.com} kommunizieren. Eine Beschreibung der API findet sich unter \emph{https://hacksore.github.io/bluelinky-docs/docs/api-reference}. Im beschriebenen Beispiel nutzten die Angreifer eine manipulierte Email-Adresse und verschafften sich Zugang zum Fahrzeug des Opfers (einer der Angreifer), inklusive der Möglichkeit das Fahrzeug aus der Ferne zu starten. \\\\
+
+Die MITRE Corporation sammelt in einer Datenbank\footnote{https://cve.mitre.org} öffentlich bekannt gewordene Schwachstellen und Risiken. Wenn eine Gefahr identifiziert wurde wird dieser Gefahr von einer sogenannten \emph{CVE Numbering Authority} eine eindeutige Referenznummer zugewiesen. Eine CVD-Referenznummer beginnt dabei immer mit dem Prefix \glqq\texttt{CVD-}\grqq gefolgt von der Jahreszahl der Veröffentlichung und einer fortlaufenden Nummer. Sind dann nähere Informationen oder Lösungen bekannt werden diese in weiteren Datenbanken veröffentlicht. Ein Beispiel dafür wäre die U.S National Vulnerability Database (NVD)\footnote{https://nvd.nist.gov}.\\\\
+
+\textcolor{bhtGray}{\ding{110} Beispiel log4j2\footnote{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}} Eine der größeren Sicherheitslücken der letzten Zeit betraf das Logging-Framework \emph{Apache Log4j2}. Durch Manipulation der Lognachrichten konnten hier ganze Rechner gekapert werden. Eine Möglichkeit beschrieb Stefano Chierici in seinem Blog\cite{chierici2021}. Er nutzte einen HTTP-Request zum Setzen eines Cookies zur Übernahme eines Rechners.\\\\
+
+\anno{beide Schwachstellen später nochmal referenzieren mit Hinweis das beide durch vorschalten einer WAF u.U. schneller eingedaemmt wären -> 0day}
+
+\subsection{Der Tag Null}
+
+Wird eine Schwachstelle aktiv ausgenutzt ohne das der Angriff entdeckt wird, spricht man von einem \glqq\emph{Zero-Day-Exploit}\grqq. Anwendungen sind in diesem Fall besonders gefährdet da der Hersteller  noch keine Zeit hatte, den Nutzer zu schützen\cite{bsi0day}. 
+
+\subsection{WAF allgemein}
+Um die Sicherheit einer Anwendung zu gewährleisten sind viele verschiedene Schritte notwendig, so sollten natürlich bereits in der Anwendung selbst Ein- und Ausgabemöglichkeiten, z.B. durch Validierung, Encoding, usw. überprüft und gegebenenfalls eingeschränkt werden. Dabei lässt sich nicht jeder mögliche Angriffsfall vorhersehen oder eine eigene Implementierung ist zu aufwendig und teuer, weil häufig nicht ausreichend personelle Ressourcen oder Bugdet vorhanden sind um eine Web Applikation auf alle möglichen Sicherheitslücken zu prüfen. Im Laufe des Betriebes einer Web Anwendungen können zudem neue Angriffsvarianten entstehen und zusätzlich ist gerade bei Web Applikationen der Zeitdruck zur Veröffentlichung einer solchen häufig sehr hoch.\\
+
+An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegensatz zu regulären Firewalls haben Web Application Firewalls direkten Zugriff auf die HTTP-Anfragen (requests) und Antworten (responses) und können diese entsprechend bewerten und gegenbenenfalls blockieren oder gefährdende Inhalte filtern oder umschreiben.\\
+
+%% 
+\textcolor{bhtGray}{\ding{110} Definition\footnote{\url{https://owasp.org/www-community/Web_Application_Firewall} abgerufen am 30.05.2023}} A web application firewall is an application firewall for HTTP applications. It applies a set of rules to an HTTP conversation. Generally, these rules cover common attacks such as Cross-site Scripting (XSS) and SQL Injection. While proxies protect generally protect clients, WAFs protect servers. A WAF is deployed to protect a specific web application or set of web applications. A WAF can be considered a reverse proxy. WAFs may come in the form of an appliance, server plugin, or filter, and may be customized to an application to an application. The effort to perorm this customization can be significant and needs to be maintained as the application is modified.
+
+%%
+
+\subsubsection{Anwendungsfälle}
+%% Anwendungsfaelle WAF (gut beschrieben bei WAFEC2)
+%% irgendwie Uebergang zu ML und WAF mit ML schaffen
+%% Sammlung; payload,fuzzer,fingerprinting, bypassing
+
+\subsection{Arten}
+
+\subsubsection{Unterscheidung nach Position}
+Grundsätzlich lassen sich solche Systeme nach ihrer Position in der Netzwerk- und Servertopologie unterscheiden. Es existieren einerseits Systeme die vor eine Anwendung geschaltet werden und Systeme die direkt in die Anwendung integriert werden. Die erste Gruppe lässt noch eine Verzweigung in weitere Unterarten, wie \emph{Reverse Proxy}, \emph{Appliance}, \emph{Plugins} für WebServer oder \emph{Passive Devices} (IDS), zu.
+
+
+\subsubsection{Unterscheidung nach Abwehrmaßnahmen}
+
+\paragraph{Regelbasierte Systeme}
+Der Großteil bekannter WebApplicationFirewalls arbeitet jedoch \emph{regelbasiert}. In diesem Fall werden ein- und ausgehende Datenströme (Requests/Responses) unabhängig voneinander (zustandslos) betrachtet und einer Mustererkennung unterworfen. Häufig sind die Regeln anhand sogenannter \emph{Regular Expressions} definiert.
+
+\paragraph{Logische Systeme}
+Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufgrund von bekannten (logischen) Rückschlüssen eingeleitet werden. Einfachstes Beispiel wäre das temporäre Sperren der Loginseite bei dreimalig falschem Login. Bei Nutzung einer WAF die keine logikbasierten Auswertungen ermöglicht, müssten entsprechende Anwendungsfälle in der Anwendung selbst implementiert werden. (Oder im Fall der gerade beschriebenen Authentifizierungproblematik in einen externen Dienst ausgelagert werden.)
+
 
 \section{Related Work} %umbenennen ca. 6
 \label{sec:relatedwork}
