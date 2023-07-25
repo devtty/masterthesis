@@ -89,6 +89,10 @@ Connection: close
 
 Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \verb=PUT= noch eine weitere HTTP-Methode angewandt~\cite{csic2010}. \anno{Überleitung}
 
+\subsubsection{Zum Format}
+\anno{Ist das wichtig?Enddatensatz in ARFF? ERM für Command Center?}
+Die drei originalen Teildatensätze befinden sich jeweils in eigenen Dateien und enthalten die Rohdaten als Aneinanderreihung der einzelnen HTTP-Requests. Für das Analysewerkzeug WEKA\footnote{Waikato Environment for Knowledge Analysis} seine Doktorarbeit hat Pete Scully \cite{Scully2016} eine kommaseparierte Version des Datensatzes \cite{csiccsv2010} erstellt. Die Felder \emph{Payload} und \emph{Label} wurden dementsprechend hinzugefügt bzw. eingearbeitet. Das WEKA-Tool unterstützt ein eigenes Format names \emph{\textbf{A}ttribute-\textbf{R}elation \textbf{F}ile \textbf{F}ormat} (ARFF) welches die Daten ggf. mit entsprechenden Datentypen genauer beschreiben könnte.
+
 \subsection{Alter des Datensatzes}
 
 Der wesentlichste Kritikpunkt ist das Alter des Datensatzes. Seit der Erstellung des Datensatzes hat sich in der Welt der Webanwendungen einiges geändert. Beispielsweise haben sich mobile Geräte wie das Handy oder Tablets vermehrt als Endgeräte durchgesetzt und Anwendungen nutzen nicht mehr nur simple (\emph{HTTP-})Anfragen und Antworten. Deutlich sichtbar wird dieses beispielsweise anhand des Features \glqq\emph{Method identifier}\grqq. CSIC2010 definiert hier nur die Methoden \verb=GET= und \verb=POST= als mögliche Werte für erwünschten Datenverkehr. Explizit erscheint die \verb=PUT=-Methode im anomalen Teil. Natürlich ist der Datensatz auf die von Torrano-Giménez genutzte Anwendung zugeschnitten und dürfte auch für die meisten damaligen Web-Anwendungen funktionieren. Nach Definition kann eine WebApplicationFirewall jedoch jeden Datenverkehr über das Hypertext Transfer Protokoll absichern und dazu gehören auch die anderen HTTP-Methoden. Durch das Weglassen der restlichen Methoden könnten bei der Absicherung vieler moderner Anwendungen oder Dienste Probleme auftreten. 
@@ -130,8 +134,9 @@ Möglich wäre zum Beispiel auch die Absicherung eines WebDAV\footnote{Web-based
 
 
 \subsubsection{Neue Werkzeuge}
+\label{sec:neuewerkzeuge}
 
-Grundsätzlich sollte auch bedacht werden dass, seit der Erstellung des Datensatzes von Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. Höchstwahrscheinlich wäre der Umfang der Anomaliedaten wesentlich höher wenn der damalige Testaufbau (mit den aktuelleren Versionen der Software) wiederholt wird und der Generierungsprozess nochmals angestossen wird.
+Grundsätzlich sollte auch bedacht werden dass, seit der Erstellung des Datensatzes von Torrano-Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. Höchstwahrscheinlich wäre der Umfang der Anomaliedaten wesentlich höher wenn der damalige Testaufbau (mit den aktuelleren Versionen der Software) wiederholt wird und der Generierungsprozess nochmals angestossen wird.
   
 \subsection{Ziel des Datensatzes}
 
@@ -157,9 +162,10 @@ Eine wesentliche Änderung seit Erstellung des Datensatzes ist das Aufkommen mod
 
 Mit der vermehrten Nutzung des AJAX-Konzeptes entwickelten sich auch die zur Oberflächengestaltung genutzten Frameworks dementsprechend weiter und verbreiteten sich schnell. Ebenso wie \emph{Applebaum} kritisierten \cite{kozik2019} den CSIC2010-Datensatz dementsprechend. Ihre Kritik galt insbesondere dem \glqq\emph{Content-Type}\grqq-Feld:\\
 
-\textcolor{bhtGray}{\ding{110} Kozik über den Datensatz CSIC2010~\cite{kozik2019}} For instance, the original data set currently contains mainly requests that are complied with \glq\verb=application/x-www-form-urlencoded=\grq encoding standard. On the other hand, the modern web applications are currently also using different types of request content, e.g. \glq\verb=application/json=\grq, \glq\verb=text/x-gwt-rpc=\grq or other proprietary types.\\
+\textcolor{bhtGray}{\ding{110} Kozik über den Datensatz CSIC2010~\cite{kozik2019}} For instance, the original data set currently contains mainly requests that are complied with \glqq\verb=application/x-www-form-urlencoded=\grqq
+encoding standard. On the other hand, the modern web applications are currently also using different types of request content, e.g. \glqq\verb=application/json=\grqq, \glqq\verb=text/x-gwt-rpc=\grqq or other proprietary types.\\
 
-In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basierte Anwendung und erweiterten für ihre Zwecke den CSIC2010-Datensatz um 1500 \emph{normale} Anfragen und 2000 Angriffe.
+In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basierte Anwendung und erweiterten für ihre Zwecke darauf aufbauend den CSIC2010-Datensatz um 1500 \emph{normale} Anfragen und 2000 Angriffe.
 
 % SChönes Beispiel für Fortschritt, produktiven Einsatz und zeitliche Veränderung und wo Gimenez nicht funktioniert-- > PUT als anomalie in CSIC2010 definiert aber in REST durchaus üblich
 % rest beispiel mit PUT
@@ -173,8 +179,10 @@ In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basiert
 \section{Lösungen}
 
 \subsection{Aus Alt mach Neu}
-
+Bereits in Abschnitt \ref{sec:neuewerkzeuge} angesprochen wurde die erneute Erstellung des Datensatzes mit Hilfe neuerer Versionen der Software. Für den damals genutzten Anwendungsserver und die Software zum Generieren der HTTP-Anfragen sind öffentlich verfügbare Nachfolger bekannt. Leider existiert jedoch keine öffentliche Version der von \cite{Giménez2015} genutzten Anwendung. Eine Wiederholung im Rahmen dieser Arbeit ist daher ausgeschlossen. Die originalen Daten können weiter verwendet werden.\\
 % Hier beschreiben wie CSIC2010 mit "neuen Mitteln" nachgestellt werden kann; warum das nicht geht (fehlende Webanwendung)... ggf. Ersatzanwendung bzw. Übernahme der Originaldatensätze mit in neuen Datensatz
+
+
 
 \subsection{Von der Einzelanwendung zur Mehrgültigkeitxxx}
 
@@ -212,7 +220,7 @@ Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem prak
 % Zusammenfassung: ca. 0,5 Seiten
 \section{Zusammenfassung}
 
-Nach der kurzen zeitlichen Einordnung über die Entstehung anomaliebasierter Web Application Firewalls im vorherigen Kapitel lieferte dieses Kapitel einen Einblick in einen Teil der bestehenden Daten. Dazu wurde der Umfang und Inhalt des2010 von Carmen Torrano-Giménez erstellten Datensatzes \emph{CSIC2010} näher betrachtet. Es wurden einige Modernisierungsmaßnahmen vorgeschlagen, die dem veralteten Datensatz zu etwas mehr Allgemeingültigkeit und vor allem Genauigkeit verhelfen.
+Nach der kurzen zeitlichen Einordnung über die Entstehung anomaliebasierter Web Application Firewalls im vorherigen Kapitel lieferte dieses Kapitel einen Einblick in einen Teil der bestehenden Daten. Dazu wurde der Umfang und Inhalt des 2010 von Carmen Torrano-Giménez erstellten Datensatzes \emph{CSIC2010} näher betrachtet. Es wurden einige Modernisierungsmaßnahmen vorgeschlagen, die dem veralteten Datensatz zu etwas mehr Allgemeingültigkeit und vor allem Genauigkeit verhelfen.\\
 
 Das nächste Kapitel betrachtet die praktische Umsetzung der angedachten Ziele. Es soll dargestellt werden, wie ein neuer Datensatz generiert bzw. der bestehende Daten erweitert werden und wie neue Daten gesammelt werden können. 
 
