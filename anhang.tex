@@ -71,10 +71,10 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 \begin{table}[h]
   \centering
 %  \resizebox{\textwidth}{!}{
-  \begin{tabular}{|l | p{7cm} |}
-    \hline
+  \begin{tabular}{lp{7cm}}
+    \toprule
     \textbf{Name} & \textbf{Beschreibung} \\
-    \hline
+    \midrule
     gotestwaf & tool for API and OWASP attack simulation \\
     BurpSuite & vulnerability scanning, penetration testing, and web app security platform\\
     identYwaf & identification tool that can recognize web protection \\
@@ -88,7 +88,7 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
     waf-bypass & open source tool to analyze the security of an WAF\\
     WAFNinja &  WAFNinja is a tool which contains two functions to attack Web Application Firewalls. \\
     wafw00f & allows one to identify and fingerprint Web Application Firewall products\\
-    \hline
+    \bottomrule
     % \end{tabular}}    
   \end{tabular}
   
@@ -101,14 +101,16 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{|l|}
-    \hline
+  \begin{tabular}{l}
+    \toprule
+    \textbf{Name} \\
+    \midrule
     Eclipse CargoTracker \\
     J2EE PetStore \\
     Spring PetClinic \\
     JBoss QuickStarts (KitchenSink) \\
     PrimeFaces Showcase \\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{Übersicht Demo Anwendungen}
   \label{tab:exampleapp}
@@ -116,15 +118,15 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{ll}
+  \begin{tabular}{lp{7cm}}
     \toprule
-    Name & Beschreibung \\
+    \textbf{Name} & \textbf{Beschreibung} \\
     \midrule
-    JavaVulnerableLab & a \\
-    Marathon & b\\
-    VulnarableSpring & c\\
-    OWASP Mutillidae II & d\\
-    OWASP WebGoat & e\\
+    JavaVulnerableLab & JSP Frontend und Hibernate ORM - entwickelt Cyber Security and Privacy Foundation India \\
+    Marathon & JSP Apache Struts JDBC  - entwickelt von Christian Schneider (Freiberufl.)\\
+    VulnarableSpring & diverse\\
+    OWASP Mutillidae II & PHP LAMP - entwickelt vom OWASP als Ziel für IT-Sicherheitstrainings \\
+    OWASP WebGoat & Spring Web - entwickelt vom OWASP zum Testen häufiger Schwachstellen in Java-basierten Anwendungen\\
     \bottomrule
   \end{tabular}
   \caption{Übersicht Absichtlich angreifbare Anwendungen}
@@ -134,9 +136,9 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|}
-    \hline
+    \toprule
     \textbf{Feature Name} \\
-    \hline
+    \midrule
     Length of the request \\
     Length of the path \\
     Length of the arguments \\
@@ -167,7 +169,7 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
     Entropy\\
     Number of keywords in the path\\
     Number of keywords in the arguments\\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{Names of 30 expert knowledge features that are considered relevant for the detection of web attacks for the CSIC dataset (s. Tabelle 5.2. in \cite{Giménez2015})}
   \label{tab:tgfeatures}
@@ -176,10 +178,10 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 \begin{table}[h]
   \centering
 %  \resizebox{\textwidth}{!}{
-  \begin{tabular}{|l | p{7cm} |}
-    \hline
+  \begin{tabular}{|lp{7cm} |}
+    \toprule
     \textbf{HTTP-Methode} & \textbf{Beschreibung} \\
-    \hline
+    \midrule
     \verb=GET= &  \\
     \verb=POST= & \\
     \verb=PUT= & \\
@@ -198,7 +200,7 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
     \verb=MKCOL= & \\
     \verb=LOCK= & \\
     \verb=UNLOCK= & \\
-    \hline
+    \bottomrule
     % \end{tabular}}    
   \end{tabular}
   
