@@ -2,15 +2,11 @@
 
 \anno{ca. 5 Seiten (2)}
 
-\begin{neu}
-  Lässt sich hier eine Einleitung aus den drei vorherigen Papers ableiten? ggf. Master Expose mit hinzuziehen!
-\end{neu}
-
-Jeder Betreiber von Anwendungen im Internet, vom kleinen Blog bis zur großen Geschäftsanwendung, ist auch dem Risiko ausgesetzt dass potentielle Angreifer versuchen werden den Betrieb zu stören oder zu manipulieren. Der Schutz von Anwendungen im Bereich IT-Sicherheit ist daher eine Notwendigkeit, gehört aber meistens nicht zum Kerngeschäft dieser Nutzer. Größtenteils wird sich dann darauf verlassen dass die betriebene Anwendung gegen alle möglichen Angriffsmöglichkeiten gewappnet ist. Bei der Anforderungsanalyse sehen die fachlichen Nutzern die Umsetzung ihrer Geschäftsprozesse im Vordergrund. In vielen Fällen wird peinlichst genau definiert wo ein Eingabefeld zu stehen hat oder in welcher Form und Farbe ein Bestätigungknopf darzustellen ist. Beim Thema Sicherheit heißt es jedoch häufig \glqq\emph{Die Anwendung muss sicher sein.}\grqq \\
+Jeder Betreiber von Anwendungen im Internet, vom kleinen Blog bis zur großen Geschäftsanwendung, ist auch dem Risiko ausgesetzt, dass potenzielle Angreifer versuchen werden den Betrieb zu stören oder zu manipulieren. Der Schutz von Anwendungen im Bereich IT-Sicherheit ist daher eine Notwendigkeit, gehört aber meistens nicht zum Kerngeschäft dieser Nutzer. Größtenteils wird sich dann darauf verlassen dass die betriebene Anwendung gegen alle möglichen Angriffsmöglichkeiten gewappnet ist. Bei der Anforderungsanalyse sehen die fachlichen Nutzern die Umsetzung ihrer Geschäftsprozesse im Vordergrund. In vielen Fällen wird peinlichst genau definiert wo ein Eingabefeld zu stehen hat oder in welcher Form und Farbe ein Bestätigungknopf darzustellen ist. Beim Thema Sicherheit heißt es jedoch häufig \glqq\emph{Die Anwendung muss sicher sein.}\grqq \\
 Letztendlich muss man das Rad auch nicht neu erfinden und auch die Hersteller von Software sind froh wenn für allgemeine Probleme einfache, wiederverwendbare Lösungen genutzt werden können. \\\\
 
 \anno{Methodik 1 Seite }
-Jährlich erscheint mit den OWASP Top Ten~\cite{owasp10}  eine Liste der meist genutzten und bekannten Sicherheitsrisiken für Webanwendungen. In den meisten Fällen wird eine Anwendung sehr indiviuell gegen solche Risiken abgesichert und häufig wird dabei auch jedes einzelne Risiko separat adressiert. \\
+Jährlich erscheint mit den OWASP Top Ten~\cite{owasp10}  eine Liste der meist genutzten und bekannten Sicherheitsrisiken für Webanwendungen. In den meisten Fällen wird eine Anwendung sehr individuell gegen solche Risiken abgesichert und häufig wird dabei auch jedes einzelne Risiko separat adressiert. \\
 
 
 \begin{figure}[bht]
@@ -21,7 +17,7 @@ Jährlich erscheint mit den OWASP Top Ten~\cite{owasp10}  eine Liste der meist g
   \end{center}
 \end{figure}
 
-Eine \emph{einfache}, \emph{wiederverwendbare} Lösung im Bereich der IT-Sicherheit von webbasierten Anwendungen sind sogenannte \emph{Web Application Firewalls} (WAF). Im einfachsten Fall sitzen diese Systeme zwischen Endanwendern und der zu schützenden Anwendung, belauschen den Datenverkehr und filtern jegliche schädliche Kommunikation. Je besser eine WAF die zu schützenden Anwendungen kennt desto einfacher fällt ihr die Unterscheidung zwischen \emph{schädlichem} und \emph{nicht-schädlichem} Datenverkehr. Häufig ist die Konfiguration jedoch sehr umfangreich und komplex. Ziel dieser Arbeit ist das Aufzeigen einer möglichen Vereinfachung der Konfiguration in der Praxis. Mehrere Systeme bzw. schützende Anwendungen werden durch einen zentralen Bestandteil miteinander verbunden und können so gegenseitig von einander lernen. WebApplicationFirewalls (WAF) bieten einen relativ einfachen Weg einen Großteil der Risiken allgemein auszuschließen. Die Konfiguration einer WebApplicationFirewall sollte jedoch auf die jeweilig zu schützende Anwendung angepasst werden. \\\\
+Eine \emph{einfache}, \emph{wiederverwendbare} Lösung im Bereich der IT-Sicherheit von webbasierten Anwendungen sind so genannte \emph{Web Application Firewalls} (WAF). Im einfachsten Fall sitzen diese Systeme zwischen Endanwendern und der zu schützenden Anwendung, belauschen den Datenverkehr und filtern jegliche schädliche Kommunikation. Je besser eine WAF die zu schützenden Anwendungen kennt desto einfacher fällt ihr die Unterscheidung zwischen \emph{schädlichem} und \emph{nicht-schädlichem} Datenverkehr. Häufig ist die Konfiguration jedoch sehr umfangreich und komplex. Ziel dieser Arbeit ist das Aufzeigen einer möglichen Vereinfachung der Konfiguration in der Praxis. Mehrere Systeme bzw. schützende Anwendungen werden durch einen zentralen Bestandteil miteinander verbunden und können so gegenseitig von einander lernen. WebApplicationFirewalls (WAF) bieten einen relativ einfachen Weg einen Großteil der Risiken allgemein auszuschließen. Die Konfiguration einer WebApplicationFirewall sollte jedoch auf die jeweilig zu schützende Anwendung angepasst werden. \\\\
 
 % das grosse Problem
 %% Was ist der Markt
@@ -54,7 +50,7 @@ Mit dieser Masterarbeit soll eine Möglichkeit zur einfacheren Einbindung dieser
 
 
 Zum Teil basiert die Arbeit auf Vorarbeiten im Bereich der Anwendungssicherheit 
-\anno{aus Exposee übernommen / passt noch nicht ganz da sich evt. viel auf den Datensatz fokussiert}
+\anno{aus Exposee übernommen / passt noch nicht ganz da sich evtl. viel auf den Datensatz fokussiert}
 
 % Methodik (1 Seite)
 %% Wie wollen Sie das Problem lösen?
@@ -67,7 +63,7 @@ Zum Teil basiert die Arbeit auf Vorarbeiten im Bereich der Anwendungssicherheit
 
 % erster Teile Grundbegriffe, verwandte Vorarbeiten und
 
-Dieses \textbf{erste Kapitel} der Arbeit lieferte bereits einen kurzen Einblick in die Thematik. Das folgendende \textbf{zweite Kapitel} erläutert noch wichtige Grundbegriffe aus den Bereichen der IT-Sicherheit die zum Verständnis der Thematik beitragen, gefolgt von einer kurzen zeitlichen Einordnung zur Entwicklung der Web Application Firewalls in den letzten Jahren. Dabei wird insbesondere auf die Entwicklung von einfachen regelbasierten hin zu intelligenten Systemen eingangen. Das folgende, dritte Kapitel enthält die Kernelemente der Arbeit und schlägt mögliche Verbesserungen vor. Der derzeitige Stand wird genauer betrachtet und mögliche Probleme mit Vorschlägen zu deren Lösung aufgezeigt. \textbf{Kapitel 4} gibt einen kurzen Einblick über stattgefundene Arbeiten zur technischen Umsetzung der Vorschläge aus dem vorhergehenden Kapitel . Im anschließenden Kaptitel findet in einer kurzen Demonstration die Auswertung statt und die Arbeit schließt mit einem kurzen Ausblick ab.
+Dieses \textbf{erste Kapitel} der Arbeit lieferte bereits einen kurzen Einblick in die Thematik. Das folgende \textbf{zweite Kapitel} erläutert noch wichtige Grundbegriffe aus den Bereichen der IT-Sicherheit die zum Verständnis der Thematik beitragen, gefolgt von einer kurzen zeitlichen Einordnung zur Entwicklung der Web Application Firewalls in den letzten Jahren. Dabei wird insbesondere auf die Entwicklung von einfachen regelbasierten hin zu intelligenten Systemen eingegangen. Das folgende, dritte Kapitel enthält die Kernelemente der Arbeit und schlägt mögliche Verbesserungen vor. Der derzeitige Stand wird genauer betrachtet und mögliche Probleme mit Vorschlägen zu deren Lösung aufgezeigt. \textbf{Kapitel 4} gibt einen kurzen Einblick über stattgefundene Arbeiten zur technischen Umsetzung der Vorschläge aus dem vorhergehenden Kapitel . Im anschließenden Kapitel findet in einer kurzen Demonstration die Auswertung statt und die Arbeit schließt mit einem kurzen Ausblick ab.
 
 \section{Abgrenzung}
 

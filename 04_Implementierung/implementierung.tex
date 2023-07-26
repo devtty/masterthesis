@@ -10,13 +10,13 @@
 % Highlight 1 der Implementierung
 Wie bereits in Abschnitt \ref{sec:Probleme} angemerkt sind offene Implementationen von Web Application Firewalls eher die Ausnahme und selbst Umsetzungen der in Abschnitt \ref{sec:relatedwork} erwähnten Produkte sind praktisch nicht auffindbar. In diesem Kapitel gibt es einen kurzen Überblick wie die Vorschläge aus dem vorhergehenden Kapitel dennoch praktisch umgesetzt werden können.
 
-Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelnen Person) nicht umsetzbar gewesen, daher sollte ein vorhandenes Open Source Produkt entsprechend erweitert werden. Bei der Auswahl wurden zuerst die zwei (leichtgewichtigen) Lösungen \emph{OWASP ESAPIFilter}\footnote{\url{https://owasp.org/www-project-enterprise-security-api/} abgerufen am 05.07.2023} und {SpringSecurity HttpFirewall}\footnote{\url{https://docs.spring.io/spring-security/reference/servlet/exploits/firewall.html} abgerufen am 05.07.2023} betrachtet. Beide Produkte verstehen sich als Ausgangsbasis für die Entwicklung sicherheitsrelevanter HTTP-(Servlet)-Filter auf Anwendungsebene, sämtliche Funktionalität muß jedoch vom Nutzer erst implementiert werden. Bei der Nutzung wäre ein erhöhter Arbeitsaufwand absehbar. Diogo Sampaio und Jorge Bernardino verglichen 2017 verfügbare WAFs die ebenfalls als Erweiterungskandidaten in Frage kamen (siehe Tabelle \ref{tab:my_vergos}).
+Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelnen Person) nicht umsetzbar gewesen, daher sollte ein vorhandenes Open Source Produkt entsprechend erweitert werden. Bei der Auswahl wurden zuerst die zwei (leichtgewichtigen) Lösungen \emph{OWASP ESAPIFilter}\footnote{\url{https://owasp.org/www-project-enterprise-security-api/} abgerufen am 05.07.2023} und {SpringSecurity HttpFirewall}\footnote{\url{https://docs.spring.io/spring-security/reference/servlet/exploits/firewall.html} abgerufen am 05.07.2023} betrachtet. Beide Produkte verstehen sich als Ausgangsbasis für die Entwicklung sicherheitsrelevanter HTTP-(Servlet)-Filter auf Anwendungsebene, sämtliche Funktionalität muss jedoch vom Nutzer erst implementiert werden. Bei der Nutzung wäre ein erhöhter Arbeitsaufwand absehbar. Diogo Sampaio und Jorge Bernardino verglichen 2017 verfügbare WAFs die ebenfalls als Erweiterungskandidaten in Frage kamen (siehe Tabelle \ref{tab:my_vergos}).
 
 % Tabelle ggf. in Anhang verschieben
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{cccc} 
+  \begin{tabular}{lccc} 
     \toprule
     & \textbf{ModSecurity} & \textbf{WebCastellum} & \textbf{IronBee} \\ [0.5ex] 
     \midrule
@@ -125,7 +125,7 @@ Umgesetzt wurde dann ein leichtes Refactoring und die Erstellung von 222 Unit-Te
     \item und die Testabdeckung des Quelltextes von 0 auf 18,8 Prozent angehoben.
 \end{itemize}
 
-Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) mit insgesamt 14 Tests spielen dabei den Anwendungsfall eines Angriffs per SQL-Injection auf eine kleine Beispiel-Anwendung durch und überprüfen die korrekte Funktionalität des Filters. Mit Hilfe der Arquillian-Erweiterungen \emph{Drone} und \emph{Graphene} wird im Fall der ersten Testklasse ein Browser instanziert und der Angriff automatisiert über diesen durchgeführt. Im zweiten Fall geschieht dieses, mit Hilfe eines leichtgewichtigem Clients, direkt über das HTTP-Protokoll.
+Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) mit insgesamt 14 Tests spielen dabei den Anwendungsfall eines Angriffs per SQL-Injection auf eine kleine Beispiel-Anwendung durch und überprüfen die korrekte Funktionalität des Filters. Mit Hilfe der Arquillian-Erweiterungen \emph{Drone} und \emph{Graphene} wird im Fall der ersten Testklasse ein Browser instantiiert und der Angriff automatisiert über diesen durchgeführt. Im zweiten Fall geschieht dieses, mit Hilfe eines leichtgewichtigen Clients, direkt über das HTTP-Protokoll.
 
 \begin{figure}[h]
     \centering
