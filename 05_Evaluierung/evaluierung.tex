@@ -7,29 +7,42 @@ Nachdem im letzten Kapitel hauptsächlich Aspekte der praktischen Umsetzung für
 \section{Werkzeuge}
 Für den Testaufbau werden einige Grundkomponenten benötigt. 
 
-\subsection{OWASP\textregistered  Zed Attack Proxy}\label{ref:zap}
+\subsection{Java Development Kit}
+Für den Betrieb der in dieser Arbeit verwendeten Werkzeuge, wie z.B. Anwendungsserver oder Buildtools, ist eine Java-Laufzeitumgebung notwendig. In den lokal ausgeführten Fällen wurde dafür das \emph{Java Development Kit} der Firma Oracle in der Version 17.0.1 verwendet. Die im CI/CD-Build-Cycle ausgeführten Tests und Werkzeuge nutzen hingegen das Eclipse Temurin JDK in der jeweils aktuellsten Version 11.x
 
-\emph{The world's most widely used web app scanner}\footnote{https://zaproxy.org}\\\\
 
-Der Zed Attack Proxy (ZAP) wird genutzt um Web Anwendungen auf Sicherheitslücken zu untersuchen. Als sogenannter Proxy befindet sich diese Anwendung zwischen dem Endnutzer bzw. Browser und der zu testenden Anwendung. ZAP bietet dabei zwei verschiedene Anwendungsmodi an. Im passiven Modus \emph{begleitet} ZAP den Nutzer auf seinem Weg durch eine Anwendung und registriert sämtliche IT-sicherheitstechnischen Auffälligkeiten. Der Nutzer klickt sich durch seine Anwendung, ggf. auf einem vorher definierten Weg,  und erhält am Ende eine Übersicht möglicher Angriffswege.\\ Im aktiven Modus übernimmt ZAP selbst die Rolle des Angreifers und versucht Sicherheitslücken automatisch zu finden. \\\\ Es existieren zahlreiche weitere Tools, z.T. auch mit Spezialisierung auf das Testen von Web Application Firewalls. Nennenswerte Beispiele sind \emph{WAFNinja}, \emph{gotestwaf} und \emph{w3af}. 
+\subsection{OWASP\textregistered  Zed Attack Proxy}
+\label{ref:zap}
 
-\subsection{Apache Tomcat}
+\emph{The world's most widely used web app scanner}\footnote{https://zaproxy.org}\\
 
-Zur Auslieferung der verwendeten Webapplikationen wird ein Web Server benötigt. Bedingt aus den Anforderungen der zu testenden Webanwendungen und Web Application Firewall muss dieser die Java Servlet Spezifikation implementieren. In dieser Arbeit wird dabei der Apache Tomcat-Server genutzt. 
+Der Zed Attack Proxy (ZAP) wird genutzt um Web Anwendungen auf Sicherheitslücken zu untersuchen. Als sogenannter Proxy befindet sich diese Anwendung zwischen dem Endnutzer bzw. Browser und der zu testenden Anwendung. ZAP bietet dabei zwei verschiedene Anwendungsmodi an. Im passiven Modus \emph{begleitet} ZAP den Nutzer auf seinem Weg durch eine Anwendung und registriert sämtliche IT-sicherheitstechnischen Auffälligkeiten. Der Nutzer klickt sich durch seine Anwendung, ggf. auf einem vorher definierten Weg,  und erhält am Ende eine Übersicht möglicher Angriffswege. Des Weiteren kann dieses Werkzeug zur Aufzeichnung der HTTP-Anfragen und -Antworten genutzt werden\\ Im aktiven Modus übernimmt ZAP selbst die Rolle des Angreifers und versucht Sicherheitslücken automatisch zu finden. \\
+
+Es existieren zahlreiche weitere Tools mit ähnlicher Funktionalität, z.T. auch mit Spezialisierung auf das Testen von Web Application Firewalls. Nennenswerte Beispiele sind \emph{BurpSuite}, \emph{WAFNinja}, \emph{gotestwaf} und \emph{w3af}.  
+
+\subsection{Web Server}
+
+Zur Auslieferung der verwendeten Webapplikationen wird ein Web Server benötigt. Bedingt aus den Anforderungen der zu testenden Webanwendungen und Web Application Firewall muss dieser die Java Servlet Spezifikation implementieren. Bei der Verwendung eines lokalen Web Servers oder in den automatisierten Tests dieser Arbeit wird dabei der Apache Tomcat-Server in der Version 8.5.78 genutzt. Die Ausführung von Anwendungen die auf dem \emph{Spring}-Framework basieren benötigen nicht zwingend einen dedizierten Anwendungsserver, da diese ein integriertes System mit sich bringen (Undertow 2.2.18).
 
 \subsection{WebCastellum}
 Bei WebCastellum handelt es sich um eine Web Application Firewall die zum Schutz von Webanwendungen vor allgemeineren Angriffsszenarien entwickelt wurde. Implementiert wurde WebCastellum als ServletFilter, d.h. im Gegensatz zu WAF-Lösungen die als Proxy vor der Anwendung filtern, hätte WebCastellum vollen Zugriff auf alle Informationen die auch der Webanwendung bekannt sind. Erwähnenswert wären hier zum Beispiel der Login- oder Sessionstatus. 
 
 
-\subsection{PrimeFacesShowcase}
+\subsection{Anwendungen}
+
+\subsubsection{PrimeFacesShowcase}
 
 Beim PrimeFaces Showcase\footnote{Download unter https://www.primefaces.org/downloads} handelt es sich um eine Web-Anwendung zur Demonstration der PrimeFaces-Komponenten-Bibliothek. Dabei handelt es sich um eine Sammlung an Komponenten entsprechend der JSF-Spezifikation (JavaServerFaces). Neben der einfachen Darstellung der Komponenten liefert der Showcase auch Quelltext-Beispiele für deren Verwendung. Geht man davon aus dass eine Mehrheit der Entwickler diese Beispiele für eigene Implementierungen nutzt, könnte man schlussfolgern dass zahlreiche Anwendungen sicherheitstechnisch ähnlich reagieren wie der Showcase und dieser stellvertretend hier für den Nachweis genutzt werden kann.\anno{zu kompliziert?} Des weiteren bietet der Showcase die Möglichkeit \emph{alle} Komponenten des Frameworks zu testen.
 
-\subsection{Spring PetClinic}
+\subsection{PetStore}
 
-Version 3.1.1
+\subsubsection{CargoTracker}
 
-\subsection{OWASP\textregistered WebGoat}
+\subsubsection{Spring PetClinic}
+
+
+
+\subsubsection{OWASP\textregistered WebGoat}
 
 In Form eines IT-Sicherheitstutorials wurde mit dem WebGoat-Projekt eine \emph{absichtlich, unsichere Anwendung} geschaffen, die es \emph{interessierten Entwicklern erlaubt häufig vorkommende Schwachstellen in Java-basierten Anwendungen} zu testen \cite{owaspgoat}. Da es sich um ein Tutorial handelt sind alles Schwachstellen auch explizit benannt. Ein guter Scanner sollte in diesem Fall auch alle Schwachpunkte auffinden können. 
 

@@ -1,5 +1,6 @@
 *.aux
 *.bit
+*.bak
 *.blg
 *.bbl
 *.lof
@@ -18,4 +19,3 @@
 *.toc
 *.cb
 *.cb2
-
