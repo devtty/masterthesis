@@ -7,7 +7,7 @@ Nachdem im letzten Kapitel hauptsächlich Aspekte der praktischen Umsetzung für
 \section{Werkzeuge}
 Für den Testaufbau werden einige Grundkomponenten benötigt. 
 
-\subsection{Java Development Kit}
+\subsection{Die Laufzeit- und Entwicklungsumgebung}
 Für den Betrieb der in dieser Arbeit verwendeten Werkzeuge, wie z.B. Anwendungsserver oder Buildtools, ist eine Java-Laufzeitumgebung notwendig. In den lokal ausgeführten Fällen wurde dafür das \emph{Java Development Kit} der Firma Oracle in der Version 17.0.1 verwendet. Die im CI/CD-Build-Cycle ausgeführten Tests und Werkzeuge nutzen hingegen das Eclipse Temurin JDK in der jeweils aktuellsten Version 11.x
 
 
@@ -24,17 +24,17 @@ Es existieren zahlreiche weitere Tools mit ähnlicher Funktionalität, z.T. auch
 
 Zur Auslieferung der verwendeten Webapplikationen wird ein Web Server benötigt. Bedingt aus den Anforderungen der zu testenden Webanwendungen und Web Application Firewall muss dieser die Java Servlet Spezifikation implementieren. Bei der Verwendung eines lokalen Web Servers oder in den automatisierten Tests dieser Arbeit wird dabei der Apache Tomcat-Server in der Version 8.5.78 genutzt. Die Ausführung von Anwendungen die auf dem \emph{Spring}-Framework basieren benötigen nicht zwingend einen dedizierten Anwendungsserver, da diese ein integriertes System mit sich bringen (Undertow 2.2.18).
 
-\subsection{WebCastellum}
+\subsection{Die Web Application Firewall}
 Bei WebCastellum handelt es sich um eine Web Application Firewall die zum Schutz von Webanwendungen vor allgemeineren Angriffsszenarien entwickelt wurde. Implementiert wurde WebCastellum als ServletFilter, d.h. im Gegensatz zu WAF-Lösungen die als Proxy vor der Anwendung filtern, hätte WebCastellum vollen Zugriff auf alle Informationen die auch der Webanwendung bekannt sind. Erwähnenswert wären hier zum Beispiel der Login- oder Sessionstatus. 
 
 
-\subsection{Anwendungen}
+\subsection{Ziel - Anwendungen}
 
 \subsubsection{PrimeFacesShowcase}
 
 Beim PrimeFaces Showcase\footnote{Download unter https://www.primefaces.org/downloads} handelt es sich um eine Web-Anwendung zur Demonstration der PrimeFaces-Komponenten-Bibliothek. Dabei handelt es sich um eine Sammlung an Komponenten entsprechend der JSF-Spezifikation (JavaServerFaces). Neben der einfachen Darstellung der Komponenten liefert der Showcase auch Quelltext-Beispiele für deren Verwendung. Geht man davon aus dass eine Mehrheit der Entwickler diese Beispiele für eigene Implementierungen nutzt, könnte man schlussfolgern dass zahlreiche Anwendungen sicherheitstechnisch ähnlich reagieren wie der Showcase und dieser stellvertretend hier für den Nachweis genutzt werden kann.\anno{zu kompliziert?} Des weiteren bietet der Showcase die Möglichkeit \emph{alle} Komponenten des Frameworks zu testen.
 
-\subsection{PetStore}
+\subsubsection{PetStore}
 
 \subsubsection{CargoTracker}
 

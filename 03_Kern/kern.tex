@@ -1,4 +1,4 @@
-te\chapter{Kern der Arbeit}
+\chapter{Kern der Arbeit}
 
 \anno{ca. 15-20 Seiten (6-7)}
 
@@ -139,6 +139,7 @@ Möglich wäre zum Beispiel auch die Absicherung eines WebDAV\footnote{Web-based
 Grundsätzlich sollte auch bedacht werden dass, seit der Erstellung des Datensatzes von Torrano-Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. Höchstwahrscheinlich wäre der Umfang der Anomaliedaten wesentlich höher wenn der damalige Testaufbau (mit den aktuelleren Versionen der Software) wiederholt wird und der Generierungsprozess nochmals angestoßen wird.
   
 \subsection{Ziel des Datensatzes}
+\label{sec:zieldesdatensatzes}
 
 Ein weiterer Kritikpunkt Applebaums am Datensatz CSIC2010, neben dem Alter, betrifft das zur Erstellung genutzte Ziel. Für CSIC2010 wurde nur eine einzelne Webanwendung genutzt, die intern vom CSIC2010-Team entwickelt wurde und rudimentäre Funktionen eines e-Commerce-Systems anbietet~\cite{csic2010}. Es existieren eine Nutzerregistrierung und diverse Funktionen aus dem Einkaufsbereich (z.B. Waren einem Einkaufskorb hinzufügen usw.). Applebaum merkt zusätzlich an dass es sich nicht um ein real verwendetes System handelt. Damit beschränken sich die erstellten Daten nur auf den engen Bereich dieser (einen) Webanwendung. 
 
@@ -146,6 +147,7 @@ Erhöhung der allgemeinen Gültigkeit (Diskrepanz mit spezieller Zuschneidung au
 Erhöhung der Genauigkeit
 
 \subsubsection{Neue Anwendungsarchitekturen und Frameworks}
+\label{sec:neueframeworks}
 %% Änderungen Anwendungsarchitekturen
 Eine wesentliche Änderung seit Erstellung des Datensatzes ist das Aufkommen moderner Anwendungen die durch Nutzung von Anfragen im Hintergrund wesentlich schneller auf Nutzereingaben reagieren. Gute Beispiele sind Eingabefelder mit automatischer Vervollständigung oder die Validierung der eingegebenen Werte während der Eingabe. Das explizite Auslösen einer Anfrage, z.B. über ein Formular, wurde in vielen Fällen vom Konzept der \emph{\textbf{A}synchronen Datenübertragung per \textbf{J}avascript \textbf{A}nd \textbf{X}ML} (AJAX) abgelöst. In gewisser Weise sendet nicht mehr der Endnutzer (als Person) die Anfragen an den Server sondern der Browser selbst zu vordefinierten Ereignissen. Bei den Anfragen handelt es sich immer noch um HTTP-Requests, jedoch ist deren Komplexität und Häufigkeit deutlich gestiegen (s.~\ref{fig:ajax}).
 
@@ -179,12 +181,19 @@ In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basiert
 \section{Lösungen}
 
 \subsection{Aus Alt mach Neu}
-Bereits in Abschnitt \ref{sec:neuewerkzeuge} angesprochen wurde die erneute Erstellung des Datensatzes mit Hilfe neuerer Versionen der Software. Für den damals genutzten Anwendungsserver und die Software zum Generieren der HTTP-Anfragen sind öffentlich verfügbare Nachfolger bekannt. Leider existiert jedoch keine öffentliche Version der von \cite{Giménez2015} genutzten Anwendung. Eine Wiederholung im Rahmen dieser Arbeit ist daher ausgeschlossen. Die originalen Daten können weiter verwendet werden.\\
+Bereits in Abschnitt \ref{sec:neuewerkzeuge} wurde die erneute Erstellung des Datensatzes, mit Hilfe neuerer Versionen der Software, angesprochen. Für den damals genutzten Anwendungsserver und die Software zum Generieren der HTTP-Anfragen sind öffentlich verfügbare Nachfolger bekannt. Leider existiert jedoch keine öffentliche Version der von \cite{Giménez2015} genutzten Anwendung. Eine Wiederholung im Rahmen dieser Arbeit ist daher ausgeschlossen. Die originalen Daten können weiter verwendet werden. Gleiches gilt für die in Abschnitt \ref{sec:neueframeworks} erwähnte Erweiterung des Datensatzes aus \cite{kozik2019}. Die Autoren verweisen auf ein geographisches Informationssystem , liefern jedoch keinen Namen.\\
+
+\begin{neu}
+  in Anbetracht von \ref{tab:tgfeatures} und der damaligen Zielstellung evt. auch unwichtig, in Verbindung mit Frameworks (z.B. Anzahl der Argumente?) könnte das jedoch interessant sein. Auf jeden Fall zur Regenerierung!
+\end{neu}
+
+Für eine Erweiterung des Datensatzes in dieser Arbeit sollten aus Gründen der Nachvollziehbarkeit nur benannte und frei verfügbare Anwendungen und Quellen in Betracht kommen. \anno{kommt das als Kritik rüber? das will ich nicht!}
+
 % Hier beschreiben wie CSIC2010 mit "neuen Mitteln" nachgestellt werden kann; warum das nicht geht (fehlende Webanwendung)... ggf. Ersatzanwendung bzw. Übernahme der Originaldatensätze mit in neuen Datensatz
 
 
 
-\subsection{Von der Einzelanwendung zur Mehrgültigkeitxxx}
+\subsection{Von der Einzelanwendung zur Mehrgültigkeit}
 
 % Hier beschreiben wie durch Verwendung von Demo und Vulnerable-Anwendung mehrgültigkeit geschaffen werden kann
 % und Anwendungen nach gleichem Prinzip arbeiten (Entwickler sich ein Beispiel nehmen usw.)
