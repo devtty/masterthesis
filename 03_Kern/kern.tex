@@ -23,7 +23,7 @@ Der Datensatz besteht aus drei Teildatensätzen. Der erste Teildatensatz ist dab
 
 Die einzelnen Dateneinträge der drei Teildatensätze sind jeweils gleich aufgebaut und beinhalten die in Tabelle~\ref{tab:csicfields} aufgeführten Felder. Das Feld \emph{Payload} ist im Datensatz nicht explizit benannt bzw. auf den ersten Blick nicht ersichtlich, da es je nach HTTP-Methode in den Rohdaten unterschiedlich abgebildet wird. Bei einem \verb=GET=-Request wird die Payload im Query der URL übertragen (siehe \cite{rfc2626} 3.2.2) und bei \verb=POST=-Requests im Request Body. Die Payload enthält im Wesentlichen die eigentlichen Daten und in den meisten Angriffsfällen genau die Anomalien die für einen Angriff verantwortlich sind. Zur Verdeutlichung zeigt Abbildung~\ref{fig:ccex} einen einzelnen Eintrag des Datensatzes \emph{CSIC2010} im Rohformat. Hier handelt es sich um einen \verb=GET=-Request mit den Parametern \emph{id},\emph{nombre}, \emph{precio}, \emph{cantidad} und \emph{B1}. Die einzelnen Dateneinträge des Datensatzes unterscheiden sich jedoch nicht in den übrigen Feldern.\\
 
-Für eine Klassifizierung können bzw. müssen aus den Daten der einzelnen Requests entsprechende Features (\emph{Merkmale~-~individuell messbar}) abgeleitet werden. \emph{Achtung}, Felder und Features sind nicht gleichzusetzen! Torrano-Giménez hat in ihrer Doktorarbeit sowohl Features von Experten benennen lassen \footnote{siehe Anhang Tabelle \ref{tab:tgfeatures}} als auch mittels statistischer Feature-Selection-Mechanismen \emph{extrahiert}. Bei den hier vorgeschlagenen Verbesserungen bzw. Änderungen wird sich nur auf die Datenfelder der Rohdaten oder auf die in \cite{Giménez2015} benannten \emph{Experten-Features} bezogen.
+Für eine Klassifizierung können bzw. müssen aus den Daten der einzelnen Requests entsprechende Features (\emph{Merkmale~-~individuell messbar}) abgeleitet werden. \emph{Achtung}, Felder und Features sind nicht gleichzusetzen! Torrano-Giménez hat in ihrer Doktorarbeit sowohl Features von Experten benennen lassen \footnote{siehe Anhang Tabelle \ref{tab:tgfeatures}} als auch mittels statistischer Feature-Selection-Mechanismen \emph{extrahiert}. Bei den hier vorgeschlagenen Verbesserungen bzw. Änderungen wird sich nur auf die Datenfelder der Rohdaten oder auf die in \cite{Giménez2015} benannten \emph{Experten-Features} bezogen. \anno{leichtgewichtig reichen 3 s. Impl.}
 
 
 %\lstset{language=XML,
@@ -197,6 +197,7 @@ Für eine Erweiterung des Datensatzes in dieser Arbeit sollten aus Gründen der 
 
 % Hier beschreiben wie durch Verwendung von Demo und Vulnerable-Anwendung mehrgültigkeit geschaffen werden kann
 % und Anwendungen nach gleichem Prinzip arbeiten (Entwickler sich ein Beispiel nehmen usw.)
+Frei verfügbar sind insbesondere die Beispielanwendungen vieler Framework-Anbieter. 
 
 
 \subsection{Unzureichende Kategorisierung im Datensatz}
