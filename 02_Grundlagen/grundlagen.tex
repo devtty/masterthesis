@@ -203,7 +203,7 @@ In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv um
 \end{neu}
 
 \subsubsection{Hybride Ansätze} %Nicht immer schwarz oder weiss
-Ein Ergebnis muss aber nicht immer schwarz oder weiß sein.  Grundsätzlich besteht für Web Application Firewalls die Möglichkeit HTTP-Anfragen zu manipulieren bevor diese die eigentliche Anwendung erreichen. Gleiches gilt für die Antworten der Anwendung bevor diese an den Client ausgeliefert werden. Für den Apache httpd-Server existiert mit dem \emph{modRewrite}-Modul sogar eine Komponente einzig und allein für diesen Zweck. Ende 2010 erschien mit \glqq\emph{TokDoc: A Self-Healing Web Application Firewall}\grqq~\cite{Krueger2010} ein Konferenzpaper mit dem Vorschlag, eingehende Anfragen in einzelne Bestandteile zu zerlegen, die einzelnen Bestandteile zu untersuchen und ggf. durch \emph{korrigierte} Äquivalente auszutauschen bevor diese an die zu schützende Anwendung weitergeleitet werden. Zusätzlich haben die Autoren des Papers die Bestandteile nach ihrem Ursprung in vier Kategorien eingeteilt:
+Ein Ergebnis muss aber nicht immer schwarz oder weiß sein.  Grundsätzlich besteht für Web Application Firewalls die Möglichkeit HTTP-Anfragen zu manipulieren bevor diese die eigentliche Anwendung erreichen. Gleiches gilt für die Antworten der Anwendung bevor diese an den Client ausgeliefert werden. Für den Apache httpd-Server existiert mit dem \emph{modRewrite}-Modul sogar eine Komponente einzig und allein für diesen Zweck. Ende 2010 erschien mit \glqq\emph{TokDoc: A Self-Healing Web Application Firewall}\grqq~\cite{Krueger2010} ein Konferenzpaper mit dem Vorschlag, eingehende Anfragen in einzelne Bestandteile zu zerlegen, die einzelnen Bestandteile zu untersuchen und ggf. durch \emph{korrigierte} Äquivalente auszutauschen bevor diese an die zu schützende Anwendung weitergeleitet werden. Zusätzlich haben die Autoren des Papers die Bestandteile nach ihrem Ursprung in vier Kategorien eingeteilt:\\
 
 \begin{table}[h]
   \centering
@@ -222,11 +222,11 @@ Ein Ergebnis muss aber nicht immer schwarz oder weiß sein.  Grundsätzlich best
   \label{tab:tocdoc}
 \end{table}
 
-\begin{align}
-  \overbrace{
-    \underbrace{http}_\text{Konstante} \underbrace{www}_\text{maschine}\underbrace{seite}_\text{human}\underbrace{blog}_\text{maschine}\underbrace{search}_\text{maschine}\underbrace{=}_\text{Konstante}\underbrace{Hello}_\text{mensch}
-  }^\text{GET-Request}
-\end{align}
+%\begin{align}
+%  \overbrace{
+%    \underbrace{http}_\text{Konstante} \underbrace{localhost:8080}_\text{maschine}\underbrace{seite}_\text{human}\underbrace{blog}_\text{maschine}\underbrace{search}_\text{maschine}\underbrace{=}_\text{Konstante}\underbrace{Hello}_\text{mensch}
+%  }^\text{GET-Request}
+%\end{align}
 
 Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen Abgleich mit Regeln bzw. regulären Ausdrücken sondern mittels sogenannten \emph{Anomalie-Detektoren}, die verschiedene Ausprägungen annehmen können. Beispielsweise lassen sich Bestandteile wie \emph{Konstanten} und \emph{Aufzählungen} effektiv mit Hilfe von einfachen Listen abgleichen. Die Anomalie beginnt wenn der entsprechende nicht in der Liste vorhanden ist.\\
 
@@ -268,13 +268,21 @@ Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlu
 % Thema 3 optional die andere seite
 \subsection{hacking Wafs}
 
+\begin{neu}
+  Blick über den Tellerand? z.B. Fingerprinting von Interesse?
+\end{neu}
+
 
 % Zusammenfassung (ca. 0,5 Seiten)
 \section{Zusammenfassung}
 
 % ggf. ditaa tabelle ueber den Zeitverlauf der verschiedenen Arbeiten nach Attack-Defend-Muster
 
-\begin{tabular}{ll}
+\anno{Tabellarische Schnellübersicht}
+\begin{tabular}{lp{7cm}}
+  \toprule
+  Jahr & Ereignis\\
+  \midrule
   2002 & modSecurity 1st release \\
   2003 & OWASP Top 10 erscheinen zum ersten Mal\\
   2006 & OWASP Core Rule Set \\
@@ -285,12 +293,13 @@ Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlu
   2016 & Automatisierte Tests Appelt \\
   2018 & Centralized Manaseer\\
   2019 & OWASP API Security Top 10\\
+  \bottomrule
 \end{tabular}
 
 Dataset
 
 DARPA
-CSIC
+CSIC 2010
 ECML/PKDD
 
 %%The first version of the OWASP Top 10 list was published in 2003. Updates followed in 2004, 2007, 2010, 2013 and 2017. The most recent update was published in 2021.
