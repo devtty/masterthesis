@@ -9,7 +9,7 @@ Letztendlich muss man das Rad auch nicht neu erfinden und auch die Hersteller vo
 Jährlich erscheint mit den OWASP Top Ten~\cite{owasp10}  eine Liste der meist genutzten und bekannten Sicherheitsrisiken für Webanwendungen. In den meisten Fällen wird eine Anwendung sehr individuell gegen solche Risiken abgesichert und häufig wird dabei auch jedes einzelne Risiko separat adressiert. \\
 
 
-\begin{figure}[bht]
+\begin{figure}[h]
   \begin{center}
     \includegraphics[width=15cm]{mapping}
     \caption{OWASP Top10 2017/2021~\cite{owasp10}}
@@ -42,7 +42,7 @@ Eine \emph{einfache}, \emph{wiederverwendbare} Lösung im Bereich der IT-Sicherh
 %%% Welche Kernfunktionalität soll Ihr System haben?
 %%% Was ist ein typischer (Bedienungs-)Prozess für Ihr System
 
-Mit dieser Masterarbeit soll eine Möglichkeit zur einfacheren Einbindung dieser Schutzmaßnahme bereitgestellt werden. Es wird exemplarisch ein Prototyp mit Testumgebung, auf Basis einer älteren WAF-Software, entwickelt und anschließend unter Zuhilfenahme ausgewählter \anno{Stichprobe} Anwendungen und Angriffsmuster getestet.  Es wird gezeigt wie die Software auf einen neuen Stand gebracht wird und wie mehrere Instanzen dieser Software gekoppelt werden können. Die Einbindung einer Funktion zur selbständigen Klassifizierung soll dem Nutzer komplizierte, individuelle Konfigurationen abnehmen und einen Gewinn an Sicherheit für Web-Anwendungen bereitstellen. Ein wesentliches Problem zum Erreichen des Ziels besteht jedoch in der geringen Verfügbarkeit von (öffentlichen) Daten, da diese bisher nur auf einzelne Spezialfälle ausgerichtet waren oder nicht mehr dem aktuellen Stand der Technik entsprechen. Im Kern stehen als die Fragen:
+Mit dieser Masterarbeit soll eine Möglichkeit zur einfacheren Einbindung dieser Schutzmaßnahme bereitgestellt werden. Es wird exemplarisch ein Prototyp mit Testumgebung, auf Basis einer älteren WAF-Software, entwickelt und anschließend unter Zuhilfenahme ausgewählter \anno{Stichprobe} Anwendungen und Angriffsmuster getestet.  Es wird gezeigt wie die Software auf einen neuen Stand gebracht wird und wie mehrere Instanzen dieser Software gekoppelt werden können. Die Einbindung einer Funktion zur selbständigen Klassifizierung soll dem Nutzer komplizierte, individuelle Konfigurationen abnehmen und einen Gewinn an Sicherheit für Web-Anwendungen bereitstellen. Ein wesentliches Problem zum Erreichen des Ziels besteht jedoch in der geringen Verfügbarkeit von (öffentlichen) Daten, da diese bisher nur auf einzelne Spezialfälle ausgerichtet waren oder nicht mehr dem aktuellen Stand der Technik entsprechen. Im Kern stehen also die Fragen:
 
 \begin{itemize}
 \item Wie gelangt man an möglichst aktuelle und neue Daten?
@@ -50,6 +50,9 @@ Mit dieser Masterarbeit soll eine Möglichkeit zur einfacheren Einbindung dieser
 \item Kann ein Austausch der Daten möglichst schnell erfolgen?
 \end{itemize}
 
+Mit Beantwortung dieser Fragen sollte es möglich sein, die Sicherheit einer Anwendung auch ohne detaillierte Kenntnisse ihres inneren Aufbaus zu erhöhen.
+
+\textcolor{bhtGray}{\ding{110} These:} Eine Anwendung lässt sich auch mit genügend zur Verfügung stehenden Daten von ähnlichen Anwendungen absichern!
 
 Zum Teil basiert die Arbeit auf Vorarbeiten im Bereich der Anwendungssicherheit 
 \anno{aus Exposee übernommen / passt noch nicht ganz da sich evtl. viel auf den Datensatz fokussiert}
