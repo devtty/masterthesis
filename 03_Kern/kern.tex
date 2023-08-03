@@ -203,9 +203,15 @@ Im besten Fall wird eine WAF explizit auf die zu schützende Anwendung angepasst
 
 \subsubsection{Funktionale Ähnlichkeit}
 Bei funktional ähnlichen Anwendungen handelt es sich um Anwendungen die sich in ihrer Funktion ähneln. Um das Problem der fehlenden Anwendung von Torrano-Giménez aus dem vorherigen Abschnitt \ref{sec:lsgalt}  zu lösen, könnte man beispielsweise anhand der Daten aus dem CSIC2010-Datensatz eine 1:1-Kopie der Anwendung (in ihrer Funktion) \glqq\emph{nachprogrammieren}\grqq. Diese ähnliche Kopie könnte dann genutzt werden um den Datensatz mit Ergebnissen aus den Tests mit neueren Werkzeugen zu erweitern. Zu bedenken ist jedoch dass die Kopie nur anhand der von aussen sichtbaren Funktionalität entstand und (eventuell) nicht hundertprozentig der Funktionalität des Originals entspricht. Man kann aber davon ausgehen dass das Verhalten des Zwillings in Bezug auf die Features (\ref{tab:tgfeatures}) größtenteils dem des Originals entspricht.\\
-Für die funktionale Ähnlichkeit bedarf es aber nicht grundsätzlich einer identischen Kopie. E-Commerce-Anwendungen, nach dem von Torrano-Giménez gewählten Muster (\glqq\emph{In this web application, users can buy items using a shopping cart and register by providing some personal information}\grqq{}~\cite{csic2010}, zählen sicher zu den verbreitetsten Anwendungen im Netz und es existieren zahlreiche Implementierungen von solchen (\emph{funktional-ähnlichen} Shopping-Systemen. 
+Für die funktionale Ähnlichkeit bedarf es aber nicht grundsätzlich einer identischen Kopie. E-Commerce-Anwendungen, nach dem von Torrano-Giménez gewählten Muster (\glqq\emph{In this web application, users can buy items using a shopping cart and register by providing some personal information}\grqq{}~\cite{csic2010}), zählen sicher zu den verbreitetsten Anwendungen im Netz und es existieren zahlreiche Implementierungen dieser (\emph{funktional-ähnlichen}) Shopping-Systeme mit entsprechend ähnlichen Funktionen. Ein gutes Beispiel ist der Anwendungsfall der \emph{Anmeldung am System}, der sich in jeder E-Commerce-Anwendung findet. Für eine Anmeldung am System werden in den meisten Fällen zwei Argumente benötigt, der Nutzername und das zugehörige Passwort, und in vielen Fällen sind die Namen der zugehörigen Request-Argumente ebenfalls ähnlich. 
 
 \subsubsection{Technologische Ähnlichkeit}
+Mit \emph{technologischer Ähnlichkeit} ist der Vergleich der zugrundeliegenden Technologien (Programmiersprachen, Frameworks, usw.) gemeint. Da uns bei Proxy-Systemen wie einer WAF meistens nur der Blick von Aussen möglich ist, ist die Frage nach der \emph{technologischen Ähnlichkeit} in vielen Fällen nicht so einfach zu beantworten. Beispielsweise lässt sich anhand der originalen CSIC2010-Daten nicht feststellen, welche Datenbank die Anwendung von Torrano-Giménez verwendete oder ob überhaupt eine Datenbank im Anwendung fand.
+
+\fcolorbox{steelblue}{yellow}{\textcolor{bhtGray}{\ding{110} Ausflug} Für einen Angreifer ist die technologische Basis einer Anwendung von immensem Interesse. Ist die technologische Basis erst einmal bekannt, lassen sich Schwachpunkte und Angriffswege wesentlich leichter identifizieren.}
+
+?execution=e2s1
+
 Frei verfügbar sind insbesondere die Beispielanwendungen vieler Framework-Anbieter. 
 
 \subsubsection{}
