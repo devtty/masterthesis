@@ -206,11 +206,27 @@ Bei funktional ähnlichen Anwendungen handelt es sich um Anwendungen die sich in
 Für die funktionale Ähnlichkeit bedarf es aber nicht grundsätzlich einer identischen Kopie. E-Commerce-Anwendungen, nach dem von Torrano-Giménez gewählten Muster (\glqq\emph{In this web application, users can buy items using a shopping cart and register by providing some personal information}\grqq{}~\cite{csic2010}), zählen sicher zu den verbreitetsten Anwendungen im Netz und es existieren zahlreiche Implementierungen dieser (\emph{funktional-ähnlichen}) Shopping-Systeme mit entsprechend ähnlichen Funktionen. Ein gutes Beispiel ist der Anwendungsfall der \emph{Anmeldung am System}, der sich in jeder E-Commerce-Anwendung findet. Für eine Anmeldung am System werden in den meisten Fällen zwei Argumente benötigt, der Nutzername und das zugehörige Passwort, und in vielen Fällen sind die Namen der zugehörigen Request-Argumente ebenfalls ähnlich. 
 
 \subsubsection{Technologische Ähnlichkeit}
-Mit \emph{technologischer Ähnlichkeit} ist der Vergleich der zugrundeliegenden Technologien (Programmiersprachen, Frameworks, usw.) gemeint. Da uns bei Proxy-Systemen wie einer WAF meistens nur der Blick von Aussen möglich ist, ist die Frage nach der \emph{technologischen Ähnlichkeit} in vielen Fällen nicht so einfach zu beantworten. Beispielsweise lässt sich anhand der originalen CSIC2010-Daten nicht feststellen, welche Datenbank die Anwendung von Torrano-Giménez verwendete oder ob überhaupt eine Datenbank im Anwendung fand.
+Mit \emph{technologischer Ähnlichkeit} ist der Vergleich der zugrundeliegenden Technologien (Programmiersprachen, Frameworks, usw.) gemeint. Da uns bei Proxy-Systemen wie einer WAF meistens nur der Blick von Aussen möglich ist, ist die Frage nach der \emph{technologischen Ähnlichkeit} in vielen Fällen nicht so einfach zu beantworten. Beispielsweise lässt sich anhand der originalen CSIC2010-Daten nicht feststellen, welche Datenbank die Anwendung von Torrano-Giménez verwendete oder ob überhaupt eine Datenbank im Anwendung fand. Mit hoher Wahrscheinlichkeit handelte es sich allerdings um eine javabasierte Anwendung, da die URLs der CSIC2010-Daten sowohl den Standard-Port vieler Servletcontainer (\verb=8080=) beinhalten und der Pfadteil in vielen Fällen mit der Dateiendung \verb=*.jsp= (\emph{JavaServerPages}) endete.\\
 
-\fcolorbox{black}{lightgray}{\textcolor{bhtGray}{\ding{110} Ausflug} Für einen Angreifer ist die technologische Basis einer Anwendung von immensem Interesse. Ist die technologische Basis erst einmal bekannt, lassen sich Schwachpunkte und Angriffswege wesentlich leichter identifizieren.}
+\textcolor{bhtBlue}{\ding{110} Achtung:} Für einen Angreifer ist die technologische Basis einer Anwendung von immensem Interesse. Ist die technologische Basis erst einmal bekannt, lassen sich Schwachpunkte und Angriffswege wesentlich leichter identifizieren. Aus Sicht der IT-Sicherheit sollten Anwendungen (im produktiven Einsatz) es daher vermeiden, Daten preiszugeben die Rückschlüsse auf eingesetzte Technologien und Werkzeuge ermöglichen.\\
 
-?execution=e2s1
+Im Fall der Mehrgültigkeit, im Sinne dass Trainingsdaten ähnlicher Anwendungen genutzt werden sollen, ist die technologische Ähnlichkeit wichtig, gerade weil in den HTTP-Anfragen diese relevanten Informationen stecken. Ein Teil der Features aus \ref{tab:tgfeatures} stimmen auch bei technologisch ähnlichen Anwendung überein.
+
+\begin{description}
+  \item[http://localhost:8080/\underline{test.do}] \\
+Pfad endet mit \verb=.do= - eine Javabasierte Webanwendung die das \emph{Apache Struts}-Framework nutzt\\
+  \item[http://localhost:8080/test?\underline{execution=e2s1}] \\
+enthält RequestParameter mit Namen \verb=execution= und Wert im Format \verb=e[\\d]s[\\d]= eine Javabasierte Webanwendung die das \emph{Spring WebFlow}-Framework nutzt\\
+  \item[https://devtty.de/app/detail\underline{.jsf};jsessionid=jtO85wJZjgNR3jXpeEIzV9npU-_BQcTyEF-90JTq.\underline{slbs11}?\underline{dswid=3942\&dsrid=213}\&id=1041]\\
+eine Javabasierte Webanwendung, nutzt JavaServerFaces, fehlkonfig bei der der SessionID, interner Servername 
+\end{description}
+
+
+
+
+
+
+
 
 Frei verfügbar sind insbesondere die Beispielanwendungen vieler Framework-Anbieter. 
 
