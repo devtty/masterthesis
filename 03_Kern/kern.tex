@@ -213,12 +213,13 @@ Mit \emph{technologischer Ähnlichkeit} ist der Vergleich der zugrundeliegenden 
 Im Fall der Mehrgültigkeit, im Sinne dass Trainingsdaten ähnlicher Anwendungen genutzt werden sollen, ist die technologische Ähnlichkeit wichtig, gerade weil in den HTTP-Anfragen diese relevanten Informationen stecken. Ein Teil der Features aus \ref{tab:tgfeatures} stimmen auch bei technologisch ähnlichen Anwendung überein.
 
 \begin{description}
+  \small
   \item[http://localhost:8080/\underline{test.do}] \hfill \\
-Pfad endet mit \verb=.do= - eine Javabasierte Webanwendung die das \emph{Apache Struts}-Framework nutzt
+Der Pfad endet mit \verb=.do= - ein Hinweis auf eine Java-basierte Webanwendung die das \emph{Apache Struts}-Framework nutzt
   \item[http://localhost:8080/test?\underline{execution=e2s1}] \hfill \\
-enthält RequestParameter mit Namen \verb=execution= und Wert im Format \verb=e[\\d]s[\\d]= eine Javabasierte Webanwendung die das \emph{Spring WebFlow}-Framework nutzt
+Hier ist ein Request-Parameter mit Namen \verb=execution= und einem Wert im Format \verb=e[\\d]s[\\d]= vorhanden, es handelt sich wahrscheinlich um eine Java-basierte Webanwendung die das \emph{Spring WebFlow}-Framework nutzt
   \item[https://devtty.de/app/detail\underline{.jsf};jsessionid=jtO85wJZjgNR3jXpeEIzV9npU-\_BQcTyEF-90JTq.\underline{slbs11}?\underline{dswid=3942\&dsrid=213}\&id=1041] \hfill \\
-eine Javabasierte Webanwendung, nutzt JavaServerFaces, fehlkonfig bei der der SessionID, interner Servername
+Ein Beispiel einer produktiven, javabasierten Anwendung\footnote{Domain-Name wurde geändert}. Im Request-Header wird als Server ein JBoss/EAP-7 benannt. Die Anwendung nutzt JavaServerFaces (\verb=.jsf=). Durch eine Fehlkonfiguration wird die Session-ID in der URL übermittelt. Bei JBoss/WildFly-Servern wird an die SessionID der Name des echten Hosts angehängt, es existiert also höchstwahrscheinlich ein Host mit dem internen Namen \verb=slbs11.devtty.de=. Die Parameter \verb=dswid= und \verb=dsrid= weisen auf Verwendung des Apache DeltaSpike-Frameworks hin. Im Fall das es sich bei der benutzten DeltaSpike-Bibliothek um eine etwas ältere Version handelt, existiert hier eine Schwachstelle (\href{https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12416}{CVE-2019-12416}) die die Möglichkeit einer JavaScript-Injection bietet. 
 \end{description}
 
 
