@@ -61,7 +61,7 @@ Connection: close
     \toprule
     % \textbf{Name} & \textbf{Wert} & \textbf{Anmerkungen} & \textbf{DN} & \textbf{DNT} & \textbf{DNA} \\
     \textbf{Name} & \textbf{Wert} & \multicolumn{3}{l}{\textbf{Anzahl unterscheidbarer Werte mit Fehlquote}} \\
-    & & & Training & Test & Anomalie \\
+     & & Training & Test & Anomalie \\
     \midrule
     HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT=  & 2 (0\%) & 2 (0\%) & 3 (0\%)\\
     URL  & & 28 (0\%) & 28 (0\%) & 1623 (0\%)\\
@@ -282,7 +282,7 @@ Frei verfügbar sind insbesondere die Beispielanwendungen vieler Framework-Anbie
 \subsection{Zentralisierung}
 \label{sec:zentralisierungkern}
 
-Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem praktischen System wäre es jedoch von Vorteil wenn der Datensatz sich selbständig erweitert und gegebenenfalls auch von anderen, ähnlichen Systemen \glqq\emph{lernen}\grqq könnte. In~\cite{Manaseer2018}~erfolgte bereits der Entwurf die Daten von erkannten Angriffen zentral, über ein sogenanntes \emph{Command and Control Center} zu sammeln. Carmen Torrano-Giménez nutzte jedoch zum Trainieren ihrer WAF ausschließlich Daten von erwünschten Requests. Im Gegensatz zu Manaseer wäre es durchaus hilfreich alle Requests an eine zentrale Komponente zu senden und mit Hilfe einer genaueren Kategorisierung (siehe Abschnitt~\ref{sec:Kategorisierung}) könnten diese Daten dann auch dementsprechend ausgewertet und gegebenenfalls an die WAFs ähnlicher Anwendungen verteilt werden.
+Bisher wurde der Datensatz als feste Vorgabe zum Training enutzt. In einem praktischen System wäre es jedoch von Vorteil wenn der Datensatz sich selbständig erweitert und gegebenenfalls auch von anderen, ähnlichen Systemen \glqq\emph{lernen}\grqq könnte. In~\cite{Manaseer2018}~erfolgte bereits der Entwurf die Daten von erkannten Angriffen zentral, über ein sogenanntes \emph{Command and Control Center} zu sammeln. Carmen Torrano-Giménez nutzte jedoch zum Trainieren ihrer WAF ausschließlich Daten von erwünschten Requests. Im Gegensatz zu Manaseer wäre es durchaus hilfreich alle Requests an eine zentrale Komponente zu senden und mit Hilfe einer genaueren Kategorisierung (siehe Abschnitt~\ref{sec:Kategorisierung}) könnten diese Daten dann auch dementsprechend ausgewertet und gegebenenfalls an die WAFs ähnlicher Anwendungen verteilt werden.
 
 
 \begin{figure}[ht]
