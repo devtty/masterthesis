@@ -103,7 +103,8 @@ Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format nam
 
 \lstset{language=bash,
 % 	basicstyle=\ttfamily\color{black}\small,
- 	keywordstyle=\bfseries\color{bhtBlue},
+  keywordstyle=\bfseries\color{bhtBlue},
+  morekeywords={@attribute,@relation},
 % 	identifierstyle=\color{black}, 
 % 	commentstyle=\color{gray}\textsl
         escapeinside={\%*}{*)}
@@ -117,7 +118,7 @@ Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format nam
 @attribute index numeric
 @attribute method {GET,POST%*\textcolor{bhtRed}{,PUT,PATCH,DELETE}*)}
 @attribute url
-@attribute protocol {HTTP/1.1%*\textcolor{bhtRed}{HTTP/2*)}
+@attribute protocol {HTTP/1.1%*\textcolor{bhtRed}{HTTP/2}*)}
 @attribute userAgent {}
 @attribute pragma {}
 @attribute cacheControl {}
