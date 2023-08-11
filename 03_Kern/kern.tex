@@ -57,28 +57,28 @@ Connection: close
 \begin{sidewaystable}[h]
   \centering
 %  \resizebox{\textwidth}{!}{ 
-  \begin{tabular}{llllll}
+  \begin{tabular}{lllll}
     \toprule
     % \textbf{Name} & \textbf{Wert} & \textbf{Anmerkungen} & \textbf{DN} & \textbf{DNT} & \textbf{DNA} \\
-    \textbf{Name} & \textbf{Wert} & \textbf{Anmerkungen} & \multicolumn{3}{l}{\textbf{Distmiss}} \\
+    \textbf{Name} & \textbf{Wert} & \multicolumn{3}{l}{\textbf{Anzahl unterscheidbarer Werte mit Fehlquote}} \\
     & & & Training & Test & Anomalie \\
     \midrule
-    HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT= & & 2 (0\%) & 2 (0\%) & 3 (0\%)\\
-    URL & & & 28 (0\%) & 28 (0\%) & 1623 (0\%)\\
-    Protocol & \verb=HTTP/1.1= & HTTP/2 & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    User-Agent & \verb=Mozilla/5.0 (compatible;Konqueror/3.5...= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    \emph{Pragma} & \verb=no-cache= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    \emph{Cache-control} & \verb=no-cache= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    \emph{Accept} & \verb=text/xml,application/xml,...= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    \emph{Accept-Encoding} & \verb=x-gzip,x-deflate,gzip,deflate= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    \emph{Accept-Charset} & \verb!utf-8,utf-8;q=0.5,*;q=0.5! & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    \emph{Accept-Language} & \verb=en= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    Host & \verb=localhost:8080= & & 1 (0\%) & 1 (0\%) & 2 (0\%)\\
-    Cookie & \verb=JSESSIONID= verschiedene Werte &  & 36000 (0\%) & 36000 (0\%) & 25065 (0\%) \\
-    Content-Type & \verb=null= oder \verb=application/x-www-from-urlencoded= & & 2 (0\%) & 2 (0\%) & 2 (0\%)\\
-    \emph{Connection} & \verb=close= & & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
-    Content-Length & & & 117 (0\%) & 117 (0\%) & 382 (0\%)\\
-    Payload & & & 19418 (0\%) & 20105 (19\%) & 14681 (5\%)\\
+    HTTP Methode & \verb=GET= oder \verb=POST= im Anomalieteil auch \verb=PUT=  & 2 (0\%) & 2 (0\%) & 3 (0\%)\\
+    URL  & & 28 (0\%) & 28 (0\%) & 1623 (0\%)\\
+    \emph{Protocol} & \verb=HTTP/1.1= & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    \emph{User-Agent} & \verb=Mozilla/5.0 (compatible;Konqueror/3.5...= &  1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    \emph{Pragma} & \verb=no-cache=  & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    \emph{Cache-control} & \verb=no-cache=  & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    \emph{Accept} & \verb=text/xml,application/xml,...= & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    \emph{Accept-Encoding} & \verb=x-gzip,x-deflate,gzip,deflate= & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    \emph{Accept-Charset} & \verb!utf-8,utf-8;q=0.5,*;q=0.5! & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    \emph{Accept-Language} & \verb=en= & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    Host & \verb=localhost:8080= & 1 (0\%) & 1 (0\%) & 2 (0\%)\\
+    Cookie & \verb=JSESSIONID= verschiedene Werte  & 36000 (0\%) & 36000 (0\%) & 25065 (0\%) \\
+    Content-Type & \verb=null= oder \verb=application/x-www-from-urlencoded= & 2 (0\%) & 2 (0\%) & 2 (0\%)\\
+    \emph{Connection} & \verb=close= & 1 (0\%) & 1 (0\%) & 1 (0\%)\\
+    Content-Length & & 117 (0\%) & 117 (0\%) & 382 (0\%)\\
+    Payload & & 19418 (0\%) & 20105 (19\%) & 14681 (5\%)\\
     \bottomrule
       % \end{tabular}}
     \end{tabular}
@@ -95,8 +95,11 @@ Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \v
 \anno{Ist das wichtig?Enddatensatz in ARFF? ERM für Command Center?}
 Die drei originalen Teildatensätze befinden sich jeweils in eigenen Dateien und enthalten die Rohdaten als Aneinanderreihung der einzelnen HTTP-Requests. Die Daten sind textbasiert und umfassen nur Inhalte im lateinischen Alphabet\footnote{die originalen Dateien sind ISO-8859-1 kodiert} und können auch mit einfachen Textwerkzeugen gelesen (und bearbeitet) werden. Für eine weitere Analyse ist dieses Format jedoch eher ungeeignet.\\ \ref{tab:csicfields}    \anno{TODO weka tabelle unique} Pete Scully erarbeitete für seine Doktorarbeit~\cite{Scully2016} unter anderem eine kommaseparierte Version des CSIC2010-Datensatzes zur Verwendung im  Analysewerkzeug WEKA\footnote{Waikato Environment for Knowledge Analysis}. Neben den einzelnen benannten Feldern fügte noch die Felder \emph{Payload} und \emph{Label} hinzu. Wie in Abschnitt~\ref{sec:aufbauformat} bereits näher erläutert, handelt es sich bei der Payload um die \emph{eigentlichen} Inhalte des HTTP-Anforderungen. Das Feld \emph{Label} dient als Marker zur Unterscheidung ob es sich bei dem Dateneintrag um Trainings-, Test- oder Anomale Daten handelt, da Scully die Teildatensätze sowohl getrennt, als auch in einer großen CSV-Datei vereint zur Nutzung anbietet (siehe \cite{csiccsv2010}). Das WEKA-Tool vereinfacht eine genauere Betrachtung des Datensatzes erheblich und Tabelle~\ref{tab:csicfields} stellt nochmals die einzelnen Datenfelder übersichtlich dar.\\
 
-\textcolor{bhtGray}{\ding{110} Anmerkung:} Die letzten drei Spalten der Tabelle beinhalten 
-Das WEKA-Tool unterstützt ein eigenes Format names \emph{\textbf{A}ttribute-\textbf{R}elation \textbf{F}ile \textbf{F}ormat} (ARFF) welches die Daten ggf. mit entsprechenden Datentypen genauer beschreiben könnte.
+Die letzten drei Spalten der Tabelle beinhalten die \emph{Anzahl unterscheidbarer Werte} und die \emph{Fehlquote}, d.h. den prozentualen Anteil an Dateneinträgen bei denen dieses Feld keinen Wert beinhaltet, für die jeweiligen Teildatensätze. Erkennbar sind einige Felder mit vorhandenem Wert in jedem Dateneintrag, der sich jedoch nie vom Wert in anderen Einträgen unterscheidet. Diese Felder sind demzufolge für eine Klassifizierung, bei der ausschließlich Daten des CSIC2010-Datensatzes genutzt werden, irrelevant. Torrano-Giménez hätte diese zum Teil weglassen können und es hätte, bei Verwendung ihrer Testdaten, nichts an ihren Ergebnissen geändert. In einer dynamischeren (und produktiven) Umgebung müssen diese Felder jedoch mit betrachtet werden.\\
+
+\textcolor{bhtGray}{\ding{110} Beispiel:} Die WAF erfasst mehrere hundert HTTP-Anfragen mit einer festen Session-ID\footnote{\verb=JSESSIONID=,Session-Cookie, o.ä.) und festem Wert im \emph{User-Agent} (~$\rightarrow$~ein Internetnutzer surft mit seinem Browser) und plötzlich erscheint eine Anfrage mit gleicher Session-ID aber anderem User-Agent. In diesem Fall sollte die WAF entsprechend reagieren, da die Möglichkeit eines Angriffes (\emph{Session Hijacking}, \emph{Man-in-the-middle}) durchaus besteht.\\
+  
+Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format namens \emph{\textbf{A}ttribute-\textbf{R}elation \textbf{F}ile \textbf{F}ormat} (ARFF)~\cite{arff2023}, welches die Daten ggf. mit entsprechenden Datentypen genauer beschreiben kann.
 
 \subsection{Alter des Datensatzes}
 
