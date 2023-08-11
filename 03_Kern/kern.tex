@@ -95,7 +95,7 @@ Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \v
 \anno{Ist das wichtig?Enddatensatz in ARFF? ERM für Command Center?}
 Die drei originalen Teildatensätze befinden sich jeweils in eigenen Dateien und enthalten die Rohdaten als Aneinanderreihung der einzelnen HTTP-Requests. Die Daten sind textbasiert und umfassen nur Inhalte im lateinischen Alphabet\footnote{die originalen Dateien sind ISO-8859-1 kodiert} und können auch mit einfachen Textwerkzeugen gelesen (und bearbeitet) werden. Für eine weitere Analyse ist dieses Format jedoch eher ungeeignet.\\ \ref{tab:csicfields}    \anno{TODO weka tabelle unique} Pete Scully erarbeitete für seine Doktorarbeit~\cite{Scully2016} unter anderem eine kommaseparierte Version des CSIC2010-Datensatzes zur Verwendung im  Analysewerkzeug WEKA\footnote{Waikato Environment for Knowledge Analysis}. Neben den einzelnen benannten Feldern fügte noch die Felder \emph{Payload} und \emph{Label} hinzu. Wie in Abschnitt~\ref{sec:aufbauformat} bereits näher erläutert, handelt es sich bei der Payload um die \emph{eigentlichen} Inhalte des HTTP-Anforderungen. Das Feld \emph{Label} dient als Marker zur Unterscheidung ob es sich bei dem Dateneintrag um Trainings-, Test- oder Anomale Daten handelt, da Scully die Teildatensätze sowohl getrennt, als auch in einer großen CSV-Datei vereint zur Nutzung anbietet (siehe \cite{csiccsv2010}). Das WEKA-Tool vereinfacht eine genauere Betrachtung des Datensatzes erheblich und Tabelle~\ref{tab:csicfields} stellt nochmals die einzelnen Datenfelder übersichtlich dar.\\
 
-Die letzten drei Spalten der Tabelle beinhalten die \emph{Anzahl unterscheidbarer Werte} und die \emph{Fehlquote}, d.h. den prozentualen Anteil an Dateneinträgen bei denen dieses Feld keinen Wert beinhaltet, für die jeweiligen Teildatensätze. Erkennbar sind einige Felder mit vorhandenem Wert in jedem Dateneintrag, der sich jedoch nie vom Wert in anderen Einträgen unterscheidet. Diese Felder sind demzufolge für eine Klassifizierung, bei der ausschließlich Daten des CSIC2010-Datensatzes genutzt werden, irrelevant. Torrano-Giménez hätte diese zum Teil weglassen können und es hätte, bei Verwendung ihrer Testdaten, nichts an ihren Ergebnissen geändert. In einer dynamischeren (und produktiven) Umgebung müssen diese Felder jedoch mit betrachtet werden.\\
+Die letzten drei Spalten der Tabelle beinhalten die \emph{Anzahl unterscheidbarer Werte} und die \emph{Fehlquote}, d.h. den prozentualen Anteil an Dateneinträgen bei denen dieses Feld keinen Wert beinhaltet, für die jeweiligen Teildatensätze. Erkennbar sind einige Felder mit vorhandenem Wert in jedem Dateneintrag, der sich jedoch nie vom Wert in anderen Einträgen unterscheidet. Diese Felder sind demzufolge für eine Klassifizierung, bei der ausschließlich Daten des CSIC2010-Datensatzes genutzt werden, irrelevant. Torrano-Giménez hätte diese zum Teil weglassen können und es hätte, bei Verwendung ihrer Testdaten, nichts an ihren Ergebnissen geändert. In einer dynamischeren (und produktiven) Umgebung müssen diese Felder jedoch mit betrachtet werden\footnote{dazu mehr in Abschnitt~\ref{sec:Kategorisierung}}.\\
 
 \textcolor{bhtGray}{\ding{110} Beispiel:} Die WAF erfasst mehrere hundert HTTP-Anfragen mit einer festen Session-ID (\verb=JSESSIONID=,Session-Cookie, o.ä.) und festem Wert im \emph{User-Agent} (~$\rightarrow$~ein Internetnutzer surft mit seinem Browser) und plötzlich erscheint eine Anfrage mit gleicher Session-ID aber anderem User-Agent. In diesem Fall sollte die WAF entsprechend reagieren, da die Möglichkeit eines Angriffes (\emph{Session Hijacking}, \emph{Man-in-the-middle}) durchaus besteht.\\
   
@@ -242,7 +242,7 @@ Für eine Erweiterung des Datensatzes, insbesondere in dieser Arbeit, sollten au
 \subsection{Von der Einzelanwendung zur Mehrgültigkeit}
 % Hier beschreiben wie durch Verwendung von Demo und Vulnerable-Anwendung mehrgültigkeit geschaffen werden kann
 % und Anwendungen nach gleichem Prinzip arbeiten (Entwickler sich ein Beispiel nehmen usw.)
-Im besten Fall wird eine WAF explizit auf die zu schützende Anwendung angepasst in dem der Datenverkehr der Anwendung selbst analysiert wird. Was passiert jedoch wenn die entsprechenden Daten nicht vorliegen oder mehrere ähnliche Anwendungen mit möglichst wenigen zur Verfügung stehenden Daten abgesichert werden sollten? Bereits in der Einleitung (\ref{sec:einleitungziel}) wurde behauptet dass Anwendungen auch anhand der Daten von ähnlichen Anwendungen abgesichert werden könnten. Doch was sind \glqq\emph{ähnliche}\grqq{} Anwendungen? Grundsätzlich sollte hier unterschieden werden zwischen \emph{funktionell} ähnlichen und \emph{technologisch} ähnlichen Anwendungen.\\
+Im besten Fall wird eine WAF explizit auf die zu schützende Anwendung angepasst in dem der Datenverkehr der Anwendung selbst analysiert wird. Was passiert jedoch wenn die entsprechenden Daten nicht vorliegen oder mehrere ähnliche Anwendungen mit möglichst wenigen zur Verfügung stehenden Daten abgesichert werden sollten? Bereits in der Einleitung (Abschnitt~\ref{sec:einleitungziel}) wurde behauptet dass Anwendungen auch anhand der Daten von ähnlichen Anwendungen abgesichert werden könnten. Doch was sind \glqq\emph{ähnliche}\grqq{} Anwendungen? Grundsätzlich sollte hier unterschieden werden zwischen \emph{funktionell} ähnlichen und \emph{technologisch} ähnlichen Anwendungen.\\
 
 \subsubsection{Funktionale Ähnlichkeit}
 Bei funktional ähnlichen Anwendungen handelt es sich um Anwendungen die sich in ihrer Funktion ähneln. Um das Problem der fehlenden Anwendung von Torrano-Giménez aus dem vorherigen Abschnitt \ref{sec:lsgalt}  zu lösen, könnte man beispielsweise anhand der Daten aus dem CSIC2010-Datensatz eine 1:1-Kopie der Anwendung (in ihrer Funktion) \glqq\emph{nachprogrammieren}\grqq. Diese ähnliche Kopie könnte dann genutzt werden um den Datensatz mit Ergebnissen aus den Tests mit neueren Werkzeugen zu erweitern. Zu bedenken ist jedoch dass die Kopie nur anhand der von aussen sichtbaren Funktionalität entstand und (eventuell) nicht hundertprozentig der Funktionalität des Originals entspricht. Man kann aber davon ausgehen dass das Verhalten des Zwillings in Bezug auf die Features (Tabelle~\ref{tab:tgfeatures}) größtenteils dem des Originals entspricht.\\
@@ -252,7 +252,8 @@ Für die funktionale Ähnlichkeit bedarf es aber nicht grundsätzlich einer iden
 Mit \emph{technologischer Ähnlichkeit} ist der Vergleich der zugrundeliegenden Technologien (Programmiersprachen, Frameworks, usw.) gemeint. Da uns bei Proxy-Systemen wie einer WAF meistens nur der Blick von Aussen möglich ist, ist die Frage nach der \emph{technologischen Ähnlichkeit} in vielen Fällen nicht so einfach zu beantworten. Beispielsweise lässt sich anhand der originalen CSIC2010-Daten nicht feststellen, welche Datenbank die Anwendung von Torrano-Giménez verwendete oder ob überhaupt eine Datenbank im System Anwendung fand. Mit hoher Wahrscheinlichkeit handelte es sich allerdings um eine javabasierte Anwendung, da die URLs der CSIC2010-Daten sowohl den Standard-Port vieler Servletcontainer (\verb=8080=) beinhalten und der Pfadteil in vielen Fällen mit der Dateiendung \verb=*.jsp= (\emph{JavaServerPages}) endete.\\
 
 \textcolor{bhtBlue}{\ding{110} Achtung:} Für einen Angreifer ist die technologische Basis einer Anwendung von immensem Interesse. Ist die technologische Basis erst einmal bekannt, lassen sich Schwachpunkte und Angriffswege wesentlich leichter identifizieren. Aus Sicht der IT-Sicherheit sollten Anwendungen (insbesondere im produktiven Einsatz) es daher vermeiden, Daten preiszugeben die Rückschlüsse auf eingesetzte Technologien und Werkzeuge ermöglichen.\\
-\begin{figure}
+
+Beispiele für Rückschlüsse auf Technologien
 \begin{description}
   \scriptsize
   \item[http://localhost:8080/\underline{test.do}] \hfill \\
@@ -262,18 +263,34 @@ Hier ist ein Request-Parameter mit Namen \verb=execution= und einem Wert im Form
   \item[https://devtty.de/app/detail\underline{.jsf};jsessionid=jtO85wJZjgNR3jXpeEIzV9npU-\_BQcTyEF-90JTq.\underline{slbs11}?\underline{dswid=3942\&dsrid=213}\&id=1041] \hfill \\
 Ein Beispiel einer produktiven, javabasierten Anwendung\footnote{Domain-Name wurde geändert}. Im Request-Header wird als Server ein JBoss/EAP-7 benannt. Die Anwendung nutzt JavaServerFaces (\verb=.jsf=). Durch eine Fehlkonfiguration wird die Session-ID in der URL übermittelt. Bei JBoss/WildFly-Servern wird an die SessionID der Name des echten Hosts angehängt, es existiert also höchstwahrscheinlich ein Host mit dem internen Namen \verb=slbs11.devtty.de=. Die Parameter \verb=dswid= und \verb=dsrid= weisen auf Verwendung des Apache DeltaSpike-Frameworks hin. Im Fall das es sich bei der benutzten DeltaSpike-Bibliothek um eine etwas ältere Version handelt, existiert hier eine Schwachstelle (\href{https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12416}{CVE-2019-12416}) die die Möglichkeit einer JavaScript-Injection bietet. 
 \end{description}
-\caption{Beispiele für Rückschlüsse auf Technologien}
-\label{fig:bsptae}
-\end{figure}
 
 Im Fall der Mehrgültigkeit, im Sinne dass Trainingsdaten ähnlicher Anwendungen genutzt werden sollen, ist die technologische Ähnlichkeit wichtig, gerade weil in den HTTP-Anfragen diese relevanten Informationen stecken. Ein Teil der Features aus Tabelle~\ref{tab:tgfeatures} stimmt bei technologisch ähnlichen Anwendungen häufig überein. Gemeinsame Schlüsselworte oder auch bestimmte Muster in den Argumenten wiederholen sich sowohl bei technologisch ähnlichen als auch bei funktional ähnlichen Anwendungen. \\
 
-
-Frei verfügbar sind insbesondere die Beispielanwendungen vieler Framework-Anbieter. 
+\subsubsection{}
+Bei der Entwicklung von webbasierten Anwendungen unterstützen die frei verfügbaren Demo-Anwendungen (Beispiele in Tabelle~\ref{tab:exampleapp} vieler Framework-Anbieter ihre Nutzer anhand praktischer Beispiele. Dabei enstehen in gewisser Weise auch \emph{ähnliche Anwendungen}\footnote{z.T.\emph{Copy'n'Paste}-Code} mit gleicher Technologie, ähnlichen Funktionen und (wahrscheinlich) annähernd gleichen Schwachstellen. Die Demonstratoren sind dadurch ideale Kandidaten zum Generieren von Trainingsdaten, die nicht nur für sich selbst gültige Daten generieren, sondern z.T. auch gültige Daten für ihre \glqq\emph{technologischen Geschwister}\glqq{} liefern könnten.
 
 
 \subsection{Unzureichende Kategorisierung im Datensatz}
 \label{sec:Kategorisierung}
+Ein großes Problem vieler Firewalls sind falsch-positive Meldungen. Hier löst die Firewall in der Annahme aus, dass ein Angriff vorliegt obwohl kein wirklicher Grund dafür vorliegt. Gründe dafür wurden bereits in Abschnitt~\ref{sec:rullog} (insbesondere Abbildung~\ref{fig.paranoia}) benannt. Falsch-positive sind aber kein alleiniges Problem der regelbasierten WAFs, auch trainierte Systeme können anfällig für dieses Verhalten sein. Für Betreiber und Nutzer von Anwendungen sind solche Meldungen unerwünscht. Im produktiven Einsatz einer WAF die mit dem CSIC2010-Datensatz trainiert wurde, würde bereits die Verwendung eines anderen Browsers (als den von Torrano-Giménez genutzten) zum \emph{False-Positive} führen, wenn die Firewall jede Abweichung vom (\emph{unbeaufsichtigt}) Erlerntem als Angriff interpretiert. Wird der Datensatz erweitert, könnten mit der Einführung weiterer Parameter Dateneinträge kategorisiert und spezifiziert werden und damit selektiv zum Einsatz kommen.\\ Beispielsweise erwähnt die Beschreibung der Anwendung in \cite{csic2010} dass Nutzer in der Anwendung registriert werden und Teile der Anwendung nur nach einem Login verfügbar sind. Ein Blick in die Daten zeigt eine Unterteilung in drei Bereiche: \\
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lp{7cm}}
+    \toprule
+    \textbf{URL-Pfad} & \textbf{verfügbar für} \\
+    \midrule
+    \verb=/tienda1/=\textcolor{bhtBlue}{\verb=global=}}\verb=/= & alle Nutzer\\
+    \verb=/tienda1/=\textcolor{bhtBlue}{\verb=public=}}\verb=/= & nicht eingeloggte Nutzer  \\ 
+    \verb=/tienda1/=\textcolor{bhtBlue}{\verb=miembros=}}\verb=/= & angemeldete Nutzer  \\
+    \bottomrule
+  \end{tabular}
+  
+  \caption{Sicherheitsbereiche in der CSIC2010-Beispielanwendung}
+  \label{tab:csicsecarea}
+\end{table}
+
+man in die CSIC2010-Daten chen (
 % Problem zu viele Falsch-Positive/Zuordnung:Framework/Status(Session) -> Anwendungsstatus (DeltaspikeClientId/SpringExecuteID)
 % möglichkeit anomalien nicht auf basis der Regeln sondern auf basis von abweichungen in der Anwendungsnutzung auszuwerten
 
@@ -285,7 +302,7 @@ Frei verfügbar sind insbesondere die Beispielanwendungen vieler Framework-Anbie
 \subsection{Zentralisierung}
 \label{sec:zentralisierungkern}
 
-Bisher wurde der Datensatz als feste Vorgabe zum Training enutzt. In einem praktischen System wäre es jedoch von Vorteil wenn der Datensatz sich selbständig erweitert und gegebenenfalls auch von anderen, ähnlichen Systemen \glqq\emph{lernen}\grqq könnte. In~\cite{Manaseer2018}~erfolgte bereits der Entwurf die Daten von erkannten Angriffen zentral, über ein sogenanntes \emph{Command and Control Center} zu sammeln. Carmen Torrano-Giménez nutzte jedoch zum Trainieren ihrer WAF ausschließlich Daten von erwünschten Requests. Im Gegensatz zu Manaseer wäre es durchaus hilfreich alle Requests an eine zentrale Komponente zu senden und mit Hilfe einer genaueren Kategorisierung (siehe Abschnitt~\ref{sec:Kategorisierung}) könnten diese Daten dann auch dementsprechend ausgewertet und gegebenenfalls an die WAFs ähnlicher Anwendungen verteilt werden.
+Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem praktischen System wäre es jedoch von Vorteil wenn der Datensatz sich selbständig erweitert und gegebenenfalls auch von anderen, ähnlichen Systemen \glqq\emph{lernen}\grqq könnte. In~\cite{Manaseer2018}~erfolgte bereits der Entwurf die Daten von erkannten Angriffen zentral, über ein sogenanntes \emph{Command and Control Center} zu sammeln. Carmen Torrano-Giménez nutzte jedoch zum Trainieren ihrer WAF ausschließlich Daten von erwünschten Requests. Im Gegensatz zu Manaseer wäre es durchaus hilfreich alle Requests an eine zentrale Komponente zu senden und mit Hilfe einer genaueren Kategorisierung (siehe Abschnitt~\ref{sec:Kategorisierung}) könnten diese Daten dann auch dementsprechend ausgewertet und gegebenenfalls an die WAFs ähnlicher Anwendungen verteilt werden.
 
 
 \begin{figure}[ht]
