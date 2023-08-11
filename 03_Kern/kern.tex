@@ -97,7 +97,7 @@ Die drei originalen Teildatensätze befinden sich jeweils in eigenen Dateien und
 
 Die letzten drei Spalten der Tabelle beinhalten die \emph{Anzahl unterscheidbarer Werte} und die \emph{Fehlquote}, d.h. den prozentualen Anteil an Dateneinträgen bei denen dieses Feld keinen Wert beinhaltet, für die jeweiligen Teildatensätze. Erkennbar sind einige Felder mit vorhandenem Wert in jedem Dateneintrag, der sich jedoch nie vom Wert in anderen Einträgen unterscheidet. Diese Felder sind demzufolge für eine Klassifizierung, bei der ausschließlich Daten des CSIC2010-Datensatzes genutzt werden, irrelevant. Torrano-Giménez hätte diese zum Teil weglassen können und es hätte, bei Verwendung ihrer Testdaten, nichts an ihren Ergebnissen geändert. In einer dynamischeren (und produktiven) Umgebung müssen diese Felder jedoch mit betrachtet werden.\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel:} Die WAF erfasst mehrere hundert HTTP-Anfragen mit einer festen Session-ID~(\verb=JSESSIONID=,Session-Cookie, o.ä.) und festem Wert im \emph{User-Agent} (~$\rightarrow$~ein Internetnutzer surft mit seinem Browser) und plötzlich erscheint eine Anfrage mit gleicher Session-ID aber anderem User-Agent. In diesem Fall sollte die WAF entsprechend reagieren, da die Möglichkeit eines Angriffes (\emph{Session Hijacking}, \emph{Man-in-the-middle}) durchaus besteht.\\
+\textcolor{bhtGray}{\ding{110} Beispiel:} Die WAF erfasst mehrere hundert HTTP-Anfragen mit einer festen Session-ID (\verb=JSESSIONID=,Session-Cookie, o.ä.) und festem Wert im \emph{User-Agent} (~$\rightarrow$~ein Internetnutzer surft mit seinem Browser) und plötzlich erscheint eine Anfrage mit gleicher Session-ID aber anderem User-Agent. In diesem Fall sollte die WAF entsprechend reagieren, da die Möglichkeit eines Angriffes (\emph{Session Hijacking}, \emph{Man-in-the-middle}) durchaus besteht.\\
   
 Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format namens \emph{\textbf{A}ttribute-\textbf{R}elation \textbf{F}ile \textbf{F}ormat} (ARFF)~\cite{arff2023}, welches die Daten ggf. mit entsprechenden Datentypen genauer beschreiben kann.
 
@@ -134,7 +134,7 @@ Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format nam
 @attribute label {norm,anom}
 \end{lstlisting}
 \end{figure}
-
+\anno{TODO Tabelle fehlplatziert, sollte erst wenn CSICÄnderungen bekannt oder Anhang}
 
 \subsection{Alter des Datensatzes}
 
@@ -252,7 +252,7 @@ Für die funktionale Ähnlichkeit bedarf es aber nicht grundsätzlich einer iden
 Mit \emph{technologischer Ähnlichkeit} ist der Vergleich der zugrundeliegenden Technologien (Programmiersprachen, Frameworks, usw.) gemeint. Da uns bei Proxy-Systemen wie einer WAF meistens nur der Blick von Aussen möglich ist, ist die Frage nach der \emph{technologischen Ähnlichkeit} in vielen Fällen nicht so einfach zu beantworten. Beispielsweise lässt sich anhand der originalen CSIC2010-Daten nicht feststellen, welche Datenbank die Anwendung von Torrano-Giménez verwendete oder ob überhaupt eine Datenbank im System Anwendung fand. Mit hoher Wahrscheinlichkeit handelte es sich allerdings um eine javabasierte Anwendung, da die URLs der CSIC2010-Daten sowohl den Standard-Port vieler Servletcontainer (\verb=8080=) beinhalten und der Pfadteil in vielen Fällen mit der Dateiendung \verb=*.jsp= (\emph{JavaServerPages}) endete.\\
 
 \textcolor{bhtBlue}{\ding{110} Achtung:} Für einen Angreifer ist die technologische Basis einer Anwendung von immensem Interesse. Ist die technologische Basis erst einmal bekannt, lassen sich Schwachpunkte und Angriffswege wesentlich leichter identifizieren. Aus Sicht der IT-Sicherheit sollten Anwendungen (insbesondere im produktiven Einsatz) es daher vermeiden, Daten preiszugeben die Rückschlüsse auf eingesetzte Technologien und Werkzeuge ermöglichen.\\
-
+\begin{figure}
 \begin{description}
   \scriptsize
   \item[http://localhost:8080/\underline{test.do}] \hfill \\
@@ -262,13 +262,15 @@ Hier ist ein Request-Parameter mit Namen \verb=execution= und einem Wert im Form
   \item[https://devtty.de/app/detail\underline{.jsf};jsessionid=jtO85wJZjgNR3jXpeEIzV9npU-\_BQcTyEF-90JTq.\underline{slbs11}?\underline{dswid=3942\&dsrid=213}\&id=1041] \hfill \\
 Ein Beispiel einer produktiven, javabasierten Anwendung\footnote{Domain-Name wurde geändert}. Im Request-Header wird als Server ein JBoss/EAP-7 benannt. Die Anwendung nutzt JavaServerFaces (\verb=.jsf=). Durch eine Fehlkonfiguration wird die Session-ID in der URL übermittelt. Bei JBoss/WildFly-Servern wird an die SessionID der Name des echten Hosts angehängt, es existiert also höchstwahrscheinlich ein Host mit dem internen Namen \verb=slbs11.devtty.de=. Die Parameter \verb=dswid= und \verb=dsrid= weisen auf Verwendung des Apache DeltaSpike-Frameworks hin. Im Fall das es sich bei der benutzten DeltaSpike-Bibliothek um eine etwas ältere Version handelt, existiert hier eine Schwachstelle (\href{https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12416}{CVE-2019-12416}) die die Möglichkeit einer JavaScript-Injection bietet. 
 \end{description}
+\caption{Beispiele für Rückschlüsse auf Technologien}
+\label{fig:bsptae}
+\end{figure}
 
-Im Fall der Mehrgültigkeit, im Sinne dass Trainingsdaten ähnlicher Anwendungen genutzt werden sollen, ist die technologische Ähnlichkeit wichtig, gerade weil in den HTTP-Anfragen diese relevanten Informationen stecken. Ein Teil der Features aus Tabelle~\ref{tab:tgfeatures} stimmen auch bei technologisch ähnlichen Anwendung überein.
+Im Fall der Mehrgültigkeit, im Sinne dass Trainingsdaten ähnlicher Anwendungen genutzt werden sollen, ist die technologische Ähnlichkeit wichtig, gerade weil in den HTTP-Anfragen diese relevanten Informationen stecken. Ein Teil der Features aus Tabelle~\ref{tab:tgfeatures} stimmt bei technologisch ähnlichen Anwendungen häufig überein. Gemeinsame Schlüsselworte oder auch bestimmte Muster in den Argumenten wiederholen sich sowohl bei technologisch ähnlichen als auch bei funktional ähnlichen Anwendungen. \\
 
 
 Frei verfügbar sind insbesondere die Beispielanwendungen vieler Framework-Anbieter. 
 
-\subsubsection{}
 
 \subsection{Unzureichende Kategorisierung im Datensatz}
 \label{sec:Kategorisierung}
