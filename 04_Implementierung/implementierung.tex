@@ -138,14 +138,7 @@ Mit der Möglichkeit der Überwachung der qualitativen Metriken der Anwendung un
 
 % Highlight 2 der Implementierung
 \section{Zentralisierung}
-Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewichtigen Servlet-Filter der sämtliche Abwehrmaßnahmen direkt verarbeitet. Abgesehen von den Interaktionen mit der eigentlichen Anwendung existieren nur wenige Berührungspunkte mit externen Systemen. Die zwei wichtigsten Fälle sind dabei die \emph{Konfiguration} der Anwendung und die \emph{Benachrichtung} des Betreibers über den Zustand (Funktion, Angriffe, usw.) der Web Application Firewall. Beide Fälle benutzen derzeit textuelle Schnittstellen. Die Konfiguration erfolgt über \emph{manuelles} Editieren des Bereitstellungsdeskriptors (\emph{web.xml}) und die Bereitstellung des Status über Logdateien. Um den Datenaustausch mehrerer Instanzen der WAF nach dem Muster aus Abschnitt~\ref{sec:zentralisierungkern} zu ermöglichen, müssten zusätzliche (maschinell lesbare) Schnittstellen geschaffen werden. Diese Schnittstellen sorgen dann für den Datenaustausch mit einer zentralen Schnittstelle (Abbildung \ref{fig:my_verbund}).
-
-- Bezug der eigenen Konfiguration
-- Melden von Angriffen (\emph{Logging})
-- Erfassung korrekte HTTP-Anfragen
-- sonstige Statistiken
-
-\ref{fig.wafmana} \ref{sec:zentralisierungkern}
+Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewichtigen Servlet-Filter der sämtliche Abwehrmaßnahmen direkt verarbeitet. Abgesehen von den Interaktionen mit der eigentlichen Anwendung existieren nur wenige Berührungspunkte mit externen Systemen. Die zwei wichtigsten Fälle sind dabei die \emph{Konfiguration} der Anwendung und die \emph{Benachrichtung} des Betreibers über den Zustand (Funktion, Angriffe, usw.) der Web Application Firewall. Beide Fälle benutzen derzeit textuelle Schnittstellen. Die Konfiguration erfolgt über \emph{manuelles} Editieren des Bereitstellungsdeskriptors (\emph{web.xml}) und die Bereitstellung des Status über Logdateien. Um den Datenaustausch mehrerer Instanzen der WAF nach dem Muster aus Abschnitt~\ref{sec:zentralisierungkern} zu ermöglichen, müssten zusätzliche (maschinell lesbare) Schnittstellen geschaffen werden. Diese Schnittstellen sorgen dann für den Datenaustausch mit einer zentralen Schnittstelle (Abbildung~\ref{fig:my_verbund}).
 
 \begin{figure}[h]
     \centering
@@ -153,6 +146,29 @@ Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewi
     \caption{Arbeit der WAFs im Verbund}
     \label{fig:my_verbund}
 \end{figure}
+
+Glücklicherweise haben die Entwickler der WebCastellum-Software entsprechende Schnittstellen (nun im Sinne der objektorientierten Programmierung) mitgeliefert. Das System bietet mit dem Interface \verb=org.webcastellum.ConfigurationLoader= sozusagen bereits eine technische Blaupause für die Implementierung einer alternativen Konfigurationsmöglichkeit. Tatsächlich finden sich in der Software bereits zwei Implementierungen des \emph{Interfaces}:
+
+\begin{description}
+  \small
+\item[DefaultConfigurationLoader] \hfill \\
+  lädt die Konfiguration, wie zuvor beschrieben, aus Parametern im Bereitstellungsdeskriptor (\emph{web.xml})
+\item[PropertiesFileConfigurationLoader] \hfill \\
+  lädt die Konfiguration aus einer benannten Datei im \emph{properties}-Format mit der Möglichkeit bei fehlenden Werten auf die Daten der \emph{web.xml} zurückzufallen.
+\end{description}
+
+Zusätzliche Implementationen der Schnittstelle könnten sich die Konfigurationsparameter über beliebige Quellen, zum Beispiel in Form eines REST-API-Clients, \glqq\emph{besorgen}\grqq. 
+
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=14cm]{configclasses}
+    \caption{Implementierung Konfiguration}
+    \label{fig.impkonfig}
+  \end{center}
+\end{figure}
+
+
 
 \begin{figure}[h]
   \begin{center}
@@ -162,13 +178,6 @@ Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewi
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=14cm]{configclasses}
-    \caption{Implementierung Konfiguration}
-    \label{fig.impkonfig}
-  \end{center}
-\end{figure}
 
 
 
