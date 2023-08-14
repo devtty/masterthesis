@@ -158,7 +158,7 @@ Glücklicherweise haben die Entwickler der WebCastellum-Software entsprechende S
 \end{description}
 
 Die Klasse \verb=org.webcastellum.ConfigurationManager= implementiert als sogenannter \emph{Service-Locator}\footnote{s. \url{https://martinfowler.com/articles/injection.html} abgerufen am 14.08.2023} eine einfache Möglichkeit zwischen den beiden Implementationen zu wechseln.\\
-Zusätzliche Implementationen der Schnittstelle könnten sich die Konfigurationsparameter über beliebige Quellen, zum Beispiel in Form eines REST-API-Clients, \glqq\emph{besorgen}\grqq. 
+Eine zusätzliche Implementation der Schnittstelle, wie der in Abbildung~\ref{fig.impkonfig} dargestellte \verb=RemoteConfigurationLoader=, könnte sich die Konfigurationsparameter über beliebige Quellen, zum Beispiel in Form eines REST-API-Clients/MicroServices, \glqq\emph{besorgen}\grqq. 
 
 \begin{figure}[h]
   \begin{center}
@@ -167,6 +167,11 @@ Zusätzliche Implementationen der Schnittstelle könnten sich die Konfigurations
     \label{fig.impkonfig}
   \end{center}
 \end{figure}
+
+Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentralen Dienst bezogen werden, muss dieser seinen \emph{Kunden} auch identifizieren können. Beispielsweise über einen eindeutigen, mitgelieferten Parameter (z.B. eine UUID - Universally Unique Identifier). Im echten Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfigurationsparametern bedacht werden, da diese auch sicherheitsrelevant sind.\\
+
+\anno{ggf. Bsp. Quelltext f. REST-Aufruf einfügen?}
+Die Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, mehr ist für eine einzelne Instanz der Firewall auch nicht notwendig. Im Verbund sollten Konfigurationsparameter anpassbar sein und die Möglichkeit bestehen diese auch zu speichern. 
 
 
 
@@ -178,6 +183,7 @@ Zusätzliche Implementationen der Schnittstelle könnten sich die Konfigurations
   \end{center}
 \end{figure}
 
+\section{Lernmodus}
 
 
 
@@ -196,7 +202,6 @@ Klassifizierung anhand der J48-Implementierung eines Entscheidungsbaums nach dem
     \label{fig:my_future}
 \end{figure}
 
-\section{Lernmodus}
 
 % Highlight des Deployments beim Kunden
 
