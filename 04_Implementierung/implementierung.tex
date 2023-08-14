@@ -157,8 +157,8 @@ Glücklicherweise haben die Entwickler der WebCastellum-Software entsprechende S
   lädt die Konfiguration aus einer benannten Datei im \emph{properties}-Format mit der Möglichkeit bei fehlenden Werten auf die Daten der \emph{web.xml} zurückzufallen.
 \end{description}
 
+Die Klasse \verb=org.webcastellum.ConfigurationManager= implementiert als sogenannter \emph{Service-Locator}\footnote{s.~\url{https://martinfowler.com/articles/injection.html#UsingAServiceLocator} abgerufen am 14.08.2023} eine einfache Möglichkeit zwischen den beiden Implementationen zu wechseln.\\
 Zusätzliche Implementationen der Schnittstelle könnten sich die Konfigurationsparameter über beliebige Quellen, zum Beispiel in Form eines REST-API-Clients, \glqq\emph{besorgen}\grqq. 
-
 
 \begin{figure}[h]
   \begin{center}
