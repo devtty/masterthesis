@@ -134,10 +134,20 @@ Zwei Testklassen (\verb=WebFilterDroneTest= und \verb=WebFilterHttpClientTest=) 
     \label{fig:my_sonarf}
 \end{figure}
 
+Mit der Möglichkeit der Überwachung der qualitativen Metriken der Anwendung und der erweiterten Testabdeckung können die Arbeiten zur Erweiterung der Web Application Firewall beginnen. Hierzu zählen insbesondere der Datenaustausch zwischen verschiedenen Instanzen über eine zentrale Komponente und die (hoffentlich) effektivere Angriffserkennung.
 
 % Highlight 2 der Implementierung
 \section{Zentralisierung}
-\begin{figure}[ht]
+Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewichtigen Servlet-Filter der sämtliche Abwehrmaßnahmen direkt verarbeitet. Abgesehen von den Interaktionen mit der eigentlichen Anwendung existieren nur wenige Berührungspunkte mit externen Systemen. Die zwei wichtigsten Fälle sind dabei die \emph{Konfiguration} der Anwendung und die \emph{Benachrichtung} des Betreibers über den Zustand (Funktion, Angriffe, usw.) der Web Application Firewall. Beide Fälle benutzen derzeit textuelle Schnittstellen. Die Konfiguration erfolgt über \emph{manuelles} Editieren des Bereitstellungsdeskriptors (\emph{web.xml}) und die Bereitstellung des Status über Logdateien. Um den Datenaustausch mehrerer Instanzen der WAF nach dem Muster aus Abschnitt~\ref{sec:zentralisierungkern} zu ermöglichen, müssten zusätzliche (maschinell lesbare) Schnittstellen geschaffen werden. Diese Schnittstellen sorgen dann für den Datenaustausch mit einer zentralen Schnittstelle (Abbildung \ref{fig:my_verbund}).
+
+- Bezug der eigenen Konfiguration
+- Melden von Angriffen (\emph{Logging})
+- Erfassung korrekte HTTP-Anfragen
+- sonstige Statistiken
+
+\ref{fig.wafmana} \ref{sec:zentralisierungkern}
+
+\begin{figure}[h]
     \centering
     \includegraphics[width=8cm]{central.png}
     \caption{Arbeit der WAFs im Verbund}
