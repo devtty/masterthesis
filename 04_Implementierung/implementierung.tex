@@ -190,17 +190,21 @@ Der Lernmodus erfasst alle HTTP-Anfragen und speichert diese in einer eigenen Te
 \section{ML-Fähigkeit}
 
 Zur Integration von Funktionen im Bereich \emph{Machine Learning} aus Implementierungssicht sollte zuerst überlegt werden in welchen Phasen der Anwendung einzelne Schritte ausgeführt werden. Da der WebCastellum-Filter bei jeder HTTP-Anforderung aktiv, wird ist dieses wohl der schlechteste Zeitpunkt für die Trainingsphase einer ML-Komponente. Die einfachste Möglichkeit diese auszuführen wäre bei Anwendungsstart, ggf. in einer eigenen Klasse, und das resultierende Model dem Filter als Singleton zur Verfügung zu stellen. Der WebCastellum-Filter bietet mit der Methode \verb=restartCompletlyWhenRequired()= jedoch selbst die Möglichkeit seine Konfiguration in bestimmten Intervallen und bei Bedarf neu nachzuladen. Die Trainingsphase könnt auch an dieser Stelle neu gestartet werden.\\
-Die Testphase (\emph{Evaluation}) muss jedoch für jeden Request einzeln ausgeführt werden. Der WebCastellum-Filter 
+Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen das Modell geprüft wird, muss jedoch für jeden Request einzeln ausgeführt werden. Innerhalb der Überprüfung des Requests (s.~Abbildung~\ref{fig:wcfilter} sollte die Evaluation nach allen anderen Prüfungen stattfinden. ML-Operationen sind rechen- und speicherintensiv und sollten daher nach Möglichkeit eher vermieden werden. Löst bereits die vorherige Prüfung nach Logik- oder Regelverletzungen einen Alarm aus, ist eine weitere Prüfung nicht notwendig.
 
 \begin{figure}[h]
   %% \begin{center}
   \centering
   \includesvg[inkscapelatex=false,width=0.7\textwidth]{seq}
-  \caption{Diagramm WebCastellum Filter}
+  \caption{Ablauf einer Prüfung im WebCastellum Filter}
   \label{fig:wcfilter}
+  \medskip
+  \small
+  schematisch nach Methodeaufruf \verb=WebCastellumFilter#internalDoFilter=
 %%  \end{center}
 \end{figure}
 
+Für Erweiterungen von WebCastellum \emph{nach} der regelbasierten Überprüfung bietet sich die Methode \verb=doAfterProcessing= an. Hier kann dann entsprechend geprüft werden.\\
 
 doAfterProcessing
 

@@ -215,3 +215,50 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 %  (Die Beschreibung der Werkzeuge wurde den jeweiligen Internetpräsenzen entnommen)
   \label{tab:httpmethods}
 \end{table}
+
+
+\lstset{language=Java,
+% 	basicstyle=\ttfamily\color{black}\small,
+% 	keywordstyle=\bfseries\color{bhtBlue},
+% 	identifierstyle=\color{black}, 
+% 	commentstyle=\color{gray}\textsl
+}
+\begin{figure}[h]
+  \centering
+        \caption{Weka}
+        \label{fig:wekatrain}
+        \begin{lstlisting}[basicstyle=\footnotesize]
+  DataSource source = new DataSource("csic_2010_norm.csv");
+  Instances dataset = source.getDataSet();
+                        
+  dataset.setClassIndex(dataset.numAttributes() - 1);
+
+  J48 j48 = new J48();
+  dataset.deleteAttributeType(NUMERIC);
+
+  Remove filter = new Remove();
+  filter.setAttributeIndices("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17");
+  filter.setInputFormat(dataset);
+
+  Instances filtered = Filter.useFilter(dataset, filter);
+  filtered.setClassIndex(filtered.numAttributes() - 1);
+  j48.buildClassifier(filtered);              
+\end{lstlisting}
+\end{figure}
+
+
+\lstset{language=Java,
+% 	basicstyle=\ttfamily\color{black}\small,
+% 	keywordstyle=\bfseries\color{bhtBlue},
+% 	identifierstyle=\color{black}, 
+% 	commentstyle=\color{gray}\textsl
+}
+\begin{figure}[h]
+  \centering
+        \caption{Weka test}
+        \label{fig:wekatest}
+        \begin{lstlisting}[basicstyle=\footnotesize]
+  Evaluation eval = new Evaluation(filtered);
+  eval.evaluateModelOnce(j48, filteredTest.get(requestInstance));
+\end{lstlisting}
+\end{figure}
