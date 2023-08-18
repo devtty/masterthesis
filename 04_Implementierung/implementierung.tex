@@ -183,11 +183,26 @@ Diese Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, me
   \end{center}
 \end{figure}
 
-\section{Lernmodus}
-Der Lernmodus erfasst alle HTTP-Anfragen und speichert diese in einer eigenen Text-Datei. Bei aktiviertem Lernmodus geht WebCastellum davon aus, dass alle Anfragen auch gewünschte Anfragen sind. Aus den aufgezeichneten Anfragen lässt sich beispielsweise eine Whitelist an URL-Pfaden oder Stichwörtern generieren, die für eine weitere Absicherung nützlich sind. Technisch wird an dieser Stelle ebenfalls das Logging-Framework genutzt und eine Erweiterung kann in Anlehnung an Abbildung~\ref{fig.imversand} erfolgen. Der Nachrichtenversand erfolgt auch in diesem Fall an die zentrale Komponente, wo beispielsweise auch eine weitere Verarbeitung stattfinden kann.
+\subsection{Lernmodus}
+Der Lernmodus erfasst alle HTTP-Anfragen und speichert diese in einer eigenen Text-Datei. Bei aktiviertem Lernmodus geht WebCastellum davon aus, dass alle Anfragen auch gewünschte Anfragen sind. Aus den aufgezeichneten Anfragen lässt sich beispielsweise eine Whitelist an URL-Pfaden oder Stichwörtern generieren, die für eine weitere Absicherung nützlich sind. Technisch wird an dieser Stelle das gleiche Logging-Framework wie bei der Benachrichtigung über mögliche Angriffe genutzt und eine Erweiterung kann in Anlehnung an Abbildung~\ref{fig.impversand} erfolgen. Der Nachrichtenversand erfolgt auch in diesem Fall an die zentrale Komponente, wo beispielsweise auch eine weitere Verarbeitung stattfinden kann. Manaseers Vorschlag (s.~Abschnitt~\ref{sec:zentralisierungkern}) eines zentralen \glqq\emph{Command and Control Centers}\grqq{} läss sich somit recht einfach mit WebCastellum als \emph{Client} umsetzen.
 
 
 \section{ML-Fähigkeit}
+
+Zur Integration von Funktionen im Bereich \emph{Machine Learning} aus Implementierungssicht sollte zuerst überlegt werden in welchen Phasen der Anwendung einzelne Schritte ausgeführt werden. Da der WebCastellum-Filter bei jeder HTTP-Anforderung aktiv, wird ist dieses wohl der schlechteste Zeitpunkt für die Trainingsphase einer ML-Komponente. Die einfachste Möglichkeit diese auszuführen wäre bei Anwendungsstart, ggf. in einer eigenen Klasse, und das resultierende Model dem Filter als Singleton zur Verfügung zu stellen. Der WebCastellum-Filter bietet mit der Methode \verb=restartCompletlyWhenRequired()= jedoch selbst die Möglichkeit seine Konfiguration in bestimmten Intervallen und bei Bedarf neu nachzuladen. Die Trainingsphase könnt auch an dieser Stelle neu gestartet werden.\\
+Die Testphase (\emph{Evaluation}) muss jedoch für jeden Request einzeln ausgeführt werden. Der WebCastellum-Filter 
+
+\begin{figure}[h]
+  %% \begin{center}
+  \centering
+  \includesvg[inkscapelatex=false,width=0.7\textwidth]{seq}
+  \caption{Diagramm WebCastellum Filter}
+  \label{fig:wcfilter}
+%%  \end{center}
+\end{figure}
+
+
+doAfterProcessing
 
 Die Implementierung der ML-Fähigkeit erfolgt nach dem Vorschlag aus \cite{kozik2014}.
 
