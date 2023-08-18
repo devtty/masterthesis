@@ -219,15 +219,15 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 
 \lstset{language=Java,
 % 	basicstyle=\ttfamily\color{black}\small,
-% 	keywordstyle=\bfseries\color{bhtBlue},
-% 	identifierstyle=\color{black}, 
+ 	keywordstyle=\bfseries\color{bhtBlue},
+ 	identifierstyle=\color{bhtGray}, 
 % 	commentstyle=\color{gray}\textsl
 }
 \begin{figure}[h]
   \centering
         \caption{Weka}
         \label{fig:wekatrain}
-        \begin{lstlisting}[basicstyle=\footnotesize]
+        \begin{lstlisting}
   DataSource source = new DataSource("csic_2010_norm.csv");
   Instances dataset = source.getDataSet();
                         
@@ -249,15 +249,15 @@ WAFw00f ist ein Werkzeug zur Identifikation von WAFs und die Liste der Plugins g
 
 \lstset{language=Java,
 % 	basicstyle=\ttfamily\color{black}\small,
-% 	keywordstyle=\bfseries\color{bhtBlue},
-% 	identifierstyle=\color{black}, 
+ 	keywordstyle=\bfseries\color{bhtBlue},
+ 	identifierstyle=\color{bhtGray}, 
 % 	commentstyle=\color{gray}\textsl
 }
 \begin{figure}[h]
   \centering
         \caption{Weka test}
         \label{fig:wekatest}
-        \begin{lstlisting}[basicstyle=\footnotesize]
+        \begin{lstlisting}
   Evaluation eval = new Evaluation(filtered);
   eval.evaluateModelOnce(j48, filteredTest.get(requestInstance));
 \end{lstlisting}
