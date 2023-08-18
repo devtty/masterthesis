@@ -168,10 +168,10 @@ Eine zusätzliche Implementation der Schnittstelle, wie der in Abbildung~\ref{fi
   \end{center}
 \end{figure}
 
-Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentralen Dienst bezogen werden, muss dieser seinen \emph{Kunden} auch identifizieren können. Beispielsweise über einen eindeutigen, mitgelieferten Parameter (z.B. eine UUID - Universally Unique Identifier). Im echten Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfigurationsparametern bedacht werden, da diese auch sicherheitsrelevant sind.\\
+Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentralen Dienst bezogen werden, muss dieser seinen \emph{Kunden} auch identifizieren können. Beispielsweise über einen eindeutigen, mitgelieferten Parameter (z.B. eine UUID - Universally Unique Identifier). Im Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfigurationsparametern bedacht werden, da diese auch sicherheitsrelevant sind.\\
 
 \anno{ggf. Bsp. Quelltext f. REST-Aufruf einfügen?}
-Die Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, mehr ist für eine einzelne Instanz der Firewall auch nicht notwendig. Im Verbund sollten Konfigurationsparameter anpassbar sein und die Möglichkeit bestehen diese auch zu speichern. 
+Diese Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, mehr ist für eine einzelne Instanz der Firewall auch nicht notwendig. Im Verbund sollten Konfigurationsparameter jedoch anpassbar sein und die Möglichkeit bestehen diese auch zu speichern. Glücklicherweise bietet WebCastellum bereits den sogenannten \glqq\emph{Lernmodus}\grqq{} an.  
 
 
 
@@ -184,7 +184,7 @@ Die Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, mehr
 \end{figure}
 
 \section{Lernmodus}
-
+Der Lernmodus erfasst alle HTTP-Anfragen und speichert diese in einer eigenen Text-Datei. Bei aktiviertem Lernmodus geht WebCastellum davon aus, dass alle Anfragen auch gewünschte Anfragen sind. Aus den aufgezeichneten Anfragen lässt sich beispielsweise eine Whitelist an URL-Pfaden oder Stichwörtern generieren, die für eine weitere Absicherung nützlich sind. Technisch wird an dieser Stelle ebenfalls das Logging-Framework genutzt und eine Erweiterung kann in Anlehnung an Abbildung~\ref{fig.imversand} erfolgen. Der Nachrichtenversand erfolgt auch in diesem Fall an die zentrale Komponente, wo beispielsweise auch eine weitere Verarbeitung stattfinden kann.
 
 
 \section{ML-Fähigkeit}
