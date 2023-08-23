@@ -78,9 +78,9 @@ Mit der vermehrten Nutzung webbasierter Schnittstellen, z.B. durch Microservice-
 
 \textcolor{bhtGray}{\ding{110} Beispiel MyHundai Hack\footnote{https://threadreaderapp.com/thread/1597695281881296897.html}} Viele Fahrzeughersteller bieten mittlerweile Handy-Apps zum Abrufen von Informationen über Fahrzeuge und (teilweise) deren Steuerung an. Der Hersteller Hyundai lässt seine App dazu über den Endpunkt \texttt{api.telematics.hyundaiusa.com} kommunizieren. Eine Beschreibung der API findet sich unter \emph{https://hacksore.github.io/bluelinky-docs/docs/api-reference}. Im beschriebenen Beispiel nutzten die Angreifer eine manipulierte Email-Adresse und verschafften sich Zugang zum Fahrzeug des Opfers (einer der Angreifer), inklusive der Möglichkeit das Fahrzeug aus der Ferne zu starten. \\\\
 
-Die MITRE Corporation sammelt in einer Datenbank\footnote{https://cve.mitre.org} öffentlich bekannt gewordene Schwachstellen und Risiken. Wenn eine Gefahr identifiziert wurde wird dieser Gefahr von einer sogenannten \emph{CVE Numbering Authority} eine eindeutige Referenznummer zugewiesen. Eine CVD-Referenznummer beginnt dabei immer mit dem Präfix \glqq\texttt{CVD-}\grqq gefolgt von der Jahreszahl der Veröffentlichung und einer fortlaufenden Nummer. Sind dann nähere Informationen oder Lösungen bekannt werden diese in weiteren Datenbanken veröffentlicht. Ein Beispiel dafür wäre die U.S National Vulnerability Database (NVD)\footnote{https://nvd.nist.gov}.\\\\
+Die MITRE Corporation sammelt in einer Datenbank\footnote{\url{https://cve.mitre.org}} öffentlich bekannt gewordene Schwachstellen und Risiken. Wenn eine Gefahr identifiziert wurde wird dieser Gefahr von einer sogenannten \emph{CVE Numbering Authority} eine eindeutige Referenznummer zugewiesen. Eine CVD-Referenznummer beginnt dabei immer mit dem Präfix \glqq\texttt{CVD-}\grqq gefolgt von der Jahreszahl der Veröffentlichung und einer fortlaufenden Nummer. Sind dann nähere Informationen oder Lösungen bekannt werden diese in weiteren Datenbanken veröffentlicht. Ein Beispiel dafür wäre die U.S National Vulnerability Database (NVD)\footnote{\url{https://nvd.nist.gov}}.\\\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel log4j2\footnote{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}} Eine der größeren Sicherheitslücken der letzten Zeit betraf das Logging-Framework \emph{Apache Log4j2}. Durch Manipulation der Lognachrichten konnten hier ganze Rechner gekapert werden. Eine Möglichkeit beschrieb Stefano Chierici in seinem Blog\cite{chierici2021}. Er nutzte einen HTTP-Request zum Setzen eines Cookies zur Übernahme eines Rechners. Die an das Logging-Framework übermittelten Werte wurden nicht korrekt auf sogenannte \emph{Injections} geprüft und im Ergebnis konnte die JNDI-Schnittstelle (\emph{Java Naming and Directory Interface}) für Angriffe ausgenutzt werden. \\\\
+\textcolor{bhtGray}{\ding{110} Beispiel log4j2\footnote{\url{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}}} Eine der größeren Sicherheitslücken der letzten Zeit betraf das Logging-Framework \emph{Apache Log4j2}. Durch Manipulation der Lognachrichten konnten hier ganze Rechner gekapert werden. Eine Möglichkeit beschrieb Stefano Chierici in seinem Blog\cite{chierici2021}. Er nutzte einen HTTP-Request zum Setzen eines Cookies zur Übernahme eines Rechners. Die an das Logging-Framework übermittelten Werte wurden nicht korrekt auf sogenannte \emph{Injections} geprüft und im Ergebnis konnte die JNDI-Schnittstelle (\emph{Java Naming and Directory Interface}) für Angriffe ausgenutzt werden. \\\\
 
 \anno{beide Schwachstellen später nochmal referenzieren mit Hinweis das beide durch vorschalten einer WAF u.U. schneller eingedämmt wären -> 0day}
 
@@ -88,7 +88,7 @@ Die MITRE Corporation sammelt in einer Datenbank\footnote{https://cve.mitre.org}
 
 Wird eine Schwachstelle aktiv ausgenutzt ohne das der Angriff entdeckt wird, spricht man von einem \glqq\emph{Zero-Day-Exploit}\grqq. Anwendungen sind in diesem Fall besonders gefährdet da der Hersteller noch keine Zeit hatte, den Nutzer vor dem Angriff zu schützen~\cite{bsi0day}. Selbst wenn ein Angriff dieser Art entdeckt wird, vergeht häufig viel Zeit bis zum entgültigen Schließen der Sicherheitslücke. Die Endnutzer sind in diesem Zeitraum besonders gefährdet, da die Vorgehensweise für den Angriff öffentlich bekannt ist und keine Gegenmaßnahmen getroffen wurden. Im Fall des obigen \emph{log4j2}-Beispiels sprach es sich beispielsweise schnell herum dass Chat-Nachrichten im beliebten Computerspiel emph{Minecraft} anfällig für die Manipulation sind. Bis zur entgültigen Behebung der Lücke vergingen mehrere Tage und der erste, behelfsmäßige Workaround bestand aus der Empfehlung einen Parameter in der Serverkonfiguration zu ändern der die ausgenutzte Funktionalität komplett abschaltete.\\ Hätte hier eine vorgeschaltene Software, die Eingaben auf bekannte Begriffe und Muster (z.B. auf JNDI-Adressen) untersucht schneller helfen können?
 
-\subsection{WAF allgemein}
+\subsection{Web Application Firewalls}
 Um die Sicherheit einer Anwendung zu gewährleisten sind viele verschiedene Schritte notwendig, so sollten natürlich bereits in der Anwendung selbst Ein- und Ausgabemöglichkeiten, z.B. durch Validierung, Encoding, usw. überprüft und gegebenenfalls eingeschränkt werden. Dabei lässt sich nicht jeder mögliche Angriffsfall vorhersehen oder eine eigene Implementierung ist zu aufwendig und teuer, weil häufig nicht ausreichend personelle Ressourcen oder Budget vorhanden sind um eine Web Applikation auf alle möglichen Sicherheitslücken zu prüfen. Im Laufe des Betriebes einer Web Anwendungen können zudem neue Angriffsvarianten entstehen und zusätzlich ist gerade bei Web Applikationen der Zeitdruck zur Veröffentlichung einer solchen häufig sehr hoch.\\
 
 An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegensatz zu regulären Firewalls haben Web Application Firewalls direkten Zugriff auf die HTTP-Anfragen (requests) und Antworten (responses) und können diese entsprechend bewerten und gegebenenfalls blockieren oder gefährdende Inhalte filtern oder umschreiben.\\
@@ -261,7 +261,7 @@ Dennis Appelt spezialisierte sich in seiner Arbeit~\cite{Appelt2016} auf das Tes
 
 \subsection{Schwarmwissen}
 \anno{Übergang ist irgendwie doof}
-Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlugen \emph{Saher Manaseer} und \emph{Ahmad Al Hwaitat} in~\cite{Manaseer2018} vor, mehreren Instanzen den Datenaustausch über ein zentrales System zu ermöglichen. 
+Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlugen \emph{Saher Manaseer} und \emph{Ahmad Al Hwaitat} in~\cite{Manaseer2018} vor, mehreren Instanzen den Datenaustausch über ein zentrales System zu ermöglichen. Dabei werden die erkannten Angriffe an ein sogenanntes \emph{Command and Control Center} weitergeleitet und von dort mit entsprechenden Abwehrmaßnahmen an weitere Firewall-Instanzen verteilt. 
 
 % TODO mehr ausfuehren
 
@@ -270,17 +270,20 @@ Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlu
 %ansaetze und kombination?
 
 % Thema 3 optional die andere seite
-\subsection{hacking Wafs}
+\subsection{Hacking Web Application Firewalls}
 
-\begin{neu}
-  Blick über den Tellerand? z.B. Fingerprinting von Interesse?
-\end{neu}
-
+Die Nutzung einer Web Application Firewall ist nicht nur für die Betreiber von Anwendungen interessant. Auch auf der anderen Seite, bei den Angreifern, ist das Interesse an WAF-System groß, müssen diese doch eventuell umgangen werden um an die eigentlichen Opfer zu gelangen. Im Idealbetrieb sollte eine Web Application Firewall jedoch recht unauffällig laufen und möglichst wenig (auch im Rahmen der Datensparsarmkeit) von ihrer Existenz preisgeben. Das OpenSource-Werkzeug \emph{wafw00f\footnote{\url{https://github.com/EnableSecurity/wafw00f} abgerufen am 23.08.2023}} ist auf \emph{Fingerprinting} spezialisiert. Im Fall von \emph{wafw00f} wird beim Fingerprinting eine übergebene URL aufgerufen und anhand der Antwort (bzw. mehrerer folgenden Antworten) versucht herauszufinden ob eine WAF im Einsatz ist und falls ja, welche WAF-Software genutzt wird.\\ Tabelle~\ref{tab:my_wafwoof} im Anhang listet einen Teil der von wafwoof erkennbaren WAF-Systeme auf.\\ Als Betreiber einer Web Application Firewall sollte man auch hier einen Blick hinein werfen und seine WAF vor möglicherweise unfreiwilliger Datenweitergabe schützen. 
 
 % Zusammenfassung (ca. 0,5 Seiten)
 \section{Zusammenfassung}
 
 % ggf. ditaa tabelle ueber den Zeitverlauf der verschiedenen Arbeiten nach Attack-Defend-Muster
+In diesem Kapitel wurden als Erstes einige wichtige Grundbegriffe die im weiteren Verlauf der Arbeit häufiger wiederkehren werden erläutert. Das \emph{Open Web Application Security Project} wurde als zentrale Anlaufstelle zum Thema \emph{WAF} vorgestellt, hier finden sich neben zahlreichen Dokumentationen und Auswertungen auch praktische Projekte, wie z.B. die bekannteste Open Source WAF \emph{mod_security}, und viele Tutorials. Und auch die OWASP \emph{Top 10} - die Sicherheitslücken die jeder IT-Kundige kennen sollte - haben hier ihr Zuhause. \\
+
+\textcolor{bhtGray}{\ding{110} Anmerkung (Nicht ganz zum Thema passend):} Bitte werfen Sie auch einen Blick in die Projekte \emph{Application Security Verification Standard}\footnote{\url{https://owasp.org/www-project-application-security-verification-standard}} und \emph{Web Security Testing Guide}\footnote{https://owasp.org/www-project-web-security-testing-guide/} - hier gibt es Vieles für Freunde sicherer Anwendungen zu entdecken!} \\
+
+Am praktischen Beispiel wurde ein möglicher Angriff vorgestellt und in das Thema WAF eingeführt. Dabei wurden auch die verschiedenen Arten von Web Application Firewalls vorgestellt. Es folgte eine kleine Reise durch die Geschichte der WAFs bzw. die letzten zwanzig Jahre. Hier noch einmal kurz und tabellarisch zusammengefasst:\\
+
 
 \anno{Tabellarische Schnellübersicht}
 \begin{table}[h]
@@ -290,26 +293,22 @@ Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlu
   \toprule
   Jahr & Ereignis\\
   \midrule
-  2002 & modSecurity 1st release \\
-  2003 & OWASP Top 10 erscheinen zum ersten Mal\\
-  2006 & OWASP Core Rule Set \\
-  2009 & Core Rule Set V2 \\
-  2010 & CSIC 2010 und TokDoc \\
-  2015 & Torrano-Giménez Doktorarbeit \\
-  2016 & CRS 3.0 CRS Sampling Mode \\
-  2016 & Automatisierte Tests Appelt \\
-  2018 & Centralized Manaseer\\
-  2019 & OWASP API Security Top 10\\
+  2002 & Erste Veröffentlichung der modSecurity-WAF \\
+  2003 & Die OWASP Top 10 erscheinen zum ersten Mal\\
+  2006 & Das OWASP Core Rule Set erscheint - Standardisierte Absicherung für Jedermann \\
+  2009 & Das OWASP Core Rule Set erscheint in der zweiten Version \\
+  2010 & CSIC 2010 und TokDoc - WAFs erkennen nun anomales Verhalten \\
+  2015 & Doktorarbeit von Torrano-Giménez \\
+  2016 & OWASP Core Rule Set Nummer 3 - Regeln erlernen mit Sampling \\
+  2016 & Doktor Arbeit Dennis Appelt - automatisierte Tests \\
+  2018 & Zentralisierung - Manaseer beschreibt das Command und Control Center\\
+  2019 & OWASP API Security Top 10 - Sicherheit speziell für REST-APIs\\
   \bottomrule
 \end{tabular}
 \caption{tabellarische Zusammenfassung}
 \label{tab:zeitstrahl}
 \end{table}
 
-Dataset
-
-DARPA
-CSIC 2010
-ECML/PKDD
+Im nächsten Kapitel wird auf einen Teil dieser Konzepte zurückgegriffen und versucht einen kleinen nächsten Schritt, mit Blick auf die praktische Anwendung, zu gehen.
 
 %%The first version of the OWASP Top 10 list was published in 2003. Updates followed in 2004, 2007, 2010, 2013 and 2017. The most recent update was published in 2021.
