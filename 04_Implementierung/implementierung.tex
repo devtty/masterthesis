@@ -168,9 +168,14 @@ Eine zusätzliche Implementation der Schnittstelle, wie der in Abbildung~\ref{fi
   \end{center}
 \end{figure}
 
-Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentralen Dienst bezogen werden, muss dieser seinen \emph{Kunden} auch identifizieren können. Beispielsweise über einen eindeutigen, mitgelieferten Parameter (z.B. eine UUID - Universally Unique Identifier). Im Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfigurationsparametern bedacht werden, da diese auch sicherheitsrelevant sind.\\
+Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentralen Dienst bezogen werden, muss dieser seinen \emph{Kunden} auch identifizieren können. Beispielsweise über einen eindeutigen Parameter (z.B. eine UUID - Universally Unique Identifier) der beim Abruf der Konfiguration mitgeliefert wird. 
 
+
+Im Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfigurationsparametern bedacht werden, da diese auch sicherheitsrelevant sind.\\
+
+\textcolor{bhtGray}{\ding{110} Beispiel:} 
 \anno{ggf. Bsp. Quelltext f. REST-Aufruf einfügen?}
+
 Diese Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, mehr ist für eine einzelne Instanz der Firewall auch nicht notwendig. Im Verbund sollten Konfigurationsparameter jedoch anpassbar sein und die Möglichkeit bestehen diese auch zu speichern. Glücklicherweise bietet WebCastellum bereits den sogenannten \glqq\emph{Lernmodus}\grqq{} an.  
 
 
