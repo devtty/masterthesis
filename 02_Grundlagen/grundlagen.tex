@@ -235,11 +235,7 @@ Die Auswertung der einzelnen Bestandteile erfolgte nicht mehr allein durch einen
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Der Protokoll-Bereich einer URL kann nur die Werte \verb=http=, \verb=https=, \verb=webdav= und ein paar weitere Werte\footnote{in Bezug auf Web-Server} annehmen, eine umfangreiche Analyse ist hier nicht notwendig. \\
 
-Bei \emph{maschinellen} und \emph{menschlichen Eingaben} nutzen die Anomaliedetektoren nun auch Methoden aus dem Bereich der Stochastik und der Computerlinguistik. In ihrer Firewall wurden für diesen Zweck drei Anomaliedetektoren implementiert die die Anfragen an den Server und deren Inhalte überprüfen. Passen einzelne Bestandteile sprachlich nicht zueinander (\emph{N-gram Centroid Anomaly Detector}), entsprechen diese nicht der üblichen Form (\emph{Markov Chain Anomaly Detector}) oder der üblichen Länge (\emph{Length Anomaly Detector}) versucht das System von~\cite{Krueger2010} diese Bestandteile zu \glqq\emph{reparieren}\grqq bevor sie an die Anwendung weitergeleitet werden. Je nach Konfiguration bedeutet die Reparatur eines Bestandteils dass dieser \emph{verworfen}, \emph{verändert} oder \emph{ausgetauscht} wird. \anno{verwerfen und austauschen erklären?}
-
-
-\anno{und weiter?}
-
+Bei \emph{maschinellen} und \emph{menschlichen Eingaben} nutzen die Anomaliedetektoren nun auch Methoden aus dem Bereich der Stochastik und der Computerlinguistik. In ihrer Firewall wurden für diesen Zweck drei Anomaliedetektoren implementiert die die Anfragen an den Server und deren Inhalte überprüfen. Passen einzelne Bestandteile sprachlich nicht zueinander (\emph{N-gram Centroid Anomaly Detector}), entsprechen diese nicht der üblichen Form (\emph{Markov Chain Anomaly Detector}) oder der üblichen Länge (\emph{Length Anomaly Detector}) versucht das System von~\cite{Krueger2010} diese Bestandteile zu \glqq\emph{reparieren}\grqq bevor sie an die Anwendung weitergeleitet werden. Je nach Konfiguration bedeutet die Reparatur eines Bestandteils dass dieser \emph{verworfen}, \emph{verändert} oder \emph{ausgetauscht} wird.
 
 
 % Krueger -> fehlerhafte Request werden automatisch korregiert und weiter geleitet
@@ -251,7 +247,7 @@ Tiefere Einblicke in die Anwendung stochastischer Methoden bei der Erkennung von
 
 \textcolor{bhtGray}{\ding{110} Beschreibung des Datensatzes (Auszug aus~\cite{csic2010})} The HTTP dataset CSIC 2010 contains the generated traffic targeted to an e- Commerce web application developed at our department. (...) The dataset is generated automatically and contains 36,000 normal requests and more than 25,000 anomalous requests. The HTTP requests are labeled as normal or anomalous and the dataset includes attacks such as SQL injection, buffer overflow, information gathering, files disclosure, CRLF injection, XSS, server side include, parameter tampering and so on.\\
 
-Die Firewall \emph{erlernte} das als normal bzw. üblich geltende Verhalten und eine Konfiguration\footnote{z.B. über fest definierte Regeln} war (beschränkt auf die verwendete Anwendung) nicht mehr notwendig. Dabei wurden die notwendigen Daten für den Datensatz mit Hilfe von \emph{Dictionaries} für eine interne Anwendung generiert. \anno{nicht korrekt, CSIC webseite verweist auf pharos und w3af}
+Die Firewall \emph{erlernte} das als normal bzw. üblich geltende Verhalten und eine Konfiguration, z.B. über fest definierte Regeln, war auf die verwendete Anwendung beschränkt, nicht mehr notwendig. Dabei wurden die notwendigen Daten für den Datensatz mit Hilfe von \emph{Dictionaries} für eine interne Anwendung generiert.
 
 % kruegel gimenez appelt kozik testen mit ML Ansätzen
 
@@ -284,12 +280,10 @@ In diesem Kapitel wurden als Erstes einige wichtige Grundbegriffe die im weitere
 
 Am praktischen Beispiel wurde ein möglicher Angriff vorgestellt und in das Thema WAF eingeführt. Dabei wurden auch die verschiedenen Arten von Web Application Firewalls vorgestellt. Es folgte eine kleine Reise durch die Geschichte der WAFs bzw. die letzten zwanzig Jahre. Hier noch einmal kurz und tabellarisch zusammengefasst:\\
 
-
-\anno{Tabellarische Schnellübersicht}
 \begin{table}[h]
     \centering
  
-\begin{tabular}{lp{7cm}}
+\begin{tabular}{lp{9cm}}
   \toprule
   Jahr & Ereignis\\
   \midrule
