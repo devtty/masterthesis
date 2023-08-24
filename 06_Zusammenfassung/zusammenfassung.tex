@@ -10,17 +10,21 @@ Das der Einsatz einer Web Application Firewall ein Sicherheitsgewinn für jeglic
 \section{Lessons Learned}
 Eine wesentliche Schwierigkeit bei der praktischen Umsetzung eines Projektes auf Basis der Programmiersprache Java mit Techniken aus dem Bereich des \emph{Maschinellen Lernens} ist, dass dieser Bereich sehr \glqq\emph{Python}\grqq-lastig daher kommt. Die meisten Beispiele, Bibliotheken und Tutorials nutzen Python als \emph{Sprache der Wahl}. Der häufig vertretene Standpunkt - man sollte die Sprache wählen, die sich für das jeweilige Projekt am besten eignet - steht für ein \emph{Migrationsprojekt} wie WebCastellum leider nicht zur Verfügung. Zwar ähneln sich beide Sprachen in ihren Paradigmen, vielen Konzepten und in ihrer Anwendung, aber allein die Wahl einer geeigneten Bibliothek mit Unterstützung des maschinellen Lernens ist in diesem Fall doch etwas schwieriger. Umso erfreulicher ist die Tatsache dass mit dem Artikel \glqq\emph{Java \& KI - Das Beste zweier Welten}\grqq{} in der aktuellen Ausgabe des \emph{Javamagazin}s (10/23) die neue Serie \glqq\emph{Künstliche Intelligenz in der Praxis}\grqq{} startet. Offen bleibt dabei ob der Inhalt dieser Arbeit sich eventuell etwas \emph{unterschieden} hätte, wäre diese Serie etwas früher erschienen.\\
 
-Die zweite Schwierigkeit bei der Arbeit war der enorme \emph{Leistungshunger} der Anwendung bei der Erstellung der Entscheidungsbäume. Das der Rechen- und Speicherbedarf bei Anwendungen dieser Art etwas höher ausfällt war zu erwarten, dass der mir zu Verfügung stehende Rechner bei einem Entscheidungsbaum mit gerade mal zwei bis drei Attributen (bezogen auf den CSIC2010-Datensatz) bereits an seine Grenzen geriet, eher überraschend. Für einen praktischen Einsatz der Software sollten in diesem Bereich dringend weitere Verbesserungen erfolgen.
+Die zweite Schwierigkeit bei der Arbeit war der enorme \emph{Leistungshunger} der Anwendung bei der Erstellung der Entscheidungsbäume. Dass der Rechen- und Speicherbedarf bei Anwendungen dieser Art etwas höher ausfällt war zu erwarten, dass der mir zu Verfügung stehende Rechner bei einem Entscheidungsbaum mit gerade mal zwei bis drei Attributen (bezogen auf den CSIC2010-Datensatz) bereits an seine Grenzen geriet, eher überraschend. Für einen praktischen Einsatz der Software sollten in diesem Bereich dringend weitere Verbesserungen erfolgen.\\
+
+% https://www.dev-insider.de/wie-angreifbar-ist-webgoat-wirklich-a-7a385bc1e48bb04b7fdc9034029555e1/
+
+
 
 % Ausblick
 \section{Ausblick}
 
-Am Ende dieser Arbeit soll es noch zu einem kleinen Ausblick auf aktuelle Entwicklungen
+Am Ende dieser Arbeit soll es noch zu einem kleinen Ausblick auf aktuelle Entwicklungen für den Bereich der Web Application Firewalls und auf das Projekt \glqq\emph{WebCastellum}\grqq speziell geben.
+
+Der größte Teil der verwendeten Quellcodes befindet sich derzeit in einem persönlichen aber öffentlich verfügbaren GitHub-Repository unter \url{https://github.com/devtty/webcastellum}. Einzelne Funktionalitäten und Arbeitsschritte werden dort in sogenannten \emph{Feature-Branches} untergebracht, die ggf. in den Hauptzweig des Projektes mit eingebracht werden. Bei dem Repository handelt es sich um lebendes Repository, d.h. Änderungen sind hier jederzeit (auch nach Erscheinen der Arbeit) möglich. Eine zukünftige Weiterentwicklung und Verbesserung des Projektes und insbesondere der vorgestellten Konzepte ist durchaus wünschenswert und hängt neben der persönlichen Motivation auch von der Mitarbeit interessierter Personen ab und ob sich noch weitere \emph{Interessierte} finden. Unabhängig von der Software sollte das Interesse zur Absicherung von Software jeglicher Art gegen Angriffe von Aussen nicht nur proprietären Anbietern überlassen werden. Die größte Priorität aus praktischer Sicht für diesen Zweig von WebCastellum wird weiterhin die Verbesserung der Stabilität und Performance haben. Die neue, nicht-regelbasierte Funktionalität gehört aber in jedem Fall mit dazu.
 
 
 \begin{neu}
   Nacharbeit Überführung der Evaluation als arquillian test?!
   Bereitstellung als (neuere) WebCastellum Version und Bereitstellung des zentralen Sammelpunktes.
 \end{neu}
-
-% https://www.dev-insider.de/wie-angreifbar-ist-webgoat-wirklich-a-7a385bc1e48bb04b7fdc9034029555e1/
