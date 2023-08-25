@@ -189,6 +189,7 @@ Diese Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, me
 \end{figure}
 
 \subsection{Lernmodus}
+\label{sec:lernmodus}
 Der Lernmodus erfasst alle HTTP-Anfragen und speichert diese in einer eigenen Text-Datei. Bei aktiviertem Lernmodus geht WebCastellum davon aus, dass alle Anfragen auch gewünschte Anfragen sind. Aus den aufgezeichneten Anfragen lässt sich beispielsweise eine Whitelist an URL-Pfaden oder Stichwörtern generieren, die für eine weitere Absicherung nützlich sind. Technisch wird an dieser Stelle das gleiche Logging-Framework wie bei der Benachrichtigung über mögliche Angriffe genutzt und eine Erweiterung kann in Anlehnung an Abbildung~\ref{fig.impversand} erfolgen. Der Nachrichtenversand erfolgt auch in diesem Fall an die zentrale Komponente, wo beispielsweise auch eine weitere Verarbeitung stattfinden kann. Manaseers Vorschlag (s.~Abschnitt~\ref{sec:zentralisierungkern}) eines zentralen \glqq\emph{Command and Control Centers}\grqq{} läss sich somit recht einfach mit WebCastellum als \emph{Client} umsetzen.
 
 
@@ -200,7 +201,8 @@ Zur Integration von Funktionen im Bereich \emph{Machine Learning} aus Implementi
 \lstset{language=Java,
 % 	basicstyle=\ttfamily\color{black}\small,
  	keywordstyle=\bfseries\color{bhtBlue},
- 	identifierstyle=\color{bhtGray}, 
+ 	identifierstyle=\color{bhtGray},
+        showstringspaces=false
 % 	commentstyle=\color{gray}\textsl
 }
 \begin{figure}[h]
@@ -208,46 +210,42 @@ Zur Integration von Funktionen im Bereich \emph{Machine Learning} aus Implementi
   \begin{lstlisting}
   private void checkRequirementsAndInitialize() throws UnavailableException {
     if (this.filterConfig == null)
-      throw new IllegalStateException("Filter mit be initialized via web container before 'init()' this method may be called");
+      throw new IllegalStateException("Filter init...");
+        .
+        .
+    DataSource source = new DataSource("csic_2010_norm.csv");
+    Instances dataset = source.getDataSet();
+                       
+    dataset.setClassIndex(dataset.numAttributes() - 1);
 
-      .
-      .
-      .
-      
-      DataSource source = new DataSource("csic_2010_norm.csv");
-      Instances dataset = source.getDataSet();
-                        
-      dataset.setClassIndex(dataset.numAttributes() - 1);
+    J48 j48 = new J48();
+    dataset.deleteAttributeType(NUMERIC);
 
-      J48 j48 = new J48();
-      dataset.deleteAttributeType(NUMERIC);
+    //Entferne alle Attribute ausser Methode und URL-Pfad
+    Remove filter = new Remove();
+    filter.setAttributeIndices("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17");
+    filter.setInputFormat(dataset);
 
-      //Entferne alle Attribute ausser Methode und URL-Pfad
-      Remove filter = new Remove();
-      filter.setAttributeIndices("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17");
-      filter.setInputFormat(dataset);
+    Instances filtered = Filter.useFilter(dataset, filter);
+    filtered.setClassIndex(filtered.numAttributes() - 1);
+    j48.buildClassifier(filtered);
 
-      Instances filtered = Filter.useFilter(dataset, filter);
-      filtered.setClassIndex(filtered.numAttributes() - 1);
-      j48.buildClassifier(filtered);
-
-      this.traindata = filtered;
-      this.classifier = j48;
-      .
-      .
-      .
+    this.traindata = filtered;
+    this.classifier = j48;
+        .
+        .
   }
 \end{lstlisting}
 \caption{Aufruf der Trainingsphase}
 \medskip
 \small
-Aufbau eines Entscheidungsbaums (j48) für die Klassifizierung mit den Daten aus dem CSIC2010-Datensatzes unter Verwendung der WEKA-Bibliothek.
+Aufbau eines Entscheidungsbaums (j48) für die Klassifizierung mit den Daten aus dem CSIC2010-Datensatzes unter Verwendung der WEKA-Bibliothek. Die Daten werden dabei aus einer CSV entnommen.
 \label{fig:wekatrain}
 
 \end{figure}
 
 
-Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen das Modell geprüft wird, muss jedoch für jeden Request einzeln ausgeführt werden. Innerhalb der Überprüfung des Requests (s.~Abbildung~\ref{fig:wcfilter} sollte die Evaluation nach allen anderen Prüfungen stattfinden. ML-Operationen sind rechen- und speicherintensiv und sollten daher nach Möglichkeit eher vermieden werden. Löst bereits die vorherige Prüfung nach Logik- oder Regelverletzungen einen Alarm aus, ist eine weitere Prüfung nicht notwendig.
+Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen das Modell geprüft wird, muss jedoch für jeden Request einzeln ausgeführt werden. Innerhalb der Überprüfung des Requests (s.~Abbildung~\ref{fig:wcfilter} sollte die Evaluation nach allen anderen Prüfungen stattfinden. ML-Operationen sind rechen- und speicherintensiv und sollten daher nach Möglichkeit eher vermieden werden. Lösen bereits die vorherigen Prüfungen nach Logik- oder Regelverletzungen einen Alarm aus, ist eine weitere Prüfung nicht notwendig.
 
 \begin{figure}[h]
   %% \begin{center}
@@ -257,11 +255,11 @@ Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen da
   \label{fig:wcfilter}
   \medskip
   \small
-  schematisch nach Methodeaufruf \verb=WebCastellumFilter#internalDoFilter=
+  schematische Darstellung nach Methodenaufruf von \verb=WebCastellumFilter#internalDoFilter=; die Testphase wird als letzter Punkt hinzugefügt
 %%  \end{center}
 \end{figure}
 
-Für Erweiterungen von WebCastellum \emph{nach} die nach der regelbasierten Überprüfung ausgeführt werden, bietet sich die Methode \verb=doAfterProcessing= an. Hier kann dann entsprechend geprüft werden.\\
+Für Erweiterungen von WebCastellum die \emph{nach} der regelbasierten Überprüfung ausgeführt werden, bietet sich die Methode \verb=doAfterProcessing= an. An dieser Stelle sollte die aktuelle HTTP-Anfrage gegen den zuvor erstellten Entscheidungsbaum geprüft werden.\\
 
 \lstset{language=Java,
 % 	basicstyle=\ttfamily\color{black}\small,
@@ -272,15 +270,14 @@ Für Erweiterungen von WebCastellum \emph{nach} die nach der regelbasierten Übe
 \begin{figure}[h]
   \centering
   \begin{lstlisting}
-  private void doAfterProcessing(final RequestWrapper request, final ResponseWrapper response) throws IOException, ServletException {
-    .
-    .
-    .
-    Evaluation eval = new Evaluation(this.traindata);
-    eval.evaluateModelOnce(this.classifier, filteredTest.get(getRquestInstance(request)));
-    .
-    .
-    .
+  private void doAfterProcessing(final RequestWrapper request,
+    final ResponseWrapper response) throws IOException, ServletException {
+        .
+        .
+      Evaluation eval = new Evaluation(this.traindata);
+      eval.evaluateModelOnce(this.classifier, filteredTest.get(getRquestInstance(request)));
+        .
+        .
   }
 \end{lstlisting}
 \caption{Übergabe des aktuellen Requests an die Testphase}
@@ -288,8 +285,9 @@ Für Erweiterungen von WebCastellum \emph{nach} die nach der regelbasierten Übe
 
 \end{figure}
 
-
-Die Implementierung der ML-Fähigkeit erfolgt nach dem Vorschlag aus \cite{kozik2014}.
+Im Filter steht nun eine Implementierung bereit, die neben den ursprünglichen Prüfungen auch die Fähigkeit besitzt \emph{Erlerntes} zu nutzen und eine Absicherung der von Torrano-Giménez genutzten Testanwendung anhand ihres Datensatzes mittels WebCastellum wäre nun auch praktisch möglich. Die Testergebnisse würden sich jedoch massiv unterscheiden. Zum Einen werden die regelbasierten Filtermechanismen ausgeführt und zum Anderen erfolgt die derzeitige Prüfung nur gegen die beiden Attribute \emph{HTTP-Methode} und \emph{URL-Pfad}. Für eine Verwendung im realen Umfeld sind noch zwei Änderungen der bestehenden Implementierung notwendig.\\
+Die Datenquelle für die Trainingsphase sollte ihre Daten nicht aus einer statischen Datei beziehen. Ideal wäre hier der Bezug aus dem \emph{Command and Control Center} (s.~Abschnitt~\ŗef{sec:lernmodus}), z.B. zusammen mit der zentralisierten Konfiguration. Hierbei sollte jedoch unbedingt ein performanter Weg gefunden werden, da die anfallenden Datenmengen je nach Anwendung entsprechend groß werden könnten. Gleiches gilt für die zweite, und wesentlich wichtigere, Änderung. In der derzeitigen Implementierung werden nur zwei der Argumente aus dem Datensatz genutzt. Um die Genauigkeit zu erhöhen sollten noch weitere Argumente im Entscheidungsbaum ausschlaggebend sein. Insbesondere die \emph{Payload} ist für eine genaue Auswertung von Bedeutung, da hier das größte Potential an Möglichkeiten einer nicht-erwünschten Manipulation besteht. Mit jedem zusätzlichen Argument steigt jedoch der Speicherbedarf des Filters um ein Vielfaches an.\\
+Dieses Problem ist  bereits bekannt \cite{kozik2014}.
 
 Aus den Testdaten werden dafür nur die Attribute der URL, der HTTP-Methode und die Payload (die Requestparameter) genutzt. 
 
