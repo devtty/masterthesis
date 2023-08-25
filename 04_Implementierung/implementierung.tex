@@ -138,7 +138,7 @@ Mit der Möglichkeit der Überwachung der qualitativen Metriken der Anwendung un
 
 % Highlight 2 der Implementierung
 \section{Zentralisierung}
-Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewichtigen Servlet-Filter der sämtliche Abwehrmaßnahmen direkt verarbeitet. Abgesehen von den Interaktionen mit der eigentlichen Anwendung existieren nur wenige Berührungspunkte mit externen Systemen. Die zwei wichtigsten Fälle sind dabei die \emph{Konfiguration} der Anwendung und die \emph{Benachrichtung} des Betreibers über den Zustand (Funktion, Angriffe, usw.) der Web Application Firewall. Beide Fälle benutzen derzeit textuelle Schnittstellen. Die Konfiguration erfolgt über \emph{manuelles} Editieren des Bereitstellungsdeskriptors (\emph{web.xml}) und die Bereitstellung des Status über Logdateien. Um den Datenaustausch mehrerer Instanzen der WAF nach dem Muster aus Abschnitt~\ref{sec:zentralisierungkern} zu ermöglichen, müssten zusätzliche (maschinell lesbare) Schnittstellen geschaffen werden. Diese Schnittstellen sorgen dann für den Datenaustausch mit einer zentralen Schnittstelle (Abbildung~\ref{fig:my_verbund}).
+Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewichtigen Servlet-Filter der sämtliche Abwehrmaßnahmen direkt verarbeitet. Abgesehen von den Interaktionen mit der eigentlichen Anwendung existieren nur wenige Berührungspunkte mit externen Systemen. Die zwei wichtigsten Fälle sind dabei die \emph{Konfiguration} der Anwendung und die \emph{Benachrichtung} des Betreibers über den Zustand (Funktion, Angriffe, usw.) der Web Application Firewall. Beide Fälle benutzen derzeit textuelle Schnittstellen. Die Konfiguration erfolgt über \emph{manuelles} Editieren des Bereitstellungsdeskriptors (\emph{web.xml}) und die Bereitstellung des Status über Logdateien. Um den Datenaustausch mehrerer Instanzen der WAF nach dem Muster aus Abschnitt~\ref{sec:zentralisierungkern} zu ermöglichen, müssten zusätzliche (maschinell lesbare) Schnittstellen geschaffen werden. Diese Schnittstellen sorgen dann für den Datenaustausch mit einer zentralen Schnittstelle (Abbildung~\ref{fig:my_verbund}).\\
 
 \begin{figure}[h]
     \centering
@@ -173,8 +173,43 @@ Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentrale
 
 Im Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfigurationsparametern bedacht werden, da diese auch sicherheitsrelevant sind.\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel:} 
-\anno{ggf. Bsp. Quelltext f. REST-Aufruf einfügen?}
+\textcolor{bhtGray}{\ding{110} Beispiel:} Im folgenden
+
+\lstset{%basicstyle=\ttfamily\color{black}\small,
+    string=[s]{"}{"},
+    stringstyle=\color{bhtBlue},
+    comment=[l]{:},
+    commentstyle=\color{black},
+    showstringspaces=false
+% 	commentstyle=\color{gray}\textsl
+}
+\begin{figure}[h]
+  \centering
+  \begin{lstlisting}
+
+{
+    "ApplicationName": "TestApplicationRemote",
+    "LogVerboseForDevelopmentMode": "true",
+    "DefaultProductionModeCheckerValue": "false",
+    "LogClientUserData": "true",
+    "Debug": "true",
+    "CharacterEncoding": "UTF-8",
+    "DefaultAttackerLoggerDirectory": "/home/user/temp",
+    "LearningModeAggregationDirectory": "/home/user/temp",
+    "BlockInvalidEncodedQueryString": "true",
+    "ParameterAndFormProtection": "false",
+    "SecretTokenLinkInjection": "false",
+    "QueryStringEncryption": "false",
+    "ExtraCheckboxProtection": "false"    
+}
+\end{lstlisting}
+\caption{Konfiguration im JSON-Format}
+\medskip
+\small
+Beispiel einer Konfiguration - Die Anwendung identifiziert sich beim Abruf über eine eindeutige Identifikationsnummer (UUID), hier z.B. \url{https://devtty.de/wc/550e8400-e29b-11d4-a716-446655440000/config.json}
+\label{fig:wekatrain}
+
+\end{figure}
 
 Diese Schnittstelle berücksichtigt jedoch nur den Abruf von Konfigurationen, mehr ist für eine einzelne Instanz der Firewall auch nicht notwendig. Im Verbund sollten Konfigurationsparameter jedoch anpassbar sein und die Möglichkeit bestehen diese auch zu speichern. Glücklicherweise bietet WebCastellum bereits den sogenannten \glqq\emph{Lernmodus}\grqq{} an.  
 
