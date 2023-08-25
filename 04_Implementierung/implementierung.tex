@@ -195,7 +195,58 @@ Der Lernmodus erfasst alle HTTP-Anfragen und speichert diese in einer eigenen Te
 \section{ML-Fähigkeit}
 \label{sec:mlfk}
 
-Zur Integration von Funktionen im Bereich \emph{Machine Learning} aus Implementierungssicht sollte zuerst überlegt werden in welchen Phasen der Anwendung einzelne Schritte ausgeführt werden. Da der WebCastellum-Filter bei jeder HTTP-Anforderung aktiv, wird ist dieses wohl der schlechteste Zeitpunkt für die Trainingsphase einer ML-Komponente. Die einfachste Möglichkeit diese auszuführen wäre bei Anwendungsstart, ggf. in einer eigenen Klasse, und das resultierende Model dem Filter als Singleton zur Verfügung zu stellen. Der WebCastellum-Filter bietet mit der Methode \verb=restartCompletlyWhenRequired()= jedoch selbst die Möglichkeit seine Konfiguration in bestimmten Intervallen und bei Bedarf neu nachzuladen. Die Trainingsphase könnt auch an dieser Stelle neu gestartet werden.\\
+Zur Integration von Funktionen im Bereich \emph{Machine Learning} aus Implementierungssicht sollte zuerst überlegt werden in welchen Phasen der Anwendung einzelne Schritte ausgeführt werden. Da der WebCastellum-Filter bei jeder HTTP-Anforderung aktiv, wird ist dieses wohl der schlechteste Zeitpunkt für die Trainingsphase einer ML-Komponente. Die einfachste Möglichkeit diese auszuführen wäre bei Anwendungsstart, ggf. in einer eigenen Klasse, und das resultierende Model dem Filter als Singleton zur Verfügung zu stellen. Der WebCastellum-Filter bietet mit der Methode \verb=restartCompletlyWhenRequired()= jedoch selbst die Möglichkeit seine Konfiguration in bestimmten Intervallen und bei Bedarf neu nachzuladen. Innerhalb dieser Methode erfolgt ein Aufruf von \verb=checkRequirementsAndInitialize()=, hier wird die Konfiguration explizit neugeladen und der Filter neu initialisiert. Der Start der Trainingsphase sollte in dieser Methode erfolgen und möglichst an derem Ende ausgeführt werden, um etwaige Konfigurationparameter mit zu berücksichtigen.\\
+
+\lstset{language=Java,
+% 	basicstyle=\ttfamily\color{black}\small,
+ 	keywordstyle=\bfseries\color{bhtBlue},
+ 	identifierstyle=\color{bhtGray}, 
+% 	commentstyle=\color{gray}\textsl
+}
+\begin{figure}[h]
+  \centering
+  \begin{lstlisting}
+  private void checkRequirementsAndInitialize() throws UnavailableException {
+    if (this.filterConfig == null)
+      throw new IllegalStateException("Filter mit be initialized via web container before 'init()' this method may be called");
+
+      .
+      .
+      .
+      
+      DataSource source = new DataSource("csic_2010_norm.csv");
+      Instances dataset = source.getDataSet();
+                        
+      dataset.setClassIndex(dataset.numAttributes() - 1);
+
+      J48 j48 = new J48();
+      dataset.deleteAttributeType(NUMERIC);
+
+      //Entferne alle Attribute ausser Methode und URL-Pfad
+      Remove filter = new Remove();
+      filter.setAttributeIndices("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17");
+      filter.setInputFormat(dataset);
+
+      Instances filtered = Filter.useFilter(dataset, filter);
+      filtered.setClassIndex(filtered.numAttributes() - 1);
+      j48.buildClassifier(filtered);
+
+      this.traindata = filtered;
+      this.classifier = j48;
+      .
+      .
+      .
+  }
+\end{lstlisting}
+\caption{Aufruf der Trainingsphase}
+\medskip
+\small
+Aufbau eines Entscheidungsbaums (j48) für die Klassifizierung mit den Daten aus dem CSIC2010-Datensatzes unter Verwendung der WEKA-Bibliothek.
+\label{fig:wekatrain}
+
+\end{figure}
+
+
 Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen das Modell geprüft wird, muss jedoch für jeden Request einzeln ausgeführt werden. Innerhalb der Überprüfung des Requests (s.~Abbildung~\ref{fig:wcfilter} sollte die Evaluation nach allen anderen Prüfungen stattfinden. ML-Operationen sind rechen- und speicherintensiv und sollten daher nach Möglichkeit eher vermieden werden. Löst bereits die vorherige Prüfung nach Logik- oder Regelverletzungen einen Alarm aus, ist eine weitere Prüfung nicht notwendig.
 
 \begin{figure}[h]
@@ -210,9 +261,33 @@ Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen da
 %%  \end{center}
 \end{figure}
 
-Für Erweiterungen von WebCastellum \emph{nach} der regelbasierten Überprüfung bietet sich die Methode \verb=doAfterProcessing= an. Hier kann dann entsprechend geprüft werden.\\
+Für Erweiterungen von WebCastellum \emph{nach} die nach der regelbasierten Überprüfung ausgeführt werden, bietet sich die Methode \verb=doAfterProcessing= an. Hier kann dann entsprechend geprüft werden.\\
 
-doAfterProcessing
+\lstset{language=Java,
+% 	basicstyle=\ttfamily\color{black}\small,
+ 	keywordstyle=\bfseries\color{bhtBlue},
+ 	identifierstyle=\color{bhtGray}, 
+% 	commentstyle=\color{gray}\textsl
+}
+\begin{figure}[h]
+  \centering
+  \begin{lstlisting}
+  private void doAfterProcessing(final RequestWrapper request, final ResponseWrapper response) throws IOException, ServletException {
+    .
+    .
+    .
+    Evaluation eval = new Evaluation(this.traindata);
+    eval.evaluateModelOnce(this.classifier, filteredTest.get(getRquestInstance(request)));
+    .
+    .
+    .
+  }
+\end{lstlisting}
+\caption{Übergabe des aktuellen Requests an die Testphase}
+\label{fig:wekatest}
+
+\end{figure}
+
 
 Die Implementierung der ML-Fähigkeit erfolgt nach dem Vorschlag aus \cite{kozik2014}.
 
