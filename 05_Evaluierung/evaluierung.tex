@@ -106,7 +106,7 @@ Beim aktiven Angriff übernimmt \emph{ZAP} die volle Kontrolle und sucht (mögli
 
 \subsection{Defender}
 
-Hierbei handelt es sich um die zu testende Instanz der WebApplicationFirewall. Gegebenenfalls kann hier natürlich die Konfiguration - je nach Testfall - variieren. Da jedoch eine zentrale Installation im Fokus steht sollte in jedem Fall diese zentrale Instanz getestet werden.
+Hierbei handelt es sich um die zu testende Instanz der WebApplicationFirewall. Gegebenenfalls kann hier natürlich die Konfiguration - je nach Testfall - variieren. Da jedoch eine zentrale Installation im Fokus steht, sollte in jedem Fall diese zentrale Instanz mit der gleichen Konfiguration getestet werden. In Tabelle~\ref{tab:testplan} werden zwei verschiedene Konfigurationen der WebCastellum-WAF als Verteidiger benannt. Bei der ersten Konfiguration handelt es sich um WebCastellum in der Standard-Konfiguration\footnote{Minimalkonfiguration - Default-Werte}. Bei der zweiten (mit \emph{(e)}\ gekennzeichneten) Konfiguration handelt es sich um WebCastellum mit aktivierter Erweiterung.
 % 3 Fälle -> ohne, defaultconfig, von zentrale gelieferte Konfiguration
 
 \subsection{Victim}
@@ -123,18 +123,24 @@ Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hie
       \toprule
     \textbf{Testlauf} & \textbf{Angreifer} & \textbf{Verteidiger} & \textbf{Opfer} \\ 
      \midrule
-     1 & manuell & - & PF showcase\\
-     2 & manuell & WebCastellum & PF showcase \\
-     3 & ZAP (passiv) & - & PF showcase\\
-     4 & ZAP (passiv) & WebCastellum & PF showcase \\
-     5 & ZAP (aktiv) & - & PF showcase\\
-     6 & ZAP (aktiv) & WebCastellum & PF showcase \\
-     7 & manuell & - & WebGoat \\ 
-    8 & manuell & WebCastellum & WebGoat \\
-    9 & ZAP (passiv) & - & WebGoat \\ 
-    10 & ZAP (passiv) & WebCastellum & WebGoat \\
-    11 & ZAP (aktiv) & - & WebGoat \\ 
-    12 & ZAP (aktiv) & WebCastellum & WebGoat \\
+      1 & manuell & - & PF showcase\\
+      2 & manuell & WebCastellum & PF showcase \\
+      3 & manuell & WebCastellum (e) & PF showcase \\
+      4 & ZAP (passiv) & - & PF showcase\\
+      5 & ZAP (passiv) & WebCastellum & PF showcase \\
+      6 & ZAP (passiv) & WebCastellum (e) & PF showcase \\
+      7 & ZAP (aktiv) & - & PF showcase\\
+      8 & ZAP (aktiv) & WebCastellum & PF showcase \\
+      9 & ZAP (aktiv) & WebCastellum (e) & PF showcase \\
+      10 & manuell & - & WebGoat \\ 
+      11 & manuell & WebCastellum & WebGoat \\
+      12 & manuell & WebCastellum (e) & WebGoat \\
+      13 & ZAP (passiv) & - & WebGoat \\ 
+      14 & ZAP (passiv) & WebCastellum & WebGoat \\
+      15 & ZAP (passiv) & WebCastellum (e) & WebGoat \\
+      16 & ZAP (aktiv) & - & WebGoat \\ 
+      17 & ZAP (aktiv) & WebCastellum & WebGoat \\
+      18 & ZAP (aktiv) & WebCastellum (e) & WebGoat \\
    \bottomrule
     \end{tabular}
     \caption{Testplan}
@@ -160,18 +166,24 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
       \toprule
     \textbf{Testlauf} & \textbf{Angreifer} & \textbf{Verteidiger} & \textbf{Opfer} & \textbf{Schwachstellen} & \textbf{Verbesserung(in \%)} \\ 
      \midrule
-     1 & manuell & - & PF showcase & 3 &\\
-     2 & manuell & WebCastellum & PF showcase & 1 & 66\\
-     3 & ZAP (passiv) & - & PF showcase & 16 &\\
-     4 & ZAP (passiv) & WebCastellum & PF showcase & 2 & 87.5 \\
-     5 & ZAP (aktiv) & - & PF showcase & 56 & \\
-     6 & ZAP (aktiv) & WebCastellum & PF showcase & 20 & 64.3\\
-     7 & manuell & - & WebGoat & 10 & \\ 
-    8 & manuell & WebCastellum & WebGoat & 3 & 70 \\
-    9 & ZAP (passiv) & - & WebGoat & 25 & \\ 
-    10 & ZAP (passiv) & WebCastellum & WebGoat & 12 & 50\\
-    11 & ZAP (aktiv) & - & WebGoat & 34 & \\ 
-    12 & ZAP (aktiv) & WebCastellum & WebGoat & 14 & 59 \\
+      1 & manuell & - & PF showcase & 3 &\\
+      2 & manuell & WebCastellum & PF showcase & 1 & 66\\
+      3 & manuell & WebCastellum (e) & PF showcase & 1 & 66\\
+      4 & ZAP (passiv) & - & PF showcase & 16 &\\
+      5 & ZAP (passiv) & WebCastellum & PF showcase & 2 & 87.5 \\
+      6 & ZAP (passiv) & WebCastellum (e) & PF showcase & 2 & 87.5 \\
+      7 & ZAP (aktiv) & - & PF showcase & 56 & \\
+      8 & ZAP (aktiv) & WebCastellum & PF showcase & 20 & 64.3\\
+      9 & ZAP (aktiv) & WebCastellum (e) & PF showcase & 20 & 64.3\\
+      10 & manuell & - & WebGoat & 10 & \\ 
+      11 & manuell & WebCastellum & WebGoat & 3 & 70 \\
+      12 & manuell & WebCastellum (e) & WebGoat & 3 & 70 \\
+      13 & ZAP (passiv) & - & WebGoat & 25 & \\ 
+      14 & ZAP (passiv) & WebCastellum & WebGoat & 12 & 50\\
+      15 & ZAP (passiv) & WebCastellum (e) & WebGoat & 11 & 56\\
+      16 & ZAP (aktiv) & - & WebGoat & 34 & \\ 
+      17 & ZAP (aktiv) & WebCastellum & WebGoat & 14 & 59 \\
+      18 & ZAP (aktiv) & WebCastellum (e) & WebGoat & 14 & 59 \\
    \bottomrule
     \end{tabular}
     \caption{Ergebnisse}
@@ -186,30 +198,37 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
       \toprule
     \textbf{Testlauf} & \textbf{SQLi} & \textbf{CSRF} & \textbf{XMLi} & \textbf{sonstige} & \textbf{gesamt} \\ 
      \midrule
-     1 & 2 & 1 &  &  & 3\\
-     2 &   & 1 &  &  & 1\\
-     3 & 6 & 5 &  & 5 & 16\\
-     4 &   & 1 &  & 1  & 2 \\
-     5 & 22 & 9 & 7 & 8& 56\\
-     6 &  & 7 & 5 & 8 & 20 \\
-     7 & 7 & 3 &  &  &  10  \\ 
-    8 &  & 3 &  & & 3  \\
-    9 & 11 & 5 &  & 9 & 25 \\ 
-    10 &   & 5 &  & 7  & 12 \\
-    11 & 17 & 8 &  & 9 & 34  \\ 
-    12 &  & 8 &  & 6 & 14 \\
+      1 & 2 & 1 &  &  & 3\\
+      2 &   & 1 &  &  & 1\\
+      3 &   & 1 &  &  & 1\\
+      4 & 6 & 5 &  & 5 & 16\\
+      5 &   & 1 &  & 1  & 2 \\
+      6 &   & 1 &  & 1  & 2 \\
+      7 & 22 & 9 & 7 & 8& 56\\
+      8 &  & 7 & 5 & 8 & 20 \\
+      9 &  & 7 & 5 & 8 & 20 \\
+      10 & 7 & 3 &  &  &  10  \\ 
+      11 &  & 3 &  & & 3  \\
+      12 &  & 3 &  & & 3  \\
+      13 & 11 & 5 &  & 9 & 25 \\ 
+      14 &   & 5 &  & 7  & 12 \\
+      15 &   & 5 &  & 6  & 11 \\
+      16 & 17 & 8 &  & 9 & 34  \\ 
+      17 &  & 8 &  & 6 & 14 \\
+      18 &  & 8 &  & 6 & 14 \\
    \bottomrule
     \end{tabular}
     \caption{Ergebnisse}
     \label{tab:tes2tergebnisse}
 \end{table}
 
-Betrachtet man Tabelle \ref{tab:tes2tergebnisse} fällt auf das die Wirksamkeit der Firewall insbesondere im Fall von SQL-Injections (SQLi) gegeben ist. Nach Einsatz der Firewall wurden alle vorher erkannten Schwachstellen geschlossen bzw. eine Ausnutzung der Schwachstelle verhindert. Beide Anwendungen beinhalten eine oder mehrere Schwachpunkte im Bereich Cross-Site-Request-Forgery (CSRF). Obwohl die WAF-Software einen derartigen Schutzmechanismus beinhaltet scheint dieser nur im \emph{Primefaces Showcase} zum Teil zu wirken. Für die \emph{WebGoat}-Anwendung scheint dieser jedoch wirkungslos zu sein.
+Betrachtet man Tabelle \ref{tab:tes2tergebnisse} fällt auf das die Wirksamkeit der Firewall insbesondere im Fall von SQL-Injections (SQLi) gegeben ist. Nach Einsatz der Firewall wurden alle vorher erkannten Schwachstellen geschlossen bzw. eine Ausnutzung der Schwachstelle verhindert. Beide Anwendungen beinhalten eine oder mehrere Schwachpunkte im Bereich Cross-Site-Request-Forgery (CSRF). Obwohl die WAF-Software einen derartigen Schutzmechanismus beinhaltet scheint dieser nur im \emph{Primefaces Showcase} zum Teil zu wirken. Für die \emph{WebGoat}-Anwendung scheint dieser jedoch wirkungslos zu sein.\\
 
 
 % Diskussion und Bewertung (3-4 Seiten)
-\section{Bewertung}
+%%\section{Bewertung}
 
+Das die Anwendung einer Web Application Firewall eine Verbesserung im Rahmen der IT-Sicherheit mit sich bringt sollte nicht überraschend sein.
 
 % Wurden Sie überrascht?
 % Stimmten die Hypothesen?
@@ -224,6 +243,8 @@ Betrachtet man Tabelle \ref{tab:tes2tergebnisse} fällt auf das die Wirksamkeit 
 
 
 \section{Zusammenfassung}
+
+Einleitend begann dieses Kapitel mit der Vorstellung der, für einen Test der Firewall-Funktionalität notwendigen, Werkzeuge. Es wurde der allgemeine Aufbau des Tests erläutert und die \emph{beteiligten} Systeme vorgestellt. Nach einer kurzen Erläuterung der Testspezifikation wurden die Tests durchgeführt und die Ergebnisse vorgestellt. Zum Abschluss wurden diese dann entsprechend bewertet.
 
 % Was haben wir in diesem Kapitel gelernt?
 % Wie passt das zur Zielstellung der Arbeit?
