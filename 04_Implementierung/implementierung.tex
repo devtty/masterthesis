@@ -112,7 +112,7 @@ Tests, im Sinne von Unit-Tests z.B. im Rahmen eines etablierten Testframeworks, 
 
 
 \subsection{Fehlerbereinigung}
-
+\label{sec:centralconf}
 Die minimale (persönliche) Anforderung an das Ziel der Vorarbeiten war den seit 2009 nicht bearbeiteten Quelltext auf eine fehlerfreie Basis anzuheben und ein kompilierbares und nutzbares Endprodukt zu erhalten. Dabei sollte mindestens ein Anwendungsfall eines Angriffs komplett durchgetestet werden.\\
 Umgesetzt wurde dann ein leichtes Refactoring und die Erstellung von 222 Unit-Tests\footnote{\url{https://github.com/devtty/webcastellum/actions/runs/5441412243/jobs/9895332455\#step:8:437} aufgerufen am 07.07.2023}. Dabei wurden:
 
@@ -137,6 +137,7 @@ Mit der Möglichkeit der Überwachung der qualitativen Metriken der Anwendung un
 
 % Highlight 2 der Implementierung
 \section{Zentralisierung}
+
 Im Ursprungszustand handelt es sich bei WebCastellum um einen relativ leichtgewichtigen Servlet-Filter der sämtliche Abwehrmaßnahmen direkt verarbeitet. Abgesehen von den Interaktionen mit der eigentlichen Anwendung existieren nur wenige Berührungspunkte mit externen Systemen. Die zwei wichtigsten Fälle sind dabei die \emph{Konfiguration} der Anwendung und die \emph{Benachrichtung} des Betreibers über den Zustand (Funktion, Angriffe, usw.) der Web Application Firewall. Beide Fälle benutzen derzeit textuelle Schnittstellen. Die Konfiguration erfolgt über \emph{manuelles} Editieren des Bereitstellungsdeskriptors (\emph{web.xml}) und die Bereitstellung des Status über Logdateien. Um den Datenaustausch mehrerer Instanzen der WAF nach dem Muster aus Abschnitt~\ref{sec:zentralisierungkern} zu ermöglichen, müssten zusätzliche (maschinell lesbare) Schnittstellen geschaffen werden. Diese Schnittstellen sorgen dann für den Datenaustausch mit einer zentralen Schnittstelle (Abbildung~\ref{fig:my_verbund}).\\
 
 \begin{figure}[h]

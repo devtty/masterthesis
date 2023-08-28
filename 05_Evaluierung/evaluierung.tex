@@ -104,7 +104,7 @@ Beim aktiven Angriff übernimmt \emph{ZAP} die volle Kontrolle und sucht (mögli
 
 \subsection{Defender}
 
-Hierbei handelt es sich um die zu testende Instanz der WebApplicationFirewall. Gegebenenfalls kann hier natürlich die Konfiguration - je nach Testfall - variieren. Da jedoch eine zentrale Installation im Fokus steht, sollte in jedem Fall diese zentrale Instanz mit der gleichen Konfiguration getestet werden. 
+Hierbei handelt es sich um die zu testende Instanz der WebApplicationFirewall. Gegebenenfalls kann hier natürlich die Konfiguration - je nach Testfall - variieren. Da jedoch eine zentralisierte Installation im Fokus steht, sollte in jedem Fall diese Instanz mit der gleichen Konfiguration getestet werden. Dazu wird auf die abrufbare Konfiguration aus Abschnitt~\ref{sec:centralconf} zurückgegriffen. Es folgen weitere Test mit einem zweiten \emph{Verteidiger}, der in der Konfiguration der ersten Instanz entspricht und die aus Abschnitt~\ref{sec:mlfk} bekannten Funktionen unterstützt. 
 % 3 Fälle -> ohne, defaultconfig, von zentrale gelieferte Konfiguration
 
 \subsection{Victim}
@@ -153,7 +153,7 @@ Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hie
 
 %lohnt es sich Training mit altem und neuen Datensatz zu testen? Zeit?
 
-Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine eindeutige Verbesserung durch Nutzung der Web Application Firewall. 
+Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine eindeutige Verbesserung durch Nutzung der Web Application Firewall. Wobei hier klar die regelbasierte Funktionalität der Firewall die meisten Angriffe abwehrte. 
 
 \begin{table}[h]
     \centering
@@ -185,7 +185,7 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
     \label{tab:tes1tergebnisse}
   \end{table}
 
-  Tabelle \ref{tab:tes1tergebnisse} gibt einen Überblick über die allgemeine Frage ob Angriffe verhindert werden können. Grundsätzlich verbessert der Einsatz einer WAF die IT-Sicherheit signifikant. Die zweite Tabelle (\ref{tab:tes2tergebnisse}) verdeutlicht die Ergebnisse nochmals anhand der einzelnen Kategorien.
+Die Tabelle \ref{tab:tes1tergebnisse} gibt einen Überblick über die allgemeine Frage ob Angriffe verhindert werden können. Grundsätzlich verbessert der Einsatz einer WAF die IT-Sicherheit signifikant. Die zweite Tabelle (\ref{tab:tes2tergebnisse}) verdeutlicht die Ergebnisse nochmals anhand der einzelnen Kategorien.\\
 
 \begin{table}[h]
     \centering
@@ -217,8 +217,8 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
     \label{tab:tes2tergebnisse}
 \end{table}
 
-Betrachtet man Tabelle \ref{tab:tes2tergebnisse} fällt auf das die Wirksamkeit der Firewall insbesondere im Fall von SQL-Injections (SQLi) gegeben ist. Nach Einsatz der Firewall wurden alle vorher erkannten Schwachstellen geschlossen bzw. eine Ausnutzung der Schwachstelle verhindert. Beide Anwendungen beinhalten eine oder mehrere Schwachpunkte im Bereich Cross-Site-Request-Forgery (CSRF). Obwohl die WAF-Software einen derartigen Schutzmechanismus beinhaltet scheint dieser nur im \emph{Primefaces Showcase} zum Teil zu wirken. Für die \emph{WebGoat}-Anwendung scheint dieser jedoch wirkungslos zu sein.\\
-
+Betrachtet man Tabelle \ref{tab:tes2tergebnisse} fällt auf, dass die Wirksamkeit der Firewall insbesondere im Fall von SQL-Injections (SQLi) gegeben ist. Nach Einsatz der Firewall wurden alle vorher erkannten Schwachstellen geschlossen bzw. eine Ausnutzung der Schwachstelle verhindert. Beide Anwendungen beinhalten eine oder mehrere Schwachpunkte im Bereich Cross-Site-Request-Forgery (CSRF). Obwohl die WAF-Software einen derartigen Schutzmechanismus beinhaltet scheint dieser nur im \emph{Primefaces Showcase} zum Teil zu wirken. Für die \emph{WebGoat}-Anwendung scheint der CSRF-Schutz jedoch völlig wirkungslos zu sein.\\
+Des Weiteren scheinen sich auf den ersten Blick die Werte für die Tests der erweiterten Instanz nicht von denen der Normalinstanz zu unterscheiden. Einziger sichtbarer Unterschied besteht zwischen Testlauf 14 und 15. Der Grund hierfür liegt in der Implementation des Entscheidungsbaumes. Durch die aufgetretenen Speicherprobleme ist die Auswertung im Entscheidungsbaum nur auf die beiden Attribute bzw. Features \emph{URL} und \emph{HTTP-Methode} begrenzt. Der Test löst hier nur im passiven Test aus, bei dem absichtlich eine URL per \verb=GET=-Aufruf aufgerufen wird, die für ein \verb=POST=-Formular reserviert ist.
 
 % Diskussion und Bewertung (3-4 Seiten)
 %%\section{Bewertung}
