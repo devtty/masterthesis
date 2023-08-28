@@ -707,14 +707,14 @@ Created by potrace 1.8, written by Peter Selinger 2001-2007
        sodipodi:role="line"
        x="391.54547"
        y="298.65472"
-       id="tspan11976">XML- oder HTML- </tspan></text>
-  <text
+       id="tspan11976">XML- oder HTML- </tspan><!--</text>-->
+  <!--<text
      xml:space="preserve"
      style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
      x="391.54547"
      y="302.65472"
      id="text11972"
-     sodipodi:linespacing="125%"><tspan
+     sodipodi:linespacing="125%">--><tspan
        sodipodi:role="line"
        x="391.545471"
        y="308.65472"

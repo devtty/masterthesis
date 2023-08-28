@@ -5,11 +5,10 @@
 
 % Grundbegriffe 2 Seiten
 
-Die erste Hälfte des Kapitels beinhaltet einige Grundlagen und Erklärungen um genauer zu verstehen wie Angriffe auf eine Web Anwendung ablaufen und wie damit verbundene Sicherheitsrisiken präventiv entdeckt werden können. Die zweite Hälfte gibt einen Einblick zum Thema Softwaretests mit Bezug auf die für diese Arbeit notwendigen Abläufe und Werkzeuge. 
+Der erste Teil des Kapitels erläutert einige Grundbegriffe, die in dieser Arbeit häufiger auftreten, und beinhaltet Erklärungen die zum Verständnis, wie Angriffe auf eine Web Anwendung erfolgen, beitragen. Im Anschluss wird der Ablauf eines Angriffs und wie damit verbundene Sicherheitsrisiken präventiv entdeckt werden können erläutert. Der größte Teil des Kapitels gibt einen kleinen Einblick in die historische Entwicklung der Web Application Firewalls und der damit verbundenen Evolutionsstufen. Als kleine Einführung sollte dieses zu einem Grundverständnis zum Thema führen und stellt gleichzeitig die Basis für die folgenden Kapitel dar.
 
 \section{Grundbegriffe}
-
-\subsection{Allgemein}
+Einige Begriffe werden in dieser Arbeit wiederkehrend auftauchen und benötigen evt. eine genauere Beschreibung:
 
 \textbf{API:} \emph{Application Programming Interface} oder auch Anwendungsprogrammierschnittstelle, Komponente einer Software die die Anbindung weiterer externer Anwendungen ermöglicht
 
@@ -177,7 +176,7 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 
 \textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200-OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
 \begin{align}
-  P = \frac{Scoring-Wert}{Anzahl_Anfragen gesamt}
+  P = \frac{Scoring-Wert}{Anzahl_{Anfragen gesamt}}
 \end{align}
 \anno{Formel überprüfen?Weitermachen!}
 
@@ -251,7 +250,7 @@ Dennis Appelt spezialisierte sich in seiner Arbeit~\cite{Appelt2016} auf das Tes
 
 \subsection{Schwarmwissen}
 \anno{Übergang ist irgendwie doof}
-Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlugen \emph{Saher Manaseer} und \emph{Ahmad Al Hwaitat} in~\cite{Manaseer2018} vor, mehreren Instanzen den Datenaustausch über ein zentrales System zu ermöglichen. Dabei werden die erkannten Angriffe an ein sogenanntes \emph{Command and Control Center} weitergeleitet und von dort mit entsprechenden Abwehrmaßnahmen an weitere Firewall-Instanzen verteilt. 
+Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlugen \emph{Saher Manaseer} und \emph{Ahmad Al Hwaitat} in~\cite{Manaseer2018} vor, mehreren Instanzen den Datenaustausch über ein zentrales System zu ermöglichen. Dabei werden die erkannten Angriffe an ein sogenanntes \emph{Command and Control Center} weitergeleitet und von dort mit entsprechenden Abwehrmaßnahmen an weitere Firewall-Instanzen verteilt. Die Arbeit geht zwar nicht genauer auf die angewandten Techniken ein, allerdings ist das Konzept wegweisend. Ähnlich wie zum Beispiel bei der Abwehr von Spam, könnte ein zeitlich begrenztes und zentrales \emph{Blacklisting} auch angebundenen Firewalls einen sicherheitstechnischen Mehrwert bringen.
 
 % TODO mehr ausfuehren
 
