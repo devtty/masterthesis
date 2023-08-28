@@ -208,7 +208,7 @@ Mit der vermehrten Nutzung des AJAX-Konzeptes entwickelten sich auch die zur Obe
 \textcolor{bhtGray}{\ding{110} Kozik über den Datensatz CSIC2010~\cite{kozik2019}} For instance, the original data set currently contains mainly requests that are complied with \glqq\verb=application/x-www-form-urlencoded=\grqq
 encoding standard. On the other hand, the modern web applications are currently also using different types of request content, e.g. \glqq\verb=application/json=\grqq, \glqq\verb=text/x-gwt-rpc=\grqq or other proprietary types.\\
 
-In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basierte Anwendung und erweiterten für ihre Zwecke darauf aufbauend den CSIC2010-Datensatz um 1500 \emph{normale} Anfragen und 2000 Angriffe.
+In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basierte Anwendung und erweiterten für ihre Zwecke darauf aufbauend den CSIC2010-Datensatz um 1500 \emph{normale} bzw. gültige GWT-Anfragen und 2000 Anfragen mit Angriffs-Absicht.
 
 % SChönes Beispiel für Fortschritt, produktiven Einsatz und zeitliche Veränderung und wo Gimenez nicht funktioniert-- > PUT als anomalie in CSIC2010 definiert aber in REST durchaus üblich
 % rest beispiel mit PUT
@@ -216,7 +216,7 @@ In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basiert
 
 % Methodik und Vorgehen
 \section{Methodik}
-
+Aufbauend auf den Erläuterungen zu den angesprochendenen Problemen und auf der verübten Kritik folgen nun einige Lösungsempfehlungen. Dabei soll auf ein mögliches Endprodukt hingearbeitet werden dass erst im nächsten Kapitel konkrete Form annehmen wird. 
 % Uebersicht Architektur
 
 \section{Lösungen}
@@ -316,9 +316,9 @@ Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem prak
 % Zusammenfassung: ca. 0,5 Seiten
 \section{Zusammenfassung}
 
-Nach der kurzen zeitlichen Einordnung über die Entstehung anomaliebasierter Web Application Firewalls im vorherigen Kapitel lieferte dieses Kapitel einen Einblick in einen Teil der bestehenden Daten. Dazu wurde der Umfang und Inhalt des 2010 von Carmen Torrano-Giménez erstellten Datensatzes \emph{CSIC2010} näher betrachtet. Es wurden einige Modernisierungsmaßnahmen vorgeschlagen, die dem veralteten Datensatz zu etwas mehr Allgemeingültigkeit und vor allem Genauigkeit verhelfen.\\
+Nach der kurzen zeitlichen Einordnung über die Entstehung anomaliebasierter Web Application Firewalls im vorherigen Kapitel lieferte dieses Kapitel einen Einblick in einen Teil der bestehenden Daten. Dazu wurde der Umfang und Inhalt des 2010 von Carmen Torrano-Giménez erstellten Datensatzes \emph{CSIC2010} näher betrachtet. Es wurden einige Modernisierungsmaßnahmen vorgeschlagen, die dem veralteten Datensatz zu etwas mehr Allgemeingültigkeit und vor allem Genauigkeit verhelfen.\\ Des Weiteren wurde ersichtlich dass der bestehende Datensatz keine Allgemeinformel für jeden Anwendungsfall darstellt. Im Gegenteil, jede \emph{praktische} Anwendung erfordert einen spezialisierten Datensatz und Gemeinsamkeiten unterschiedlicher (aber ähnlicher) Anwendungen können durchaus zu allgemeinerer Anwendbarkeit beitragen. Eine zentrale Stelle soll dabei die Daten entgegen nehmen und die Möglichkeit bieten, diese auch nach weiter zu verarbeiten. \\
 
-Das nächste Kapitel betrachtet die praktische Umsetzung der angedachten Ziele. Es soll dargestellt werden, wie ein neuer Datensatz generiert bzw. der bestehende Daten erweitert werden und wie neue Daten gesammelt werden können. 
+Das nächste Kapitel betrachtet die praktische Umsetzung der angedachten Ziele. Hierbei wird zuerst auf einige Vorbedingungen eingegangen und im Anschluss eine bestehende Lösung dementsprechend erweitert. Die Lösungen aus diesem Kapitel dienen dabei sozusagen als Anforderungen. Im darauf folgenden Test wird ebenfalls dargestellt, wie ein neuer Datensatz generiert wird bzw. der Bestehende mit zusätzlichen Daten erweitert werden kann.
 
 \begin{neu}
   Anfang mit Aufnahme des Altenbestands, hinzufügen Entwicklungsumgebung, Test, etc
