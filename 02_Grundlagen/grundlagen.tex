@@ -1,6 +1,6 @@
 \chapter{Grundlagen}
 
-\anno{bitte nicht mehr als 8 Seiten (8)}
+\anno{bitte nicht mehr als 8 Seiten (10)}
 %evt. kann hier aus den Technischen Grundlagen (Overleaf WP_Thesis) noch eingefuegt werden
 
 % Grundbegriffe 2 Seiten
@@ -13,7 +13,7 @@ Die erste Hälfte des Kapitels beinhaltet einige Grundlagen und Erklärungen um 
 
 \textbf{API:} \emph{Application Programming Interface} oder auch Anwendungsprogrammierschnittstelle, Komponente einer Software die die Anbindung weiterer externer Anwendungen ermöglicht
 
-\textbf{Bypassing:}
+\textbf{Bypassing:} bezeichnet das Umgehen von Sicherheitsmechanismen
 
 \textbf{Dictionary:} ein Wörterbuch, in der IT-Sicherheit eine Sammlung von Zeichenketten, z.B. eine Liste der meist verwendeten Passworte
 
@@ -21,17 +21,17 @@ Die erste Hälfte des Kapitels beinhaltet einige Grundlagen und Erklärungen um 
 
 \textbf{Feature:} Im Bereich \emph{Machine Learning} repräsentiert ein Feature eine Eigenschaft anhand derer einzelne Dateneinträge klassifiziert werden können. Übertragen auf den Menschen - zum Beispiel - die Augenfarbe. Diese Merkmale sollten individuell messbar sein und können auch kombiniert werden, z.B. alle Menschen, über 170 Zentimeter Körpergröße und mit blauen Augen. 
 
-\textbf{Filter:}
+\textbf{Filter:} in dieser Arbeit ist eine Komponente zur Analyse und zur weiteren Bearbeitung im Datenverkehr zwischen den Teilnehmern gemeint
 
 \textbf{Fingerprinting:} Ähnlich der Abnahme und Identifizierung von Personen mit Hilfe eines individuellen Fingerabdrucks können auch Produkte wie Software anhand spezifischer Merkmale identifiziert werden. Beim \emph{Fingerprinting}
 
-\textbf{Fuzzer:} Generator für Zufallsdaten
+\textbf{Fuzzer:} ein Generator für Zufallsdaten oder Permutationen von Eingaben nach einem vordefinierten Muster
 
 \textbf{Klassifizierung:} Einteilung in Gruppen durch Abgrenzung anhand von Kriterien
 
 \textbf{Maschinelles Lernen:} Unterschieden zwischen 
 
-\textbf{OpenSource:}
+\textbf{OpenSource:} Software die öffentlich verfügbar ist und deren Quellen einsehbar sind, diese kann meistens auch (Anschaffungs-)kostenfrei betrieben werden
 
 \textbf{Payload:} Allgemein steht der Begriff für Nutzdaten im Datenverkehr; IT-sicherheitstechnisch bedeutsam da Sicherheitslücken häufig Fehler in der Überprüfung der Nutzdaten ausnutzen, daher zum Teil auch Synonym für Angriffsursache
 
@@ -39,11 +39,7 @@ Die erste Hälfte des Kapitels beinhaltet einige Grundlagen und Erklärungen um 
 
 \textbf{Regulärer Ausdruck:} Eine Zeichenkette zur Beschreibung einer Menge von Zeichenketten mit Hilfe einer vordefinierten Syntax. Ein regulärer Ausdruck kann beispielsweise genutzt werden um bestimmte Muster in einem Text zu erkennen oder einen Text mit einem Muster zu vergleichen.
 
-\textbf{Request:} 
-
-\textbf{Response:}
-
-\textbf{Überwachtes Lernen:} 
+\textbf{Request und Response:} in dieser Arbeit sind damit Anfragen und Antworten nach dem HTTP-Protokoll gemeint
 
 \subsection{Arten von Angriffen}
 
@@ -81,8 +77,6 @@ Mit der vermehrten Nutzung webbasierter Schnittstellen, z.B. durch Microservice-
 Die MITRE Corporation sammelt in einer Datenbank\footnote{\url{https://cve.mitre.org}} öffentlich bekannt gewordene Schwachstellen und Risiken. Wenn eine Gefahr identifiziert wurde wird dieser Gefahr von einer sogenannten \emph{CVE Numbering Authority} eine eindeutige Referenznummer zugewiesen. Eine CVD-Referenznummer beginnt dabei immer mit dem Präfix \glqq\verb=CVD-=\grqq gefolgt von der Jahreszahl der Veröffentlichung und einer fortlaufenden Nummer. Sind dann nähere Informationen oder Lösungen bekannt werden diese in weiteren Datenbanken veröffentlicht. Ein Beispiel dafür wäre die U.S National Vulnerability Database (NVD)\footnote{\url{https://nvd.nist.gov}}.\\\\
 
 \textcolor{bhtGray}{\ding{110} Beispiel log4j2\footnote{\url{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}}} Eine der größeren Sicherheitslücken der letzten Zeit betraf das Logging-Framework \emph{Apache Log4j2}. Durch Manipulation der Lognachrichten konnten hier ganze Rechner gekapert werden. Eine Möglichkeit beschrieb Stefano Chierici in seinem Blog~\cite{chierici2021}. Er nutzte einen HTTP-Request zum Setzen eines Cookies zur Übernahme eines Rechners. Die an das Logging-Framework übermittelten Werte wurden nicht korrekt auf sogenannte \emph{Injections} geprüft und im Ergebnis konnte die JNDI-Schnittstelle (\emph{Java Naming and Directory Interface}) für Angriffe ausgenutzt werden. \\\\
-
-\anno{beide Schwachstellen später nochmal referenzieren mit Hinweis das beide durch vorschalten einer WAF u.U. schneller eingedämmt wären -> 0day}
 
 \subsection{Der Tag Null}
 
@@ -174,7 +168,7 @@ Die Einträge in der Serverkonfiguration und die ersten Regeln im modSecurity-Mo
 
 \textcolor{bhtGray}{\ding{110} Anmerkung} Natürlich erlauben \emph{Reguläre Ausdrücke} ebenfalls eine gewisse Logik und somit auch die darauf basierenden Regeln.\\
 
-Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist. Das Scoring erlaubt es verschiedene Ergebnisse miteinander zu kombinieren und in Abhängigkeit voneinander auszuwerten. Technisch gesehen ist das HTTP-Protokoll zustandslos und bei einfachen Konfigurationen der WAF  wird jede einzelne Anfrage unabhängig von anderen Anfragen betrachtet. Der Scoring-Mechanismus erlaubt es in gewissem Maße auch zustandsbezogen zu agieren. \anno{Zu undeutlich? Blöd ausgedrückt?}\\
+Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist. Das Scoring erlaubt es verschiedene Ergebnisse miteinander zu kombinieren und in Abhängigkeit voneinander auszuwerten. Technisch gesehen ist das HTTP-Protokoll zustandslos und bei einfachen Konfigurationen der WAF  wird jede einzelne Anfrage unabhängig von anderen Anfragen betrachtet. Der Scoring-Mechanismus erlaubt es in gewissem Maße auch zustandsbezogen zu agieren. 
 
 % weiter erklären!
 % Idee: Ablaufdiagramme für Version 1(direkte Antwort) und 2 Scoring Mechanismus
@@ -189,7 +183,7 @@ Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer 
 
 In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall musste in jedem Fall für die jeweilige Anwendung angepasst werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepasst. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert und deren Ausführung in Abhängigkeit von vorkonfigurierten Werten gesteuert werden. Der Nutzer bekam die Möglichkeit eine sofort (bzw. mit sehr wenig Aufwand) einsetzbare Lösung zur erhalten, mit der seine Anwendung Schritt für Schritt sicherer werden konnte.
 
-\begin{figure}[ht]
+\begin{figure}[h]
   %% \begin{center}
   \centering
   \includesvg[width=0.5\textwidth]{pl_onion_no_fonts}

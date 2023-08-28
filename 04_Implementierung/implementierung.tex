@@ -1,6 +1,6 @@
 \chapter{Implementierung}
 
-\anno{max. 5 Seiten (7)} %Ref hat 12
+\anno{max. 5 Seiten (10)} %Ref hat 12
 
 % Was lesen wir in diesem Kapitel?
 % Warum muss ich das als Gutachter lesen
@@ -32,7 +32,7 @@ Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelne
   \label{tab:my_vergos}
 \end{table}
 
-\emph{ModSecurity} und \emph{IronBee}s Stärken liegen in der regelbasierten Auswertung (\emph{regular expression based filtering}). Beide werden als Reverse-Proxy vor der eigentlichen Anwendung eingesetzt und sind keine HTTP-Servlet-Filter. Dies hat den Nachteil das kein Zugriff auf die eigentlichen Anwendungsdaten besteht und nur anhand des HTTP-Datenverkehrs gefiltert werden kann. \emph{WebCastellum} scheint hier Gutes aus beiden Welten bereit zustellen, zum einen (als Servlet-Filter) direkten Zugriff auf die Anwendungsdaten anzubieten, als auch regelbasiertes Filtern \emph{out-of-the-box}. \anno{Achtung! Sampaios Tabelle ist hier fehlerhaft! Übernehmen trotz Fehler?}
+\emph{ModSecurity} und \emph{IronBee}s Stärken liegen in der regelbasierten Auswertung (\emph{regular expression based filtering}). Beide werden als Reverse-Proxy vor der eigentlichen Anwendung eingesetzt und sind keine HTTP-Servlet-Filter. Dies hat den Nachteil das kein Zugriff auf die eigentlichen Anwendungsdaten besteht und nur anhand des HTTP-Datenverkehrs gefiltert werden kann. \emph{WebCastellum} scheint hier Gutes aus beiden Welten bereit zustellen, zum einen (als Servlet-Filter) direkten Zugriff auf die Anwendungsdaten anzubieten, als auch regelbasiertes Filtern \emph{out-of-the-box}. 
 Mit Hinsicht auf einen späteren produktiven Einsatz wurde daher die Software \emph{WebCastellum} als Grundlage für die Implementierung der Firewall-Funktionalität gewählt.
 
 \section{Vorarbeiten}
@@ -89,7 +89,7 @@ Inklusive Code Smells bemängelte Sonar den Quellcode in insgesamt 2657 Fällen 
 
 \subsection{ToDos, Unit-Tests,  etc.}
 
-Interessant war ebenfalls die Suche nach \verb=TODO=-Markierungen im Quelltext. Insgesamt 243 mal traten entsprechende Kommentare im Quelltext auf und markierten Stellen an denen die Entwickler Probleme und Verbesserungen vermuteten bzw. Aufgaben für die nächste Version notierten. Diese Notizen reichten von einfachen Aufgabenstellungen, wie \glqq\emph{add proper logging}\grqq, über Refactoring-Ideen bis hin zu Anmerkungen deren Umsetzung die Funktionsweise des Filters beeinflussen würden. \anno{Zitierung aus eigener unveröffentlichter notwendig?}
+Interessant war ebenfalls die Suche nach \verb=TODO=-Markierungen im Quelltext. Insgesamt 243 mal traten entsprechende Kommentare im Quelltext auf und markierten Stellen an denen die Entwickler Probleme und Verbesserungen vermuteten bzw. Aufgaben für die nächste Version notierten. Diese Notizen reichten von einfachen Aufgabenstellungen, wie \glqq\emph{add proper logging}\grqq, über Refactoring-Ideen bis hin zu Anmerkungen deren Umsetzung die Funktionsweise des Filters beeinflussen würden. 
 
 Einige der Todo-Anmerkungen ließen auf eine geplante Überführung des Quellcodes von Java in der Version 1.4 auf Java 5 schließen. Häufig fanden sich auch auskommentierte dementsprechende Fragmente und, insbesondere bei der Verwendung listenähnlicher Objekte, fallen die in Java 5 eingeführten \emph{Generics} (s. Abbildung \ref{fig:my_l2} auf.
 
@@ -168,12 +168,9 @@ Eine zusätzliche Implementation der Schnittstelle, wie der in Abbildung~\ref{fi
   \end{center}
 \end{figure}
 
-Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentralen Dienst bezogen werden, muss dieser seinen \emph{Kunden} auch identifizieren können. Beispielsweise über einen eindeutigen Parameter (z.B. eine UUID - Universally Unique Identifier) der beim Abruf der Konfiguration mitgeliefert wird. 
+Wenn die Daten zur Konfiguration der Web Application Firewall von einem zentralen Dienst bezogen werden, muss dieser seinen \emph{Kunden} auch identifizieren können. Beispielsweise über einen eindeutigen Parameter (z.B. eine UUID - Universally Unique Identifier) der beim Abruf der Konfiguration mitgeliefert wird. \\
 
-
-Im Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfigurationsparametern bedacht werden, da diese auch sicherheitsrelevant sind.\\
-
-\textcolor{bhtGray}{\ding{110} Beispiel:} Im folgenden
+\textcolor{bhtGray}{\ding{110} Beispiel:} In der folgenden Abbildung~\ref{fig:confjson} sehen Sie eine Konfiguration des WebCastellumFilters wie sie von der beschriebenen Implementation abgerufen wird. Die Anwendung identifiziert sich dabei beim Abruf über eine eindeutige Identifikationsnummer (UUID), hier z.B. \url{https://devtty.de/wc/550e8400-e29b-11d4-a716-446655440000/config.json}. In diesem Fall kann der Abruf über den direkten Aufruf der URL erfolgen. Im produktiven Einsatz sollte eine Absicherung des Abrufs von Konfigurationsparametern über geeignete Sicherheitsmechanismen bedacht werden, da die Konfiguration besonders sicherheitsrelevant ist.\\
 
 \lstset{%basicstyle=\ttfamily\color{black}\small,
     string=[s]{"}{"},
@@ -206,8 +203,7 @@ Im Produktiveinsatz sollte eine genauere Absicherung des Abrufs von Konfiguratio
 \caption{Konfiguration im JSON-Format}
 \medskip
 \small
-Beispiel einer Konfiguration - Die Anwendung identifiziert sich beim Abruf über eine eindeutige Identifikationsnummer (UUID), hier z.B. \url{https://devtty.de/wc/550e8400-e29b-11d4-a716-446655440000/config.json}
-\label{fig:wekatrain}
+\label{fig:confjson}
 
 \end{figure}
 
