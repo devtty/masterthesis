@@ -29,14 +29,14 @@ Bei WebCastellum handelt es sich um eine Web Application Firewall die zum Schutz
 
 
 \subsection{Ziel - Anwendungen}
-
+\label{sec:targetapp}
 Wie bereits in Abschnitt \ref{sec:zieldesdatensatzes} erwähnt, sollten als mögliche Ziele bekannte und öffentlich verfügbare Anwendungen zum Einsatz kommen. Insbesondere die Beispielanwendungen der größeren Frameworks dürften hierbei die Hauptkandidaten sein. In den meisten Fällen ist dabei eine funktionale Ähnlichkeit zu der von Torrano-Gimenéz genutzten Anwendung vorhanden. Dabei können in der Anwendung Produkte (z.B. Fracht oder Tiere) einer Liste oder einem Warenkorb hinzugefügt oder entfernt werden und mit anderen Entitäten verknüpft werden. Einer der älteren Vertreter in diesem Bereich ist der \emph{PetStore}.
 
 \subsubsection{PetStore}
 
 Die \emph{Enterprise Edition} der Java Plattform entstand zum Ende des letzten Jahrtausends und hatte ihrer Durchbruch in der Welt der Anwendungsentwicklung (für das Internet) mit der Version 1.3 im September 2001. Um den Entwicklern einen leichteren Einstieg zu bieten veröffentlichte der damalige Hersteller (Sun Microsystems) den \emph{J2EE PetStore}\footnote{\url{http://web.archive.org/web/20011126114227/http://java.sun.com/features/2001/05/petstore.html} J2EE PetStore vom Mai 2001 im WebArchive}. Dabei handelte es sich im eine komplette Anwendung deren Quelltexte frei verfügbar waren und als Beispiel (\emph{Blueprints} für zahlreiche Unternehmensanwendungen galt. Mit jeder neuen Version der Enterprise Edition wurde auch der PetStore entsprechend angepasst.\\
 
-Mit der Version 8 der Java Enterprise Edition übergab die Firma Oracle die Weiterentwicklung an die \emph{Eclipse Foundation} und es erfolgte eine Umbenennung der Plattform in \glqq\emph{Eclipse Jakarta EE Platform}\grqq{}(EE4J). Darauf hin entstand, mit dem PetStore für Jakarta EE 9\footnote{\url{https://github.com/javaeekickoff/java-ee-petstore-app} PetStore Jakarta EE 9 auf GitHub} von Antonio Goncalves, die vorerst letzte Version des PetStores\anno{evt. als Alternative zum Test mit PF?}. 
+Mit der Version 8 der Java Enterprise Edition übergab die Firma Oracle die Weiterentwicklung an die \emph{Eclipse Foundation} und es erfolgte eine Umbenennung der Plattform in \glqq\emph{Eclipse Jakarta EE Platform}\grqq{}(EE4J). Darauf hin entstand, mit dem PetStore für Jakarta EE 9\footnote{\url{https://github.com/javaeekickoff/java-ee-petstore-app} PetStore Jakarta EE 9 auf GitHub} von Antonio Goncalves, die vorerst letzte Version des PetStores. 
 
 
 \subsubsection{Cargo Tracker}
@@ -89,11 +89,9 @@ Angreifer können (handgeschriebene) Tests oder automatisierte Tools sein. Konkr
 
 \subsubsection{Der manuelle Angriff}
 
-Ein manueller Angriff ist ein exakt definierter Angriff der manuell ausgeführt wird. Der Ablauf ist dabei exakt in einer (Test-)Spezifikation beschrieben. Häufig existieren diese Tests in Form von Checklisten die vom einem Tester (Mensch) ab zuhaken sind. Mit Werkzeugen wie Selenium existieren auch Möglichkeiten diese Art von Test zu automatisieren. Der hier verwendete Test ruft im Grunde nur ein Formular auf und trägt in ein Textfeld einen mit einer SQl-Injektion versehenen bzw. manipulierten Wert ein. Im Anschluß wird das Formular abgesendet und der Rückgabewert kontrolliert.
+Ein manueller Angriff ist ein exakt definierter Angriff der manuell ausgeführt wird. Der Ablauf ist dabei exakt in einer (Test-)Spezifikation beschrieben. Häufig existieren diese Tests in Form von Checklisten die vom einem Tester (Mensch) ab zuhaken sind. Mit Werkzeugen wie Selenium existieren auch Möglichkeiten diese Art von Test zu automatisieren. Der hier verwendete Test ruft im Grunde nur ein Formular auf und trägt in ein Textfeld einen mit einer SQl-Injektion versehenen bzw. manipulierten Wert ein. Im Anschluß wird das Formular abgesendet und der Rückgabewert kontrolliert.\\
 
-\begin{neu}
-manuellen Angriff beispielhaft erläutern; ggf. nochmal hinweis auf GrapheneTest (automatisierte Angriff); Hinweis/Übergang zu verschiedenen Beispiel-Datasets bzw. ref aus WAf-a-mole bzgl. verfügbarkeit
-\end{neu}
+\textcolor{bhtGray}{\ding{110} Anmerkung} Zwei Beispiele für einen \glqq\emph{automatisierten}\grqq{} manuellen Test finden Sie in der Klasse \verb=WebFilterDroneTest=. Hier wird eine SQL-Injektion einmal über einen Request-Parameter (\href{https://github.com/devtty/webcastellum/blob/3c45a017e2aa17e553d2517308210ab7bf614904/src/test/java/org/webcastellum/test/WebFilterDroneTest.java#L88}{\verb=testSQLInjectionViaGetParam7()=}) und einmal über ein Formular-Feld (\href{https://github.com/devtty/webcastellum/blob/3c45a017e2aa17e553d2517308210ab7bf614904/src/test/java/org/webcastellum/test/WebFilterDroneTest.java#L121}{\verb=testSQLInjectionViaPostParam=}) ausgelöst.
 
 
 \subsubsection{Der passive Angriff}
@@ -106,17 +104,16 @@ Beim aktiven Angriff übernimmt \emph{ZAP} die volle Kontrolle und sucht (mögli
 
 \subsection{Defender}
 
-Hierbei handelt es sich um die zu testende Instanz der WebApplicationFirewall. Gegebenenfalls kann hier natürlich die Konfiguration - je nach Testfall - variieren. Da jedoch eine zentrale Installation im Fokus steht, sollte in jedem Fall diese zentrale Instanz mit der gleichen Konfiguration getestet werden. In Tabelle~\ref{tab:testplan} werden zwei verschiedene Konfigurationen der WebCastellum-WAF als Verteidiger benannt. Bei der ersten Konfiguration handelt es sich um WebCastellum in der Standard-Konfiguration\footnote{Minimalkonfiguration - Default-Werte}. Bei der zweiten (mit \emph{(e)}\ gekennzeichneten) Konfiguration handelt es sich um WebCastellum mit aktivierter Erweiterung.
+Hierbei handelt es sich um die zu testende Instanz der WebApplicationFirewall. Gegebenenfalls kann hier natürlich die Konfiguration - je nach Testfall - variieren. Da jedoch eine zentrale Installation im Fokus steht, sollte in jedem Fall diese zentrale Instanz mit der gleichen Konfiguration getestet werden. 
 % 3 Fälle -> ohne, defaultconfig, von zentrale gelieferte Konfiguration
 
 \subsection{Victim}
 
-Bei den \glqq\emph{Opfern}\grqq  im Test sollte es sich um zu schützende Anwendungen handeln. Vornehmlich sollte es sich um ein möglichst breit gefächertes Angebot an Anwendungen handeln. Aus zeitlichen Gründen werden in dieser Arbeit jedoch nur die im Grundlagen-Absatz erwähnten Anwendungen, \emph{Primefaces Showcase} und \emph{WebGoat} genutzt. Grundsätzlich könnten aber auch andere Anwendungen für den Testaufbau genutzt werden.\\ 
+Bei den \glqq\emph{Opfern}\grqq  im Test sollte es sich um zu schützende Anwendungen handeln. Vornehmlich sollte es sich um ein möglichst breit gefächertes Angebot an Anwendungen handeln. Aus zeitlichen Gründen werden in dieser Arbeit jedoch nur die aus Abschnitt~\ref{sec:targetapp} bekannten Anwendungen, \emph{Primefaces Showcase} und \emph{WebGoat} genutzt. Grundsätzlich könnten aber auch andere Anwendungen für den Testaufbau genutzt werden.\\ 
 
 \subsection{TestMatrix}
-Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hierfür wird die in Tabelle \ref{tab:testplan} als Grundgerüst verwendet. Möglichst alle Angreifer sollten jeweils jedes Opfer angreifen. Mit steigender Anzahl an Opfern bzw. Tätern würde sich die Matrix entsprechend erweitern. 
+Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hierfür wird die in Tabelle \ref{tab:testplan} als Grundgerüst verwendet. Möglichst alle Angreifer sollten jeweils jedes Opfer angreifen. Mit steigender Anzahl an Beteiligten (Opfer, Verteidiger oder Tätern) würde sich die Matrix entsprechend erweitern. In Tabelle~\ref{tab:testplan} werden zwei verschiedene Konfigurationen der WebCastellum-WAF als Verteidiger benannt. Bei der ersten Konfiguration handelt es sich um WebCastellum in der Standard-Konfiguration\footnote{Minimalkonfiguration mit voreingestellten Werten (Default)}. Bei der zweiten (mit \emph{(e)}\ gekennzeichneten) Konfiguration handelt es sich um WebCastellum mit aktivierter Erweiterung.
 
-\anno{Tabelle müssen aktualisiert werden}
 \begin{table}[h]
     \centering
     \begin{tabular}{cccc} 
@@ -154,8 +151,6 @@ Grundsätzlich besteht Bedarf möglichst viele Szenarien im Test abzudecken. Hie
 % Diagramme
 % Darstellen von Zusammenhängen
 
-\anno{Tabellenwert! webgoat is spring ML lernen}
-
 %lohnt es sich Training mit altem und neuen Datensatz zu testen? Zeit?
 
 Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine eindeutige Verbesserung durch Nutzung der Web Application Firewall. 
@@ -186,7 +181,7 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
       18 & ZAP (aktiv) & WebCastellum (e) & WebGoat & 14 & 59 \\
    \bottomrule
     \end{tabular}
-    \caption{Ergebnisse}
+    \caption{Ergebnisse der Tests}
     \label{tab:tes1tergebnisse}
   \end{table}
 
@@ -218,7 +213,7 @@ Die Ergebnisse aus den Tests (nach der spezifizierten Testmatrix) zeigen eine ei
       18 &  & 8 &  & 6 & 14 \\
    \bottomrule
     \end{tabular}
-    \caption{Ergebnisse}
+    \caption{Ergebnisse kategorisiert nach Angriffsart}
     \label{tab:tes2tergebnisse}
 \end{table}
 
