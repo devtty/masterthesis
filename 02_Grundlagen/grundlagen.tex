@@ -5,16 +5,16 @@
 
 % Grundbegriffe 2 Seiten
 
-Der erste Teil des Kapitels erläutert einige Grundbegriffe, die in dieser Arbeit häufiger auftreten, und beinhaltet Erklärungen die zum Verständnis, wie Angriffe auf eine Web Anwendung erfolgen, beitragen. Im Anschluss wird der Ablauf eines Angriffs und wie damit verbundene Sicherheitsrisiken präventiv entdeckt werden können erläutert. Der größte Teil des Kapitels gibt einen kleinen Einblick in die historische Entwicklung der Web Application Firewalls und der damit verbundenen Evolutionsstufen. Als kleine Einführung sollte dieses zu einem Grundverständnis zum Thema führen und stellt gleichzeitig die Basis für die folgenden Kapitel dar.
+Der erste Teil des Kapitels erläutert einige Grundbegriffe, die in dieser Arbeit häufiger auftreten, und beinhaltet Erklärungen die zum Verständnis, wie Angriffe auf eine Web Anwendung erfolgen, beitragen. Im Anschluss wird der Ablauf eines Angriffs und wie damit verbundene Sicherheitsrisiken präventiv entdeckt werden können erläutert. Der größte Teil des Kapitels gibt einen kleinen Einblick in die historische Entwicklung der Web Application Firewalls und der damit verbundenen Evolutionsstufen. Als kleine Einführung sollte dieses zu einem Grundverständnis zum Thema führen und stellt gleichzeitig die Basis für alle folgenden Kapitel dar.
 
 \section{Grundbegriffe}
-Einige Begriffe werden in dieser Arbeit wiederkehrend auftauchen und benötigen evt. eine genauere Beschreibung:
+Einige Begriffe werden in dieser Arbeit wiederkehrend auftauchen und benötigen eventuell eine genauere Beschreibung:\\
 
 \textbf{API:} \emph{Application Programming Interface} oder auch Anwendungsprogrammierschnittstelle, Komponente einer Software die die Anbindung weiterer externer Anwendungen ermöglicht
 
 \textbf{Bypassing:} bezeichnet das Umgehen von Sicherheitsmechanismen
 
-\textbf{Dictionary:} ein Wörterbuch, in der IT-Sicherheit eine Sammlung von Zeichenketten, z.B. eine Liste der meist verwendeten Passworte
+\textbf{Dictionary:} ein Wörterbuch, in der IT-Sicherheit eine Sammlung von Zeichenketten, zum Beispiel eine Liste der meist verwendeten Passworte
 
 \textbf{Entscheidungsbaum:} überwachter Lernalgorithmus für Klassifizierungsaufgaben; anhand eines Entscheidungsbaumes könnte Datenverkehr beispielsweise in erwünscht oder nicht erwünscht eingeteilt werden
 
@@ -22,17 +22,15 @@ Einige Begriffe werden in dieser Arbeit wiederkehrend auftauchen und benötigen 
 
 \textbf{Filter:} in dieser Arbeit ist eine Komponente zur Analyse und zur weiteren Bearbeitung im Datenverkehr zwischen den Teilnehmern gemeint
 
-\textbf{Fingerprinting:} Ähnlich der Abnahme und Identifizierung von Personen mit Hilfe eines individuellen Fingerabdrucks können auch Produkte wie Software anhand spezifischer Merkmale identifiziert werden. Beim \emph{Fingerprinting}
+\textbf{Fingerprinting:} Ähnlich der Abnahme und Identifizierung von Personen mit Hilfe eines individuellen Fingerabdrucks können auch Produkte wie Software anhand spezifischer Merkmale identifiziert werden.
 
 \textbf{Fuzzer:} ein Generator für Zufallsdaten oder Permutationen von Eingaben nach einem vordefinierten Muster
 
 \textbf{Klassifizierung:} Einteilung in Gruppen durch Abgrenzung anhand von Kriterien
 
-\textbf{Maschinelles Lernen:} Unterschieden zwischen 
-
 \textbf{OpenSource:} Software die öffentlich verfügbar ist und deren Quellen einsehbar sind, diese kann meistens auch (Anschaffungs-)kostenfrei betrieben werden
 
-\textbf{Payload:} Allgemein steht der Begriff für Nutzdaten im Datenverkehr; IT-sicherheitstechnisch bedeutsam da Sicherheitslücken häufig Fehler in der Überprüfung der Nutzdaten ausnutzen, daher zum Teil auch Synonym für Angriffsursache
+\textbf{Payload:} Allgemein steht der Begriff für Nutzdaten im Datenverkehr; IT-sicherheitstechnisch bedeutsam da Sicherheitslücken häufig Fehler in der Überprüfung der Nutzdaten ausnutzen, daher zum Teil auch Synonym für die Angriffsursache
 
 \textbf{Reverse Proxy:} Server zwischen Client und dem eigentlichen Server/Servern 
 
@@ -42,14 +40,14 @@ Einige Begriffe werden in dieser Arbeit wiederkehrend auftauchen und benötigen 
 
 \subsection{Arten von Angriffen}
 
-Die bekannteste Referenz für das Thema \glqq Web Anwendungen und IT-Sicherheit\grqq  ist sicherlich das \emph{Open Web Application Security Project\textsuperscript{\textregistered}}, eine Non-Profit-Organisation mit dem Ziel, die Sicherheit von Anwendungen und Diensten im World Wide Web zu verbessern\cite{wpowasp}. Die OWASP Foundation lädt regelmäßig zu Konferenzen ein und erstellt Leitfäden, Sicherheitsempfehlungen und Werkzeuge zum Thema Sicherheit im Web.\\
-Bekanntestes Produkt ist eine jährlich herausgegebene, kuratierte Liste der am häufigsten vorkommenden Arten von Angriffen auf Anwendungen im Netz, die so genannten \emph{OWASP Top Ten}\cite{owasp10}
+Die bekannteste Referenz für das Thema \glqq Web Anwendungen und IT-Sicherheit\grqq{}  ist sicherlich das \emph{Open Web Application Security Project\textsuperscript{\textregistered}}, eine Non-Profit-Organisation mit dem Ziel, die Sicherheit von Anwendungen und Diensten im World Wide Web zu verbessern~\cite{wpowasp}. Die OWASP Foundation lädt regelmäßig zu Konferenzen ein und erstellt Leitfäden, Sicherheitsempfehlungen und Werkzeuge zum Thema Sicherheit im Web.\\
+Bekanntestes Produkt ist eine jährlich herausgegebene, kuratierte Liste der am häufigsten vorkommenden Arten von Angriffen auf Anwendungen im Netz, die so genannten \emph{OWASP Top Ten}~\cite{owasp10}
 
 \subsubsection{Kategorien von Angriffszielen}
 
-Die OWASP Top 10 sind im Umkreis von IT-Sicherheits-Experten, Softwarearchitekturen und Entwicklern bekannt und geben einen guten Überblick über die häufigsten Angriffsmuster auf Webanwendungen. Web Application Firewalls können insbesondere bei der Vermeidung von Angriffen in den Kategorien \emph{Injection} und \emph{Server-Side Request Forgery} nützlich sein - je nach Konfiguration aber auch in den (meisten) anderen Kategorien.  
+Die OWASP Top 10 sind im Umkreis von IT-Sicherheits-Experten, Softwarearchitekten und Entwicklern durchaus bekannt und geben einen guten Überblick über die häufigsten Angriffsmuster auf Webanwendungen. Web Application Firewalls können insbesondere bei der Vermeidung von Angriffen in den Kategorien \emph{Injection} und \emph{Server-Side Request Forgery} nützlich sein - je nach Konfiguration aber auch in den (meisten) anderen Kategorien.\\
 
-Mit der vermehrten Nutzung webbasierter Schnittstellen, z.B. durch Microservice-Architekturen, Single Page Applications oder dem Internet-of-Things, sah sich die OWASP Foundation gezwungen für den Bereich API-Security eine eigene Top 10 Liste zu erstellen, die OWASP API Security Top 10\cite{owaspapi10}. Da \emph{Application Programming Interfaces} (API) in vielen Fällen auch für die allgemeine Nutzung im Internet freigegeben sind, sollte der Einsatz von WAFs zum Schutz dieser Fälle daher mit betrachtet werden. 
+Mit der vermehrten Nutzung webbasierter Schnittstellen, z.B. durch Microservice-Architekturen, Single Page Applications oder dem Internet-of-Things, sah sich die OWASP Foundation gezwungen für den Bereich API-Security eine eigene Top 10 Liste zu erstellen, die OWASP API Security Top 10~\cite{owaspapi10}. Da \emph{Application Programming Interfaces} (API) in vielen Fällen auch für die allgemeine Nutzung im Internet freigegeben sind, sollte der Einsatz von WAFs zum Schutz dieser Fälle daher mit betrachtet werden. 
 
 \begin{table}[ht]
     \centering
@@ -71,20 +69,20 @@ Mit der vermehrten Nutzung webbasierter Schnittstellen, z.B. durch Microservice-
     \label{tab:owaspapitop10}
 \end{table}
 
-\textcolor{bhtGray}{\ding{110} Beispiel MyHundai Hack\footnote{https://threadreaderapp.com/thread/1597695281881296897.html}} Viele Fahrzeughersteller bieten mittlerweile Handy-Apps zum Abrufen von Informationen über Fahrzeuge und (teilweise) deren Steuerung an. Der Hersteller Hyundai lässt seine App dazu über den Endpunkt \texttt{api.telematics.hyundaiusa.com} kommunizieren. Eine Beschreibung der API findet sich unter \emph{https://hacksore.github.io/bluelinky-docs/docs/api-reference}. Im beschriebenen Beispiel nutzten die Angreifer eine manipulierte Email-Adresse und verschafften sich Zugang zum Fahrzeug des Opfers (einer der Angreifer), inklusive der Möglichkeit das Fahrzeug aus der Ferne zu starten. \\\\
+\textcolor{bhtGray}{\ding{110} Beispiel MyHundai Hack\footnote{https://threadreaderapp.com/thread/1597695281881296897.html}} Viele Fahrzeughersteller bieten mittlerweile Handy-Apps zum Abrufen von Informationen über Fahrzeuge und (teilweise) deren Steuerung an. Der Hersteller Hyundai lässt seine App dazu über den Endpunkt \texttt{api.telematics.hyundaiusa.com} kommunizieren. Eine Beschreibung der API findet sich unter \emph{\url{https://hacksore.github.io/bluelinky-docs/docs/api-reference}}. Im beschriebenen Beispiel nutzten die Angreifer eine manipulierte Email-Adresse und verschafften sich Zugang zum Fahrzeug des Opfers (einer der Angreifer), inklusive der Möglichkeit das Fahrzeug aus der Ferne zu starten. \\
 
-Die MITRE Corporation sammelt in einer Datenbank\footnote{\url{https://cve.mitre.org}} öffentlich bekannt gewordene Schwachstellen und Risiken. Wenn eine Gefahr identifiziert wurde wird dieser Gefahr von einer sogenannten \emph{CVE Numbering Authority} eine eindeutige Referenznummer zugewiesen. Eine CVD-Referenznummer beginnt dabei immer mit dem Präfix \glqq\verb=CVD-=\grqq gefolgt von der Jahreszahl der Veröffentlichung und einer fortlaufenden Nummer. Sind dann nähere Informationen oder Lösungen bekannt werden diese in weiteren Datenbanken veröffentlicht. Ein Beispiel dafür wäre die U.S National Vulnerability Database (NVD)\footnote{\url{https://nvd.nist.gov}}.\\\\
+Die MITRE Corporation sammelt in einer Datenbank\footnote{\url{https://cve.mitre.org}} öffentlich bekannt gewordene Schwachstellen und Risiken. Wenn eine Gefahr identifiziert wurde, wird dieser Gefahr von einer sogenannten \emph{CVE Numbering Authority} eine eindeutige Referenznummer zugewiesen. Eine CVD-Referenznummer beginnt dabei immer mit dem Präfix \glqq\verb=CVD-=\grqq gefolgt von der Jahreszahl der Veröffentlichung und einer fortlaufenden Nummer. Sind dann nähere Informationen oder Lösungen bekannt, werden diese in weiteren Datenbanken veröffentlicht. Ein Beispiel dafür wäre die U.S National Vulnerability Database (NVD)\footnote{\url{https://nvd.nist.gov}}.\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel log4j2\footnote{\url{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}}} Eine der größeren Sicherheitslücken der letzten Zeit betraf das Logging-Framework \emph{Apache Log4j2}. Durch Manipulation der Lognachrichten konnten hier ganze Rechner gekapert werden. Eine Möglichkeit beschrieb Stefano Chierici in seinem Blog~\cite{chierici2021}. Er nutzte einen HTTP-Request zum Setzen eines Cookies zur Übernahme eines Rechners. Die an das Logging-Framework übermittelten Werte wurden nicht korrekt auf sogenannte \emph{Injections} geprüft und im Ergebnis konnte die JNDI-Schnittstelle (\emph{Java Naming and Directory Interface}) für Angriffe ausgenutzt werden. \\\\
+\textcolor{bhtGray}{\ding{110} Beispiel log4j2\footnote{\url{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}}} Eine der größeren Sicherheitslücken der letzten Zeit betraf das Logging-Framework \emph{Apache Log4j2}. Durch Manipulation der Lognachrichten konnten hier ganze Rechner gekapert werden. Eine Möglichkeit beschrieb Stefano Chierici in seinem Blog~\cite{chierici2021}. Er nutzte einen HTTP-Request zum Setzen eines Cookies zur Übernahme eines Rechners. Die an das Logging-Framework übermittelten Werte wurden nicht korrekt auf sogenannte \emph{Injections} geprüft und im Ergebnis konnte die JNDI-Schnittstelle (\emph{Java Naming and Directory Interface}) für Angriffe ausgenutzt werden. \\
 
 \subsection{Der Tag Null}
 
-Wird eine Schwachstelle aktiv ausgenutzt ohne das der Angriff entdeckt wird, spricht man von einem \glqq\emph{Zero-Day-Exploit}\grqq. Anwendungen sind in diesem Fall besonders gefährdet da der Hersteller noch keine Zeit hatte, den Nutzer vor dem Angriff zu schützen~\cite{bsi0day}. Selbst wenn ein Angriff dieser Art entdeckt wird, vergeht häufig viel Zeit bis zum entgültigen Schließen der Sicherheitslücke. Die Endnutzer sind in diesem Zeitraum besonders gefährdet, da die Vorgehensweise für den Angriff öffentlich bekannt ist und keine Gegenmaßnahmen getroffen wurden. Im Fall des obigen \emph{log4j2}-Beispiels sprach es sich beispielsweise schnell herum dass Chat-Nachrichten im beliebten Computerspiel emph{Minecraft} anfällig für die Manipulation sind. Bis zur entgültigen Behebung der Lücke vergingen mehrere Tage und der erste, behelfsmäßige Workaround bestand aus der Empfehlung einen Parameter in der Serverkonfiguration zu ändern der die ausgenutzte Funktionalität komplett abschaltete.\\ Hätte hier eine vorgeschaltene Software, die Eingaben auf bekannte Begriffe und Muster (z.B. auf JNDI-Adressen) untersucht schneller helfen können?
+Wird eine Schwachstelle aktiv ausgenutzt ohne das der Angriff entdeckt wird, spricht man von einem \glqq\emph{Zero-Day-Exploit}\grqq. Anwendungen sind in diesem Fall besonders gefährdet da der Hersteller noch keine Zeit hatte, den Nutzer vor dem Angriff zu schützen~\cite{bsi0day}. Selbst wenn ein Angriff dieser Art entdeckt wird, vergeht häufig viel Zeit bis zum entgültigen Schließen der Sicherheitslücke. Die Endnutzer sind in diesem Zeitraum besonders gefährdet, da die Vorgehensweise für den Angriff öffentlich bekannt ist und keine Gegenmaßnahmen getroffen wurden. Im Fall des obigen \emph{log4j2}-Beispiels sprach es sich beispielsweise schnell herum dass Chat-Nachrichten im beliebten Computerspiel \emph{Minecraft} anfällig für die Manipulation sind. Bis zur entgültigen Behebung der Lücke vergingen mehrere Tage und der erste, behelfsmäßige Workaround bestand aus der Empfehlung einen Parameter in der Serverkonfiguration zu ändern, der die ausgenutzte Funktionalität komplett abschaltete.\\ Hätte hier eine vorgeschaltene Software helfen können? Zum Beispiel indem Eingaben bereits vor Erreichen der eigentlichen Anwendung auf bekannte Begriffe und Muster, wie die bereits erwähnten JNDI-Adressen, untersucht werden?
 
 \subsection{Web Application Firewalls}
-Um die Sicherheit einer Anwendung zu gewährleisten sind viele verschiedene Schritte notwendig, so sollten natürlich bereits in der Anwendung selbst Ein- und Ausgabemöglichkeiten, z.B. durch Validierung, Encoding, usw. überprüft und gegebenenfalls eingeschränkt werden. Dabei lässt sich nicht jeder mögliche Angriffsfall vorhersehen oder eine eigene Implementierung ist zu aufwendig und teuer, weil häufig nicht ausreichend personelle Ressourcen oder Budget vorhanden sind um eine Web Applikation auf alle möglichen Sicherheitslücken zu prüfen. Im Laufe des Betriebes einer Web Anwendungen können zudem neue Angriffsvarianten entstehen und zusätzlich ist gerade bei Web Applikationen der Zeitdruck zur Veröffentlichung einer solchen häufig sehr hoch.\\
+Um die Sicherheit einer Anwendung zu gewährleisten sind viele verschiedene Schritte notwendig, so sollten bereits in der Anwendung selbst Ein- und Ausgabemöglichkeiten, z.B. durch Validierung, Encoding, usw. überprüft und gegebenenfalls eingeschränkt werden. Dabei lässt sich nicht jeder mögliche Angriffsfall vorhersehen. Manchmal ist eine eigene Implementierung auch zu aufwendig oder zu teuer, weil häufig nicht ausreichend personelle Ressourcen oder Budget vorhanden sind um eine Web Applikation auf alle möglichen Sicherheitslücken zu prüfen. Im Laufe des Betriebes einer Web Anwendungen können zudem neue Angriffsvarianten entstehen und zusätzlich ist gerade bei Web Applikationen der Zeitdruck zur Veröffentlichung einer solchen häufig sehr hoch.\\
 
-An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegensatz zu regulären Firewalls haben Web Application Firewalls direkten Zugriff auf die HTTP-Anfragen (requests) und Antworten (responses) und können diese entsprechend bewerten und gegebenenfalls blockieren oder gefährdende Inhalte filtern oder umschreiben.\\
+An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegensatz zu regulären Firewalls haben Web Application Firewalls direkten Zugriff auf die HTTP-Anfragen (requests) und Antworten (responses) und können diese entsprechend bewerten und gegebenenfalls blockieren oder gefährdende Inhalte filtern oder umschreiben. In einigen Fällen haben Web Application Firewalls auch direkten Zugriff auf die interen Werte und Funktionen der zu schützenden Anwendung.\\
 
 %% 
 \textcolor{bhtGray}{\ding{110} Definition\footnote{\url{https://owasp.org/www-community/Web_Application_Firewall} abgerufen am 30.05.2023}} A web application firewall is an application firewall for HTTP applications. It applies a set of rules to an HTTP conversation. Generally, these rules cover common attacks such as Cross-site Scripting (XSS) and SQL Injection. While proxies protect generally protect clients, WAFs protect servers. A WAF is deployed to protect a specific web application or set of web applications. A WAF can be considered a reverse proxy. WAFs may come in the form of an appliance, server plugin, or filter, and may be customized to an application to an application. The effort to perorm this customization can be significant and needs to be maintained as the application is modified.
@@ -99,7 +97,7 @@ An diesem Punkt kommen sogenannte Web Application Firewalls ins Spiel. Im Gegens
 Web Application Firewalls existieren in verschiedenen Ausprägungen. Einige Systeme sind speziell auf eine Anwendung (\emph{z.B. WordFence}) zugeschnitten und andere Systeme schützen ganze Anwendungenfarmen (\emph{CloudFlare}). Größtenteils werden die Systeme jedoch nach ihrer Positionierung im Netzwerk oder nach Art der Abwehrmaßnahmen unterschieden.
 
 \subsubsection{Unterscheidung nach Position}
-Grundsätzlich lassen sich solche Systeme nach ihrer Position in der Netzwerk- und Servertopologie unterscheiden. Es existieren einerseits Systeme die vor eine Anwendung geschaltet werden und Systeme die direkt in die Anwendung integriert werden. Die erste Gruppe lässt noch eine Verzweigung in weitere Unterarten, wie \emph{Reverse Proxy}, \emph{Appliance}, \emph{Plugins} für WebServer oder \emph{Passive Devices} (IDS), zu. \emph{WordFence} bietet WAF-Funktionalitäten ausschließlich für die Blog-Software \emph{WordPress} an und wird als Plugin für WordPress bereitgestellt. In den meisten Fällen -~im Bereich der frei verfügbaren Software)~- handelt es sich jedoch um einen \emph{Reverse Proxy}, eine Art von vorgeschaltetem Server der die HTTP-Nachrichten analysiert und ggf. an die eigentlichen Empfänger weiterleitet.
+Grundsätzlich lassen sich solche Systeme nach ihrer Position in der Netzwerk- und Servertopologie unterscheiden. Es existieren einerseits Systeme die vor eine Anwendung geschaltet werden und Systeme die direkt in die Anwendung integriert werden. Die erste Gruppe lässt noch eine Verzweigung in weitere Unterarten, wie \emph{Reverse Proxy}, \emph{Appliance}, \emph{Plugins} für WebServer oder \emph{Passive Devices} (IDS), zu. \emph{WordFence} bietet WAF-Funktionalitäten ausschließlich für die Blog-Software \emph{WordPress} an und wird als Plugin für WordPress bereitgestellt. In den meisten Fällen -~im Bereich der frei verfügbaren Software~- handelt es sich jedoch um einen \emph{Reverse Proxy}, eine Art von vorgeschaltetem Server der die HTTP-Nachrichten analysiert und ggf. an die eigentlichen Empfänger weiterleitet.
 
 
 \subsubsection{Unterscheidung nach Abwehrmaßnahmen}
@@ -107,7 +105,7 @@ Grundsätzlich lassen sich solche Systeme nach ihrer Position in der Netzwerk- u
 Bei der Unterscheidung nach Abwehrmaßnahmen existieren drei größere Gruppen - die regelbasierten, die logischen und die anomaliebasierten Systeme. 
 
 \paragraph{Regelbasierte Systeme}
-Der Großteil bekannter Web Application Firewalls arbeitet jedoch \emph{regelbasiert}. In diesem Fall werden ein- und ausgehende Nachrichten (Requests/Responses) unabhängig voneinander (zustandslos) betrachtet und einer Mustererkennung unterworfen. Häufig sind die Regeln anhand sogenannter \emph{Regular Expressions} definiert.
+Der Großteil bekannter Web Application Firewalls arbeitet \emph{regelbasiert}. In diesem Fall werden ein- und ausgehende Nachrichten (Requests/Responses) unabhängig voneinander (zustandslos) betrachtet und einer Mustererkennung unterworfen. Häufig sind die Regeln anhand sogenannter \emph{Regular Expressions} definiert. Die Einschränkung des Zugriffes auf bestimmte Dateitypen oder Größenbeschränkungen sind gute Beispiele die für regelbasierte Systeme geeignet sind. 
 
 \paragraph{Logische Systeme}
 Bei logikbasierten Abwehrmaßnahmen handelt es sich um Abwehrmaßnahmen die aufgrund von bekannten (logischen) Rückschlüssen eingeleitet werden. Einfachstes Beispiel wäre das temporäre Sperren der Loginseite bei dreimalig falschem Login. Bei Nutzung einer WAF die keine logikbasierten Auswertungen ermöglicht, müssten entsprechende Anwendungsfälle in der Anwendung selbst implementiert werden. (Oder im Fall der gerade beschriebenen Authentifizierungproblematik in einen externen Dienst ausgelagert werden.)
@@ -118,6 +116,8 @@ Systeme die eine Anwendung \emph{beobachten} können und mögliche Abweichungen 
 % Thema 1
 \section{Evolution der Firewalls}
 \label{sec:relatedwork}
+
+Wie alle Softwaresysteme entwickeln sich auch die Web Application Firewalls weiter. Web Application Firewalls existieren in verschiedenen Ausprägungen. Diese können von ziemlich einfachen Regeln bis zu komplexen Softwaresystem viele Formen annehmen. In den folgenden Abschnitten wird daher kurz auf die historische Entwicklung dieser der Web Application Firewalls eingegangen und verschiedene Systeme näher betrachtet.
 
 \subsection{Strikt nach Regeln}
 
@@ -139,7 +139,7 @@ Die praktisch einfachste Web Application Firewall wäre \emph{-beispielsweise-} 
 \end{lstlisting}
 %      \end{figure}
 
-Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Bedarf an Regeln. Zu berücksichtigende Auswahlkriterien beschränken sich dann auch nicht nur auf den \glqq\emph{Dateinamen}\grqq. Attribute wie der Aufrufzeitpunkt, der Inhalt des Aufrufs, die Identität des Aufrufenden und viele andere Kriterien können zu entscheidenden Faktoren werden. Im Sinne der Entkopplung wurde diese Filterlogik häufig in entsprechende Module oder Plugins ausgelagert. Aufgrund des hohen Verbreitungsgrades des \emph{Apache httpd}-Servers wurde dessen \emph{modSecurity}-Modul zu einem der bekanntesten Vertreter einer Web Application Firewall. Dabei handelt es sich um eine frei verfügbare und als \emph{Open Source} entwickelte Softwarelösung, die eine eigene Sprache zum Erstellen der WAF-Regeln mit sich bringt. Der obige Aufruf zum Verhindern des Zugriffs auf Dateien die mit \texttt{.ht} beginnen lautet:
+Mit steigender Komplexität der zu schützenden Anwendungen steigt auch der Bedarf an Regeln. Zu berücksichtigende Auswahlkriterien beschränken sich dann auch nicht nur auf den \glqq\emph{Dateinamen}\grqq. Attribute wie der Aufrufzeitpunkt, der Inhalt des Aufrufs, die Identität des Aufrufenden und viele andere Kriterien können zu entscheidenden Faktoren werden. Im Sinne der Entkopplung wurde diese Filterlogik häufig in entsprechende Module oder Plugins ausgelagert. Aufgrund des hohen Verbreitungsgrades des \emph{Apache httpd}-Servers wurde dessen \emph{modSecurity}-Modul zu einem der bekanntesten Vertreter einer Web Application Firewall. Dabei handelt es sich um eine frei verfügbare und als \emph{Open Source} entwickelte Softwarelösung, die eine eigene Sprache zum Erstellen der WAF-Regeln mit sich bringt. Der obige Aufruf zum Verhindern des Zugriffs auf Dateien die mit \texttt{.ht} beginnen würde in modSecuritys Regelsprache folgendermaßen aussehen:
 
 \lstset{language=bash,
  	basicstyle=\ttfamily\color{black}\small,
@@ -167,20 +167,19 @@ Die Einträge in der Serverkonfiguration und die ersten Regeln im modSecurity-Mo
 
 \textcolor{bhtGray}{\ding{110} Anmerkung} Natürlich erlauben \emph{Reguläre Ausdrücke} ebenfalls eine gewisse Logik und somit auch die darauf basierenden Regeln.\\
 
-Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist. Das Scoring erlaubt es verschiedene Ergebnisse miteinander zu kombinieren und in Abhängigkeit voneinander auszuwerten. Technisch gesehen ist das HTTP-Protokoll zustandslos und bei einfachen Konfigurationen der WAF  wird jede einzelne Anfrage unabhängig von anderen Anfragen betrachtet. Der Scoring-Mechanismus erlaubt es in gewissem Maße auch zustandsbezogen zu agieren. 
+Beim \emph{Scoring} erfolgt die Auswertung der HTTP-Anfrage nicht in Form einer direkten Aktion, stattdessen wird als Ergebnis ein numerischer Wert festgelegt. Erst im Nachgang entscheidet die Firewall wie mit der Anfrage umzugehen ist. Das Scoring erlaubt es verschiedene Ergebnisse miteinander zu kombinieren und in Abhängigkeit voneinander auszuwerten. Technisch gesehen ist das HTTP-Protokoll zustandslos und bei einfachen Konfigurationen der WAF  wird jede einzelne Anfrage unabhängig von anderen Anfragen betrachtet. Der Scoring-Mechanismus erlaubt es in gewissem Maße auch zustandsbezogen zu agieren.\\
 
 % weiter erklären!
 % Idee: Ablaufdiagramme für Version 1(direkte Antwort) und 2 Scoring Mechanismus
+\textcolor{bhtGray}{\ding{110} Beispiel} Eine Anfrage auf eine bestimmte Ressource bzw. URI soll abgelehnt werden wenn der Nutzer nicht eingeloggt ist. Dieser Fall könnte mit drei einfachen Regeln abgebildet werden. Es wird für den Fall \emph{nicht eingeloggt} ein Punkt vergeben und für den Fall \emph{Aufruf der Ressource} ein weitere Punkt vergeben. Die dritte Regel besagt, dass alle Aufrufe deren Summe mehr als zwei Punkte überschreiten, abgelehnt werden.\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel} Eine Anfrage auf eine bestimmte Ressource bzw. URI soll abgelehnt werden wenn der Nutzer nicht eingeloggt ist. Dieser Fall wäre könnte mit drei einfachen Regeln abgebildet werden. Es wird für den Fall \emph{nicht eingeloggt} ein Punkt vergeben und für den Fall \emph{Aufruf der Ressource} ein Punkt vergeben. Die dritte Regel besagt dass alle Aufrufe deren Summe mehr als zwei Punkte in Summe überschreiten, abgelehnt werden.\\
-
-\textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200-OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern.
+\textcolor{bhtGray}{\ding{110} Beispiel} Angenommen ein unbekannter Internet-Nutzer versucht eine Anwendung durch nicht manipulierte Anfragen zu attackieren (oder einen Brute-Force-Angriff auf eine sehr einfache Login-Maske) und jeder misslungene Versuch wird erkannt bzw. bestätigt. In diesem Fall erzeugt die Anwendung mehrfach HTTP-Status-Codes abseits des üblichen Rückgabe-Wertes \verb=HTTP200-OK=. Mit einem Scoring ist möglich diesen Nutzer bereits an den Versuchen zu hindern in dem die Anfrage bei Eintritt eines (zu definierenden) gefährlichen Verhältnisses komplett blockiert wird. Zum Beispiel: 
 \begin{align}
-  P = \frac{Scoring-Wert}{Anzahl_{Anfragen gesamt}}
+  Anzahl_{Anfragen} > 1 \land \frac{Scoring-Wert}{Anzahl_{Anfragen}} > 0.75
 \end{align}
 \anno{Formel überprüfen?Weitermachen!}
 
-In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall musste in jedem Fall für die jeweilige Anwendung angepasst werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepasst. Die erstmalige Inbetriebnahme hatte damit einen erhöhten Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert und deren Ausführung in Abhängigkeit von vorkonfigurierten Werten gesteuert werden. Der Nutzer bekam die Möglichkeit eine sofort (bzw. mit sehr wenig Aufwand) einsetzbare Lösung zur erhalten, mit der seine Anwendung Schritt für Schritt sicherer werden konnte.
+In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv umgesetzt und die Konfiguration der Firewall musste in jedem Fall für die jeweilige Anwendung angepasst werden. Nicht benötigte oder verkehrte (falsch-positiv liefernde) Regeln wurden der Konfiguration entnommen oder angepasst. Eine erstmalige Inbetriebnahme hatte damit einen hohen Arbeitsaufwand zur Folge. Die Einführung der Paranoia-Level erlaubte eine einfache und schnellere Konfiguration. Dazu wurden die Regeln nach Schweregraden kategorisiert und deren Ausführung in Abhängigkeit von vorkonfigurierten Werten gesteuert werden. Der Nutzer bekam die Möglichkeit eine sofort (bzw. mit sehr wenig Aufwand) einsetzbare Lösung zur erhalten, mit der seine Anwendung Schritt für Schritt sicherer werden konnte.
 
 \begin{figure}[h]
   %% \begin{center}
@@ -194,9 +193,6 @@ In der ersten Version des CRS wurden alle der WAF bekannten Regeln auch aktiv um
 
 % Logik mit Zugriff auf die Anwendung -> WebCastellum?
 
-\begin{neu}
-  Kruegel Absatz über Anomalie-Detektoren? Hier einfügen!
-\end{neu}
 
 \subsection{Hybride Ansätze} %Nicht immer schwarz oder weiss
 Ein Ergebnis muss aber nicht immer schwarz oder weiß sein.  Grundsätzlich besteht für Web Application Firewalls die Möglichkeit HTTP-Anfragen zu manipulieren bevor diese die eigentliche Anwendung erreichen. Gleiches gilt für die Antworten der Anwendung bevor diese an den Client ausgeliefert werden. Für den Apache httpd-Server existiert mit dem \emph{modRewrite}-Modul sogar eine Komponente einzig und allein für diesen Zweck. Ende 2010 erschien mit \glqq\emph{TokDoc: A Self-Healing Web Application Firewall}\grqq~\cite{Krueger2010} ein Konferenzpaper mit dem Vorschlag, eingehende Anfragen in einzelne Bestandteile zu zerlegen, die einzelnen Bestandteile zu untersuchen und ggf. durch \emph{korrigierte} Äquivalente auszutauschen bevor diese an die zu schützende Anwendung weitergeleitet werden. Zusätzlich haben die Autoren des Papers die Bestandteile nach ihrem Ursprung in vier Kategorien eingeteilt:\\
@@ -261,7 +257,7 @@ Zur weiteren Vereinfachung der Konfiguration von Web Application Firewalls schlu
 % Thema 3 optional die andere seite
 \subsection{Hacking Web Application Firewalls}
 
-Die Nutzung einer Web Application Firewall ist nicht nur für die Betreiber von Anwendungen interessant. Auch auf der anderen Seite, bei den Angreifern, ist das Interesse an WAF-System groß, müssen diese doch eventuell umgangen werden um an die eigentlichen Opfer zu gelangen. Im Idealbetrieb sollte eine Web Application Firewall jedoch recht unauffällig laufen und möglichst wenig (auch im Rahmen der Datensparsarmkeit) von ihrer Existenz preisgeben. Das OpenSource-Werkzeug \emph{wafw00f\footnote{\url{https://github.com/EnableSecurity/wafw00f} abgerufen am 23.08.2023}} ist auf \emph{Fingerprinting} spezialisiert. Im Fall von \emph{wafw00f} wird beim Fingerprinting eine übergebene URL aufgerufen und anhand der Antwort (bzw. mehrerer folgenden Antworten) versucht herauszufinden ob eine WAF im Einsatz ist und falls ja, welche WAF-Software genutzt wird.\\ Tabelle~\ref{tab:my_wafwoof} im Anhang listet einen Teil der von wafwoof erkennbaren WAF-Systeme auf.\\ Als Betreiber einer Web Application Firewall sollte man auch hier einen Blick hinein werfen und seine WAF vor möglicherweise unfreiwilliger Datenweitergabe schützen. 
+Die Nutzung einer Web Application Firewall ist nicht nur für die Betreiber von Anwendungen interessant. Auch auf der anderen Seite, bei den Angreifern, ist das Interesse an WAF-System groß, müssen diese doch eventuell umgangen werden um an die eigentlichen Opfer zu gelangen. Im Idealbetrieb sollte eine Web Application Firewall jedoch recht unauffällig laufen und möglichst wenig (auch im Rahmen der Datensparsarmkeit) von ihrer Existenz preisgeben. Das OpenSource-Werkzeug \emph{wafw00f\footnote{\url{https://github.com/EnableSecurity/wafw00f} abgerufen am 23.08.2023}} ist auf \emph{Fingerprinting} spezialisiert. Im Fall von \emph{wafw00f} wird beim Fingerprinting eine übergebene URL aufgerufen und anhand der Antwort (bzw. mehrerer folgenden Antworten) versucht herauszufinden ob eine WAF im Einsatz ist und falls ja, welche WAF-Software genutzt wird.\\ Die im Anhang befindliche Tabelle~\ref{tab:my_wafwoof} listet einen Teil der von wafwoof erkennbaren WAF-Systeme auf.\\ Als Betreiber einer Web Application Firewall sollte man auch hier einen Blick hinein werfen und seine WAF vor möglicherweise unfreiwilliger Datenweitergabe schützen. 
 
 % Zusammenfassung (ca. 0,5 Seiten)
 \section{Zusammenfassung}
@@ -273,7 +269,7 @@ In diesem Kapitel wurden als Erstes einige wichtige Grundbegriffe die im weitere
 
 Am praktischen Beispiel wurde ein möglicher Angriff vorgestellt und in das Thema WAF eingeführt. Dabei wurden auch die verschiedenen Arten von Web Application Firewalls vorgestellt. Es folgte eine kleine Reise durch die Geschichte der WAFs bzw. die letzten zwanzig Jahre. Hier noch einmal kurz und tabellarisch zusammengefasst:\\
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
  
 \begin{tabular}{lp{9cm}}
