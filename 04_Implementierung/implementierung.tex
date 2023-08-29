@@ -14,8 +14,7 @@ Eine komplette Umsetzung ohne vorherige Basis wäre zeitlich (von einer einzelne
 
 % Tabelle ggf. in Anhang verschieben
 
-\begin{table}[h]
-  \centering
+\begin{table}[h]  \centering
   \begin{tabular}{lccc} 
     \toprule
     & \textbf{ModSecurity} & \textbf{WebCastellum} & \textbf{IronBee} \\ [0.5ex] 
@@ -37,7 +36,7 @@ Mit Hinsicht auf einen späteren produktiven Einsatz wurde daher die Software \e
 
 \section{Vorarbeiten}
 
-Leider haben WebCastellum und der CSIC2010 Datensatz eine Gemeinsamkeit - das Alter. Die derzeit aktuelle offizielle Version 1.8.3 von WebCastellum erschien bereits im Jahr 2009 und eine Weiterentwicklung fand seit dem nicht statt. Dennoch befindet sich das Produkt weiter in Verwendung und wird wohl auch in neuen Anwendungen genutzt, lässt zumindest die aktuelle Downloadstatistik (siehe \ref{fig:downloadwc}) vermuten. Insgesamt wurde das Binärpaket von WebCastellum in der Version 1.8.3 seit 2009 mehr als 8500 mal heruntergeladen (Stand vom 05. Juli 2023) - nicht berücksichtigt sind alle Vorgängerversionen und die Downloads die über Repository-Dienste, wie z.B. Maven Central, stattfanden.
+Leider haben WebCastellum und der CSIC2010 Datensatz eine Gemeinsamkeit - das Alter. Die derzeit aktuelle offizielle Version 1.8.3 von WebCastellum erschien bereits im Jahr 2009 und eine Weiterentwicklung fand seit dem nicht statt. Dennoch befindet sich das Produkt weiter in Verwendung und wird wohl auch in neuen Anwendungen genutzt. Zumindest lässt die aktuelle Downloadstatistik (siehe \ref{fig:downloadwc}) dieses vermuten. Insgesamt wurde das Binärpaket von WebCastellum in der Version 1.8.3 seit 2009 mehr als 8500 mal heruntergeladen (Stand vom 05. Juli 2023) - nicht berücksichtigt sind alle Vorgängerversionen und die Downloads die über Repository-Dienste, wie z.B. Maven Central, stattfanden.
 
 \begin{figure}[h]
   \centering
@@ -59,7 +58,7 @@ Vor den eigentlichen Arbeiten waren also noch ein paar kleinere Vorarbeiten notw
 \subsection{Version 1.8.4. - Review des Quellcode und IT-Sicherheit}
 Während die Binär-Distribution mit der Versionsnummer 1.8.3 verteilt wird, sind die Quellen bereits mit der nächsten Minor-Version versehen. Diese lassen sich auch fast problemlos kompilieren und zu einem verwendungsfähigen Paket zusammenbauen. Das Projekt hat nur sehr wenig Abhängigkeiten zu weiteren Bibliotheken und diese (laut durchgeführtem OWASP dependency-check) keine bekannten Schwachstellen. Etwas problematisch ist die Abhängigkeit zu älteren Bibliotheken (\emph{javax.jms} und \emph{javax.mail}), da diese nicht mehr (direkt) über den Standard-Build-Mechanismus verfügbar sind, sich aber über Umwege auftreiben lassen.
 
-Im weiteren Verlauf wurden die Quellen noch an Githubs eigenes CI/CD-System angebunden und automatisiert einer Codeanalyse auf der Sonarcloud-Plattform \footnote{\url{https://sonarcloud.io/project/overview?id=devtty_webcastellum} abgerufen am 05.07.2023} unterzogen. Insgesamt fielen dabei im Quelltext sechs direkte Schwachstellen und 58 potentielle Schwachstellen (siehe \ref{fig:my_sonar1}) auf. Bei den direkten Schwachstellen handelt es sich um:
+Im weiteren Verlauf wurden die Quellen noch an Githubs eigenes CI/CD-System angebunden und automatisiert einer Codeanalyse auf der Sonarcloud-Plattform \footnote{\url{https://sonarcloud.io/project/overview?id=devtty_webcastellum} abgerufen am 05.07.2023} unterzogen. Insgesamt fielen dabei im Quelltext sechs direkte Schwachstellen und 58 potentielle Schwachstellen (siehe Abbildung~\ref{fig:my_sonar1}) auf. Bei den direkten Schwachstellen handelt es sich um:
 
 \begin{itemize}
     \item 3 x Verwendung schwacher Kryptographie (hier AES; Cryptographic Failures / Security Misconfiguration )
@@ -67,9 +66,9 @@ Im weiteren Verlauf wurden die Quellen noch an Githubs eigenes CI/CD-System ange
     \item 1 x XML External Entity Injection Attack (Security Misconfiguration / XML External Entities (XXE))
 \end{itemize}
 
-Wobei die XXE-Attacke von Sonar als Blocker eingestuft wird. Bei den 58 Security Hotspots handelt es sich meistens um direkte Ausgaben im Fehlerfall (\verb=printStackTrace()=) mit der Bitte zur Überprüfung das diese im Produktivbetrieb nicht ausgegeben werden. 
+Wobei die XXE-Attacke von Sonar als Blocker eingestuft wird. Bei den 58 Security Hotspots handelt es sich meistens um direkte Ausgaben im Fehlerfall (\verb=printStackTrace()=) mit der Bitte zur Überprüfung, dass diese im Produktivbetrieb nicht ausgegeben werden. 
 
-Inklusive Code Smells bemängelte Sonar den Quellcode in insgesamt 2657 Fällen und berechnet die angehäuften technischen Schulden auf 52 Personen-Tage Nacharbeit. 
+Inklusive Code Smells bemängelte Test per SonarCloud-Dienst den Quellcode in insgesamt 2657 Fällen und berechnet die angehäuften technischen Schulden auf zirka 52 Personen-Tage Nacharbeit. 
 
 \begin{figure}
     \centering
@@ -91,7 +90,7 @@ Inklusive Code Smells bemängelte Sonar den Quellcode in insgesamt 2657 Fällen 
 
 Interessant war ebenfalls die Suche nach \verb=TODO=-Markierungen im Quelltext. Insgesamt 243 mal traten entsprechende Kommentare im Quelltext auf und markierten Stellen an denen die Entwickler Probleme und Verbesserungen vermuteten bzw. Aufgaben für die nächste Version notierten. Diese Notizen reichten von einfachen Aufgabenstellungen, wie \glqq\emph{add proper logging}\grqq, über Refactoring-Ideen bis hin zu Anmerkungen deren Umsetzung die Funktionsweise des Filters beeinflussen würden. 
 
-Einige der Todo-Anmerkungen ließen auf eine geplante Überführung des Quellcodes von Java in der Version 1.4 auf Java 5 schließen. Häufig fanden sich auch auskommentierte dementsprechende Fragmente und, insbesondere bei der Verwendung listenähnlicher Objekte, fallen die in Java 5 eingeführten \emph{Generics} (s. Abbildung \ref{fig:my_l2} auf.
+Einige der Todo-Anmerkungen ließen auf eine geplante Überführung des Quellcodes von Java in der Version 1.4 auf Java 5 schließen. Häufig fanden sich auch auskommentierte dementsprechende Fragmente und, insbesondere bei der Verwendung listenähnlicher Objekte, fallen die in Java 5 eingeführten \emph{Generics} (s. Abbildung~\ref{fig:my_l2}) auf.
 
 \begin{figure}[h]
   \begin{small}
@@ -114,6 +113,7 @@ Tests, im Sinne von Unit-Tests z.B. im Rahmen eines etablierten Testframeworks, 
 \subsection{Fehlerbereinigung}
 \label{sec:centralconf}
 Die minimale (persönliche) Anforderung an das Ziel der Vorarbeiten war den seit 2009 nicht bearbeiteten Quelltext auf eine fehlerfreie Basis anzuheben und ein kompilierbares und nutzbares Endprodukt zu erhalten. Dabei sollte mindestens ein Anwendungsfall eines Angriffs komplett durchgetestet werden.\\
+
 Umgesetzt wurde dann ein leichtes Refactoring und die Erstellung von 222 Unit-Tests\footnote{\url{https://github.com/devtty/webcastellum/actions/runs/5441412243/jobs/9895332455\#step:8:437} aufgerufen am 07.07.2023}. Dabei wurden:
 
 \begin{itemize}
@@ -158,7 +158,8 @@ Glücklicherweise haben die Entwickler der WebCastellum-Software entsprechende S
 \end{description}
 
 Die Klasse \verb=org.webcastellum.ConfigurationManager= implementiert als sogenannter \emph{Service-Locator}\footnote{s. \url{https://martinfowler.com/articles/injection.html} abgerufen am 14.08.2023} eine einfache Möglichkeit zwischen den beiden Implementationen zu wechseln.\\
-Eine zusätzliche Implementation der Schnittstelle, wie der in Abbildung~\ref{fig.impkonfig} dargestellte \verb=RemoteConfigurationLoader=, könnte sich die Konfigurationsparameter über beliebige Quellen, zum Beispiel in Form eines REST-API-Clients/MicroServices, \glqq\emph{besorgen}\grqq. 
+
+Eine zusätzliche Implementation der Schnittstelle, wie der in Abbildung~\ref{fig.impkonfig} dargestellte\\ \verb=RemoteConfigurationLoader=, könnte sich die Konfigurationsparameter über beliebige Quellen, zum Beispiel in Form eines REST-API-Clients/MicroServices, \glqq\emph{besorgen}\grqq. 
 
 \begin{figure}[h]
   \begin{center}
@@ -317,6 +318,7 @@ Für Erweiterungen von WebCastellum die \emph{nach} der regelbasierten Überprü
 \end{figure}
 
 Im Filter steht nun eine Implementierung bereit, die neben den ursprünglichen Prüfungen auch die Fähigkeit besitzt \emph{Erlerntes} zu nutzen und eine Absicherung der von Torrano-Giménez genutzten Testanwendung anhand ihres Datensatzes mittels WebCastellum wäre nun auch praktisch möglich. Die Testergebnisse würden sich jedoch massiv unterscheiden. Zum Einen werden die regelbasierten Filtermechanismen ausgeführt und zum Anderen erfolgt die derzeitige Prüfung nur gegen die beiden Attribute \emph{HTTP-Methode} und \emph{URL-Pfad}. Für eine Verwendung im realen Umfeld sind noch zwei Änderungen der bestehenden Implementierung notwendig.\\
+
 Die Datenquelle für die Trainingsphase sollte ihre Daten nicht aus einer statischen Datei beziehen. Ideal wäre hier der Bezug aus dem \emph{Command and Control Center} (s.~Abschnitt~\ref{sec:lernmodus}), z.B. zusammen mit der zentralisierten Konfiguration. Hierbei sollte jedoch unbedingt ein performanter Weg gefunden werden, da die anfallenden Datenmengen je nach Anwendung entsprechend groß werden könnten. Gleiches gilt für die zweite, und wesentlich wichtigere, Änderung. In der derzeitigen Implementierung werden nur zwei der Argumente aus dem Datensatz genutzt. Um die Genauigkeit zu erhöhen sollten noch weitere Argumente im Entscheidungsbaum ausschlaggebend sein. Insbesondere die \emph{Payload} ist für eine genaue Auswertung von Bedeutung, da hier das größte Potential an Möglichkeiten einer nicht-erwünschten Manipulation besteht. Mit jedem zusätzlichen Argument steigt jedoch der Speicherbedarf des Filters um ein Vielfaches an.\\
 Dieses Problem ist bereits bekannt und kann gelöst werden indem statt der zahlreichen Varianten eines Arguments ein abgeleiteter Wert (mit geringerem Umfang) genutzt wird. Einen konkreten Vorschlag für die \emph{Payload} bzw. die Request-Parameter existiert beispielsweise in \cite{kozik2014}. Rafal Kozik und seine Kollegen schlugen vor, anstatt der eigentlichen Parameter, kodierte Werte in \glqq\emph{Histogramme fester Länge}\grqq umzuwandeln und diese stattdessen als Feature zu verwenden.\\
 
@@ -339,7 +341,7 @@ Dieses, sehr technische, Kapitel führte uns von einem alten und etwas angestaub
     \label{fig:my_future}
   \end{figure}
 
-Das nächste Kapitel beginnt mit der Beschreibung des Testaufbaus zur Überprüfung der 
+Das nächste Kapitel beginnt mit der Beschreibung des Testaufbaus zur Überprüfung der Funktion der Web Application Firewall. Mit Hilfe des Zed Attack Proxys wird die Anwendung überprüft und auf Schwachstellen getestet. Gleichzeitig können die Tests aufgezeichnet werden und der Datensatz mit diesen Daten erweitert werden.
 
 % Was haben wir in diesem Kapitel gelernt?
 % Wie passt das zur Zielstellung der Arbeit?

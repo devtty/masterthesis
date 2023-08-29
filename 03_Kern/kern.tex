@@ -261,9 +261,9 @@ Bei der Entwicklung von webbasierten Anwendungen unterstützen die frei verfügb
 
 \subsection{Unzureichende Kategorisierung im Datensatz}
 \label{sec:Kategorisierung}
-Ein großes Problem vieler Firewalls sind falsch-positive Meldungen. Hier löst die Firewall in der Annahme aus, dass ein Angriff vorliegt obwohl kein wirklicher Grund dafür vorliegt. Gründe dafür wurden bereits in Abschnitt~\ref{sec:rullog} (insbesondere Abbildung~\ref{fig.paranoia}) benannt. Falsch-positive sind aber kein alleiniges Problem der regelbasierten WAFs, auch trainierte Systeme können anfällig für dieses Verhalten sein. Für Betreiber und Nutzer von Anwendungen sind solche Meldungen unerwünscht. Im produktiven Einsatz einer WAF die mit dem CSIC2010-Datensatz trainiert wurde, würde bereits die Verwendung eines anderen Browsers (als den von Torrano-Giménez genutzten) zum \emph{False-Positive} führen, wenn die Firewall jede Abweichung vom (\emph{beaufsichtigt}) Erlerntem als Angriff interpretiert. Wird der Datensatz erweitert, könnten mit der Einführung weiterer Parameter Dateneinträge kategorisiert und spezifiziert werden und damit selektiv zum Einsatz kommen.\\ Beispielsweise erwähnt die Beschreibung der Anwendung in \cite{csic2010} dass Nutzer in der Anwendung registriert werden und Teile der Anwendung nur nach einem Login verfügbar sind. Ein Blick in die Daten zeigt eine Unterteilung in drei Bereiche und eine entsprechende Absicherung des Zugangs kann angenommen werden:\\ 
+Ein großes Problem vieler Firewalls sind falsch-positive Meldungen. Hier löst die Firewall in der Annahme aus, dass ein Angriff vorliegt obwohl kein wirklicher Grund dafür vorliegt. Gründe dafür wurden bereits in Abschnitt~\ref{sec:rullog} (insbesondere Abbildung~\ref{fig.paranoia}) benannt. Falsch-positive sind aber kein alleiniges Problem der regelbasierten WAFs, auch trainierte Systeme können anfällig für dieses Verhalten sein. Für Betreiber und Nutzer von Anwendungen sind solche Meldungen unerwünscht. Im produktiven Einsatz einer WAF die mit dem CSIC2010-Datensatz trainiert wurde, würde bereits die Verwendung eines anderen Browsers (als den von Torrano-Giménez genutzten) zum \emph{False-Positive} führen, wenn die Firewall jede Abweichung vom (\emph{beaufsichtigt}) Erlerntem als Angriff interpretiert. Wird der Datensatz erweitert, könnten mit der Einführung weiterer Parameter Dateneinträge kategorisiert und spezifiziert werden und damit selektiv zum Einsatz kommen.\\ Beispielsweise erwähnt die Beschreibung der Anwendung in \cite{csic2010} dass Nutzer in der Anwendung registriert werden und Teile der Anwendung nur nach einem Login verfügbar sind. Ein Blick in die Daten zeigt die in Tabelle~\ref{tab:csicsecarea} dargestellte Unterteilung der Anwendung in drei Bereiche und eine entsprechende Absicherung des Zugangs zu den einzelnen Bereichen kann angenommen werden.\\ 
 
-\begin{table}[h]
+\begin{table}[ht]
   \centering
   \begin{tabular}{lp{7cm}}
     \toprule
@@ -279,7 +279,7 @@ Ein großes Problem vieler Firewalls sind falsch-positive Meldungen. Hier löst 
   \label{tab:csicsecarea}
 \end{table}
 
-So ersichtlich wie in dieser Anwendung ist der Zustand ob ein Nutzer eingeloggt ist jedoch nicht immer und es sollte nicht davon ausgegangen werden das jede Anwendung dieses ähnlich abbildet. Die Anforderung eines URL-Pfades kann durchaus unterschiedliche Antworten erzeugen und das betrifft nicht nur den Fall der Authentifizierung. Eine Anfrage an YouTube sieht beispielsweise immer gleich aus (z.B.: \url{https://youtu.be/KTc3PsW5ghQ}) kann jedoch in Abhängigkeit von verschiedenen Variablen unterschiedliche Ergebnisse liefern (\emph{Authentifizierung, Geocoding, Einstellung zur Privatsphäre, etc.}).
+So ersichtlich wie in dieser Anwendung ist der Zustand ob ein Nutzer eingeloggt ist jedoch nicht immer. Es sollte nicht davon ausgegangen werden dass jede Anwendung dieses ähnlich abbildet. Die Anforderung eines URL-Pfades kann durchaus unterschiedliche Antworten erzeugen und das betrifft nicht nur den Fall der Authentifizierung. Eine Anfrage an YouTube sieht beispielsweise immer gleich aus (z.B.: \url{https://youtu.be/KTc3PsW5ghQ}) kann jedoch in Abhängigkeit von verschiedenen Variablen unterschiedliche Ergebnisse liefern (\emph{Authentifizierung, Geocoding, Einstellung zur Privatsphäre, etc.}).
 % Problem zu viele Falsch-Positive/Zuordnung:Framework/Status(Session) -> Anwendungsstatus (DeltaspikeClientId/SpringExecuteID)
 % möglichkeit anomalien nicht auf basis der Regeln sondern auf basis von abweichungen in der Anwendungsnutzung auszuwerten
 
@@ -291,7 +291,7 @@ So ersichtlich wie in dieser Anwendung ist der Zustand ob ein Nutzer eingeloggt 
 \subsection{Zentralisierung}
 \label{sec:zentralisierungkern}
 
-Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem praktischen System wäre es jedoch von Vorteil wenn der Datensatz sich selbständig erweitert und gegebenenfalls auch von anderen, ähnlichen Systemen \glqq\emph{lernen}\grqq{} könnte. In~\cite{Manaseer2018}~erfolgte bereits der Entwurf die Daten von erkannten Angriffen zentral, über ein sogenanntes \emph{Command and Control Center} zu sammeln. Carmen Torrano-Giménez nutzte jedoch zum Trainieren ihrer WAF ausschließlich Daten von erwünschten Requests.\anno{der letzte Satz holpert} Im Gegensatz zu Manaseer wäre es durchaus hilfreich alle Requests an eine zentrale Komponente zu senden und mit Hilfe einer genaueren Kategorisierung (siehe Abschnitt~\ref{sec:Kategorisierung}) könnten diese Daten dann auch dementsprechend ausgewertet und gegebenenfalls an die WAFs ähnlicher Anwendungen verteilt werden.
+Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem praktischen System wäre es jedoch von Vorteil wenn der Datensatz sich selbständig erweitert und gegebenenfalls auch von anderen, ähnlichen Systemen \glqq\emph{lernen}\grqq{} könnte. In~\cite{Manaseer2018}~erfolgte bereits der Entwurf die Daten von erkannten Angriffen zentral, über ein sogenanntes \emph{Command and Control Center} zu sammeln. Carmen Torrano-Giménez nutzte jedoch zum Trainieren ihrer WAF ausschließlich Daten von erwünschten Requests. Im Gegensatz zu Manaseer wäre es durchaus hilfreich alle Requests an eine zentrale Komponente zu senden und mit Hilfe einer genaueren Kategorisierung (siehe Abschnitt~\ref{sec:Kategorisierung}) könnten diese Daten dann auch dementsprechend ausgewertet und gegebenenfalls an die WAFs ähnlicher Anwendungen verteilt werden.
 
 
 \begin{figure}[ht]
@@ -309,14 +309,6 @@ Bisher wurde der Datensatz als feste Vorgabe zum Training genutzt. In einem prak
 % Zusammenfassung: ca. 0,5 Seiten
 \section{Zusammenfassung}
 
-Nach der kurzen zeitlichen Einordnung über die Entstehung anomaliebasierter Web Application Firewalls im vorherigen Kapitel lieferte dieses Kapitel einen Einblick in einen Teil der bestehenden Daten. Dazu wurde der Umfang und Inhalt des 2010 von Carmen Torrano-Giménez erstellten Datensatzes \emph{CSIC2010} näher betrachtet. Es wurden einige Modernisierungsmaßnahmen vorgeschlagen, die dem veralteten Datensatz zu etwas mehr Allgemeingültigkeit und vor allem Genauigkeit verhelfen.\\ Des Weiteren wurde ersichtlich dass der bestehende Datensatz keine Allgemeinformel für jeden Anwendungsfall darstellt. Im Gegenteil, jede \emph{praktische} Anwendung erfordert einen spezialisierten Datensatz und Gemeinsamkeiten unterschiedlicher (aber ähnlicher) Anwendungen können durchaus zu allgemeinerer Anwendbarkeit beitragen. Eine zentrale Stelle soll dabei die Daten entgegen nehmen und die Möglichkeit bieten, diese auch nach weiter zu verarbeiten. \\
+Nach der kurzen zeitlichen Einordnung über die Entstehung anomaliebasierter Web Application Firewalls im vorherigen Kapitel lieferte dieses Kapitel einen Einblick in einen Teil der bestehenden Daten. Dazu wurde der Umfang und Inhalt des 2010 von Carmen Torrano-Giménez erstellten Datensatzes \emph{CSIC2010} näher betrachtet. Es wurden einige Modernisierungsmaßnahmen vorgeschlagen, die dem veralteten Datensatz zu etwas mehr Allgemeingültigkeit und vor allem Genauigkeit verhelfen.\\ Des Weiteren wurde ersichtlich dass der bestehende Datensatz keine Allgemeinformel für jeden Anwendungsfall darstellt. Im Gegenteil, jede \emph{praktische} Anwendung erfordert einen spezialisierten Datensatz und Gemeinsamkeiten unterschiedlicher (aber ähnlicher) Anwendungen können durchaus zu allgemeinerer Anwendbarkeit beitragen. Eine zentrale Stelle soll dabei die Daten entgegen nehmen und die Möglichkeit bieten, diese auch noch weiter zu verarbeiten. \\
 
 Das nächste Kapitel betrachtet die praktische Umsetzung der angedachten Ziele. Hierbei wird zuerst auf einige Vorbedingungen eingegangen und im Anschluss eine bestehende Lösung dementsprechend erweitert. Die Lösungen aus diesem Kapitel dienen dabei sozusagen als Anforderungen. Im darauf folgenden Test wird ebenfalls dargestellt, wie ein neuer Datensatz generiert wird bzw. der Bestehende mit zusätzlichen Daten erweitert werden kann.
-
-\begin{neu}
-  Anfang mit Aufnahme des Altenbestands, hinzufügen Entwicklungsumgebung, Test, etc
-
-  Entwicklung Zentrale Steuerung
-
-  Entwicklung ML Anteil
-\end{neu}
