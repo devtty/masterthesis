@@ -5,10 +5,10 @@
 Nachdem im letzten Kapitel hauptsächlich Aspekte der praktischen Umsetzung für das WAF-System erläutert wurden, widmet sich dieses Kapitel der Überprüfung der gemachten Annahmen aus der Zielbeschreibung der Arbeit. Insbesondere die Frage nach möglichst aktuellen bzw. neuen Daten und der damit verbundenen Qualität soll damit beantwortet werden. Dazu werden zuerst die benutzten Werkzeuge und der Testaufbau beschrieben. 
 
 \section{Werkzeuge}
-Für den Testaufbau werden einige Grundkomponenten benötigt. 
+Für den Testaufbau werden einige Grundkomponenten benötigt. Dazu zählen neben der eigentlichen Umgebung in der die gesamte Software ausgeführt wird, auch die für die Tests notwendigen Programme und die zu testenden Software-Komponenten.
 
 \subsection{Die Laufzeit- und Entwicklungsumgebung}
-Für den Betrieb der in dieser Arbeit verwendeten Werkzeuge, wie z.B. Anwendungsserver oder Buildtools, ist eine Java-Laufzeitumgebung notwendig. In den lokal ausgeführten Fällen wurde dafür das \emph{Java Development Kit} der Firma Oracle in der Version 17.0.1 verwendet. Die im CI/CD-Build-Cycle ausgeführten Tests und Werkzeuge nutzen hingegen das Eclipse Temurin JDK in der jeweils aktuellsten Version 11.x
+Für den Betrieb der in dieser Arbeit verwendeten Werkzeuge, wie z.B. Anwendungsserver oder Buildtools, ist eine Java-Laufzeitumgebung notwendig. In den lokal ausgeführten Fällen wurde dafür das \emph{Java Development Kit} der Firma Oracle in der Version 17.0.1 verwendet. Die im CI/CD-Build-Cycle\footnote{\url{https://github.com/devtty/webcastellum/blob/main/.github/workflows/build.yaml}} ausgeführten Tests und Werkzeuge nutzen hingegen das Eclipse Temurin JDK in der jeweils aktuellsten Version 11.x\\ Vermutlich würde der Kern der WebCastellum-Software auch noch unter Java in der Version 5 laufen. Auf dem für das Ursprungs-Release (WebCastellum 1.8.3) vorgesehene JDK 1.4 ist die Software jedoch nicht mehr lauffähig.
 
 
 \subsection{OWASP\textregistered  Zed Attack Proxy}
@@ -16,16 +16,16 @@ Für den Betrieb der in dieser Arbeit verwendeten Werkzeuge, wie z.B. Anwendungs
 
 \emph{The world's most widely used web app scanner}\footnote{https://zaproxy.org}\\
 
-Der Zed Attack Proxy (ZAP) wird genutzt um Web Anwendungen auf Sicherheitslücken zu untersuchen. Als sogenannter Proxy befindet sich diese Anwendung zwischen dem Endnutzer bzw. Browser und der zu testenden Anwendung. ZAP bietet dabei zwei verschiedene Anwendungsmodi an. Im passiven Modus \emph{begleitet} ZAP den Nutzer auf seinem Weg durch eine Anwendung und registriert sämtliche IT-sicherheitstechnischen Auffälligkeiten. Der Nutzer klickt sich durch seine Anwendung, ggf. auf einem vorher definierten Weg,  und erhält am Ende eine Übersicht möglicher Angriffswege. Des Weiteren kann dieses Werkzeug zur Aufzeichnung der HTTP-Anfragen und -Antworten genutzt werden\\ Im aktiven Modus übernimmt ZAP selbst die Rolle des Angreifers und versucht Sicherheitslücken automatisch zu finden. \\
+Der Zed Attack Proxy (ZAP) wird genutzt um Web Anwendungen auf Sicherheitslücken zu untersuchen. Als sogenannter Proxy befindet sich diese Anwendung zwischen dem Endnutzer bzw. Browser und der zu testenden Anwendung. ZAP bietet dabei zwei verschiedene Anwendungsmodi an. Im passiven Modus \emph{begleitet} ZAP den Nutzer auf seinem Weg durch eine Anwendung und registriert sämtliche IT-sicherheitstechnischen Auffälligkeiten. Der Nutzer klickt sich durch seine Anwendung, ggf. auf einem vorher definierten Weg,  und erhält am Ende eine Übersicht möglicher Angriffswege. Des Weiteren kann dieses Werkzeug zur Aufzeichnung der HTTP-Anfragen und -Antworten genutzt werden.\\ Im aktiven Modus übernimmt ZAP selbst die Rolle des Angreifers und versucht Sicherheitslücken automatisch zu finden. \\
 
 Es existieren zahlreiche weitere Tools mit ähnlicher Funktionalität, z.T. auch mit Spezialisierung auf das Testen von Web Application Firewalls. Nennenswerte Beispiele sind \emph{BurpSuite}, \emph{WAFNinja}, \emph{gotestwaf} und \emph{w3af}.  
 
 \subsection{Web Server}
 
-Zur Auslieferung der verwendeten Webapplikationen wird ein Web Server benötigt. Bedingt aus den Anforderungen der zu testenden Webanwendungen und der Web Application Firewall muss dieser die Java Servlet Spezifikation implementieren. Bei der Verwendung eines lokalen Web Servers oder in den automatisierten Tests dieser Arbeit wird dabei der Apache Tomcat-Server in der Version 8.5.78 genutzt. Zur Ausführung von Anwendungen die auf dem \emph{Spring}-Framework basieren wird nicht zwingend einen dedizierten Anwendungsserver benötigt, da diese ein integriertes System mit sich bringen (Undertow 2.2.18).
+Zur Auslieferung der verwendeten Webapplikationen wird ein Web Server benötigt. Bedingt aus den Anforderungen der zu testenden Webanwendungen und der Web Application Firewall muss dieser die Java Servlet Spezifikation mindestens in der Version 1.3 implementieren. Bei der Verwendung eines lokalen Web Servers oder in den automatisierten Tests dieser Arbeit wird dabei der Apache Tomcat-Server in der Version 8.5.78 genutzt. Zur Ausführung von Anwendungen die auf dem \emph{Spring}-Framework basieren wird nicht zwingend ein dedizierter Anwendungsserver benötigt, da diese bereits ein integriertes System mit sich bringen (Undertow 2.2.18).
 
 \subsection{Die Web Application Firewall}
-Bei WebCastellum handelt es sich um eine Web Application Firewall die zum Schutz von Webanwendungen vor allgemeineren Angriffsszenarien entwickelt wurde. Implementiert wurde WebCastellum als ServletFilter, d.h. im Gegensatz zu WAF-Lösungen die als Proxy vor der Anwendung filtern, hätte WebCastellum vollen Zugriff auf alle Informationen die auch der Webanwendung bekannt sind. Erwähnenswert wären hier zum Beispiel der Login- oder Sessionstatus. 
+Bei WebCastellum handelt es sich um eine Web Application Firewall die zum Schutz von Webanwendungen vor allgemeineren Angriffsszenarien entwickelt wurde. Implementiert wurde WebCastellum als ServletFilter, d.h. im Gegensatz zu WAF-Lösungen die als Proxy vor der Anwendung filtern, hätte WebCastellum vollen Zugriff auf alle Informationen die auch der Webanwendung bekannt sind. Erwähnenswert wären hier zum Beispiel der Login- oder Sessionstatus. Grundsätzlich wurde für die Tests die Version aus dem persönlichen Repository\footnote{\url{https://github.com/devtty/webcastellum}} genutzt. Das offizielle 1.8.3-Release von 2009\footnote{\url{https://sourceforge.net/projects/webcastellum}} kam nicht zur Anwendung.
 
 
 \subsection{Ziel - Anwendungen}
@@ -102,12 +102,12 @@ Beim aktiven Angriff übernimmt \emph{ZAP} die volle Kontrolle und sucht (mögli
 \textcolor{bhtGray}{\ding{110} Hinweis} Ist man nicht Eigentümer der Ziel-Webanwendung sollte OWASP ZAPs aktiver Scanmodus nicht genutzt werden!\\
 
 
-\subsection{Defender}
+\subsection{Der Verteidiger}
 
 Hierbei handelt es sich um die zu testende Instanz der WebApplicationFirewall. Gegebenenfalls kann hier natürlich die Konfiguration - je nach Testfall - variieren. Da jedoch eine zentralisierte Installation im Fokus steht, sollte in jedem Fall diese Instanz mit der gleichen Konfiguration getestet werden. Dazu wird auf die abrufbare Konfiguration aus Abschnitt~\ref{sec:centralconf} zurückgegriffen. Es folgen weitere Test mit einem zweiten \emph{Verteidiger}, der in der Konfiguration der ersten Instanz entspricht und die aus Abschnitt~\ref{sec:mlfk} bekannten Funktionen unterstützt. 
 % 3 Fälle -> ohne, defaultconfig, von zentrale gelieferte Konfiguration
 
-\subsection{Victim}
+\subsection{Das Opfer}
 
 Bei den \glqq\emph{Opfern}\grqq  im Test sollte es sich um zu schützende Anwendungen handeln. Vornehmlich sollte es sich um ein möglichst breit gefächertes Angebot an Anwendungen handeln. Aus zeitlichen Gründen werden in dieser Arbeit jedoch nur die aus Abschnitt~\ref{sec:targetapp} bekannten Anwendungen, \emph{Primefaces Showcase} und \emph{WebGoat} genutzt. Grundsätzlich könnten aber auch andere Anwendungen für den Testaufbau genutzt werden.\\ 
 
