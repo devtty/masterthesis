@@ -7,7 +7,7 @@ Ausgehend von der historischen Entwicklung der Web Application Firewalls werden 
 \section{Kritik und Probleme}
 \label{sec:Probleme}
 
-Der im vorherigen Kapitel betrachtete zeitliche Rahmen, über die Entwicklung von Web Application Firewalls, umfasst mehr als zwanzig Jahre. Ein Zeitraum in dem sich zahlreiche Produkte in diesem Bereich etablierten. Im Anhang finden Sie, beispielsweise, mit der Tabelle~\ref{tab:my_wafwoof} eine (nicht vollständige) Liste von derzeitigen WAF-Produkten verschiedener Hersteller. Über den gesamten Zeitraum haben sich Webtechnologien weiterentwickelt und auch die Art und Weise der Nutzung des Internets änderte sich. Mit der Verbreitung der Smartphones und Sprachassistenten wurden aus einfachen Webangeboten vielschichtige Anwendungen mit verschiedenen möglichen Clientsystemen (\emph{mobile-first-Ansatz}). Serviceorientierte Architekturen, Webservices, Microservices, Künstliche Intelligenz - alles entwickelte sich weiter. Im Bereich der IT-Sicherheit veröffentlichte das \emph{Open Web Application Security Project} 2019 erstmals eine Liste seiner zehn kritischsten Sicherheitsrisiken explizit für den Bereich der \emph{API}s. \emph{ModSecurity} ist immer noch der de-facto-Standart für regelbasierte WAFs und praktisch so gut wie der einzige verbliebene Vertreter der Web Application Firewalls aus dem OpenSource-Bereich. Freie anomaliebasierte Systeme sind so gut wie nicht existent und die privatwirtschaftlichen Akteure lassen sich kaum in die Karten schauen. \\
+Der im vorherigen Kapitel betrachtete zeitliche Rahmen, über die Entwicklung von Web Application Firewalls, umfasst mehr als zwanzig Jahre. Ein Zeitraum in dem sich zahlreiche Produkte in diesem Bereich etablierten. Um eine ungefähre Vorstellung von der Anzahl der verschiedenen Produkte zu erhalten, finden Sie im Anhang mit der Tabelle~\ref{tab:my_wafwoof} eine (nicht vollständige) Liste von derzeitigen WAF-Produkten verschiedener Hersteller. Über den gesamten Zeitraum haben sich Webtechnologien weiterentwickelt und auch die Art und Weise der Nutzung des Internets änderte sich. Mit der Verbreitung der Smartphones und Sprachassistenten wurden aus einfachen Webangeboten vielschichtige Anwendungen mit verschiedenen möglichen Clientsystemen (\emph{mobile-first-Ansatz}). Serviceorientierte Architekturen, Webservices, Microservices, Künstliche Intelligenz - alles entwickelte sich weiter. Im Bereich der IT-Sicherheit veröffentlichte das \emph{Open Web Application Security Project} 2019 erstmals eine Liste seiner zehn kritischsten Sicherheitsrisiken explizit für den Bereich der \emph{API}s. \emph{ModSecurity} ist immer noch der de-facto-Standart für regelbasierte WAFs und praktisch so gut wie der einzige verbliebene Vertreter der Web Application Firewalls aus dem OpenSource-Bereich. Freie anomaliebasierte Systeme sind so gut wie nicht existent und die privatwirtschaftlichen Akteure lassen sich kaum in die Karten schauen. \\
 Mittlerweile sind bereits dreizehn Jahre seit dem Erscheinen des Datensatzes CSIC2010 vergangen und schaut man in die derzeitig vorhandene Literatur scheint auch kein Nachfolger in Sicht. \\\\
 
 \textcolor{bhtGray}{\ding{110} Applebaum über den Datensatz CSIC2010~\cite{Applebaum2021}} Torrano-Giménez et al. provide an HTTP dataset intended to be used for the development and testing of Intrusion Detections Systems and WAFs. ... The dataset has been used extensively by other researchers ... There is still a need for a development of a new dataset as previous datasets had become outdated and did not target real systems. The dataset .. is itself now over 10 years old and targets a bespoke e-commerce system. \\\\
@@ -35,8 +35,6 @@ Für eine Klassifizierung können bzw. müssen aus den Daten der einzelnen Reque
 % }
 \begin{figure}[h]
   \centering
-        \caption{Dateneintrag CSIC 2010 Normal Traffic Test}
-        \label{fig:ccex}
         \begin{lstlisting}[basicstyle=\footnotesize]
 GET http://localhost:8080/tienda1/publico/anadir.jsp
                 ?id=1&nombre=Jam%F3n+Ib%E9rico&precio=39&cantidad=41
@@ -53,9 +51,11 @@ Host: localhost:8080
 Cookie: JSESSIONID=54E25FF4B7F0E4E855B112F882E9EEa5
 Connection: close
 \end{lstlisting}
+\caption{Dateneintrag CSIC 2010 Normal Traffic Test}
+\label{fig:ccex}
 \end{figure}
 
-\begin{sidewaystable}[h]
+\begin{sidewaystable}[ht]
   \centering
 %  \resizebox{\textwidth}{!}{ 
   \begin{tabular}{lllll}
@@ -90,17 +90,19 @@ Connection: close
 % Format des Datenssatzes Text -> CSV (Referenz zu Dr....) -> ARFF ?? ggf. mit Korrektur
 
 
-Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \verb=PUT= noch eine weitere HTTP-Methode angewandt~\cite{csic2010}. \anno{Überleitung}
+Im Bereich der Anomalie-Requests sieht es ähnlich aus, jedoch wurde hier mit \verb=PUT= noch eine weitere HTTP-Methode angewandt~\cite{csic2010}. Des Weiteren existiert eine Unregelmäßigkeit bei den aufrufenden Hosts. Hier wird in den Anomaliedaten zusätzlich ein weiterer Port (9090) genutzt. 
 
 \subsubsection{Zum Format}
 
-Die drei originalen Teildatensätze befinden sich jeweils in eigenen Dateien und enthalten die Rohdaten als Aneinanderreihung der einzelnen HTTP-Requests. Die Daten sind textbasiert und umfassen nur Inhalte im lateinischen Alphabet\footnote{die originalen Dateien sind ISO-8859-1 kodiert} und können auch mit einfachen Textwerkzeugen gelesen (und bearbeitet) werden. Für eine weitere Analyse ist dieses Format jedoch eher ungeeignet.\\ \ref{tab:csicfields}    \anno{TODO weka tabelle unique} Pete Scully erarbeitete für seine Doktorarbeit~\cite{Scully2016} unter anderem eine kommaseparierte Version des CSIC2010-Datensatzes zur Verwendung im  Analysewerkzeug WEKA\footnote{Waikato Environment for Knowledge Analysis}. Neben den einzelnen benannten Feldern fügte noch die Felder \emph{Payload} und \emph{Label} hinzu. Wie in Abschnitt~\ref{sec:aufbauformat} bereits näher erläutert, handelt es sich bei der Payload um die \emph{eigentlichen} Inhalte des HTTP-Anforderungen. Das Feld \emph{Label} dient als Marker zur Unterscheidung ob es sich bei dem Dateneintrag um Trainings-, Test- oder Anomale Daten handelt, da Scully die Teildatensätze sowohl getrennt, als auch in einer großen CSV-Datei vereint zur Nutzung anbietet (siehe \cite{csiccsv2010}). Das WEKA-Tool vereinfacht eine genauere Betrachtung des Datensatzes erheblich und Tabelle~\ref{tab:csicfields} stellt nochmals die einzelnen Datenfelder übersichtlich dar.\\
+Die drei originalen Teildatensätze befinden sich jeweils in eigenen Dateien und enthalten die Rohdaten als Aneinanderreihung der einzelnen HTTP-Requests. Die Daten sind textbasiert und umfassen nur Inhalte im lateinischen Alphabet\footnote{die originalen Dateien sind ISO-8859-1 kodiert} und können auch mit einfachen Textwerkzeugen gelesen (und bearbeitet) werden. Für eine weitere Analyse ist dieses Format jedoch eher ungeeignet.\\
+
+Pete Scully erarbeitete für seine Doktorarbeit~\cite{Scully2016} unter anderem eine kommaseparierte Version des CSIC2010-Datensatzes zur Verwendung im  Analysewerkzeug WEKA\footnote{Waikato Environment for Knowledge Analysis}. Neben den einzelnen benannten Feldern fügte er noch die Felder \emph{Payload} und \emph{Label} hinzu. Wie in Abschnitt~\ref{sec:aufbauformat} bereits näher erläutert, handelt es sich bei der Payload um die \emph{eigentlichen} Inhalte des HTTP-Anforderungen. Das Feld \emph{Label} dient als Marker zur Unterscheidung ob es sich bei dem Dateneintrag um Trainings-, Test- oder Anomale Daten handelt, da Scully die Teildatensätze sowohl getrennt, als auch in einer großen CSV-Datei vereint zur Nutzung anbietet (siehe \cite{csiccsv2010}). Das WEKA-Tool vereinfacht eine genauere Betrachtung des Datensatzes erheblich und Tabelle~\ref{tab:csicfields} stellt nochmals die einzelnen Datenfelder übersichtlich dar.\\
 
 Die letzten drei Spalten der Tabelle beinhalten die \emph{Anzahl unterscheidbarer Werte} und die \emph{Fehlquote}, d.h. den prozentualen Anteil an Dateneinträgen bei denen dieses Feld keinen Wert beinhaltet, für die jeweiligen Teildatensätze. Erkennbar sind einige Felder mit vorhandenem Wert in jedem Dateneintrag, der sich jedoch nie vom Wert in anderen Einträgen unterscheidet. Diese Felder sind demzufolge für eine Klassifizierung, bei der ausschließlich Daten des CSIC2010-Datensatzes genutzt werden, irrelevant. Torrano-Giménez hätte diese zum Teil weglassen können und es hätte, bei Verwendung ihrer Testdaten, nichts an ihren Ergebnissen geändert. In einer dynamischeren (und produktiven) Umgebung müssen diese Felder jedoch mit betrachtet werden\footnote{dazu mehr in Abschnitt~\ref{sec:Kategorisierung}}.\\
 
-\textcolor{bhtGray}{\ding{110} Beispiel:} Die WAF erfasst mehrere hundert HTTP-Anfragen mit einer festen Session-ID (\verb=JSESSIONID=,Session-Cookie, o.ä.) und festem Wert im \emph{User-Agent} (~$\rightarrow$~ein Internetnutzer surft mit seinem Browser) und plötzlich erscheint eine Anfrage mit gleicher Session-ID aber anderem User-Agent. In diesem Fall sollte die WAF entsprechend reagieren, da die Möglichkeit eines Angriffes (\emph{Session Hijacking}, \emph{Man-in-the-middle}) durchaus besteht.\\
+\textcolor{bhtGray}{\ding{110} Beispiel:} Die WAF erfasst mehrere hundert HTTP-Anfragen mit einer festen Session-ID (\verb=JSESSIONID=, Session-Cookie, o.ä.) und festem Wert im \emph{User-Agent} (~$\rightarrow$~ein Internetnutzer surft mit seinem Browser) und plötzlich erscheint eine Anfrage mit gleicher Session-ID aber anderem User-Agent. In diesem Fall sollte die WAF entsprechend reagieren, da die Möglichkeit eines Angriffes (\emph{Session Hijacking}, \emph{Man-in-the-middle}) durchaus besteht.\\
   
-Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format namens \emph{\textbf{A}ttribute-\textbf{R}elation \textbf{F}ile \textbf{F}ormat} (ARFF)~\cite{arff2023}, welches die Daten ggf. mit entsprechenden Datentypen genauer beschreiben kann.
+Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format namens \emph{\textbf{A}ttribute-\textbf{R}elation \textbf{F}ile \textbf{F}ormat} (ARFF)~\cite{arff2023}, welches die Daten ggf. mit entsprechenden Datentypen genauer beschreiben kann. Ein Vorschlag für einen Header im ARFF-Format der den erweiterten CSIC2010-Daten entsprechen könnte ist in Abbildung~\ref{fig:csicarff} dargestellt. Beispielhaft sind, hier rot eingefärbt, zwei Erweiterungen der nominalen Attribute \emph{Methode} und \emph{Protokoll} dargestellt, die den Datensatz erweitern. Bei Werten die durchaus größere, unterschiedliche Textmengen aufnehmen können (z.B. die \emph{URL} oder die \emph{Payload}) hat man die Wahl ob die Werte nominell abgespeichert werden oder der Datentyp String genutzt werden sollte. Falls im letztenn Fall der String-Wert für eine spätere Klassifizierung der genutzt werden soll, muss eine Konvertierung in einen nominellen Wert erfolgen.
 
 \lstset{language=bash,
 % 	basicstyle=\ttfamily\color{black}\small,
@@ -111,29 +113,29 @@ Zurück zum Format der Daten - das WEKA-Tool unterstützt ein eigenes Format nam
         escapeinside={\%*}{*)}
       }
 \begin{figure}[h]
-  \caption{Beispiel für einfachen arff header}
-  \label{fig:csicarff}
   \begin{lstlisting}
 @relation CSIC2010_erweitert
 
 @attribute index numeric
 @attribute method {GET,POST%*\textcolor{bhtRed}{,PUT,PATCH,DELETE}*)}
-@attribute url
+@attribute url %*\textcolor{bhtCyan}{String}*)
 @attribute protocol {HTTP/1.1%*\textcolor{bhtRed}{HTTP/2}*)}
-@attribute userAgent {}
-@attribute pragma {}
-@attribute cacheControl {}
-@attribute accept
-@attribute acceptCharset
-@attribute acceptLanguage {}
-@attribute host {}
-@attribute connection
-@attribute contentLength
-@attribute contentType
-@attribute cookie
-@attribute payload
+@attribute userAgent String
+@attribute pragma String
+@attribute cacheControl String
+@attribute accept String
+@attribute acceptCharset String
+@attribute acceptLanguage String
+@attribute host String
+@attribute connection String
+@attribute contentLength 
+@attribute contentType String
+@attribute cookie String
+@attribute payload %*\textcolor{bhtCyan}{String}*)
 @attribute label {norm,anom}
 \end{lstlisting}
+  \caption{Beispiel für einfachen arff header}
+  \label{fig:csicarff}
 \end{figure}
 \anno{TODO Tabelle fehlplatziert, sollte erst wenn CSICÄnderungen bekannt oder Anhang}
 
@@ -151,8 +153,6 @@ Heute nutzten Endgeräte (wie das Mobiltelefon aber auch Server) zur Kommunikati
 % 	commentstyle=\color{gray}\textsl
 %      }
 \begin{figure}[h]
-  \caption{Beispiel für einfachen REST-Request}
-  \label{fig:restputexample}
   \begin{lstlisting}
 PUT /user/devtty HTTP/1.1
 Host: localhost:8080
@@ -165,32 +165,29 @@ Content-Type: application/json
   "lastName": "Renning"
 }
 \end{lstlisting}
+  \caption{Beispiel für einfachen REST-Request}
+  \label{fig:restputexample}
+
 \end{figure}
 
 Eine anomalie-basierende WAF die mit dem CSIC2010-Datensatz trainiert worden wäre, würde den in Abbildung \ref{fig:restputexample} dargestellten Request ablehnen, da das Feature \glqq\emph{Method identifier}\grqq die Methode \verb=PUT= nicht erlaubt. Für die Klassifizierung bei REST-konformen Endpunkten müssten noch weitere Methoden im Datensatz aufgenommen werden.
 
-Möglich wäre zum Beispiel auch die Absicherung eines WebDAV\footnote{Web-based Distributed Authoring and Versioning}-Endpunktes
-
-
-%% Erweiterung HTTP
-
-\anno{HTTP1.1 2 und 3...}
-
+Möglich wäre zum Beispiel auch die Absicherung eines WebDAV\footnote{Web-based Distributed Authoring and Versioning}-Endpunktes. Der Datensatz müsste dann um die entsprechenden Methoden (siehe Tabelle~\ref{tab:httpmethods} im Anhang) erweitert werden.
 
 \subsubsection{Neue Werkzeuge}
 \label{sec:neuewerkzeuge}
 
-Grundsätzlich sollte auch bedacht werden dass, seit der Erstellung des Datensatzes von Torrano-Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. Höchstwahrscheinlich wäre der Umfang der Anomaliedaten wesentlich höher wenn der damalige Testaufbau (mit den aktuelleren Versionen der Software) wiederholt wird und der Generierungsprozess nochmals angestoßen wird.
+Grundsätzlich sollte auch bedacht werden, dass seit der Erstellung des Datensatzes von Torrano-Giménez, die genutzten Werkzeuge ebenfalls weiterentwickelt wurden und verbesserte Versionen erschienen. Zum Beispiel wurden zur Erzeugung der Anomalie-Requests die Werkzeuge \emph{Paros}\footnote{\url{https://sourceforge.net/projects/paros/} abgerufen am 29.06.2023} und \emph{w3af}\footnote{\url{https://w3af.org} abgerufen am 29.06.2023} eingesetzt. Die Entwicklung des eigentlichen Paros-Proxies wurde 2006 eingestellt, jedoch übernahm das \emph{Open Web Application Security Project} die Quellen und entwickelte einen Fork der Software unter dem Namen \emph{Zed Attack Proxy}~(ZAP) bis heute weiter. Höchstwahrscheinlich wäre der Umfang der Anomaliedaten wesentlich höher wenn der damalige Testaufbau (mit den aktuelleren Versionen der Software) wiederholt wird und der Generierungsprozess nochmals angestoßen wird.
   
 \subsection{Ziel des Datensatzes}
 \label{sec:zieldesdatensatzes}
 
-Ein weiterer Kritikpunkt Applebaums am Datensatz CSIC2010, neben dem Alter, betrifft das zur Erstellung genutzte Ziel. Für CSIC2010 wurde nur eine einzelne Webanwendung genutzt, die intern vom CSIC2010-Team entwickelt wurde und rudimentäre Funktionen eines e-Commerce-Systems anbietet~\cite{csic2010}. Es existieren eine Nutzerregistrierung und diverse Funktionen aus dem Einkaufsbereich (z.B. Waren einem Einkaufskorb hinzufügen usw.). Applebaum merkt zusätzlich an, dass es sich nicht um ein real verwendetes System handelt. Damit beschränken sich die erstellten Daten nur auf den engen Bereich dieser (einen) Webanwendung. Für die Anwendung in anderen Systemem oder im Echtbetrieb müssen in jedem Fall Anpssungen erfolgen oder eigene Daten erhoben werden. Bestes Beispiel ist bereits die Referenzierung des \verb=localhost= in der URL der CSIC2010-Daten. Eine Anwendbarkeit auf einem entfernten System wäre damit nicht gegeben. Daher bedarf es für eigene Projekte in den meisten Fällen wenigsten einer Anpassung dieses Attributes. 
+Ein weiterer Kritikpunkt Applebaums am Datensatz CSIC2010, neben dem Alter, betrifft das zur Erstellung genutzte Ziel. Für CSIC2010 wurde nur eine einzelne Webanwendung genutzt, die intern vom CSIC2010-Team entwickelt wurde und rudimentäre Funktionen eines e-Commerce-Systems anbietet~\cite{csic2010}. Es existieren eine Nutzerregistrierung und diverse Funktionen aus dem Einkaufsbereich (z.B. Waren einem Einkaufskorb hinzufügen usw.). Applebaum merkt zusätzlich an, dass es sich nicht um ein real verwendetes System handelt. Damit beschränken sich die erstellten Daten nur auf den engen Bereich dieser (einen) Webanwendung. Für die Anwendung in anderen Systemem oder im Echtbetrieb müssen in jedem Fall Anpassungen erfolgen oder eigene Daten erhoben werden. Bestes Beispiel ist bereits die Referenzierung des \verb=localhost= in der URL der CSIC2010-Daten. Eine Anwendbarkeit auf einem entfernten System wäre damit nicht gegeben. Daher bedarf es für eigene Projekte in den meisten Fällen wenigsten einer Anpassung dieses Attributes. 
 
 \subsubsection{Neue Anwendungsarchitekturen und Frameworks}
 \label{sec:neueframeworks}
 %% Änderungen Anwendungsarchitekturen
-Eine wesentliche Änderung seit Erstellung des Datensatzes ist das Aufkommen moderner Anwendungen die durch Nutzung von Anfragen im Hintergrund wesentlich schneller auf Nutzereingaben reagieren. Gute Beispiele sind Eingabefelder mit automatischer Vervollständigung oder die Validierung der eingegebenen Werte während der Eingabe. Das explizite Auslösen einer Anfrage, z.B. über ein Formular, wurde in vielen Fällen vom Konzept der \emph{\textbf{A}synchronen Datenübertragung per \textbf{J}avascript \textbf{A}nd \textbf{X}ML} (AJAX) abgelöst. In gewisser Weise sendet nicht mehr der Endnutzer (als Person) die Anfragen an den Server sondern der Browser selbst zu vordefinierten Ereignissen. Bei den Anfragen handelt es sich immer noch um HTTP-Requests, jedoch ist deren Komplexität und Häufigkeit deutlich gestiegen (s.~\ref{fig:ajax}).
+Eine wesentliche Änderung seit Erstellung des Datensatzes ist das Aufkommen moderner Anwendungen die durch Nutzung von Anfragen im Hintergrund wesentlich schneller auf Nutzereingaben reagieren. Gute Beispiele sind Eingabefelder mit automatischer Vervollständigung oder die Validierung der eingegebenen Werte während der Eingabe. Das explizite Auslösen einer Anfrage, z.B. über ein Formular, wurde in vielen Fällen vom Konzept der \emph{\textbf{A}synchronen Datenübertragung per \textbf{J}avascript \textbf{A}nd \textbf{X}ML} (AJAX) abgelöst. In gewisser Weise sendet nicht mehr der Endnutzer (als Person) die Anfragen an den Server sondern der Browser selbst zu vordefinierten Ereignissen. Bei den Anfragen handelt es sich immer noch um HTTP-Requests, jedoch ist deren Komplexität und Häufigkeit deutlich gestiegen (Abbildung~\ref{fig:ajax}).
 
 \begin{figure}[h]
   %% \begin{center}
@@ -205,10 +202,10 @@ Eine wesentliche Änderung seit Erstellung des Datensatzes ist das Aufkommen mod
 
 Mit der vermehrten Nutzung des AJAX-Konzeptes entwickelten sich auch die zur Oberflächengestaltung genutzten Frameworks dementsprechend weiter und verbreiteten sich schnell. Ebenso wie \emph{Applebaum} kritisierten \cite{kozik2019} den CSIC2010-Datensatz dementsprechend. Ihre Kritik galt insbesondere dem \glqq\emph{Content-Type}\grqq-Feld:\\
 
-\textcolor{bhtGray}{\ding{110} Kozik über den Datensatz CSIC2010~\cite{kozik2019}} For instance, the original data set currently contains mainly requests that are complied with \glqq\verb=application/x-www-form-urlencoded=\grqq
+\textcolor{bhtGray}{\ding{110} Kozik über den Datensatz CSIC2010~\cite{kozik2019}} For instance, the original data set currently contains mainly requests that are complied with \glqq\verb=application/x-www-form-urlencoded=\grqq{} 
 encoding standard. On the other hand, the modern web applications are currently also using different types of request content, e.g. \glqq\verb=application/json=\grqq, \glqq\verb=text/x-gwt-rpc=\grqq or other proprietary types.\\
 
-In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basierte Anwendung und erweiterten für ihre Zwecke darauf aufbauend den CSIC2010-Datensatz um 1500 \emph{normale} bzw. gültige GWT-Anfragen und 2000 Anfragen mit Angriffs-Absicht.
+In ihrer Arbeit testeten sie gegen eine GWT\footnote{Google Web Toolkit}-basierte Anwendung und erweiterten für ihre Zwecke, darauf aufbauend, den CSIC2010-Datensatz um 1500 \emph{normale} bzw. gültige GWT-Anfragen und 2000 Anfragen mit Angriffs-Absicht.
 
 % SChönes Beispiel für Fortschritt, produktiven Einsatz und zeitliche Veränderung und wo Gimenez nicht funktioniert-- > PUT als anomalie in CSIC2010 definiert aber in REST durchaus üblich
 % rest beispiel mit PUT
@@ -223,11 +220,7 @@ Aufbauend auf den Erläuterungen zu den angesprochendenen Problemen und auf der 
 
 \subsection{Aus Alt mach Neu}
 \label{sec:lsgalt}
-Bereits in Abschnitt \ref{sec:neuewerkzeuge} wurde die erneute Erstellung des Datensatzes, mit Hilfe neuerer Versionen der Software, angesprochen. Für den damals genutzten Anwendungsserver und die Software zum Generieren der HTTP-Anfragen sind öffentlich verfügbare Nachfolger bekannt. Leider existiert jedoch keine öffentliche Version der von \cite{Giménez2015} genutzten Anwendung. Eine Wiederholung im Rahmen dieser Arbeit ist daher ausgeschlossen. Die originalen Daten können weiter verwendet werden. Gleiches gilt auch für die in Abschnitt \ref{sec:neueframeworks} erwähnte Erweiterung des Datensatzes aus \cite{kozik2019}. Die Autoren verweisen auf ein geographisches Informationssystem, liefern jedoch keinen Namen.\\
-
-\begin{neu}
-  in Anbetracht von \ref{tab:tgfeatures} und der damaligen Zielstellung evt. auch unwichtig, in Verbindung mit Frameworks (z.B. Anzahl der Argumente?) könnte das jedoch interessant sein. Auf jeden Fall zur Regenerierung!
-\end{neu}
+Bereits in Abschnitt \ref{sec:neuewerkzeuge} wurde die erneute Erstellung des Datensatzes, mit Hilfe neuerer Versionen der Software, angesprochen. Für den damals genutzten Anwendungsserver und die Software zum Generieren der HTTP-Anfragen sind öffentlich verfügbare Nachfolger bekannt. Leider existiert jedoch keine öffentliche Version der von \cite{Giménez2015} genutzten Anwendung. Eine Wiederholung im Rahmen dieser Arbeit ist daher ausgeschlossen. Die originalen Daten können weiter verwendet werden. Gleiches gilt auch für die in Abschnitt \ref{sec:neueframeworks} erwähnte Erweiterung des Datensatzes aus \cite{kozik2019}. Die Autoren verweisen auf ein geographisches Informationssystem, liefern jedoch keinen konkreten Namen.\\
 
 Für eine Erweiterung des Datensatzes, insbesondere in dieser Arbeit, sollten aus Gründen der Nachvollziehbarkeit nur benannte und frei verfügbare Anwendungen und Quellen in Betracht kommen. 
 
@@ -256,19 +249,19 @@ Beispiele für Rückschlüsse auf Technologien
 Der Pfad endet mit \verb=.do= - ein Hinweis auf eine Java-basierte Webanwendung die das \emph{Apache Struts}-Framework nutzt
   \item[http://localhost:8080/test?\underline{execution=e2s1}] \hfill \\
 Hier ist ein Request-Parameter mit Namen \verb=execution= und einem Wert im Format \verb=e[\\d]s[\\d]= vorhanden, es handelt sich wahrscheinlich um eine Java-basierte Webanwendung die das \emph{Spring WebFlow}-Framework nutzt
-  \item[https://devtty.de/app/detail\underline{.jsf};jsessionid=jtO85wJZjgNR3jXpeEIzV9npU-\_BQcTyEF-90JTq.\underline{slbs11}?\underline{dswid=3942\&dsrid=213}\&id=1041] \hfill \\
+  \item[https://devtty.de/app/detail\underline{.jsf};jsessionid=jtO8peEIzV9npU-\_ByEF-9JTq.\underline{slbs11}?\underline{dswid=3942\&dsrid=213}\&id=1041] \hfill \\
 Ein Beispiel einer produktiven, javabasierten Anwendung\footnote{Domain-Name wurde geändert}. Im Request-Header wird als Server ein JBoss/EAP-7 benannt. Die Anwendung nutzt JavaServerFaces (\verb=.jsf=). Durch eine Fehlkonfiguration wird die Session-ID in der URL übermittelt. Bei JBoss/WildFly-Servern wird an die SessionID der Name des echten Hosts angehängt, es existiert also höchstwahrscheinlich ein Host mit dem internen Namen \verb=slbs11.devtty.de=. Die Parameter \verb=dswid= und \verb=dsrid= weisen auf Verwendung des Apache DeltaSpike-Frameworks hin. Im Fall das es sich bei der benutzten DeltaSpike-Bibliothek um eine etwas ältere Version handelt, existiert hier eine Schwachstelle (\href{https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12416}{CVE-2019-12416}) die die Möglichkeit einer JavaScript-Injection bietet. 
 \end{description}
 
-Im Fall der Mehrgültigkeit, im Sinne dass Trainingsdaten ähnlicher Anwendungen genutzt werden sollen, ist die technologische Ähnlichkeit wichtig, gerade weil in den HTTP-Anfragen diese relevanten Informationen stecken. Ein Teil der Features aus Tabelle~\ref{tab:tgfeatures} stimmt bei technologisch ähnlichen Anwendungen häufig überein. Gemeinsame Schlüsselworte oder auch bestimmte Muster in den Argumenten wiederholen sich sowohl bei technologisch ähnlichen als auch bei funktional ähnlichen Anwendungen. \\
+Im Fall der Mehrgültigkeit, im dem Sinn dass Trainingsdaten ähnlicher Anwendungen genutzt werden sollten, ist die technologische Ähnlichkeit wichtig da in den HTTP-Anfragen die relevanten Informationen stecken. Ein Teil der Features aus Tabelle~\ref{tab:tgfeatures} stimmt bei technologisch ähnlichen Anwendungen häufig überein. Gemeinsame Schlüsselworte oder auch bestimmte Muster in den Argumenten wiederholen sich sowohl bei technologisch ähnlichen als auch bei funktional ähnlichen Anwendungen. \\
 
-\subsubsection{}
-Bei der Entwicklung von webbasierten Anwendungen unterstützen die frei verfügbaren Demo-Anwendungen (Beispiele in Tabelle~\ref{tab:exampleapp} vieler Framework-Anbieter ihre Nutzer anhand praktischer Beispiele. Dabei enstehen in gewisser Weise auch \emph{ähnliche Anwendungen}\footnote{z.T.\emph{Copy'n'Paste}-Code} mit gleicher Technologie, ähnlichen Funktionen und (wahrscheinlich) annähernd gleichen Schwachstellen. Die Demonstratoren sind dadurch ideale Kandidaten zum Generieren von Trainingsdaten, die nicht nur für sich selbst gültige Daten generieren, sondern z.T. auch gültige Daten für ihre \glqq\emph{technologischen Geschwister}\glqq{} liefern könnten.
+\subsubsection{Beispielanwendungen}
+Bei der Entwicklung von webbasierten Anwendungen unterstützen die frei verfügbaren Demo-Anwendungen (Beispiele in Tabelle~\ref{tab:exampleapp} vieler Framework-Anbieter ihre Nutzer anhand praktischer Beispiele. Dabei enstehen in gewisser Weise auch \emph{ähnliche Anwendungen}\footnote{z.T.\emph{Copy'n'Paste}-Code} mit gleicher Technologie, ähnlichen Funktionen und (wahrscheinlich) annähernd gleichen Schwachstellen. Die Demonstratoren sind dadurch ideale Kandidaten zum Generieren von Trainingsdaten, die nicht nur für sich selbst gültige Daten generieren, sondern z.T. auch gültige Daten für ihre \glqq\emph{technologischen Geschwister}\glqq{} liefern könnten. Ein Datensatz der anhand der Beispielanwendungen der Framework-Hersteller entstand, wäre durch die \glqq\emph{Ähnlichkeit}\grqq{} zu Ziel-Anwendungen die auf der gleichen Basis entstanden, für die Trainingsphase wünschenswert.
 
 
 \subsection{Unzureichende Kategorisierung im Datensatz}
 \label{sec:Kategorisierung}
-Ein großes Problem vieler Firewalls sind falsch-positive Meldungen. Hier löst die Firewall in der Annahme aus, dass ein Angriff vorliegt obwohl kein wirklicher Grund dafür vorliegt. Gründe dafür wurden bereits in Abschnitt~\ref{sec:rullog} (insbesondere Abbildung~\ref{fig.paranoia}) benannt. Falsch-positive sind aber kein alleiniges Problem der regelbasierten WAFs, auch trainierte Systeme können anfällig für dieses Verhalten sein. Für Betreiber und Nutzer von Anwendungen sind solche Meldungen unerwünscht. Im produktiven Einsatz einer WAF die mit dem CSIC2010-Datensatz trainiert wurde, würde bereits die Verwendung eines anderen Browsers (als den von Torrano-Giménez genutzten) zum \emph{False-Positive} führen, wenn die Firewall jede Abweichung vom (\emph{beaufsichtigt}) Erlerntem als Angriff interpretiert. Wird der Datensatz erweitert, könnten mit der Einführung weiterer Parameter Dateneinträge kategorisiert und spezifiziert werden und damit selektiv zum Einsatz kommen.\\ Beispielsweise erwähnt die Beschreibung der Anwendung in \cite{csic2010} dass Nutzer in der Anwendung registriert werden und Teile der Anwendung nur nach einem Login verfügbar sind. Ein Blick in die Daten zeigt eine Unterteilung in drei Bereiche und eine entsprechende Absicherung des Zugangs kann angenommen werden: 
+Ein großes Problem vieler Firewalls sind falsch-positive Meldungen. Hier löst die Firewall in der Annahme aus, dass ein Angriff vorliegt obwohl kein wirklicher Grund dafür vorliegt. Gründe dafür wurden bereits in Abschnitt~\ref{sec:rullog} (insbesondere Abbildung~\ref{fig.paranoia}) benannt. Falsch-positive sind aber kein alleiniges Problem der regelbasierten WAFs, auch trainierte Systeme können anfällig für dieses Verhalten sein. Für Betreiber und Nutzer von Anwendungen sind solche Meldungen unerwünscht. Im produktiven Einsatz einer WAF die mit dem CSIC2010-Datensatz trainiert wurde, würde bereits die Verwendung eines anderen Browsers (als den von Torrano-Giménez genutzten) zum \emph{False-Positive} führen, wenn die Firewall jede Abweichung vom (\emph{beaufsichtigt}) Erlerntem als Angriff interpretiert. Wird der Datensatz erweitert, könnten mit der Einführung weiterer Parameter Dateneinträge kategorisiert und spezifiziert werden und damit selektiv zum Einsatz kommen.\\ Beispielsweise erwähnt die Beschreibung der Anwendung in \cite{csic2010} dass Nutzer in der Anwendung registriert werden und Teile der Anwendung nur nach einem Login verfügbar sind. Ein Blick in die Daten zeigt eine Unterteilung in drei Bereiche und eine entsprechende Absicherung des Zugangs kann angenommen werden:\\ 
 
 \begin{table}[h]
   \centering
