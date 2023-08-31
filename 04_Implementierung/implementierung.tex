@@ -253,7 +253,7 @@ Für die Traininingsphase wird ein Entscheidungsbaum benötigt. Dafür lässt si
 
 \end{figure}
 
-Mit dem Eintrag als Abhängigkeit für das Projekt (Abbildung~\ref{fig:wekapom}) stehen für die weitere Entwicklung der Funktionalität alle Möglichkeiten von Weka ebenfalls zur Verfügung. Für die Trainingsphase wird die bereits erwähnte Methode \verb=checkRequirementsAndInitialize()= wie in Abbildung~\ref{fig:wekatrain} erweitert. Als Erstes wird als Datenquelle der Datensatz geladen. Wekas Klasse \verb=DataSource= erlaubt dabei verschiedene Datenformate. Es können Scullys CSIC2010-Daten im CSV-Format geladen werden oder auch Daten in Wekas ARFF-Format dass bereits aus Abschnitt~\ref{sec:formatw} bekannt ist. Danach folgend wird der Entscheidungsbaum erstellt. Hierfür wird die Klasse \verb=weka.classifiers.trees.J48= genutzt. Diese stellt eine Implementierung des C4.5-Algorithmus aus \cite[Quinlan1993] zur Verfügung. Die Daten aus dem geladenen Datensatz werden dann in den Baum eingepflegt. Aus Abschnitt~\ref{sec:formatw} ist bekannt, dass nicht alle Attribute des Datensatzes in den Entscheidungsbaum einfliessen müssen. Daher werden einige der Attribute \verb=Remove= aus dem Datensatz entfernt bevor der \emph{Classifier} erzeugt wird. Im Anschluss wird der erzeugte Classifier/Entscheidungsbaum in einer Variable die dem Rest der Anwendung zur Verfügung steht hinterlegt.\\
+Mit dem Eintrag als Abhängigkeit für das Projekt (Abbildung~\ref{fig:wekapom}) stehen für die weitere Entwicklung der Funktionalität alle Möglichkeiten von Weka ebenfalls zur Verfügung. Für die Trainingsphase wird die bereits erwähnte Methode \verb=checkRequirementsAndInitialize()= wie in Abbildung~\ref{fig:wekatrain} erweitert. Als Erstes wird als Datenquelle der Datensatz geladen. Wekas Klasse \verb=DataSource= erlaubt dabei verschiedene Datenformate. Es können Scullys CSIC2010-Daten im CSV-Format geladen werden oder auch Daten in Wekas ARFF-Format, dass bereits aus Abschnitt~\ref{sec:formatw} bekannt ist. Danach folgend wird der Entscheidungsbaum erstellt. Hierfür wird der \verb=Classifier= mit einer Instanz der Klasse \verb=weka.classifiers.trees.J48= initialisiert. Diese stellt eine Implementierung des C4.5-Algorithmus aus \cite{Quinlan1993} zur Verfügung. Die Daten aus dem geladenen Datensatz werden dann in den Baum eingepflegt. Aus Abschnitt~\ref{sec:formatw} ist bekannt, dass nicht alle Attribute des Datensatzes in den Entscheidungsbaum einfliessen müssen. Daher werden einige der Attribute \verb=Remove= aus dem Datensatz entfernt bevor der \emph{Classifier} erzeugt wird. Im Anschluss wird der erzeugte Classifier/Entscheidungsbaum in einer Variable die dem Rest der Anwendung zur Verfügung steht hinterlegt.\\
 
 \lstset{language=Java,
 % 	basicstyle=\ttfamily\color{black}\small,
@@ -275,7 +275,7 @@ Mit dem Eintrag als Abhängigkeit für das Projekt (Abbildung~\ref{fig:wekapom})
                        
     dataset.setClassIndex(dataset.numAttributes() - 1);
 
-    J48 j48 = new J48();
+    Classifier j48 = new J48();
     dataset.deleteAttributeType(NUMERIC);
 
     //Entferne alle Attribute ausser Methode und URL-Pfad
