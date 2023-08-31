@@ -244,8 +244,8 @@ Für die Traininingsphase wird ein Entscheidungsbaum benötigt. Dafür lässt si
   \begin{lstlisting}
   <dependency>
     <groupId>nz.ac.waikato.cms.weka</groupId>
-    <artifactId>weka-stable</artifactId>
-    <version>3.8.6</version>
+    <artifactId>weka-dev</artifactId>
+    <version>3.9.6</version>
   </dependency>
   \end{lstlisting}
   \caption{Weka als Abhängigkeit in der WebCastellum-POM}
@@ -302,7 +302,7 @@ Aufbau eines Entscheidungsbaums (j48) für die Klassifizierung mit den Daten aus
 \end{figure}
 
 
-Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen das Classifier bzw. den Entscheidungsbaum geprüft wird, muss jedoch für jeden Request einzeln ausgeführt werden. Innerhalb der Überprüfung des Requests (s.~Abbildung~\ref{fig:wcfilter} sollte die Evaluation nach allen anderen Prüfungen stattfinden. ML-Operationen sind rechen- und speicherintensiv und sollten daher nach Möglichkeit eher vermieden werden. Lösen bereits die vorherigen Prüfungen nach Logik- oder Regelverletzungen einen Alarm aus, ist eine weitere Prüfung nicht notwendig.
+Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen das Classifier bzw. den Entscheidungsbaum geprüft wird, muss jedoch für jeden Request einzeln ausgeführt werden. Innerhalb der Überprüfung des Requests (s.~Abbildung~\ref{fig:wcfilter} sollte die Evaluation nach allen anderen Prüfungen stattfinden. ML-Operationen sind rechen- und speicherintensiv und sollten daher nach Möglichkeit eher vermieden werden. Lösen bereits die vorherigen Prüfungen nach Logik- oder Regelverletzungen einen Alarm aus, ist eine weitere Prüfung nicht notwendig.\\
 
 \begin{figure}[h]
   %% \begin{center}
@@ -316,7 +316,7 @@ Die Testphase (\emph{Evaluation}), in der die aktuelle HTTP-Anforderung gegen da
 %%  \end{center}
 \end{figure}
 
-Für Erweiterungen von WebCastellum die \emph{nach} der regelbasierten Überprüfung ausgeführt werden, bietet sich die Methode \verb=doAfterProcessing= an. An dieser Stelle sollte die aktuelle HTTP-Anfrage gegen den zuvor erstellten Entscheidungsbaum geprüft werden.\\
+Für Erweiterungen von WebCastellum die \emph{nach} der regelbasierten Überprüfung ausgeführt werden, bietet sich die Methode \verb=doAfterProcessing= an. An dieser Stelle sollte die aktuelle HTTP-Anfrage gegen den zuvor erstellten Entscheidungsbaum geprüft werden. Dazu muss der Http-Request vor der Auswertung (\verb=Evaluation=) in eine für Weka interpretierbare Form (\verb=Instance=) übertragen werden.\\
 
 \lstset{language=Java,
 % 	basicstyle=\ttfamily\color{black}\small,
@@ -331,8 +331,18 @@ Für Erweiterungen von WebCastellum die \emph{nach} der regelbasierten Überprü
     final ResponseWrapper response) throws IOException, ServletException {
         .
         .
+      Instance requestInstance = new DenseInstance(2);
+      requestInstance.setValue(1, request.getMethod());
+      requestInstance.setValue(2, request.getRequestURI());
+        .
       Evaluation eval = new Evaluation(this.traindata);
-      eval.evaluateModelOnce(this.classifier, filteredTest.get(getRquestInstance(request)));
+      double prediction = eval.evaluateModelOnce(this.classifier,
+          requestInstance);
+
+      if(prediction < 1.0){
+          //handle response
+      }
+     
         .
         .
   }
