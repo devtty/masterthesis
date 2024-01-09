@@ -9,34 +9,34 @@ jobs:
       - name: Compile Document 1
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main.tex
+          root_file: main_en.tex
           working_directory: masterthesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: BibTex
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main.aux
+          root_file: main_en.aux
           working_directory: masterthesis
           compiler: bibtex
           args: 
       - name: Compile Document 2
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main.tex
+          root_file: main_en.tex
           working_directory: masterthesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: Compile Document 3
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main.tex
+          root_file: main_en.tex
           working_directory: masterthesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: Renning2003_WebApplicationFirewalls.pdf
-          path: ./masterthesis/main.pdf
+          name: Renning2003_WebApplicationFirewalls_en.pdf
+          path: ./masterthesis/main_en.pdf
 
