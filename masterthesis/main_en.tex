@@ -1,0 +1,150 @@
+%%
+%% Berliner Hochschule für Technik -- Abschlussarbeit
+%%
+%% Hauptdokument
+%%
+%% 23.01.09 Tschirley V.01 Beuth Hochschule
+%% 26.08.21 Tschirley V2.0 Umbenennung zur Berliner Hochschule für Technik
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[11pt, a4paper]{book}
+\documentclass[11pt, a4paper, oneside]{book}
+%% Übersetzen als Entwurf
+%\usepackage[entwurf]{bhtThesis}
+% Übersetzen für die Abgabe
+\usepackage[abgabe]{bhtThesis}
+\typeout{BHT-Abschlussarbeit V2.0 26.08.21 S.Tschirley}
+
+\usepackage{blindtext}   %für Blindtext in Kapitel 2
+\usepackage{listings}
+\lstset{ 
+  literate={ö}{{\"o}}1
+           {ä}{{\"a}}1
+           {ü}{{\"u}}1
+           {Ö}{{\"O}}1
+           {Ä}{{\"A}}1
+           {Ü}{{\"U}}1
+           {ß}{{\ss}}1
+}
+\usepackage[hidelinks]{hyperref}
+
+%%
+%% Es folgen einige Zusätze, die in Kapitel 1 beschriben sind. 
+%% Alles was nicht notwendig ist, kann auskommentiert werden
+%%
+\usepackage{trsym}
+%\usepackage{showkeys}
+\usepackage{bytefield}
+\usepackage{svg}
+%\usepackage{pict2e}
+\usepackage{gnuplottex}
+\usepackage{rotating}
+\usepackage{booktabs}
+%%
+%% Pfad zu den Bildern
+%%
+\graphicspath{
+  {pictures/},
+  {einleitung/pictures},
+  {kapitel1/pictures/},
+  {kapitel2/pictures/}
+}
+
+%%
+%% Einbinden persönlicher macros 
+%%
+\input{personalMacros.tex}
+
+%% Message
+\typeout{-----------------------------------------------------------}
+\typeout{----> main.tex ---- Zentrales Dokument---------------------}
+\typeout{-----------------------------------------------------------}
+
+\version{1.0$\alpha$}    % word im Entwurf auf der Titelseite vermerkt
+\datum{11. September 2023}
+%%
+%% Titel, Autor und Betreuer
+%%
+\fachbereich{VI -- Computer Science and Digital Media} 
+\studiengang{Media informatics online}
+\thesistyp{Master Thesis} 
+\autor{Denis Renning}
+%\edvnr{123 456}
+\titel{Web Application Firewalls and Machine Learning} 
+\untertitel{Migration and Extension - an example}
+\betreuerFeld{
+  \begin{tabular}{lr}
+    \multicolumn{2}{l}{\textbf{Gutachter}}\\
+    Prof.~Dr.~S.~Edlich & Berliner Hochschule für Technik\\
+    Prof.~Dr.~S.~Haschemi& Berliner Hochschule für Technik
+  \end{tabular}
+}
+
+%%\renewcommand{\baselinestretch}{1.05} 
+\begin{document}
+\pagestyle{fancy}
+
+\input{titelseiten.tex}
+
+\pagenumbering{arabic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Die Kapitel der Arbeitw
+
+%Einfuehrung (insgesamt ca. 5 Seiten)
+%  Das grosse Problem
+%  Ziel der Arbeit (oder das kleine machbare Problem)
+%  Methodik (1 Seite)
+%  Gliederung und Aufbau (0,5 Seiten)
+%\input{kapitel1/ch1.tex}
+\input{01_Einfuehrung/einleitung_en.tex}
+
+%Grundlagen und verwandte Arbeiten (Bitte nicht mehr als 8 Seiten)
+%  Grundbegriffe
+%  Thema 1
+%  Thema 2 (optional)
+%  Thema 3 (optional)
+%  Zusammenfassung (ca. 0,5 Seiten)
+%\input{kapitel2/ch2.tex}
+\input{02_Grundlagen/grundlagen.tex}
+
+%Kern der Arbeit (ca. 15 - 20 Seiten)
+%  Probleme und die Lösungsansätze
+%  Methodik/Vorgehen (diesmal ausfuehrlich)
+%  Uebersicht bzw. Architektur
+%  Oder aber: Der xxx Algorithmus
+%  Optional: Der yyyy Algorithmus
+%  Zusammenfassung (ca. 0,5 Seiten)
+\input{03_Kern/kern.tex}
+
+%Implementierung (max. 5 Seiten)
+%  Highlight 1 der Implementierung
+%  Highlight 2 der Implementierung
+%  Highlight des Deployments beim Kunden
+%  Zusammenfassung (ca. 0,5 Seiten)
+\input{04_Implementierung/implementierung.tex}
+
+%Evaluierung (wenn Sie ein System bauen, ca. 10 Seiten)
+%  Aufbau der Messumgebung (1-2 Seiten)
+%  Ergebnisse und Beobachtungen (3-4 Seiten)
+%  Diskussion und Bewertung (3-4 Seiten)
+%  Zusammenfassung (ca. 0,5 Seiten)
+\input{05_Evaluierung/evaluierung.tex}
+
+%Zusammenfassung und Ausblick (5 Seiten)
+%  Zusammenfassung
+%  Ausblick
+\input{06_Zusammenfassung/zusammenfassung.tex}
+
+
+\begin{appendix}
+  \input{anhang.tex}
+\end{appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Literaturverzeichnis
+
+\clearpage\newpage
+\addcontentsline{toc}{chapter}{Literatur- und Quellenverzeichnis}
+\bibliographystyle{myapalike}
+\bibliography{bhtThesis}
+
+\end{document}

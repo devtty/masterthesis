@@ -1,0 +1,42 @@
+name: Build LaTex BHT (english) make like
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up
+        uses: actions/checkout@v4
+      - name: Compile Document 1
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.tex
+          working_directory: masterthesis
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+      - name: BibTex
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.aux
+          working_directory: masterthesis
+          compiler: bibtex
+          args: 
+      - name: Compile Document 2
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.tex
+          working_directory: masterthesis
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+      - name: Compile Document 3
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.tex
+          working_directory: masterthesis
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: Renning2003_WebApplicationFirewalls.pdf
+          path: ./masterthesis/main.pdf
+
