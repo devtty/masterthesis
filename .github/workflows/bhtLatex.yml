@@ -16,21 +16,21 @@ jobs:
       - name: BibTex
         uses: dante-ev/latex-action@latest
         with:
-          root_file: masterthesis/main.aux
+          root_file: main.aux
           working_directory: masterthesis
           compiler: bibtex
           args: 
       - name: Compile Document 2
         uses: dante-ev/latex-action@latest
         with:
-          root_file: masterthesis/main.tex
+          root_file: main.tex
           working_directory: masterthesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: Compile Document 3
         uses: dante-ev/latex-action@latest
         with:
-          root_file: masterthesis/main.tex
+          root_file: main.tex
           working_directory: masterthesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
