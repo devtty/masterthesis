@@ -1,4 +1,4 @@
-name: Build LaTex BHT (english) make like
+name: Build LaTex FHTW make like
 on: [push]
 jobs:
   build_latex:
@@ -9,34 +9,34 @@ jobs:
       - name: Compile Document 1
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main_en.tex
-          working_directory: masterthesis
+          root_file: diplom.tex
+          working_directory: diplomathesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: BibTex
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main_en.aux
-          working_directory: masterthesis
+          root_file: diplom.aux
+          working_directory: diplomathesis
           compiler: bibtex
           args: 
       - name: Compile Document 2
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main_en.tex
-          working_directory: masterthesis
+          root_file: diplom.tex
+          working_directory: diplomathesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: Compile Document 3
         uses: dante-ev/latex-action@latest
         with:
-          root_file: main_en.tex
-          working_directory: masterthesis
+          root_file: diplom.tex
+          working_directory: diplomathesis
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: Renning2023_WebApplicationFirewalls_en.pdf
-          path: ./masterthesis/main_en.pdf
+          name: Renning2003_TeachingByChat.pdf
+          path: ./diplomathesis/diplom.pdf
 

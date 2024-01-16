@@ -1,0 +1,40 @@
+\section{Jakarta Struts}
+
+Um die Arbeit mit dem zweiten MVC Modell zu erleichtern entstand innerhalb des Jakarta Projekts
+der Apache Software Foundation ein einfach zuhandhabendes Framework zur Entwicklung von 
+Web-Applikationen das auf den Namen Struts getauft wurde. Struts liefert die Grundlagen für
+die Entwicklung einer Web-Anwendung sowohl für den Anwendungsentwickler als auch für den 
+HTML-Programmierer der für die Ansicht zuständig ist.
+
+
+\subsection{Kontrolle und Steuerung}
+
+Eine der wichtigsten Aufgaben im Framework erfüllen die Klassen des Pakets {\tt org.apache.struts.action},
+insbesondere die Klassen {\tt Action},{\tt ActionForm} und {\tt ActionServlet}, welche zur Entwicklung 
+der Steuerungsschicht beitragen und diese von den anderen Schichten abgrenzen.
+
+\subsubsection{Die Klasse {\tt Action}}
+
+Die Klasse {\tt Action} ist eine Adapterklasse die sämtliche Aktionen, die in einer Struts-basierenden
+Anwendung auftreten können, in das Framework integriert. Solche Aktionen können beispielsweise das
+Klicken auf einen Link, das Abschicken eines Formulars oder auch Aktionen die von Struts selbst 
+ausgelöst werden sein.
+
+Jede Aktion muß von der Klasse {\tt Action} bzw. eine ihrer Unterklassen abgeleitet werden und die
+Methode {\tt execute} überschreiben, damit die Aktion implementiert ist.
+
+
+\subsubsection{Die Klasse {\tt ActionForm}}
+
+Von {\tt ActionForm} abgeleitete Klasse definieren in der Anwendung vorkommende Formulare beispielsweise
+das Anmelde-Formular. Diese Klassen besitzen den typischen Aufbau einer JavaBean, da der Entwickler für
+jedes verwendete Formularfeld ein Attribut inklusive der nötigen {\tt get} und {\tt set}-Methode in der 
+Klasse reservieren muß. Zusätzlich kann die Methode {\tt validate} überschrieben werden um eine 
+automatische Überprüfung der Formulardaten zu gewährleisten.
+
+\subsubsection{Das {\tt ActionServlet}}
+
+Die zentrale Komponente jeder Struts-basierenden Anwendung ist das ActionServlet, da es jede Aktion in
+der Anwendung steuert und koordiniert. Sendet der Benutzer eine Anfrage an die Anwendung so nimmt das
+ActionServlet diese erst entgegen und leitet sie an die entsprechende Aktion weiter. Der Entwickler muß
+dazu nur die entsprechenden Aktionen in der Konfigurationsdatei {\tt struts-config.xml} eintragen.

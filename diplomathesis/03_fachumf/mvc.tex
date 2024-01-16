@@ -1,0 +1,47 @@
+\section{Das MVC-Modell}
+
+Eine wesentliche Erleichterung bei der Entwicklung größerer Projekte bietet die Aufteilung
+der Anwendung in verschiedene Bereiche. Insbesondere die Aufteilung nach Modell, Ansicht und
+Steuerung hat sich als sinnvoll in der objekt-orientierten Programmierung erwiesen. Die Idee
+dazu wurde erstmals in der Sprache Smalltalk verwirklicht und stammt aus den Jahren 1978/79
+ursprünglich von Prof. Trygve Reenskaug \cite[S.~495]{ullenboom_00}. Von Bedeutung wurde
+dieses Modell für Java vor allem im Zusammenhang mit der Programmierung von Applikationen
+mit grafischer Benutzeroberfläche.
+
+Der Bekanntheitsgrad von Java bei der Erstellung von Anwendungen für das Internet stieg mit
+der Einführung der Servlet-Technologie. Bis zu diesem Zeitpunkt waren hauptsächlich CGI-Skripte\footnotemark[1] 
+für die Verarbeitung von Informationen verantwortlich. Die Servlets brachten vor allem Vorteile
+in der Geschwindigkeit bei der Ausführung und ermöglichten Web-Anwendungen die Nutzung von Java
+in vollem Umfang. Da ein Servlet eine komplette Java-Klasse ist und vor der Nutzung wie jede andere
+Klasse erst kompiliert werden mußte hatte die Servlet-Technologie der damaligen Zeit einen wesentlichen
+Nachteil: die Ansicht bzw. die sich ergebenden HTML-Seiten mußten komplett im Quelltext der Klasse 
+generiert werden und das Layout der Webseiten konnte nach der Kompilierung nicht mehr geändert werden.
+
+Kurze Zeit später entwickelte Sun die JavaServerPages die es dem Entwickler ermöglichten den 
+umgekehrten Weg zu gehen. Mit JSP war der Programmierer in der Lage seinen Java-Code innerhalb
+von HTML-Seiten einzubetten bzw. andere Klassen (Beans) aus den Seiten aufzurufen. Diese JSP-Seiten
+werden dann bei Bedarf vom Server in Servlets umgewandelt und kompiliert. Das Modell
+und die Steuerung wurde innerhalb der Beans gekapselt, die Ansicht in der JSP-Seite. Doch auch
+diese erste Umsetzung des MVC-Konzepts für Webapplikationen in Java  erzeugte neuen Ärger, denn
+gerade bei größeren Projekten häuften sich Unmengen von Java-Code in den JSP-Seiten an, sehr zum
+Ärger der HTML-Programmierer.
+
+Um die Probleme beider Ansätze zu lösen kündigte Sun Microsystems im Juni 1999 das Application 
+Programming Model an, welches auch unter dem Namen J2EE Blueprints bekannt ist\cite[S.~284]{bergsten_01}.
+Dies beinhaltete unter anderem auch die Spezifikation für das MVC Modell 2, welches die Vorteile
+der Servlets mit den Vorteilen von JavaServerPages verband.
+
+Das MVC Modell 2 lagert die Steuerung in ein Servlet aus, wobei das Datenmodell in den
+JavaBeans bleibt und die Darstellung weiterhin über JSP-Seiten erfolgt. Diese Steuer-Servlets,
+auch Controller genannt,  sind für den Programmierer wesentlich einfacher zu warten und die
+Ansicht kann jederzeit unabhängig von der Anwendungslogik verändert werden.
+
+
+
+\footnotetext[1]{CGI - Common Gateway Interface}
+
+
+
+
+
+

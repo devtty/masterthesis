@@ -1,0 +1,191 @@
+\section{Entwicklungs-Werkzeuge}
+
+\subsection{CVS}
+Aus Zeit- und Qualit\"atsaspekten ist es bei jedem Projekt von Vorteil den Verlauf der Arbeit
+jederzeit zur\"uckverfolgen zu k\"onnen oder in verschiedene Richtungen zu lenken. Eine h\"aufig
+praktizierte aber denkbar schlechte L\"osung daf\"ur ist das Speichern verschiedener Versionen
+in verschiedenen Dateien, da dies einen enormen Bedarf an Speicherplatz ben\"otigt und 
+zus\"atzlich einer eigenverantwortlichen Katalogisierung bedarf. Sehr gerne wird hierbei das
+jeweilige Datum an den Dateinamen angeh\"angt. 
+
+Eine bessere Methode ist die Nutzung eines Systems zur Versionskontrolle. Von zahlreichen
+auf dem Markt bekannten Systemen ist CVS eines der bekannten und frei erh\"altlichen
+Systeme. Die grunds\"atzliche Funktionsweise von CVS ist dabei denkbar einfach, da es alle 
+Versionen einer Datei in einer einzigen Datei speichert und dabei nur die Unterschiede 
+zwischen verschiedenen Versionen abspeichert. Dadurch ist man in der Lage jegliche 
+vorhergehende Version zu jedem Zeitpunkt wiederherzustellen. Erste Schritte machte CVS
+1986, seitdem entwickelte sich das System immer weiter und bietet mittlerweile zahlreiche
+Zusatzfunktionen. Beipielsweise lassen sich auf einfache Weise Unterschiede zwischen
+verschiedenen Versionen darstellen und damit beispielsweise eventuelle Fehler, die
+in fr\"uheren Versionen nicht auftraten, leichter feststellen. Ebenso erm\"oglicht CVS die
+Arbeit mehrerer Personen an einer Datei zur selben Zeit.
+
+Bei der Entwicklung des Lehrsystems war CVS inbesondere im Entwurf und der Implementierung
+besonders hilfreich.
+
+%---------------------------------------------------------------------------------------
+\subsection{Ant}
+
+Eine der zeitaufw\"andigen Aufgaben der Implementation ist das Kompilieren der Quellen und das
+sich anschlie{\ss}ende Einspielen der fertigen Klassen auf das Dateisystem des Servers (Deployment).
+Abhilfe dabei schaffen Build-Tools wie das ebenfalls vom Jakarta Projekt stammende Ant. In einer
+Konfigurations-Datei (build.xml) werden alle n\"otigen Schritte die zu einer fertigen Anwendung
+f\"uhren eingestellt und bei Bedarf ausgef\"uhrt. Ant \"ubernimmt dabei sowohl das Kompilieren, das
+Erstellen von ben\"otigten Verzeichnissen und das Kopieren auf den Server.
+
+%---------------------------------------------------------------------------------------
+\subsection{Together Control Center}
+
+Die von der TogetherSoft Corporation entwickelte Model-Build-Deploy Platform in der Version 5.5
+war das meistgenutzte Werkzeug bei der Entwicklung des Lehrsystems, teilweise auch dadurch
+das es als Frontend f\"ur CVS und Ant diente. Beide Werkzeuge lassen sich einfach und komfortabel
+mit dem Control Center bedienen und aufrufen.
+
+Die Hauptaufgabe des Werkzeugs lag allerdings in der Entwicklung und Dokumentation. Das Werkzeug
+erm\"oglicht die einfache Erstellung von UML-Diagrammen nach dem Standard UML 1.3. Die erstellten
+Diagramme lassen sich leicht beschreiben und im Falle von einigen Diagrammen wie zum Beispiel
+Klassendiagrammen generiert das Together Control Center auf Wunsch die n\"otigen Quelltexte f\"ur
+die Implementation. Auf Knopfdruck kann ebenfalls eine Dokumentation in verschiedenen Formaten
+generiert werden oder der Quelltext nach bestimmten Qualit\"atsmerkmalen formatiert werden. 
+Desweiteren stellt das Programm eine gro{\ss}e Bibliothek an Entwurfsmustern f\"ur die Entwicklung
+zur Verf\"ugung.
+
+%--------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------
+\section{Anwendungs-Komponenten}
+In diesem Abschnitt m\"ochte ich etwas n\"aher auf die Komponenten eingehen, die zur
+Entwicklung, zum Test und zum Betrieb des Lehrsystems ben\"otigt werden bzw. wurden.
+Dabei wird zwischen Hardware und Software unterschieden. Insbesondere wird
+auf die verwendete Programmiersprache, den Webserver und die Datenbank eingangen, die
+zum Betrieb des Lehrsystems in der derzeitigen Version verwendet werden sollten. 
+
+Weiterhin wird noch kurz auf die verwendete Hardware eingegangen, da das System jedoch weitestgehend
+plattformunabh\"angig ist sollte es auch in anderen Hardwareumgebungen lauff\"ahig sein. Dies
+wurde jedoch nicht getestet.
+
+\newpage
+\subsection{Java}
+Eine der ersten Entscheidungen bei der Entwicklung von Software sind die Wahl der passenden
+Produktumgebung und die damit h\"aufig verbundene Wahl der Programmiersprache, die f\"ur
+die Kernfunktionen des Systems zust\"andig sein soll. Das das Internet die passende Produktumgebung f\"ur
+das Lehrsystem ist, wurde bereits durch die Art der Anwendung festgelegt und schaut man sich nun nach
+geeigneten Programmiersprachen f\"ur das Internet um, so wird man von einer Flut von M\"oglichkeiten
+\"uberschwemmt. \"Uber die CGI-Schnittstelle stehen alle Programmiersprachen zur Verf\"ugung, die
+eine Ausgabe an die Standardausgabe eines Computers unterst\"utzen. Dadurch k\"onnen sowohl
+interpretierte Sprachen, wie z.B. Perl oder Shell-Skripte, aber auch Hochsprachen wie C oder Pascal
+f\"ur eine Web-Anwendung in Frage kommen. Letztendlich hat der CGI-Ansatz aber auch ein paar Nachteile,
+bei der Verwendung von interpretierten Sprachen mu{\ss} das Betriebsystem nat\"urlich auch in der
+Lage sein die Skripte zu interpretieren, ein einfacher Wechsel des Betriebssystems ist so mit gr\"o{\ss}erem
+Aufwand verbunden. Im Fall der Verwendung von Hochsprachen wie C m\"u{\ss}te die gesamte Anwendung sogar
+f\"ur die jeweilige Plattform neu kompiliert und gelinkt werden. Ein weiterer Nachteil des CGI liegt
+in der Art wie Anfragen an die Anwendung bearbeitet werden, jede Anfrage kann bei einigen Plattformen (z.B.
+Apache auf Windows) auf dem Server einen neuen Prozess erzeugen, bei sehr vielen Anfragen in einem 
+kurzen Zeitraum ben\"otigt der Server dadurch enorm viel Rechen- und Speicherleistung.
+
+Wesentlich komfortableres Arbeiten sollte die Programmiersprache Java erm\"oglichen, wenn man die
+folgende Umfrage auf einer Fach-Konferenz\footnotemark[1] betrachtet:
+\footnotetext[1]{ACM SIGCSE-Konferenz; Tabelle aus  \cite[S.~23]{ullenboom_00}}
+
+\begin{table}[h]
+\begin{tabular}{lr}
+\hline
+Lobenswerte Eigenschaft von Java                               & \%\\
+\hline\\
+Programme sind im Netz ladbar                                  & 51\\
+Java ist plattformunabh\"angig                                 & 43\\
+Ist sicherer als C++                                           & 21\\
+Die Sprache ist einfach ``In''                                 & 16\\
+Entfernt unsichere Eigenschaften von C++                       & 11\\
+Compiler und VM von Sun frei                                   & 11\\
+Erlaubt die Erstellung von grafischen Benutzungsschnittstellen & 9\\
+Allgemeine Ablehnung gegen\"uber C++                           & 9\\
+Ist ein richtiges Produkt zur richtigen Zeit                   & 9\\
+Sprache mit durchdachten Elementen                             & 8\\
+Qualit\"at der Bibliotheken                                    & 7\\
+Elegante Speicherverwaltung mit Garbage-Collector              & 5\\
+Applikations- und Appletf\"ahigkeit                            & 4\\
+Unterst\"utzt Threads                                          & 3\\
+Erm\"oglicht verteiltes Rechnen                                & 3\\
+Exception-Verwaltung                                           & 0\\
+\end{tabular}
+\caption{Welche Eigenschaften an Java wie gesch\"atzt werden.}
+\end{table}
+
+Punkt zwei: ``Java ist plattformunabh\"angig'' - meiner Meinung nach, eines der wichtigsten
+Argumente f\"ur die Nutzung von Java. Wenn man eine Anwendung schreibt ist es immer von Vorteil
+wenn sie auf m\"oglichst vielen unterschiedlichen Plattformen ohne gro{\ss}e Umst\"ande verwendbar
+ist. Java wird zwar auch, wie C und C++, kompiliert aber umgeht das Problem der Plattformabh\"angigkeit
+durch die Erstellung von sogenanntem {\it Bytecode}. Im Gegensatz zu den Ergebnissen das Compilers
+von C oder Pascal ist der Bytecode nicht an ein Betriebssystem oder eine spezielle Systemarchitektur
+gebunden sondern nur an eine bestimmte {\it Virtuelle Maschine}, die den Bytecode f\"ur das 
+jeweilige Betriebssystem interpretiert. Die Virtuelle Maschinen (VM) sind f\"ur eine Vielzahl
+von Betriebssystemen bereits vorhanden und kostenlos verf\"ugbar.
+
+Die Unabh\"angigkeit von der Plattform, die {\it Appletf\"ahigkeit} und die M\"oglichkeit {\it Benutzungsschnittstellen}
+zu erstellen bieten eine ideale Vorraussetzung f\"ur einen Chat-Client, da Applets ``kleine'' Applikationen
+sind, die in vielen Internet-Browsern laufen. Zahlreich existieren bereits Chat-Clients auf Basis von Java Applets
+im Internet. 
+
+Das die Punkte ``Qualit\"at der Bibliotheken'' und ``Unterst\"utzung von Threads'' weit unten in der
+Umfrage landeten liegt h\"ochstwahrscheinlich daran, das die Umfrage im M\"arz 1997 stattfand
+und das erste {\it Java Developement Kit} im Januar 1996 freigegeben wurde. Jedoch hat sich seitdem
+vieles getan, gerade durch die beiden angesprochenen Punkte, und ``als Sun die Technik der Java Servlets
+der Welt\"offentlichkeit vorstellte, waren viele Programmierer hoch erfreut, weil diese schneller und
+m\"achtiger war als der bis dahin vorherrschende CGI-Ansatz'' \cite[S.~48]{oeztuerk_02}. Die Unterst\"utzung
+von Threads als einer der Gr\"unde f\"ur den Geschwindigkeitsvorteil liegt auf der Hand, es ist nicht mehr n\"otig
+f\"ur einzelne Anfragen einen eigenen Prozess zu starten, stattdessen k\"onnen mehrere Anfragen von ein
+und demselben Prozess, innerhalb verschiedener Threads, bearbeitet werden. Mit der Servlet-Technologie
+entstanden auch die {\it Servlet-Engines}, Container-Anwendungen die f\"ur die Ausf\"uhrung von
+Servlets, und weit mehr, verantwortlich sind. 
+
+
+%--------------------------------------------------------------------------------------
+\subsection{\label{sec:webserver}Web-Server}
+Grundvoraussetzung f\"ur jede Web-Anwendung ist ein Web-Server mit Servlet-Engine, die sowohl Servlets
+als auch Java Server Pages unterst\"utzt. Als Referenzimplementierung f\"ur solche Servlet-Engines
+gilt der Tomcat-Server des Jakarta Projekts\footnotemark[1]\footnotetext[1]{http://jakarta.apache.org}.
+
+%--------------------------------------------------------------------------------------
+\subsection{Tamino XML-Server}
+Der Tamino XML-Server ist ein Produkt der Software AG und, wie der Name schon sagt, ebenfalls ein Server.
+Die Hauptaufgabe dieses Servers ist jedoch nicht das Bereitstellen von Internetseiten. Die Definition der 
+Software AG - T{\it ransaktions-}A{\it rchitektur f\"ur das}M{\it anagement von} IN{\it ternet-}O{\it bjekten}
+- zeigt bereits in groben Z\"ugen den Verwendungszweck von Tamino. Transaktions-Architektur bedeutet das
+Tamino Transaktionen erm\"oglicht, wie zum Beispiel die Bearbeitung, Speicherung aber auch den Abruf von 
+Internet-Objekten. Unter Internet-Objekten verstehen sich dabei Daten wie HTML-, XML- aber auch Bin\"ardaten, 
+wie z.B. Bilder. In der Tat lassen sich in Tamino auch Bilddaten und alle anderen Bin\"ardaten speichern
+und lesen, allerdings liegen die Hauptgr\"unde f\"ur die Verwendung in der F\"ahigkeit XML-Daten in ihrer
+nativen bzw. nat\"urlichen Form, als XML-Daten, abzuspeichern. Im Gegensatz zu den vorherrschenden relationellen
+Datenbanksystemen bildet Tamino XML-Daten nicht auf Tabellen ab oder speichert sie komplett in einem Textfeld.
+
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+XML & RDBMS (normalized)\\&\\
+- Data in single hierarchical structure      & - Data in multiple tables\\
+- Nodes have element and/or attribute values & - Cells have a single value\\
+- Elements can be nested                     & - Atomic cell values\\
+- Elements are ordered                       & - Row/column order not defined\\
+- Elements can be recursive                  & - Little support for recursive elements\\
+- Schema optional                            & - Schema required\\
+- Direct storage/retrieval of XML Documents  & - Joins often necessary to retrieve XML Documents\\
+- Query with XML standards                   & - Query with SQL retrofitted for XML\\
+\hline
+\end{tabular}
+\caption{Hauptunterschiede zwischen XML-Daten und relationalen DBMS \cite[S.~9]{tamino_01}}
+\end{table}
+
+%--------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------
+\newpage
+\section{Verwendete Hardware}
+
+\subsection{Der Server}
+
+Als allgemeiner Server f\"ur die Entwicklung stand eine Siemens SCENIC 400 mit einem Intel Pentium 4 
+Prozessor zur Verf\"ugung. 
+
+
+
+
+

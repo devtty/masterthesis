@@ -1,0 +1,44 @@
+\section{Gesamtsystem}
+
+Das System sollte f\"ur eine m\"oglichst gro{\ss}e Zielgruppe und von jedem Ort aus
+erreichbar sein, dies sind wohl die zwei wichtigsten Aspekte, die f\"ur das Internet
+sprechen. Die Zahl derer, die den Umgang mit dem Medium Internet beherrschen, steigt
+t\"aglich und Internet-Browser sind mittlerweile f\"ur fast jeden Menschen beherrschbar,
+also w\"are eine Web-Anwendung die ideale Wahl als Umgebung f\"ur das Lehrsystem.
+
+Au{\ss}er der leichten Bedienung durch den Benutzer und die Erreichbarkeit sprechen
+allerdings noch andere Eigenschaften einer Web-Anwendung f\"ur die Verwendung. Sie
+sind f\"ur den Benutzer nicht an dessen Umgebung gebunden und laufen auf fast jedem
+Rechner mit Internetanschlu{\ss}. Der Benutzer ben\"otigt keine spezielle Software.
+Der Aufbau der Benutzerschnittstelle l\"a{\ss}t sich jederzeit, auch nach Fertigstellung 
+der Anwendung, einfach beeinflussen und umstellen. Desweiteren lassen sich Web-Anwendungen
+in andere Webseiten einfach einbetten, z.B. durch Frames. 
+
+\subsection{Web-Applikation - aber wie?}
+Zentrale zu entwickelnde Komponente ist der Chat, dessen Hauptfunktion das Chatten, nicht zwingend
+eine gro{\ss}e Webanwendung fordert. Grunds\"atzlich soll der Chat nur den Austausch von Nachrichten
+bewerkstelligen und das l\"asst sich auch mit Hilfe von Applets realisieren (s. \ref{sec:entwchat}).
+Aus diesem Grund entschied ich mich gegen eine direkte Verkn\"upfung des Chats mit den
+administrativen und informativen Funktionen des Lehrsystems.
+
+Die Funktionen, die nicht den Chat selbst betreffen, sind lassen sich besser in der Web-Anwendung
+integrieren. Als Beispiel m\"ochte ich an dieser Stelle auf die Benutzeradministration hinweisen,
+da es wesentlich einfacher f\"ur den Anwender ist ein Formular auf einer Webseite auszuf\"ullen als
+die Daten in einem Applet einzutragen und an die Anwendung zu schicken. Formulare lie{\ss}en
+sich zwar auch innerhalb von Applets realisieren, aber dies w\"are f\"ur den Entwickler ein
+erheblich gr\"osserer Aufwand und w\"urde die Gr\"o{\ss}e des Applets, und damit die Ladezeit, wesentlich 
+beeinflussen.
+
+Desweiteren wird eine Modularit\"at erm\"oglicht, die es erlaubt den Chat unabh\"angig vom
+Rest der Anwendung weiterzuentwickeln und umgekehrt. Den Chat selbst, beispielsweise, interessiert es
+nicht ob und welche Datenbank f\"ur die Benutzerdaten genutzt wird und sollte mal eine andere Datenbank
+oder gar ein anderes Datenbanksystem genutzt werden entsteht kein Anpassungsbedarf im Chat selbst. Ebenso
+ben\"otigt der Chat, au{\ss}er den Benutzernamen und die Rechte, keine weiteren Informationen \"uber einen
+Teilnehmer und k\"onnte dadurch auch in anderen Umgebungen oder {\it stand-alone} eingesetzt werden.
+
+
+
+
+
+
+

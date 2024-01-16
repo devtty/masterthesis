@@ -1,0 +1,133 @@
+\section{Datenmodelle}
+
+Die Speicherung der Daten im System sollte auf Basis von XML erfolgen, da dies einen sehr
+guten Kompromi{\ss} zwischen Flexibilit\"at und Effizienz bietet. Im Gegensatz zu relationellen
+Datenmodellen lassen sich XML-Daten beliebig erweitern und ausbauen. Ein weiterer Vorteil von
+XML ist in der Bearbeitung zu finden. XML ist ein Textformat und kann dadurch mit jedem einfachen 
+Texteditor gelesen und bearbeitet werden.
+
+\subsection{Benutzer}
+
+Bei den Benutzerdaten ist die Flexibilit\"at von XML zwar noch nicht zwingend erforderlich aber
+kommt dennoch zum Vorschein. Da das System verschiedene Nutzerrollen vorsieht bedarf es nat\"urlich
+auch verschiedener Benutzerdaten. So ben\"otigt die Person des Unterrichtenden im Gegensatz zum 
+Studenten keine Matrikelnummer und keine Angabe zum Semester, daf\"ur aber zum Beispiel eine Mitarbeiter
+im Unternehmen bzw. \"ahnliches f\"ur staatliche Institute.
+
+\begin{figure}[h]
+\begin{verbatim}
+<user id="1" password="FcjDienj" username="mmuster" role="student">
+  <firstName>Max</firstName>
+  <lastName>Muster</lastName>
+  <email>max.muster@mail.com</email>
+  <address>Steinweg 1</address>
+  <city>Musterstadt</city>
+  <zip>12345</zip>
+  <location>Berlin</location>
+  <phone>555-12345</phone>
+  <matrikeln>s12345678</matrikeln>
+  <semester>8</semester>
+</user>
+\end{verbatim}
+\caption{Beispiel f\"ur Benutzerdaten}
+\end{figure}
+
+%---------------------------------------------------------------------------------------
+\subsection{Klassenr\"aume}
+
+Die Daten eines Klassenraums m\"ussen da schon wesentlich flexibler sein, da diese auch 
+Referenzen zu den zugeh\"origen Personen beinhalten sollten und die Anzahl der Referenzen
+nicht festgelegt sein sollte.  
+
+\begin{figure}[h]
+\begin{verbatim}
+<class id="1">
+  <name>Media Theory</name>
+  <description>Im Bereich Medientheorie ...</description>
+  <start>12/27/02</start>
+  <end>05/15/05</end>
+  <teacher>2</teacher>
+  <lvn>1800</lvn>
+  <member>1</member>
+  <member>2</member>
+  <member>15</member>
+  <member>16</member>
+</class>
+\end{verbatim}
+\caption{Beispiel f\"ur einen Klassenraum}
+\end{figure}
+
+
+%-----------------------------------------------------------------------------------------
+\subsection{Protokolle}
+
+\begin{figure}[h]
+\begin{verbatim}
+<protocol id="1" class="1" status="open">
+  <head>
+    <start>05-06-99 09:43:34</start>
+    <end>05-06-99 11:44:20</end>
+    <lesson>Media Theory - 6th May 1999</lesson>
+    <teacher>2</teacher>
+    <meta>1</meta>
+  </head>
+  <message id="1">
+    <username>Uwe</username>
+    <body>Hi! My name is Uwe and this is our chat ;)</body>
+  </message>
+  <message id="2">
+    <username>Albert</username>
+    <body>Hello</body>
+  </message>
+  <markup>
+    <message id="3">
+      <username>Albert</username>
+      <body>Lets talk about the import stuff...</body>
+    </message>
+  </markup>
+     .
+     .
+     .
+  <message id="291">
+    <username>Albert</username>
+    <body>Bye bye and a nice day.</body>
+  </message>
+</protocol>
+\end{verbatim}
+\caption{Beispiel f\"ur ein Chat-Protokoll}
+\end{figure}
+%-----------------------------------------------------------------------------------------
+
+\subsection{Metadaten}
+
+
+
+
+\begin{figure}[h]
+\begin{verbatim}
+<record>
+  <general>
+    <title>
+      <langstring lang="en">Media Theory - 6th May 1999</langstring>
+    </title>
+    <language>english</language>
+    <description>
+      <langstring lang="en">colours in media</langstring>
+    </description>
+    <keywords>
+      <langstring lang="en">media</langstring>
+      <langstring lang="en">colours</langstring>
+      <langstring lang="en">colors</langstring>
+      <langstring lang="de">farben</langstring>
+    </keywords>
+  </general>
+</record>
+\end{verbatim}
+\caption{Beispiel f\"ur Protokoll-Metadaten}
+\end{figure}
+%-----------------------------------------------------------------------------------------
+\section{Datenzugriffe}
+
+
+
+

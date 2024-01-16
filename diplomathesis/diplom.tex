@@ -1,0 +1,120 @@
+\documentclass[a4paper, 11pt]{report}
+\usepackage{times, mathptm}
+\usepackage{ngerman}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+%\usepackage{anysize}
+\sloppy
+
+\title{{\sc Teaching By Chat\\Entwicklung eines Lehrsystems}
+\\[10ex]
+  Diplomarbeit \\[7ex]
+  {\small zur Erlangung des akademischen Grades\\}
+  Diplom-Informatiker (FH)\\[5ex]
+  {\small
+  an der\\
+  Fachhochschule f\"{u}r Technik und Wirtschaft Berlin\\
+  Fachbereich Wirtschaftswissenschaften II\\
+  Studiengang Internationale Medieninformatik\\
+  }
+}
+
+\author{
+  1. Betreuer: Prof. Dr. Weber-Wulff\\
+  2. Betreuer: Prof. Dr.-Ing. Barthel\\
+  Eingereicht von Denis Renning\\[5ex]
+  }
+
+\date{Berlin, \today}
+
+%Befehle, die den Zeilenabstand im Text, bzw. in
+%Tabellen ver�ndern k�nnen.
+%Fakor 1.0 ist default, also sind sie Befehle
+%im Moment wirkungslos...
+\renewcommand{\baselinestretch}{1.0}
+\renewcommand{\arraystretch}{1.0}
+
+
+\renewcommand{\textwidth}{15.0cm}
+
+%Befehle, die Abstand und Einr�ckung eines neuen
+%Paragraphen bestimmen. Der Abstand (parskip) ist dabei
+%ein sogenanntes dehnbares Ma�, die Einr�ckung (parindent)
+%jedoch nicht. Es werden keine absoluten Ma�e (wie cm)
+%verwendet, sondern ex und em (H�he eines "x" bzw.
+%Breite eines sog. Geviertstrichs "-")
+\setlength{\parskip}{1.5ex plus 0.5ex minus 0.5ex}
+\setlength{\parindent}{1.5em}
+
+%\oddsidemargin 0.5in
+%\evensidemargin 0.5in
+%\topmargin 0.5pt
+%\textheight 8.1in
+%\textwidth 6in
+
+
+%Hiergeht's los:
+\begin{document}
+
+\DeclareGraphicsExtensions{.gif}
+
+
+%Erstellt das Titelblatt:
+\maketitle
+
+%Inhaltsverzeichnis soll r�misch numeriert sein:
+%\pagenumbering{roman}\setcounter{page}{1}
+
+%Erstellt das Inhaltsverzeichnis:
+\tableofcontents
+
+\newpage
+
+
+
+%Der Rest soll arabisch numeriert sein:
+%\pagenumbering{arabic}\setcounter{page}{1}
+\input{01_einleitung/einleitung}
+\input{02_aufgaben/in}
+\input{03_fachumf/in}
+\input{04_alternat/in}
+\input{05_pflichte/in}
+\input{06_systemen/in}
+\input{07_implemen/in}
+\input{08_test/in}
+\input{09_manual/in}
+\input{10_summary/in}
+%\input{entstehung}
+%\input{lehreinsatz}
+%\input{realitaet}
+
+
+%Nun noch Informationen f�r BiBTeX zum Erstellen des
+%Literaturverzeichnis:
+
+%Die Literaturdatenbank (auch mehrere,
+%durch Kommata getrennt, sind erlaubt)
+\listoftables
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\listoffigures
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\bibliography{diplom}
+%Das Aussehen des Literaturverzeichnisses
+%wird durch das File gergipl.bst (bst f�r BibliographSTyle)
+%bestimmt.
+%Alternativ m�glich: "gerdiplalpha" f�r Literaturverzeichnisse,
+%wo jeder Eintrag nicht eine Nummer, sondern die Anfangsbuchstaben
+%der Autoren tr�gt.
+\bibliographystyle{alpha}
+
+%Eintrag ins Inhaltsverzeichnis:
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+\newpage
+\input{erklaerung}
+%Schluss:
+\end{document}
+
+Hier darf nun alles m�gliche folgen...
+
+
